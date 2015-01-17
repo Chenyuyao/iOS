@@ -24,3 +24,10 @@ Description of the app :-p
     </pre>
 6. Run the app, confirming it works.
 7. Start coding and send pull requests!
+
+## Tips ##
+- To sync from the upstream repository, under your project home dir, execute the following:
+<pre>
+git fetch upstream
+git rebase upstream/master
+</pre>
