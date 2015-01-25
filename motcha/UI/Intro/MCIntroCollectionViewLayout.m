@@ -48,6 +48,4 @@
                     (_finalSize.height +_spacing) * numberOfRows);
 }
 
-
-
 @end
