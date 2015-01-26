@@ -10,8 +10,11 @@
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
 		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
 		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
-		470C28661A757E5A00E16A92 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C28631A757E5A00E16A92 /* MCIntroCollectionViewLayout.m */; };
-		470C28671A757E5A00E16A92 /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 470C28651A757E5A00E16A92 /* MCIntroViewController.m */; };
+		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
+		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
+		476EE6EE1A75CC160065833F /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 476EE6EB1A75CC160065833F /* MCIntroCollectionViewLayout.m */; };
+		476EE6EF1A75CC160065833F /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476EE6ED1A75CC160065833F /* MCIntroViewController.m */; };
+		765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D829A19865D9EFFB73840 /* libPods-motcha.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,11 +34,17 @@
 		15E3DB321A6B04BA002F4F4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		15E3DB331A6B04BA002F4F4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		15E3DB411A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15E3DB471A6B04BA002F4F4C /* motchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		470C28621A757E5A00E16A92 /* MCIntroCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCollectionViewLayout.h; sourceTree = "<group>"; };
-		470C28631A757E5A00E16A92 /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
-		470C28641A757E5A00E16A92 /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
-		470C28651A757E5A00E16A92 /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
+		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = motchaTests.m; sourceTree = "<group>"; };
+		283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.release.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.release.xcconfig"; sourceTree = "<group>"; };
+		476EE6EA1A75CC160065833F /* MCIntroCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCollectionViewLayout.h; sourceTree = "<group>"; };
+		476EE6EB1A75CC160065833F /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
+		476EE6EC1A75CC160065833F /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
+		476EE6ED1A75CC160065833F /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
+		553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.debug.xcconfig"; sourceTree = "<group>"; };
+		F49D829A19865D9EFFB73840 /* libPods-motcha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motcha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				15E3DB2D1A6B04BA002F4F4C /* motcha */,
+				15E3DB4A1A6B04BA002F4F4C /* motchaTests */,
 				15E3DB2C1A6B04BA002F4F4C /* Products */,
+				6FE61608933FECC746C075BF /* Pods */,
+				ABF2B1EC44AFC19FAD99A02F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,10 +89,11 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
-				470C28601A757E5A00E16A92 /* UI */,
+				476EE6E81A75CC160065833F /* UI */,
 				15E3DB321A6B04BA002F4F4C /* AppDelegate.h */,
 				15E3DB331A6B04BA002F4F4C /* AppDelegate.m */,
 				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
+				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
 			);
 			path = motcha;
@@ -94,23 +108,57 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		470C28601A757E5A00E16A92 /* UI */ = {
+		15E3DB4A1A6B04BA002F4F4C /* motchaTests */ = {
 			isa = PBXGroup;
 			children = (
-				470C28611A757E5A00E16A92 /* Intro */,
+				15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */,
+				15E3DB4B1A6B04BA002F4F4C /* Supporting Files */,
+			);
+			path = motchaTests;
+			sourceTree = "<group>";
+		};
+		15E3DB4B1A6B04BA002F4F4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15E3DB4C1A6B04BA002F4F4C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		476EE6E81A75CC160065833F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				476EE6E91A75CC160065833F /* Intro */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		470C28611A757E5A00E16A92 /* Intro */ = {
+		476EE6E91A75CC160065833F /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				470C28621A757E5A00E16A92 /* MCIntroCollectionViewLayout.h */,
-				470C28631A757E5A00E16A92 /* MCIntroCollectionViewLayout.m */,
-				470C28641A757E5A00E16A92 /* MCIntroViewController.h */,
-				470C28651A757E5A00E16A92 /* MCIntroViewController.m */,
+				476EE6EA1A75CC160065833F /* MCIntroCollectionViewLayout.h */,
+				476EE6EB1A75CC160065833F /* MCIntroCollectionViewLayout.m */,
+				476EE6EC1A75CC160065833F /* MCIntroViewController.h */,
+				476EE6ED1A75CC160065833F /* MCIntroViewController.m */,
 			);
 			path = Intro;
+			sourceTree = "<group>";
+		};
+		6FE61608933FECC746C075BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */,
+				283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ABF2B1EC44AFC19FAD99A02F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F49D829A19865D9EFFB73840 /* libPods-motcha.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,9 +168,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15E3DB511A6B04BA002F4F4C /* Build configuration list for PBXNativeTarget "motcha" */;
 			buildPhases = (
+				EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */,
 				15E3DB271A6B04BA002F4F4C /* Sources */,
 				15E3DB281A6B04BA002F4F4C /* Frameworks */,
 				15E3DB291A6B04BA002F4F4C /* Resources */,
+				FF8C356BEF06195F45F08160 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,13 +257,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF8C356BEF06195F45F08160 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-motcha/Pods-motcha-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		15E3DB271A6B04BA002F4F4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				470C28661A757E5A00E16A92 /* MCIntroCollectionViewLayout.m in Sources */,
-				470C28671A757E5A00E16A92 /* MCIntroViewController.m in Sources */,
+				476EE6EE1A75CC160065833F /* MCIntroCollectionViewLayout.m in Sources */,
+				476EE6EF1A75CC160065833F /* MCIntroViewController.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
 			);
@@ -222,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +319,17 @@
 			targetProxy = 15E3DB481A6B04BA002F4F4C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15E3DB411A6B04BA002F4F4C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		15E3DB4F1A6B04BA002F4F4C /* Debug */ = {
@@ -316,6 +412,7 @@
 		};
 		15E3DB521A6B04BA002F4F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -327,6 +424,7 @@
 		};
 		15E3DB531A6B04BA002F4F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
