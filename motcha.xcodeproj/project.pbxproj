@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
-		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
+		15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* MCAppDelegate.m */; };
+		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
 		476EE6F31A75F9240065833F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476EE6F21A75F9240065833F /* Images.xcassets */; };
@@ -44,8 +45,9 @@
 		15E3DB2B1A6B04BA002F4F4C /* motcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = motcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB2F1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB301A6B04BA002F4F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		15E3DB321A6B04BA002F4F4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		15E3DB331A6B04BA002F4F4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		15E3DB321A6B04BA002F4F4C /* MCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCAppDelegate.h; sourceTree = "<group>"; };
+		15E3DB331A6B04BA002F4F4C /* MCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCAppDelegate.m; sourceTree = "<group>"; };
+		15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15E3DB411A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15E3DB471A6B04BA002F4F4C /* motchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,8 +132,9 @@
 				47E912EE1A8459C20055AB69 /* DataModel */,
 				47E912E71A84592E0055AB69 /* Network */,
 				E0B343B41A773F030081BE95 /* UI */,
-				15E3DB321A6B04BA002F4F4C /* AppDelegate.h */,
-				15E3DB331A6B04BA002F4F4C /* AppDelegate.m */,
+				15E3DB321A6B04BA002F4F4C /* MCAppDelegate.h */,
+				15E3DB331A6B04BA002F4F4C /* MCAppDelegate.m */,
+				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
 			);
@@ -243,6 +246,22 @@
 			path = Intro;
 			sourceTree = "<group>";
 		};
+		C6D040761A75F9F300DA5AF0 /* NewsList */ = {
+			isa = PBXGroup;
+			children = (
+				C6D040B81A76E99700DA5AF0 /* MCNewsListViewController.h */,
+				C6D040B91A76E99700DA5AF0 /* MCNewsListViewController.m */,
+				C6D040BA1A76E99700DA5AF0 /* MCNewsListViewController.xib */,
+				C6D040BD1A76E9E200DA5AF0 /* MCNewsListCollectionViewCell.h */,
+				C6D040BE1A76E9E200DA5AF0 /* MCNewsListCollectionViewCell.m */,
+				C6D040BF1A76E9E200DA5AF0 /* MCNewsListCollectionViewCell.xib */,
+				C6D040C21A76EA1600DA5AF0 /* MCNewsListDetailViewController.h */,
+				C6D040C31A76EA1600DA5AF0 /* MCNewsListDetailViewController.m */,
+				C6D040C41A76EA1600DA5AF0 /* MCNewsListDetailViewController.xib */,
+			);
+			name = NewsList;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,7 +346,10 @@
 				E0B343C71A773F030081BE95 /* MCIntroFooter.xib in Resources */,
 				E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
-				476EE6F31A75F9240065833F /* Images.xcassets in Resources */,
+				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
+				C6D040C61A76EA1600DA5AF0 /* MCNewsListDetailViewController.xib in Resources */,
+				C6D040C11A76E9E200DA5AF0 /* MCNewsListCollectionViewCell.xib in Resources */,
+				C6D040BC1A76E99700DA5AF0 /* MCNewsListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
