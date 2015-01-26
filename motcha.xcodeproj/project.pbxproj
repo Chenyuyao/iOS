@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
 		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
-		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
 		476EE6EE1A75CC160065833F /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 476EE6EB1A75CC160065833F /* MCIntroCollectionViewLayout.m */; };
 		476EE6EF1A75CC160065833F /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476EE6ED1A75CC160065833F /* MCIntroViewController.m */; };
+		476EE6F31A75F9240065833F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476EE6F21A75F9240065833F /* Images.xcassets */; };
 		765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D829A19865D9EFFB73840 /* libPods-motcha.a */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +33,6 @@
 		15E3DB301A6B04BA002F4F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15E3DB321A6B04BA002F4F4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		15E3DB331A6B04BA002F4F4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15E3DB411A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15E3DB471A6B04BA002F4F4C /* motchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		476EE6EB1A75CC160065833F /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
 		476EE6EC1A75CC160065833F /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
 		476EE6ED1A75CC160065833F /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
+		476EE6F21A75F9240065833F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = motcha/Images.xcassets; sourceTree = "<group>"; };
 		553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.debug.xcconfig"; sourceTree = "<group>"; };
 		F49D829A19865D9EFFB73840 /* libPods-motcha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motcha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,6 +69,7 @@
 		15E3DB221A6B04BA002F4F4C = {
 			isa = PBXGroup;
 			children = (
+				476EE6F21A75F9240065833F /* Images.xcassets */,
 				15E3DB2D1A6B04BA002F4F4C /* motcha */,
 				15E3DB4A1A6B04BA002F4F4C /* motchaTests */,
 				15E3DB2C1A6B04BA002F4F4C /* Products */,
@@ -92,7 +93,6 @@
 				476EE6E81A75CC160065833F /* UI */,
 				15E3DB321A6B04BA002F4F4C /* AppDelegate.h */,
 				15E3DB331A6B04BA002F4F4C /* AppDelegate.m */,
-				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
 			);
@@ -244,7 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
-				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
+				476EE6F31A75F9240065833F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
