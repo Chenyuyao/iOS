@@ -1,59 +1,71 @@
-//
-//  MCNewsListDetail.m
-//  motcha
-//
-//  Created by HuaqingLi on 2015-01-26.
-//  Copyright (c) 2015 Frank Li. All rights reserved.
-//
-
 #import "MCNewsListDetailViewController.h"
 
-@interface MCNewsListDetailViewController ()
+static CGFloat newsImageViewHeightRatio     = 0.5f;
+static CGFloat scrollViewContentInsetRatio  = 1.0f/7.0f;
 
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UIScrollView *scrollView;
-
+@interface MCNewsListDetailViewController ()<UIScrollViewDelegate>
 @end
 
-@implementation MCNewsListDetailViewController
+@implementation MCNewsListDetailViewController {
+  UIImageView   *_imageView;
+  UIScrollView  *_scrollView;
+  UIView        *_contentView;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
-  [self setTitle:@"I am news detail"];
-  [self initView];
+  self.title = @"I am news detail";
 }
 
-
-- (void)initView {
+- (void)loadView {
+  [super loadView];
+  
   CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
   CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
   self.automaticallyAdjustsScrollViewInsets = NO;
   
-  //add image view
+  // Add image view
   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,
-                                                             0,
-                                                             screenWidth,
-                                                             screenHeight*NEWS_IAMGE_VIEW_HEIGHT_RATIO)];
+                0,
+                screenWidth,
+                screenHeight*newsImageViewHeightRatio)];
   [_imageView setBackgroundColor:[UIColor yellowColor]];
   [self.view addSubview:_imageView];
   
-  //add scroll view
+  // Add content view to scroll view
+  _contentView = [[UIView alloc] initWithFrame:_scrollView.bounds];
+  [_contentView setBackgroundColor:[UIColor blueColor]];
+  
+  // Add scroll view
   _scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   _scrollView.delegate = self;
-  _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width, 1000);
+  
+  // Calculate and adjust content view size
+  CGRect contentRect = CGRectZero;
+  for (UIView *view in _contentView.subviews) {
+    contentRect = CGRectUnion(contentRect, view.frame);
+  }
+  CGRect contentViewFrame = _contentView.frame;
+  _contentView.frame = CGRectMake(contentViewFrame.origin.x,
+                                  contentViewFrame.origin.y,
+                                  contentRect.size.width,
+                                  contentRect.size.height);
+  _scrollView.contentSize = contentRect.size;
+  
   [self.view addSubview:_scrollView];
   
-  //add content view to scroll view
-  UIView *contentView = [[UIView alloc] initWithFrame:_scrollView.bounds];
-  [contentView setBackgroundColor:[UIColor blueColor]];
+  // Set content top inset
+  _scrollView.contentInset = UIEdgeInsetsMake(screenHeight *
+                                              scrollViewContentInsetRatio, 0, 0, 0);
   
-  [_scrollView setContentInset:UIEdgeInsetsMake(screenHeight*SCROLL_VIEW_CONTENT_INSET_RATIO, 0, 0, 0)];
+  // Scroll to top
   [_scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-  [_scrollView addSubview:contentView];
   
-#warning add more details in the future!
-  //TODO: add title, time, source, dash and author views
+  [_scrollView addSubview:_contentView];
   
+  // TODO: add title, time, source, dash and author views
 }
 
 @end
+
