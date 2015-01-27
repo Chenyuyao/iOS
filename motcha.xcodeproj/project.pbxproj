@@ -9,22 +9,18 @@
 /* Begin PBXBuildFile section */
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
 		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
-		15E3DB371A6B04BA002F4F4C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB361A6B04BA002F4F4C /* MasterViewController.m */; };
-		15E3DB3A1A6B04BA002F4F4C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB391A6B04BA002F4F4C /* DetailViewController.m */; };
-		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
-		E01971231A702767009FD9F5 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971201A702767009FD9F5 /* DINPro-Bold.otf */; };
-		E01971241A702767009FD9F5 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971211A702767009FD9F5 /* DINPro-Regular.otf */; };
-		E01971251A702767009FD9F5 /* FarnhamDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */; };
-		E01971291A70916E009FD9F5 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E01971271A70916E009FD9F5 /* MCIntroCell.m */; };
-		E019712A1A70916E009FD9F5 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01971281A70916E009FD9F5 /* MCIntroCell.xib */; };
-		E019712D1A709505009FD9F5 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */; };
-		E01971311A75DA81009FD9F5 /* MCIntroHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */; };
-		E01971321A75DA81009FD9F5 /* MCIntroHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */; };
-		E032DBA61A76C67100574077 /* MCIntroFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E032DBA41A76C67100574077 /* MCIntroFooter.m */; };
-		E032DBA71A76C67100574077 /* MCIntroFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E032DBA51A76C67100574077 /* MCIntroFooter.xib */; };
-		E041B47C1A6F530C00C7E51E /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */; };
+		476EE6F31A75F9240065833F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476EE6F21A75F9240065833F /* Images.xcassets */; };
+		765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D829A19865D9EFFB73840 /* libPods-motcha.a */; };
+		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
+		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
+		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
+		E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BC1A773F030081BE95 /* MCIntroFooter.m */; };
+		E0B343C71A773F030081BE95 /* MCIntroFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343BD1A773F030081BE95 /* MCIntroFooter.xib */; };
+		E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BF1A773F030081BE95 /* MCIntroHeader.m */; };
+		E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343C01A773F030081BE95 /* MCIntroHeader.xib */; };
+		E0B343CA1A773F030081BE95 /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343C21A773F030081BE95 /* MCIntroViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,31 +39,27 @@
 		15E3DB301A6B04BA002F4F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15E3DB321A6B04BA002F4F4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		15E3DB331A6B04BA002F4F4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		15E3DB351A6B04BA002F4F4C /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		15E3DB361A6B04BA002F4F4C /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		15E3DB381A6B04BA002F4F4C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		15E3DB391A6B04BA002F4F4C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15E3DB411A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15E3DB471A6B04BA002F4F4C /* motchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = motchaTests.m; sourceTree = "<group>"; };
-		E01971201A702767009FD9F5 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
-		E01971211A702767009FD9F5 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
-		E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FarnhamDisplay-Bold.otf"; sourceTree = "<group>"; };
-		E01971261A70916E009FD9F5 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroCell.h; path = UI/Intro/MCIntroCell.h; sourceTree = "<group>"; };
-		E01971271A70916E009FD9F5 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroCell.m; path = UI/Intro/MCIntroCell.m; sourceTree = "<group>"; };
-		E01971281A70916E009FD9F5 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroCell.xib; path = UI/Intro/MCIntroCell.xib; sourceTree = "<group>"; };
-		E019712B1A709505009FD9F5 /* MCIntroCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroCollectionViewLayout.h; path = UI/Intro/MCIntroCollectionViewLayout.h; sourceTree = "<group>"; };
-		E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroCollectionViewLayout.m; path = UI/Intro/MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
-		E019712E1A75DA81009FD9F5 /* MCIntroHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroHeader.h; path = UI/Intro/MCIntroHeader.h; sourceTree = "<group>"; };
-		E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroHeader.m; path = UI/Intro/MCIntroHeader.m; sourceTree = "<group>"; };
-		E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroHeader.xib; path = UI/Intro/MCIntroHeader.xib; sourceTree = "<group>"; };
-		E032DBA31A76C67100574077 /* MCIntroFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroFooter.h; path = UI/Intro/MCIntroFooter.h; sourceTree = "<group>"; };
-		E032DBA41A76C67100574077 /* MCIntroFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroFooter.m; path = UI/Intro/MCIntroFooter.m; sourceTree = "<group>"; };
-		E032DBA51A76C67100574077 /* MCIntroFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroFooter.xib; path = UI/Intro/MCIntroFooter.xib; sourceTree = "<group>"; };
-		E041B4791A6F530C00C7E51E /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroViewController.h; path = UI/Intro/MCIntroViewController.h; sourceTree = "<group>"; };
-		E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroViewController.m; path = UI/Intro/MCIntroViewController.m; sourceTree = "<group>"; };
+		283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.release.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.release.xcconfig"; sourceTree = "<group>"; };
+		476EE6F21A75F9240065833F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = motcha/Images.xcassets; sourceTree = "<group>"; };
+		553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.debug.xcconfig"; sourceTree = "<group>"; };
+		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
+		E0B343B71A773F030081BE95 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCell.m; sourceTree = "<group>"; };
+		E0B343B81A773F030081BE95 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroCell.xib; sourceTree = "<group>"; };
+		E0B343B91A773F030081BE95 /* MCIntroCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCollectionViewLayout.h; sourceTree = "<group>"; };
+		E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
+		E0B343BB1A773F030081BE95 /* MCIntroFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroFooter.h; sourceTree = "<group>"; };
+		E0B343BC1A773F030081BE95 /* MCIntroFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroFooter.m; sourceTree = "<group>"; };
+		E0B343BD1A773F030081BE95 /* MCIntroFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroFooter.xib; sourceTree = "<group>"; };
+		E0B343BE1A773F030081BE95 /* MCIntroHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroHeader.h; sourceTree = "<group>"; };
+		E0B343BF1A773F030081BE95 /* MCIntroHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroHeader.m; sourceTree = "<group>"; };
+		E0B343C01A773F030081BE95 /* MCIntroHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroHeader.xib; sourceTree = "<group>"; };
+		E0B343C11A773F030081BE95 /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
+		E0B343C21A773F030081BE95 /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
+		F49D829A19865D9EFFB73840 /* libPods-motcha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motcha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,9 +84,12 @@
 		15E3DB221A6B04BA002F4F4C = {
 			isa = PBXGroup;
 			children = (
+				476EE6F21A75F9240065833F /* Images.xcassets */,
 				15E3DB2D1A6B04BA002F4F4C /* motcha */,
 				15E3DB4A1A6B04BA002F4F4C /* motchaTests */,
 				15E3DB2C1A6B04BA002F4F4C /* Products */,
+				6FE61608933FECC746C075BF /* Pods */,
+				ABF2B1EC44AFC19FAD99A02F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,15 +105,9 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
-				E01971171A702470009FD9F5 /* Recourses */,
-				E041B4751A6F523400C7E51E /* UI */,
+				E0B343B41A773F030081BE95 /* UI */,
 				15E3DB321A6B04BA002F4F4C /* AppDelegate.h */,
 				15E3DB331A6B04BA002F4F4C /* AppDelegate.m */,
-				15E3DB351A6B04BA002F4F4C /* MasterViewController.h */,
-				15E3DB361A6B04BA002F4F4C /* MasterViewController.m */,
-				15E3DB381A6B04BA002F4F4C /* DetailViewController.h */,
-				15E3DB391A6B04BA002F4F4C /* DetailViewController.m */,
-				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
 			);
@@ -150,50 +140,49 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E01971171A702470009FD9F5 /* Recourses */ = {
+		6FE61608933FECC746C075BF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E019711F1A702767009FD9F5 /* Font */,
+				553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */,
+				283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */,
 			);
-			name = Recourses;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		E019711F1A702767009FD9F5 /* Font */ = {
+		ABF2B1EC44AFC19FAD99A02F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E01971201A702767009FD9F5 /* DINPro-Bold.otf */,
-				E01971211A702767009FD9F5 /* DINPro-Regular.otf */,
-				E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */,
+				F49D829A19865D9EFFB73840 /* libPods-motcha.a */,
 			);
-			path = Font;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E041B4751A6F523400C7E51E /* UI */ = {
+		E0B343B41A773F030081BE95 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E041B4761A6F523800C7E51E /* Intro */,
+				E0B343B51A773F030081BE95 /* Intro */,
 			);
-			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
-		E041B4761A6F523800C7E51E /* Intro */ = {
+		E0B343B51A773F030081BE95 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				E041B4791A6F530C00C7E51E /* MCIntroViewController.h */,
-				E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */,
-				E01971261A70916E009FD9F5 /* MCIntroCell.h */,
-				E01971271A70916E009FD9F5 /* MCIntroCell.m */,
-				E01971281A70916E009FD9F5 /* MCIntroCell.xib */,
-				E019712B1A709505009FD9F5 /* MCIntroCollectionViewLayout.h */,
-				E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */,
-				E019712E1A75DA81009FD9F5 /* MCIntroHeader.h */,
-				E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */,
-				E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */,
-				E032DBA31A76C67100574077 /* MCIntroFooter.h */,
-				E032DBA41A76C67100574077 /* MCIntroFooter.m */,
-				E032DBA51A76C67100574077 /* MCIntroFooter.xib */,
+				E0B343B61A773F030081BE95 /* MCIntroCell.h */,
+				E0B343B71A773F030081BE95 /* MCIntroCell.m */,
+				E0B343B81A773F030081BE95 /* MCIntroCell.xib */,
+				E0B343B91A773F030081BE95 /* MCIntroCollectionViewLayout.h */,
+				E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */,
+				E0B343BB1A773F030081BE95 /* MCIntroFooter.h */,
+				E0B343BC1A773F030081BE95 /* MCIntroFooter.m */,
+				E0B343BD1A773F030081BE95 /* MCIntroFooter.xib */,
+				E0B343BE1A773F030081BE95 /* MCIntroHeader.h */,
+				E0B343BF1A773F030081BE95 /* MCIntroHeader.m */,
+				E0B343C01A773F030081BE95 /* MCIntroHeader.xib */,
+				E0B343C11A773F030081BE95 /* MCIntroViewController.h */,
+				E0B343C21A773F030081BE95 /* MCIntroViewController.m */,
 			);
-			name = Intro;
+			path = Intro;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15E3DB511A6B04BA002F4F4C /* Build configuration list for PBXNativeTarget "motcha" */;
 			buildPhases = (
+				EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */,
 				15E3DB271A6B04BA002F4F4C /* Sources */,
 				15E3DB281A6B04BA002F4F4C /* Frameworks */,
 				15E3DB291A6B04BA002F4F4C /* Resources */,
+				FF8C356BEF06195F45F08160 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,14 +267,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01971241A702767009FD9F5 /* DINPro-Regular.otf in Resources */,
-				E01971251A702767009FD9F5 /* FarnhamDisplay-Bold.otf in Resources */,
-				E01971231A702767009FD9F5 /* DINPro-Bold.otf in Resources */,
+				E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */,
+				E0B343C71A773F030081BE95 /* MCIntroFooter.xib in Resources */,
+				E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
-				E019712A1A70916E009FD9F5 /* MCIntroCell.xib in Resources */,
-				E032DBA71A76C67100574077 /* MCIntroFooter.xib in Resources */,
-				E01971321A75DA81009FD9F5 /* MCIntroHeader.xib in Resources */,
-				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
+				476EE6F31A75F9240065833F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,20 +284,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF8C356BEF06195F45F08160 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-motcha/Pods-motcha-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		15E3DB271A6B04BA002F4F4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01971291A70916E009FD9F5 /* MCIntroCell.m in Sources */,
-				E019712D1A709505009FD9F5 /* MCIntroCollectionViewLayout.m in Sources */,
-				E041B47C1A6F530C00C7E51E /* MCIntroViewController.m in Sources */,
+				E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */,
+				E0B343CA1A773F030081BE95 /* MCIntroViewController.m in Sources */,
+				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
+				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */,
-				15E3DB371A6B04BA002F4F4C /* MasterViewController.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
-				15E3DB3A1A6B04BA002F4F4C /* DetailViewController.m in Sources */,
-				E032DBA61A76C67100574077 /* MCIntroFooter.m in Sources */,
-				E01971311A75DA81009FD9F5 /* MCIntroHeader.m in Sources */,
+				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +442,7 @@
 		};
 		15E3DB521A6B04BA002F4F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -434,6 +454,7 @@
 		};
 		15E3DB531A6B04BA002F4F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

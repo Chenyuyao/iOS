@@ -28,8 +28,7 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
   NSMutableArray *attributesArray = [NSMutableArray array];
-  
-  // cell attributes
+
   for (NSUInteger i = 0; i < _numberOfItems; i++) {
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
     UICollectionViewLayoutAttributes *attributes =
