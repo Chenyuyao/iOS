@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-// A subclass of UICollectionViewController that displays the intro view
+// The welcome view controller when user first launch our app.
 @interface MCIntroViewController : UICollectionViewController
 @end

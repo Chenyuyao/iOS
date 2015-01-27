@@ -50,7 +50,7 @@
             <connections>
                 <outlet property="check" destination="IBQ-2s-Sm4" id="jHe-w4-0aq"/>
                 <outlet property="cover" destination="FgU-BU-iHf" id="IBS-eH-Lhl"/>
-                <outlet property="image" destination="nXs-p2-a5x" id="cFi-AR-7v5"/>
+                <outlet property="imageView" destination="nXs-p2-a5x" id="l0P-wN-Key"/>
                 <outlet property="title" destination="Vcw-wz-Gno" id="LQT-Cd-Ov1"/>
             </connections>
             <point key="canvasLocation" x="279.5" y="313.5"/>

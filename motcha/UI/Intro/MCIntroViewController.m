@@ -4,12 +4,11 @@
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
 
-@implementation MCIntroViewController
-
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
 static NSString * const reuseFooter = @"FooterView";
 
+@implementation MCIntroViewController
 
 - (id)init {
   MCIntroCollectionViewLayout *layout = [[MCIntroCollectionViewLayout alloc] init];
@@ -77,7 +76,6 @@ static NSString * const reuseFooter = @"FooterView";
   return reusableview;
 }
 
-
 - (void)updateHeader:(MCIntroHeader *)header forIndexPath:(NSIndexPath *)indexPath {
   // TODO(sherry): Use string const.
   header.title.text = @"Welcome to Motcha";
@@ -104,7 +102,7 @@ static NSString * const reuseFooter = @"FooterView";
 
 - (void)updateCell:(MCIntroCell *)cell forIndexPath:(NSIndexPath *)indexPath {
   NSString *imageName = [[[self class] categories] objectAtIndex:indexPath.row];
-  cell.image.image = [UIImage imageNamed:imageName];
+  cell.imageView.image = [UIImage imageNamed:imageName];
   cell.title.text = imageName;
 }
 
