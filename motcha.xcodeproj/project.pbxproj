@@ -11,10 +11,20 @@
 		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
 		15E3DB371A6B04BA002F4F4C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB361A6B04BA002F4F4C /* MasterViewController.m */; };
 		15E3DB3A1A6B04BA002F4F4C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB391A6B04BA002F4F4C /* DetailViewController.m */; };
-		15E3DB3D1A6B04BA002F4F4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3B1A6B04BA002F4F4C /* Main.storyboard */; };
 		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
+		E01971231A702767009FD9F5 /* DINPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971201A702767009FD9F5 /* DINPro-Bold.otf */; };
+		E01971241A702767009FD9F5 /* DINPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971211A702767009FD9F5 /* DINPro-Regular.otf */; };
+		E01971251A702767009FD9F5 /* FarnhamDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */; };
+		E01971291A70916E009FD9F5 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E01971271A70916E009FD9F5 /* MCIntroCell.m */; };
+		E019712A1A70916E009FD9F5 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01971281A70916E009FD9F5 /* MCIntroCell.xib */; };
+		E019712D1A709505009FD9F5 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */; };
+		E01971311A75DA81009FD9F5 /* MCIntroHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */; };
+		E01971321A75DA81009FD9F5 /* MCIntroHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */; };
+		E032DBA61A76C67100574077 /* MCIntroFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E032DBA41A76C67100574077 /* MCIntroFooter.m */; };
+		E032DBA71A76C67100574077 /* MCIntroFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = E032DBA51A76C67100574077 /* MCIntroFooter.xib */; };
+		E041B47C1A6F530C00C7E51E /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +47,27 @@
 		15E3DB361A6B04BA002F4F4C /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		15E3DB381A6B04BA002F4F4C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		15E3DB391A6B04BA002F4F4C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		15E3DB3C1A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15E3DB411A6B04BA002F4F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15E3DB471A6B04BA002F4F4C /* motchaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = motchaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = motchaTests.m; sourceTree = "<group>"; };
+		E01971201A702767009FD9F5 /* DINPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Bold.otf"; sourceTree = "<group>"; };
+		E01971211A702767009FD9F5 /* DINPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINPro-Regular.otf"; sourceTree = "<group>"; };
+		E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FarnhamDisplay-Bold.otf"; sourceTree = "<group>"; };
+		E01971261A70916E009FD9F5 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroCell.h; path = UI/Intro/MCIntroCell.h; sourceTree = "<group>"; };
+		E01971271A70916E009FD9F5 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroCell.m; path = UI/Intro/MCIntroCell.m; sourceTree = "<group>"; };
+		E01971281A70916E009FD9F5 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroCell.xib; path = UI/Intro/MCIntroCell.xib; sourceTree = "<group>"; };
+		E019712B1A709505009FD9F5 /* MCIntroCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroCollectionViewLayout.h; path = UI/Intro/MCIntroCollectionViewLayout.h; sourceTree = "<group>"; };
+		E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroCollectionViewLayout.m; path = UI/Intro/MCIntroCollectionViewLayout.m; sourceTree = "<group>"; };
+		E019712E1A75DA81009FD9F5 /* MCIntroHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroHeader.h; path = UI/Intro/MCIntroHeader.h; sourceTree = "<group>"; };
+		E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroHeader.m; path = UI/Intro/MCIntroHeader.m; sourceTree = "<group>"; };
+		E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroHeader.xib; path = UI/Intro/MCIntroHeader.xib; sourceTree = "<group>"; };
+		E032DBA31A76C67100574077 /* MCIntroFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroFooter.h; path = UI/Intro/MCIntroFooter.h; sourceTree = "<group>"; };
+		E032DBA41A76C67100574077 /* MCIntroFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroFooter.m; path = UI/Intro/MCIntroFooter.m; sourceTree = "<group>"; };
+		E032DBA51A76C67100574077 /* MCIntroFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MCIntroFooter.xib; path = UI/Intro/MCIntroFooter.xib; sourceTree = "<group>"; };
+		E041B4791A6F530C00C7E51E /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCIntroViewController.h; path = UI/Intro/MCIntroViewController.h; sourceTree = "<group>"; };
+		E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCIntroViewController.m; path = UI/Intro/MCIntroViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +109,14 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
+				E01971171A702470009FD9F5 /* Recourses */,
+				E041B4751A6F523400C7E51E /* UI */,
 				15E3DB321A6B04BA002F4F4C /* AppDelegate.h */,
 				15E3DB331A6B04BA002F4F4C /* AppDelegate.m */,
 				15E3DB351A6B04BA002F4F4C /* MasterViewController.h */,
 				15E3DB361A6B04BA002F4F4C /* MasterViewController.m */,
 				15E3DB381A6B04BA002F4F4C /* DetailViewController.h */,
 				15E3DB391A6B04BA002F4F4C /* DetailViewController.m */,
-				15E3DB3B1A6B04BA002F4F4C /* Main.storyboard */,
 				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
@@ -122,6 +148,52 @@
 				15E3DB4C1A6B04BA002F4F4C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E01971171A702470009FD9F5 /* Recourses */ = {
+			isa = PBXGroup;
+			children = (
+				E019711F1A702767009FD9F5 /* Font */,
+			);
+			name = Recourses;
+			sourceTree = "<group>";
+		};
+		E019711F1A702767009FD9F5 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				E01971201A702767009FD9F5 /* DINPro-Bold.otf */,
+				E01971211A702767009FD9F5 /* DINPro-Regular.otf */,
+				E01971221A702767009FD9F5 /* FarnhamDisplay-Bold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		E041B4751A6F523400C7E51E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E041B4761A6F523800C7E51E /* Intro */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		E041B4761A6F523800C7E51E /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				E041B4791A6F530C00C7E51E /* MCIntroViewController.h */,
+				E041B47A1A6F530C00C7E51E /* MCIntroViewController.m */,
+				E01971261A70916E009FD9F5 /* MCIntroCell.h */,
+				E01971271A70916E009FD9F5 /* MCIntroCell.m */,
+				E01971281A70916E009FD9F5 /* MCIntroCell.xib */,
+				E019712B1A709505009FD9F5 /* MCIntroCollectionViewLayout.h */,
+				E019712C1A709505009FD9F5 /* MCIntroCollectionViewLayout.m */,
+				E019712E1A75DA81009FD9F5 /* MCIntroHeader.h */,
+				E019712F1A75DA81009FD9F5 /* MCIntroHeader.m */,
+				E01971301A75DA81009FD9F5 /* MCIntroHeader.xib */,
+				E032DBA31A76C67100574077 /* MCIntroFooter.h */,
+				E032DBA41A76C67100574077 /* MCIntroFooter.m */,
+				E032DBA51A76C67100574077 /* MCIntroFooter.xib */,
+			);
+			name = Intro;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +276,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15E3DB3D1A6B04BA002F4F4C /* Main.storyboard in Resources */,
+				E01971241A702767009FD9F5 /* DINPro-Regular.otf in Resources */,
+				E01971251A702767009FD9F5 /* FarnhamDisplay-Bold.otf in Resources */,
+				E01971231A702767009FD9F5 /* DINPro-Bold.otf in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
+				E019712A1A70916E009FD9F5 /* MCIntroCell.xib in Resources */,
+				E032DBA71A76C67100574077 /* MCIntroFooter.xib in Resources */,
+				E01971321A75DA81009FD9F5 /* MCIntroHeader.xib in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,10 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E01971291A70916E009FD9F5 /* MCIntroCell.m in Sources */,
+				E019712D1A709505009FD9F5 /* MCIntroCollectionViewLayout.m in Sources */,
+				E041B47C1A6F530C00C7E51E /* MCIntroViewController.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */,
 				15E3DB371A6B04BA002F4F4C /* MasterViewController.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
 				15E3DB3A1A6B04BA002F4F4C /* DetailViewController.m in Sources */,
+				E032DBA61A76C67100574077 /* MCIntroFooter.m in Sources */,
+				E01971311A75DA81009FD9F5 /* MCIntroHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,14 +332,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		15E3DB3B1A6B04BA002F4F4C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15E3DB3C1A6B04BA002F4F4C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
