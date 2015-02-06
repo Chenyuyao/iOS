@@ -12,7 +12,6 @@
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
 		476EE6F31A75F9240065833F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476EE6F21A75F9240065833F /* Images.xcassets */; };
-		765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D829A19865D9EFFB73840 /* libPods-motcha.a */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
 		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
@@ -67,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,11 +190,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15E3DB511A6B04BA002F4F4C /* Build configuration list for PBXNativeTarget "motcha" */;
 			buildPhases = (
-				EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */,
 				15E3DB271A6B04BA002F4F4C /* Sources */,
 				15E3DB281A6B04BA002F4F4C /* Frameworks */,
 				15E3DB291A6B04BA002F4F4C /* Resources */,
-				FF8C356BEF06195F45F08160 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,39 +279,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		EE22AFF72EC84BD6BBA5ED7E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FF8C356BEF06195F45F08160 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-motcha/Pods-motcha-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		15E3DB271A6B04BA002F4F4C /* Sources */ = {
