@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "MCIntroViewController.h"
+#import "MCWebContentService.h"
 
 @implementation AppDelegate
 
