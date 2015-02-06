@@ -1,11 +1,10 @@
-#import "HTMLParser.h"
-#import "HTMLNode.h"
-#import "MCParsedHTMLNode.h"
+#import "MCWebContentParser.h"
 
 #import <objc/runtime.h>
 
-#import "MCWebContentParser.h"
-#import "MCWebContentParser+Utility.h"
+#import "HTMLNode.h"
+#import "HTMLParser.h"
+#import "MCParsedHTMLNode.h"
 
 @implementation MCWebContentParser {
   NSMutableArray *_paragraphs;
@@ -44,40 +43,6 @@
     }
   }
 }
-
-//    for (TFHppleElement *element in elements) {
-//    if (![element.tagName isEqualToString:@"p"]) {
-//      continue;
-//    }
-//    if ([self IsElement:element
-//             hasClasses:@"comment|meta|footer|footnote"]) {
-//      element.score -= 50;
-//    } else if ([self IsElement:element hasClasses:@"(^|\\s)(post|hentry|entry[-]?\
-//        (content|text|body)?|article[-]?(content|text|body)?)(\\s|$)"]) {
-//      element.score += 25;
-//    }
-//    for (TFHppleElement *child in element.children) {
-//      element.score += child.content.length;
-//    }
-//    if (element.score > 0) {
-//      NSLog(@"%@", element);
-//    }
-//    if (element.score > topElement.score) {
-//      topElement = element;
-//    }
-//  }
-//
-//- (void)findTopNodeWithRoot:(HTMLNode *)root {
-//  if (!root) {
-//    return;
-//  }
-//  if (root.score > _topNode.score) {
-//    _topNode = root;
-//  }
-//  for (HTMLNode *child in root.children) {
-//    [self findTopNodeWithRoot:child];
-//  }
-//}
 
 - (void)findAllParagraphsWithRoot:(MCParsedHTMLNode *)root {
   if (!_paragraphs) {

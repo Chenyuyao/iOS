@@ -1,6 +1,5 @@
 #import "MCWebContentService.h"
 
-#import "MCNewsDetailsObject.h"
 #import "MCWebContentParser.h"
 
 @implementation MCWebContentService {

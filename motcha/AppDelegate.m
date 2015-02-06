@@ -11,9 +11,6 @@
   MCIntroViewController *introViewController = [[MCIntroViewController alloc] init];
   self.window.rootViewController =
       [[UINavigationController alloc] initWithRootViewController:introViewController];
-  
-  NSURL *url = [NSURL URLWithString:@"http://www.economist.com/blogs/freeexchange/2015/02/americas-budget-2016?fsrc=rss"];
-  [[MCWebContentService sharedInstance] fetchNewsDetailsWithURL:url completionBlock:nil];
   return YES;
 }
 

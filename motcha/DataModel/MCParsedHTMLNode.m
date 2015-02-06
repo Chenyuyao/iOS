@@ -2,9 +2,7 @@
 
 #import "HTMLNode.h"
 
-@implementation MCParsedHTMLNode {
-  NSString *_textContent;
-}
+@implementation MCParsedHTMLNode
 
 - (id)initWithHTMLNode:(HTMLNode *)node parent:(MCParsedHTMLNode *)parent {
   self = [super init];

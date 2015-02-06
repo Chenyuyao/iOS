@@ -17,11 +17,9 @@
 		47E9132F1A845FFB0055AB69 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E9132E1A845FFB0055AB69 /* libxml2.2.dylib */; };
 		47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E913311A84605D0055AB69 /* MCWebContentParser.m */; };
 		47E9133E1A8466770055AB69 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E9133D1A8466770055AB69 /* libxml2.dylib */; };
-		47E913411A846F6D0055AB69 /* MCWebContentParser+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E913401A846F6D0055AB69 /* MCWebContentParser+Utility.m */; };
 		47E913461A847D110055AB69 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E913431A847D110055AB69 /* HTMLNode.m */; };
 		47E913471A847D110055AB69 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E913451A847D110055AB69 /* HTMLParser.m */; };
 		47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */; };
-		765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D829A19865D9EFFB73840 /* libPods-motcha.a */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
 		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
@@ -62,8 +60,6 @@
 		47E913301A84605D0055AB69 /* MCWebContentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCWebContentParser.h; path = Network/MCWebContentParser.h; sourceTree = "<group>"; };
 		47E913311A84605D0055AB69 /* MCWebContentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCWebContentParser.m; path = Network/MCWebContentParser.m; sourceTree = "<group>"; };
 		47E9133D1A8466770055AB69 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		47E9133F1A846F6D0055AB69 /* MCWebContentParser+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MCWebContentParser+Utility.h"; path = "Network/MCWebContentParser+Utility.h"; sourceTree = "<group>"; };
-		47E913401A846F6D0055AB69 /* MCWebContentParser+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MCWebContentParser+Utility.m"; path = "Network/MCWebContentParser+Utility.m"; sourceTree = "<group>"; };
 		47E913421A847D110055AB69 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = ThirdParty/HTMLNode.h; sourceTree = "<group>"; };
 		47E913431A847D110055AB69 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLNode.m; path = ThirdParty/HTMLNode.m; sourceTree = "<group>"; };
 		47E913441A847D110055AB69 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLParser.h; path = ThirdParty/HTMLParser.h; sourceTree = "<group>"; };
@@ -84,7 +80,6 @@
 		E0B343C01A773F030081BE95 /* MCIntroHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroHeader.xib; sourceTree = "<group>"; };
 		E0B343C11A773F030081BE95 /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
 		E0B343C21A773F030081BE95 /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
-		F49D829A19865D9EFFB73840 /* libPods-motcha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-motcha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +89,6 @@
 			files = (
 				47E9133E1A8466770055AB69 /* libxml2.dylib in Frameworks */,
 				47E9132F1A845FFB0055AB69 /* libxml2.2.dylib in Frameworks */,
-				765FC5359FA7E49FC431824C /* libPods-motcha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +171,6 @@
 				47E912E91A84596D0055AB69 /* MCWebContentService.m */,
 				47E913301A84605D0055AB69 /* MCWebContentParser.h */,
 				47E913311A84605D0055AB69 /* MCWebContentParser.m */,
-				47E9133F1A846F6D0055AB69 /* MCWebContentParser+Utility.h */,
-				47E913401A846F6D0055AB69 /* MCWebContentParser+Utility.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -219,7 +211,6 @@
 			children = (
 				47E9133D1A8466770055AB69 /* libxml2.dylib */,
 				47E9132E1A845FFB0055AB69 /* libxml2.2.dylib */,
-				F49D829A19865D9EFFB73840 /* libPods-motcha.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -365,7 +356,6 @@
 				47E913471A847D110055AB69 /* HTMLParser.m in Sources */,
 				47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
-				47E913411A846F6D0055AB69 /* MCWebContentParser+Utility.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 			);
@@ -499,11 +489,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-l\"Pods-motcha-Bolts\"",
-					"-l\"Pods-motcha-Facebook-iOS-SDK\"",
-					"-l\"Pods-motcha-Parse\"",
-					"-l\"Pods-motcha-ParseFacebookUtils\"",
-					"-l\"Pods-motcha-ParseUI\"",
 					"-l\"sqlite3\"",
 					"-l\"z\"",
 					"-framework",
@@ -518,10 +503,6 @@
 					"\"Foundation\"",
 					"-framework",
 					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Parse\"",
-					"-framework",
-					"\"ParseFacebookUtils\"",
 					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
@@ -575,11 +556,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					"-l\"Pods-motcha-Bolts\"",
-					"-l\"Pods-motcha-Facebook-iOS-SDK\"",
-					"-l\"Pods-motcha-Parse\"",
-					"-l\"Pods-motcha-ParseFacebookUtils\"",
-					"-l\"Pods-motcha-ParseUI\"",
 					"-l\"sqlite3\"",
 					"-l\"z\"",
 					"-framework",
@@ -594,10 +570,6 @@
 					"\"Foundation\"",
 					"-framework",
 					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Parse\"",
-					"-framework",
-					"\"ParseFacebookUtils\"",
 					"-framework",
 					"\"QuartzCore\"",
 					"-framework",
