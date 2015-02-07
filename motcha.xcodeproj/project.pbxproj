@@ -21,7 +21,7 @@
 		47E913471A847D110055AB69 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E913451A847D110055AB69 /* HTMLParser.m */; };
 		47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
-		CA90EF2D1A85B892005931CF /* MCRSSParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParserDelegate.m */; };
+		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
@@ -70,12 +70,12 @@
 		47E9134B1A8487710055AB69 /* MCParsedHTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCParsedHTMLNode.h; path = DataModel/MCParsedHTMLNode.h; sourceTree = "<group>"; };
 		47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedHTMLNode.m; path = DataModel/MCParsedHTMLNode.m; sourceTree = "<group>"; };
 		553B1E2B6F644288AA253CF3 /* Pods-motcha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.debug.xcconfig"; sourceTree = "<group>"; };
-		CA90EF281A85B7CE005931CF /* MCParsedRSSItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCParsedRSSItem.h; sourceTree = "<group>"; };
-		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCParsedRSSItem.m; sourceTree = "<group>"; };
-		CA90EF2B1A85B873005931CF /* MCRSSParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRSSParserDelegate.h; sourceTree = "<group>"; };
-		CA90EF2C1A85B892005931CF /* MCRSSParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRSSParserDelegate.m; sourceTree = "<group>"; };
-		CA90EF2E1A85B8E1005931CF /* MCRSSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRSSService.h; sourceTree = "<group>"; };
-		CA90EF2F1A85B8F4005931CF /* MCRSSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRSSService.m; sourceTree = "<group>"; };
+		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
+		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
+		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
+		CA90EF2E1A85B8E1005931CF /* MCRSSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSService.h; path = Network/MCRSSService.h; sourceTree = "<group>"; };
+		CA90EF2F1A85B8F4005931CF /* MCRSSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSService.m; path = Network/MCRSSService.m; sourceTree = "<group>"; };
+		CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCParsedRSSItem.h; path = DataModel/MCParsedRSSItem.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
 		E0B343B71A773F030081BE95 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCell.m; sourceTree = "<group>"; };
 		E0B343B81A773F030081BE95 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroCell.xib; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 				47E912E91A84596D0055AB69 /* MCWebContentService.m */,
 				47E913301A84605D0055AB69 /* MCWebContentParser.h */,
 				47E913311A84605D0055AB69 /* MCWebContentParser.m */,
-				CA90EF2B1A85B873005931CF /* MCRSSParserDelegate.h */,
-				CA90EF2C1A85B892005931CF /* MCRSSParserDelegate.m */,
+				CA90EF2B1A85B873005931CF /* MCRSSParser.h */,
+				CA90EF2C1A85B892005931CF /* MCRSSParser.m */,
 				CA90EF2E1A85B8E1005931CF /* MCRSSService.h */,
 				CA90EF2F1A85B8F4005931CF /* MCRSSService.m */,
 			);
@@ -191,11 +191,11 @@
 		47E912EE1A8459C20055AB69 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */,
 				47E912EB1A8459BD0055AB69 /* MCNewsDetailsObject.h */,
 				47E912EC1A8459BD0055AB69 /* MCNewsDetailsObject.m */,
 				47E9134B1A8487710055AB69 /* MCParsedHTMLNode.h */,
 				47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */,
-				CA90EF281A85B7CE005931CF /* MCParsedRSSItem.h */,
 				CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */,
 			);
 			name = DataModel;
@@ -373,7 +373,7 @@
 				47E913471A847D110055AB69 /* HTMLParser.m in Sources */,
 				47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
-				CA90EF2D1A85B892005931CF /* MCRSSParserDelegate.m in Sources */,
+				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 			);
