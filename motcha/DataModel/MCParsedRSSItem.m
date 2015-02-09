@@ -8,8 +8,7 @@
                 imgSrc:(NSString *)imgSrc
                pubDate:(NSString *)pubDate
                 author:(NSString *)author {
-  self = [super init];
-  if (self) {
+  if ([super init]) {
     _title = title;
     _link = link;
     _descrpt = descrpt;
@@ -19,19 +18,6 @@
     
   }
   return self;
-}
-
-//used for [item copy] message
-- (id)copyWithZone:(NSZone *)zone
-{
-  id copy = [[[self class] alloc] initWithProperty:self.title
-                                              link:self.link
-                                           descrpt:self.descrpt
-                                            imgSrc:self.imgSrc
-                                           pubDate:self.pubDate
-                                            author:self.author];
-  
-  return copy;
 }
 
 @end

@@ -1,6 +1,8 @@
 #import "MCRSSParser.h"
 
 @implementation MCRSSParser {
+  //Regex for extracting img src
+  NSString * _imgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
   //temporary variable used while reading/parsing
   MCParsedRSSItem * _item;
   NSMutableString * _title;
@@ -10,19 +12,23 @@
   NSMutableString * _imgSrc;
   NSMutableString * _author;
   NSString        * _element; //indicate current tag
-
 }
 
+#pragma mark - NSXMLParserDelegate methods
 - (void) parserDidStartDocument:(NSXMLParser *)parser {
   _feeds = [[NSMutableArray alloc] init];
 }
 
-- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
+#pragma mark - NSXMLParserDelegate methods
+- (void) parser:(NSXMLParser *)parser
+didStartElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qName
+     attributes:(NSDictionary *)attributeDict {
   _element = elementName;
   
   //Only parse item element
   if ([_element isEqualToString:@"item"]) {
-    _item        = [[MCParsedRSSItem alloc] init];
     _title       = [[NSMutableString alloc] init];
     _link        = [[NSMutableString alloc] init];
     _description = [[NSMutableString alloc] init];
@@ -32,7 +38,8 @@
   }
 }
 
-- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+#pragma mark - NSXMLParserDelegate methods
+- (void) parser:(NSXMLParser *)parserfoundCharacters:(NSString *)string {
   if ([_element isEqualToString:@"title"]) {
     [_title appendString:string];
   } else if ([_element isEqualToString:@"link"]) {
@@ -44,7 +51,7 @@
     if (_description != nil && [string length] > 8 && [_imgSrc length] == 0) {
       NSError *error = NULL;
       NSRegularExpression *regex =
-      [NSRegularExpression regularExpressionWithPattern:@"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?"
+      [NSRegularExpression regularExpressionWithPattern:_imgSrcRegex
                                                 options:NSRegularExpressionCaseInsensitive
                                                   error:&error];
       
@@ -65,7 +72,11 @@
   
 }
 
-- (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+#pragma mark - NSXMLParserDelegate methods
+- (void) parser:(NSXMLParser *)parser
+  didEndElement:(NSString *)elementName
+   namespaceURI:(NSString *)namespaceURI
+  qualifiedName:(NSString *)qName {
   //After parse one item, put this item into feeds
   if ([elementName isEqualToString:@"item"]) {
     _item = [[MCParsedRSSItem alloc] initWithProperty:_title
@@ -74,12 +85,12 @@
                                                imgSrc:_imgSrc
                                               pubDate:_pubDate
                                                author:_author];
-    [_feeds addObject:[_item copy]];
+    [_feeds addObject:_item];
   }
 }
 
 - (void) parserDidEndDocument:(NSXMLParser *)parser {
-  
+  //TODO: output feeds(maybe)
 }
 
 @end

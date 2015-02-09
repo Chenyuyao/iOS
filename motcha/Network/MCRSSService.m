@@ -1,5 +1,4 @@
 #import "MCRSSService.h"
-
 #import "MCRSSParser.h"
 
 @implementation MCRSSService
@@ -21,7 +20,7 @@
   [parser setShouldResolveExternalEntities:NO];
   [parser parse];
   
-  //Retrieve parsed result from parserDelegate.feeds
+  //TODO:Retrieve parsed result from parserDelegate.feeds
 }
 
 @end
