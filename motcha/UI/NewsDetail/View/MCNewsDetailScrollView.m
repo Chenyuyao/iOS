@@ -173,7 +173,6 @@ static CGFloat kLargeFontSize             = 16.0f;
   CGFloat contentOffSetY = self.contentOffset.y;
   CGFloat imageVerticalInsets = kImageViewTopInset+kImageViewBottomInset;
   if (contentOffSetY < -(imageVerticalInsets)) {
-    NSLog(@"contentOffsetY: %f", contentOffSetY);
     _imageViewTopConstraint.constant = contentOffSetY;
     _imageViewHeightConstraint.constant = kImageViewOriginalHeight + (-contentOffSetY-imageVerticalInsets);
   } else {

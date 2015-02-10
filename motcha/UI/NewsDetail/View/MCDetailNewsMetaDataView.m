@@ -2,16 +2,17 @@
 
 #import "UIFont+DINFont.h"
 
-static CGFloat kSourceViewMaxWidth = 200.0f;
+static CGFloat kSourceViewMaxWidth = 150.0f;
 static NSString *kDateFormat       = @"yyyy-MM-dd";
+static CGFloat kMetaDataViewMargin = 14.0f;
 
 @implementation MCDetailNewsMetaDataView {
   UIView *_sourceDateView;
   UILabel *_sourceLabel;
-  UILabel *_dashLabel;
   UILabel *_pubDateLabel;
   UILabel *_authorLabel;
   CGFloat _fontSize;
+  NSLayoutConstraint *_pubDateWidthConstraint;
 }
 @synthesize delegate = _delegate;
 
@@ -25,10 +26,10 @@ static NSString *kDateFormat       = @"yyyy-MM-dd";
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  _dashLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _authorLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _pubDateLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _sourceLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
+  _pubDateWidthConstraint.constant = _pubDateLabel.intrinsicContentSize.width;
 }
 
 - (void)setupControls {
@@ -46,17 +47,21 @@ static NSString *kDateFormat       = @"yyyy-MM-dd";
   //source label
   _sourceLabel = [[UILabel alloc] init];
   [_sourceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+  _sourceLabel.textAlignment = NSTextAlignmentRight;
   [_sourceDateView addSubview:_sourceLabel];
-  
-  //dash label
-  _dashLabel = [[UILabel alloc] init];
-  [_dashLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-  _dashLabel.text = @"-";
-  [_sourceDateView addSubview:_dashLabel];
   
   //pubDate label
   _pubDateLabel = [[UILabel alloc] init];
   [_pubDateLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+  [_pubDateLabel sizeToFit];
+  _pubDateWidthConstraint = [NSLayoutConstraint constraintWithItem:_pubDateLabel
+                                                         attribute:NSLayoutAttributeWidth
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:nil
+                                                         attribute:NSLayoutAttributeWidth
+                                                        multiplier:0
+                                                          constant:0];
+  [_pubDateLabel addConstraint:_pubDateWidthConstraint];
   [_sourceDateView addSubview:_pubDateLabel];
   
   //author label
@@ -64,33 +69,27 @@ static NSString *kDateFormat       = @"yyyy-MM-dd";
   [_authorLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self addSubview:_authorLabel];
   
-  NSDictionary *metrics = @{@"sourceViewMaxWidth":[NSNumber numberWithDouble:kSourceViewMaxWidth]};
+  NSDictionary *metrics = @{@"sourceViewMaxWidth":[NSNumber numberWithDouble:kSourceViewMaxWidth],
+                            @"margin":[NSNumber numberWithDouble:kMetaDataViewMargin]};
   NSDictionary *views =
-      NSDictionaryOfVariableBindings(_sourceDateView, _sourceLabel, _dashLabel, _pubDateLabel, _authorLabel);
-  
+  NSDictionaryOfVariableBindings(_sourceDateView, _sourceLabel, _pubDateLabel, _authorLabel);
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_sourceDateView][_authorLabel]|"
                                                                options:0
                                                                metrics:metrics
                                                                  views:views]];
-  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-14-[_sourceDateView]-14-|"
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_sourceDateView]-margin-|"
                                                                options:0
                                                                metrics:metrics
                                                                  views:views]];
-  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=14)-[_authorLabel]-14-|"
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=margin)-[_authorLabel]-margin-|"
                                                                options:0
                                                                metrics:metrics
                                                                  views:views]];
-  
-  [_sourceDateView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:
-      @"H:|-(>=14)-[_sourceLabel(<=sourceViewMaxWidth)][_dashLabel][_pubDateLabel]|"
+  [_sourceDateView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_sourceLabel][_pubDateLabel]|"
                                                                           options:0
                                                                           metrics:metrics
                                                                             views:views]];
   [_sourceDateView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_sourceLabel]|"
-                                                                          options:0
-                                                                          metrics:metrics
-                                                                            views:views]];
-  [_sourceDateView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_dashLabel]|"
                                                                           options:0
                                                                           metrics:metrics
                                                                             views:views]];
@@ -107,7 +106,7 @@ static NSString *kDateFormat       = @"yyyy-MM-dd";
 - (void)setDate:(NSDate *)pubDate {
   NSDateFormatter *dateFormatter = [NSDateFormatter new];
   dateFormatter.dateFormat = kDateFormat;
-  _pubDateLabel.text = [dateFormatter stringFromDate:pubDate];
+  _pubDateLabel.text = [NSString stringWithFormat:@" - %@", [dateFormatter stringFromDate:pubDate]];
 }
 
 - (void)setAuthor:(NSString *)author {
