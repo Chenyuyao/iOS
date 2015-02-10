@@ -29,8 +29,9 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-      _prevAuxiliaryView.frame = CGRectMake(prevAuxFrame.origin.x, navigationBar.frame.size.height + navigationBarOffset +
-        auxiliaryView.frame.size.height - _prevAuxiliaryView.frame.size.height, prevAuxFrame.size.width, prevAuxFrame.size.height);
+      _prevAuxiliaryView.frame = CGRectMake(prevAuxFrame.origin.x, navigationBar.frame.size.height +
+        navigationBarOffset + auxiliaryView.frame.size.height - _prevAuxiliaryView.frame.size.height,
+        prevAuxFrame.size.width, prevAuxFrame.size.height);
       _prevAuxiliaryView.alpha = kNavigationBarAuxiliaryViewStartingAlpha;
     } completion:^(BOOL finished) {
       if (finished) {
@@ -47,7 +48,7 @@
   auxiliaryView.alpha = kNavigationBarAuxiliaryViewStartingAlpha;
   CGFloat navBarFinalHeight = navigationBar.frame.size.height + navigationBarOffset + auxiliaryView.frame.size.height;
   CGRect navBarBackgroundFrame = navigationBarBackgroundView.frame;
-  auxiliaryView.frame = CGRectMake(navigationBar.frame.origin.x, navBarBackgroundHeight - auxiliaryView.frame.size.height,
+  auxiliaryView.frame = CGRectMake(navigationBar.frame.origin.x, navBarBackgroundHeight-auxiliaryView.frame.size.height,
       navigationBar.frame.size.width, auxiliaryView.frame.size.height);
   CGRect curAuxFrame = auxiliaryView.frame;
   [navigationBarBackgroundView addSubview:auxiliaryView];
