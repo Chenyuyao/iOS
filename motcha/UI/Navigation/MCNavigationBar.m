@@ -16,33 +16,29 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    [self initialize];
+    for (UIView *view in [self subviews]) {
+      if ([kNavigationBarBackgroundClassName isEqualToString:NSStringFromClass([view class])]) {
+        _navigationBarBackgroundView = view;
+        break;
+      }
+    }
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL isPortrait = (orientation == UIInterfaceOrientationPortrait);
+    _navigationBarOffset = isPortrait ? kNavigationBarOffsetPortrait : kNavigationBarOffsetLandscape;
+    _backgroundHeight = (isPortrait ? kNavigationBarDefaultHeightPortrait : kNavigationBarDefaultHeightLandscape) +
+    _navigationBarOffset;
+    MCNavigationBarAppearanceAuxiliaryView *navBarAppearanceAuxView = [MCNavigationBarAppearanceAuxiliaryView new];
+    navBarAppearanceAuxView.delegate = self;
+    navBarAppearanceAuxView.dataSource = self;
+    _auxiliaryViewStrategy =
+    [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceAuxView];
+    MCNavigationBarAppearanceBackgroundAlpha *navBarAppearanceBgAlpha = [MCNavigationBarAppearanceBackgroundAlpha new];
+    navBarAppearanceBgAlpha.delegate = self;
+    navBarAppearanceBgAlpha.dataSource = self;
+    _backgroundAlphaStrategy =
+    [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceBgAlpha];
   }
   return self;
-}
-
-- (void) initialize {
-  for (UIView *view in [self subviews]) {
-    if ([kNavigationBarBackgroundClassName isEqualToString:NSStringFromClass([view class])]) {
-      _navigationBarBackgroundView = view;
-      break;
-    }
-  }
-  UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-  BOOL isPortrait = (orientation == UIInterfaceOrientationPortrait);
-  _navigationBarOffset = isPortrait ? kNavigationBarOffsetPortrait : kNavigationBarOffsetLandscape;
-  _backgroundHeight = (isPortrait ? kNavigationBarDefaultHeightPortrait : kNavigationBarDefaultHeightLandscape) +
-      _navigationBarOffset;
-  MCNavigationBarAppearanceAuxiliaryView *navBarAppearanceAuxView = [MCNavigationBarAppearanceAuxiliaryView new];
-  navBarAppearanceAuxView.delegate = self;
-  navBarAppearanceAuxView.dataSource = self;
-  _auxiliaryViewStrategy =
-      [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceAuxView];
-  MCNavigationBarAppearanceBackgroundAlpha *navBarAppearanceBgAlpha = [MCNavigationBarAppearanceBackgroundAlpha new];
-  navBarAppearanceBgAlpha.delegate = self;
-  navBarAppearanceBgAlpha.dataSource = self;
-  _backgroundAlphaStrategy =
-      [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceBgAlpha];
 }
 
 #pragma mark - AuxiliaryView
