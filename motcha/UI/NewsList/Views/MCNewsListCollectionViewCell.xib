@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MCCollectionViewCell" id="gTV-IL-0wX" customClass="MCNewsListCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Aj-LF-skc">
+                        <rect key="frame" x="0.0" y="99" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="gXB-0a-qQT"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gno-Q2-ajY">
+                        <rect key="frame" x="214" y="10" width="88" height="79"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.28000000000000003" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1Aj-LF-skc" secondAttribute="bottom" id="1dN-vz-efo"/>
+                <constraint firstItem="1Aj-LF-skc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IDf-FX-wfs"/>
+                <constraint firstAttribute="trailing" secondItem="1Aj-LF-skc" secondAttribute="trailing" id="d4k-Bu-Iol"/>
+            </constraints>
+            <connections>
+                <outlet property="_bottomBorderView" destination="1Aj-LF-skc" id="nMZ-Aq-YVu"/>
+                <outlet property="_thumbnailImageView" destination="Gno-Q2-ajY" id="d0V-24-8dz"/>
+            </connections>
+            <point key="canvasLocation" x="267" y="281"/>
+        </collectionViewCell>
+    </objects>
+</document>

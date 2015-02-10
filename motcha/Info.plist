@@ -46,8 +46,9 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>DINPro-Regular</string>
-		<string>DINPro-Bold</string>
+		<string>DINPro-Bold.otf</string>
+		<string>DINPro-Regular.otf</string>
+		<string>FarnhamDisplay-Bold.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
