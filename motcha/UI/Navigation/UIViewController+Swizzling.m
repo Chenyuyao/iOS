@@ -35,8 +35,8 @@
   if ([self.navigationController respondsToSelector:selector]) {
     // we use NSInvocation instead of performSelector:withObject: because we need to pass a primitive type BOOL
     // instead of an object, and we do not want to modify the target implementation just because of this.
-    NSMethodSignature* signature = [[self.navigationController class] instanceMethodSignatureForSelector:selector];
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+    NSMethodSignature *signature = [[self.navigationController class] instanceMethodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:self.navigationController];
     [invocation setSelector:@selector( notifyViewControllerWillAppearAnimated:)];
     [invocation setArgument:&animated atIndex:2];
