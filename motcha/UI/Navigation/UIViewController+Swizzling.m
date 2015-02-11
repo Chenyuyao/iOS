@@ -31,8 +31,16 @@
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 - (void)override_viewWillAppear:(BOOL)animated {
   [self override_viewWillAppear:animated];
-  if ([self.navigationController respondsToSelector:@selector(notifyViewControllerWillAppearAnimated:)]) {
-    [self.navigationController performSelector:@selector(notifyViewControllerWillAppearAnimated:)];
+  SEL selector = @selector(notifyViewControllerWillAppearAnimated:);
+  if ([self.navigationController respondsToSelector:selector]) {
+    // we use NSInvocation instead of performSelector:withObject: because we need to pass a primitive type BOOL
+    // instead of an object, and we do not want to modify the target implementation just because of this.
+    NSMethodSignature* signature = [[self.navigationController class] instanceMethodSignatureForSelector:selector];
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+    [invocation setTarget:self.navigationController];
+    [invocation setSelector:@selector( notifyViewControllerWillAppearAnimated:)];
+    [invocation setArgument:&animated atIndex:2];
+    [invocation invoke];
   }
 }
 @end
