@@ -1,7 +1,7 @@
 #import "MCRSSParser.h"
 
 //Regex for extracting img src
-static NSString * _imgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
+static NSString * kImgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
 
 @implementation MCRSSParser {
   //temporary variable used while reading/parsing
