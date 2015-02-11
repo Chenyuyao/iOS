@@ -32,8 +32,9 @@
 #pragma mark - Method Swizzling
 - (void)override_viewWillAppear:(BOOL)animated {
   [self override_viewWillAppear:animated];
-  NSLog(@"override viewWillAppear: %@", self);
   MCNavigationController *navigationControler = (MCNavigationController*)self.navigationController;
-  [navigationControler notifyViewControllerWillAppearAnimated:animated];
+  if ([navigationControler respondsToSelector:@selector(notifyViewControllerWillAppearAnimated:)]) {
+    [navigationControler notifyViewControllerWillAppearAnimated:animated];
+  }
 }
 @end
