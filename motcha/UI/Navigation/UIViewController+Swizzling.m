@@ -2,8 +2,6 @@
 
 #import <objc/runtime.h>
 
-#import "MCNavigationController.h"
-
 @implementation UIViewController (Swizzling)
 + (void)load {
   static dispatch_once_t onceToken;
@@ -30,11 +28,11 @@
 }
 
 #pragma mark - Method Swizzling
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
 - (void)override_viewWillAppear:(BOOL)animated {
   [self override_viewWillAppear:animated];
-  MCNavigationController *navigationControler = (MCNavigationController*)self.navigationController;
-  if ([navigationControler respondsToSelector:@selector(notifyViewControllerWillAppearAnimated:)]) {
-    [navigationControler notifyViewControllerWillAppearAnimated:animated];
+  if ([self.navigationController respondsToSelector:@selector(notifyViewControllerWillAppearAnimated:)]) {
+    [self.navigationController performSelector:@selector(notifyViewControllerWillAppearAnimated:)];
   }
 }
 @end
