@@ -40,7 +40,7 @@ didStartElement:(NSString *)elementName
 }
 
 #pragma mark - NSXMLParserDelegate methods
-- (void) parser:(NSXMLParser *)parserfoundCharacters:(NSString *)string {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
   if ([_element isEqualToString:@"title"]) {
     [_title appendString:string];
   } else if ([_element isEqualToString:@"link"]) {
@@ -52,7 +52,7 @@ didStartElement:(NSString *)elementName
     if (_description != nil && [string length] > 8 && [_imgSrc length] == 0) {
       NSError *error = NULL;
       NSRegularExpression *regex =
-      [NSRegularExpression regularExpressionWithPattern:_imgSrcRegex
+      [NSRegularExpression regularExpressionWithPattern:kImgSrcRegex
                                                 options:NSRegularExpressionCaseInsensitive
                                                   error:&error];
       

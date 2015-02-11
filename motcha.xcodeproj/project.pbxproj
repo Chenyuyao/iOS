@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
+		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
+		15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97831A89112F0066B469 /* MCNavigationController.m */; };
+		15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97861A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m */; };
+		15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97881A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m */; };
+		15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB978A1A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m */; };
+		15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */; };
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
 		15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* AppDelegate.m */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
@@ -44,6 +51,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
+		15DB977C1A8911190066B469 /* MCKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCKeyValuePair.m; sourceTree = "<group>"; };
+		15DB977F1A89112F0066B469 /* MCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBar.h; sourceTree = "<group>"; };
+		15DB97801A89112F0066B469 /* MCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationBar.m; sourceTree = "<group>"; };
+		15DB97811A89112F0066B469 /* MCNavigationBarCustomizationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarCustomizationDelegate.h; sourceTree = "<group>"; };
+		15DB97821A89112F0066B469 /* MCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationController.h; sourceTree = "<group>"; };
+		15DB97831A89112F0066B469 /* MCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationController.m; sourceTree = "<group>"; };
+		15DB97851A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceAuxiliaryView.h; sourceTree = "<group>"; };
+		15DB97861A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationBarAppearanceAuxiliaryView.m; sourceTree = "<group>"; };
+		15DB97871A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceBackgroundAlpha.h; sourceTree = "<group>"; };
+		15DB97881A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationBarAppearanceBackgroundAlpha.m; sourceTree = "<group>"; };
+		15DB97891A89112F0066B469 /* MCNavigationBarAppearanceStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceStrategy.h; sourceTree = "<group>"; };
+		15DB978A1A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationBarAppearanceStrategy.m; sourceTree = "<group>"; };
+		15DB978B1A89112F0066B469 /* MCNavigationBarAppearanceStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceStrategyProtocol.h; sourceTree = "<group>"; };
+		15DB978C1A89112F0066B469 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
+		15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15E3DB2B1A6B04BA002F4F4C /* motcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = motcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB2F1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB301A6B04BA002F4F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,6 +134,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15DB977A1A8911190066B469 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				15DB977B1A8911190066B469 /* MCKeyValuePair.h */,
+				15DB977C1A8911190066B469 /* MCKeyValuePair.m */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		15DB977E1A89112F0066B469 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				15DB977F1A89112F0066B469 /* MCNavigationBar.h */,
+				15DB97801A89112F0066B469 /* MCNavigationBar.m */,
+				15DB97811A89112F0066B469 /* MCNavigationBarCustomizationDelegate.h */,
+				15DB97821A89112F0066B469 /* MCNavigationController.h */,
+				15DB97831A89112F0066B469 /* MCNavigationController.m */,
+				15DB97841A89112F0066B469 /* NavigationBarAppearanceStrategies */,
+				15DB978C1A89112F0066B469 /* UIViewController+Swizzling.h */,
+				15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		15DB97841A89112F0066B469 /* NavigationBarAppearanceStrategies */ = {
+			isa = PBXGroup;
+			children = (
+				15DB97851A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.h */,
+				15DB97861A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m */,
+				15DB97871A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.h */,
+				15DB97881A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m */,
+				15DB97891A89112F0066B469 /* MCNavigationBarAppearanceStrategy.h */,
+				15DB978A1A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m */,
+				15DB978B1A89112F0066B469 /* MCNavigationBarAppearanceStrategyProtocol.h */,
+			);
+			path = NavigationBarAppearanceStrategies;
+			sourceTree = "<group>";
+		};
 		15E3DB221A6B04BA002F4F4C = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +196,7 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
+				15DB977A1A8911190066B469 /* DataStructure */,
 				47E913331A84629F0055AB69 /* ThirdParty */,
 				47E912EE1A8459C20055AB69 /* DataModel */,
 				47E912E71A84592E0055AB69 /* Network */,
@@ -233,6 +295,7 @@
 		E0B343B41A773F030081BE95 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				15DB977E1A89112F0066B469 /* Navigation */,
 				E0B343B51A773F030081BE95 /* Intro */,
 			);
 			path = UI;
@@ -368,13 +431,20 @@
 				47E913461A847D110055AB69 /* HTMLNode.m in Sources */,
 				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
+				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* AppDelegate.m in Sources */,
+				15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */,
+				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
 				47E913471A847D110055AB69 /* HTMLParser.m in Sources */,
+				15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */,
+				15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */,
 				47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
+				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
+				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
