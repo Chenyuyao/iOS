@@ -3,7 +3,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "JTSImageViewController.h"
 #import "JTSImageInfo.h"
-#import "WeixinActivity.h"
 
 #import "MCNewsDetailScrollView.h"
 
@@ -20,7 +19,7 @@ static CGFloat kScrollViewContentBottomInset = 20.0f;
 - (void)loadView {
   _scrollView = [[MCNewsDetailScrollView alloc] init];
   self.view = _scrollView;
-  _scrollView.contentInset=UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
+  _scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
 }
 
 - (void)viewDidLoad {
@@ -89,10 +88,10 @@ static CGFloat kScrollViewContentBottomInset = 20.0f;
   NSString *textToShare = @"Mocha is so good!";
   NSURL *website = [NSURL URLWithString:@"https://www.google.ca/"];
   NSArray *objectsToShare = @[textToShare, website];
+  // TODO: add weixin activity SDK
   UIActivityViewController *activityVC =
       [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
-                                        applicationActivities: @[[WeixinSessionActivity new],
-                                                                 [WeixinTimelineActivity new]]];
+                                        applicationActivities: nil];
   activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact,
                                        UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr,
                                        UIActivityTypePostToVimeo, UIActivityTypeAirDrop];

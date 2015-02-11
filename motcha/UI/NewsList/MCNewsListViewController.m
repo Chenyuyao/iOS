@@ -49,8 +49,7 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
   UICollectionViewCell *cell =
       [collectionView dequeueReusableCellWithReuseIdentifier:kMCCollectionViewCellReuseId forIndexPath:indexPath];
   // Configure the cell
-  UIImageView *thumbNailView = (UIImageView *)[cell viewWithTag:1];
-  thumbNailView.image = [UIImage imageNamed:[_thumbNails objectAtIndex:indexPath.row]];
+  // TODO: pull real data and set the cell details
   return cell;
 }
 

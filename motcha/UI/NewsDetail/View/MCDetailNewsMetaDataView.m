@@ -2,7 +2,6 @@
 
 #import "UIFont+DINFont.h"
 
-static CGFloat kSourceViewMaxWidth = 150.0f;
 static NSString *kDateFormat       = @"yyyy-MM-dd";
 static CGFloat kMetaDataViewMargin = 14.0f;
 
@@ -69,10 +68,8 @@ static CGFloat kMetaDataViewMargin = 14.0f;
   [_authorLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self addSubview:_authorLabel];
   
-  NSDictionary *metrics = @{@"sourceViewMaxWidth":[NSNumber numberWithDouble:kSourceViewMaxWidth],
-                            @"margin":[NSNumber numberWithDouble:kMetaDataViewMargin]};
-  NSDictionary *views =
-  NSDictionaryOfVariableBindings(_sourceDateView, _sourceLabel, _pubDateLabel, _authorLabel);
+  NSDictionary *metrics = @{@"margin":[NSNumber numberWithDouble:kMetaDataViewMargin]};
+  NSDictionary *views = NSDictionaryOfVariableBindings(_sourceDateView, _sourceLabel, _pubDateLabel, _authorLabel);
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_sourceDateView][_authorLabel]|"
                                                                options:0
                                                                metrics:metrics
