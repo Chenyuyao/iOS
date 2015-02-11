@@ -24,7 +24,6 @@ static CGFloat kImageBlockMargin = 15.0f;
 }
 
 - (void)layoutSubviews {
-  [super layoutSubviews];
   for (NSObject *view in self.subviews) {
     if ([view isKindOfClass:[MCNewsTextBlock class]]) {
       MCNewsTextBlock *textView = (MCNewsTextBlock*)view;
@@ -33,6 +32,7 @@ static CGFloat kImageBlockMargin = 15.0f;
       }
     }
   }
+  [super layoutSubviews];
 }
 
 - (void)setBodyContents:(NSArray *)bodyContents {

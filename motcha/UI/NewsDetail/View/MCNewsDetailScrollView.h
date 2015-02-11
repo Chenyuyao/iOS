@@ -2,6 +2,9 @@
 
 #import "MCNewsDetailScrollViewDelegate.h"
 
+/**
+ * the primary scroll view of MCNewsDetailViewController
+ */
 @interface MCNewsDetailScrollView : UIScrollView
 @property (weak, nonatomic) id<MCNewsDetailScrollViewDelegate> mcDelegate;
 - (void)toggleTextFontSize;

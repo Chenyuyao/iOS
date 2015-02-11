@@ -24,11 +24,11 @@ static CGFloat kMetaDataViewMargin = 14.0f;
 }
 
 - (void)layoutSubviews {
-  [super layoutSubviews];
   _authorLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _pubDateLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _sourceLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _pubDateWidthConstraint.constant = _pubDateLabel.intrinsicContentSize.width;
+  [super layoutSubviews];
 }
 
 - (void)setupControls {

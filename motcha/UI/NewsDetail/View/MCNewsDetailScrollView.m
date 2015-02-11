@@ -69,7 +69,7 @@ static CGFloat kLargeFontSize             = 16.0f;
   _newsTitle = [[MCDetailNewsTitleView alloc] init];
   [_contentView addSubview:_newsTitle];
 
-  //descriptionView: contains metaData and mainbody
+  //descriptionView: contains MCDetailNewsMetaDataView and MCDetailNewsBodyView
   _descriptionView = [[UIView alloc] init];
   [_descriptionView setTranslatesAutoresizingMaskIntoConstraints:NO];
   _descriptionView.backgroundColor = [UIColor whiteColor];
