@@ -620,7 +620,6 @@
 				C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
-				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
 				15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */,
