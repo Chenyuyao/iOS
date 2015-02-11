@@ -1,8 +1,9 @@
 #import "MCRSSParser.h"
 
+//Regex for extracting img src
+static NSString * _imgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
+
 @implementation MCRSSParser {
-  //Regex for extracting img src
-  NSString * _imgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
   //temporary variable used while reading/parsing
   MCParsedRSSItem * _item;
   NSMutableString * _title;

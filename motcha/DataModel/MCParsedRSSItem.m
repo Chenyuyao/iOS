@@ -8,7 +8,7 @@
                 imgSrc:(NSString *)imgSrc
                pubDate:(NSString *)pubDate
                 author:(NSString *)author {
-  if ([super init]) {
+  if (self = [super init]) {
     _title = title;
     _link = link;
     _descrpt = descrpt;
