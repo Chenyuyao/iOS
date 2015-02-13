@@ -8,15 +8,11 @@ static CGFloat kMaxHeightWidthRatio = 1.5f;
 
 - (id)init {
   if (self = [super init]) {
-    [self setupControls];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.contentMode = UIViewContentModeScaleAspectFit;
+    self.userInteractionEnabled = YES;
   }
   return self;
-}
-
-- (void)setupControls {
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  self.contentMode = UIViewContentModeScaleAspectFit;
-  self.userInteractionEnabled = YES;
 }
 
 - (void)setAddHeightWidthRatioContraint:(CGFloat)heightWidthRatio {

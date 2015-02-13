@@ -57,17 +57,17 @@ static CGFloat kImageBlockMargin = 15.0f;
       metrics = @{@"blockMargin":[NSNumber numberWithDouble:kImageBlockMargin]};
       block = imageBlock;
     }
-    if (bodyItem == bodyContents.firstObject) { // first one, pin to top
+    if (bodyItem == [bodyContents firstObject]) { // first one, pin to top
       [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[block]"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:@{@"block":block}]];
-    }else { // else, pin to previous
+    } else { // else, pin to previous
       [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[prevBlock][block]"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:@{@"block":block, @"prevBlock":prevBlock}]];
-      if (bodyItem == bodyContents.lastObject) { //last one, pin to bottom
+      if (bodyItem == [bodyContents lastObject]) { //last one, pin to bottom
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[block]|"
                                                                      options:0
                                                                      metrics:nil

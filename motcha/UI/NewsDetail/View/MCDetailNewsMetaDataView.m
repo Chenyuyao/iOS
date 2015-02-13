@@ -17,7 +17,7 @@ static CGFloat kMetaDataViewMargin = 14.0f;
 
 - (id)init {
   if (self = [super init]) {
-    [self setupControls];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setupSubviewsAndConstraints];
   }
   return self;
@@ -29,11 +29,6 @@ static CGFloat kMetaDataViewMargin = 14.0f;
   _sourceLabel.font = [UIFont dinRegularFontWithSize:_fontSize];
   _pubDateWidthConstraint.constant = _pubDateLabel.intrinsicContentSize.width;
   [super layoutSubviews];
-}
-
-- (void)setupControls {
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  [self sizeToFit];
 }
 
 - (void)setupSubviewsAndConstraints {
