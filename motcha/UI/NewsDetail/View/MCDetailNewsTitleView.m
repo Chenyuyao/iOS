@@ -11,15 +11,10 @@ static CGFloat kNewsTitleFontSize = 18.0f;
 
 - (id)init {
   if (self = [super init]) {
-    [self setupControls];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setupSubviewsAndConstraints];
   }
   return self;
-}
-
-- (void)setupControls {
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setupSubviewsAndConstraints {
@@ -28,7 +23,6 @@ static CGFloat kNewsTitleFontSize = 18.0f;
   _newsTitle.textColor = [UIColor whiteColor];
   _newsTitle.font = [UIFont dinRegularFontWithSize:kNewsTitleFontSize];
   [_newsTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
-  _newsTitle.backgroundColor = [UIColor clearColor];
   _newsTitle.numberOfLines = 0;
   [self addSubview:_newsTitle];
   

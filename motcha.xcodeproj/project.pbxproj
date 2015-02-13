@@ -413,19 +413,19 @@
 		C649C8341A8982B80087C340 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C649C8351A8982B80087C340 /* MCDetailNewsBodyView.h */,
-				C649C8361A8982B80087C340 /* MCDetailNewsBodyView.m */,
-				C649C8371A8982B80087C340 /* MCDetailNewsMetaDataView.h */,
-				C649C8381A8982B80087C340 /* MCDetailNewsMetaDataView.m */,
-				C649C8391A8982B80087C340 /* MCDetailNewsTitleView.h */,
-				C649C83A1A8982B80087C340 /* MCDetailNewsTitleView.m */,
 				C649C83B1A8982B80087C340 /* MCNewsDetailScrollView.h */,
 				C649C83C1A8982B80087C340 /* MCNewsDetailScrollView.m */,
-				C649C83D1A8982B80087C340 /* MCNewsDetailScrollViewDelegate.h */,
+				C649C8391A8982B80087C340 /* MCDetailNewsTitleView.h */,
+				C649C83A1A8982B80087C340 /* MCDetailNewsTitleView.m */,
+				C649C8371A8982B80087C340 /* MCDetailNewsMetaDataView.h */,
+				C649C8381A8982B80087C340 /* MCDetailNewsMetaDataView.m */,
+				C649C8351A8982B80087C340 /* MCDetailNewsBodyView.h */,
+				C649C8361A8982B80087C340 /* MCDetailNewsBodyView.m */,
 				C649C83E1A8982B80087C340 /* MCNewsImageBlock.h */,
 				C649C83F1A8982B80087C340 /* MCNewsImageBlock.m */,
 				C649C8401A8982B80087C340 /* MCNewsTextBlock.h */,
 				C649C8411A8982B80087C340 /* MCNewsTextBlock.m */,
+				C649C83D1A8982B80087C340 /* MCNewsDetailScrollViewDelegate.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -625,7 +625,6 @@
 				15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */,
 				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
-				47E913471A847D110055AB69 /* HTMLParser.m in Sources */,
 				15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */,
 				15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */,
 				47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */,

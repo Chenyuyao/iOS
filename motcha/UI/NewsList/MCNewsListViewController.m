@@ -11,6 +11,7 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 }
 
 - (id)init {
+  [self setTitle:@"News List"];
   MCNewsListCollectionViewLayout *layout = [[MCNewsListCollectionViewLayout alloc] init];
   layout.numberOfElementsInEachRow = 1;
   layout.spacing = 0;
@@ -22,7 +23,6 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self setTitle:@"News List"];
   self.collectionView.backgroundColor = [UIColor whiteColor];
   // Register cell classes
   [self.collectionView registerNib:[UINib nibWithNibName:@"MCNewsListCollectionViewCell" bundle:nil]

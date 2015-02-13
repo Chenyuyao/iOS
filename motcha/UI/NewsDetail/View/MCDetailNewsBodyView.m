@@ -12,15 +12,14 @@ static CGFloat kImageBlockMargin = 15.0f;
 }
 
 - (id)init {
-  if (self == [super init]) {
-    [self setupControls];
+  if (self = [super init]) {
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+
   }
   return self;
 }
 
 - (void)setupControls {
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)layoutSubviews {
@@ -37,48 +36,43 @@ static CGFloat kImageBlockMargin = 15.0f;
 
 - (void)setBodyContents:(NSArray *)bodyContents {
   _bodyContents = bodyContents;
-  NSObject *curBodyItem = nil;
-  NSObject *prevBlock = nil;
-  NSInteger last = _bodyContents.count-1;
-  
-  for (NSUInteger i = 0; i < _bodyContents.count; ++i) {
-    curBodyItem = _bodyContents[i];
+  NSObject *prevBlock;
+  for (NSObject *bodyItem in bodyContents) {
     NSDictionary *metrics;
     NSObject *block;
-    if ([curBodyItem isKindOfClass:[NSString class]]) {
+    if ([bodyItem isKindOfClass:[NSString class]]) {
       MCNewsTextBlock *textBlock = [[MCNewsTextBlock alloc] init];
-      textBlock.text = (NSString *)curBodyItem;
+      textBlock.text = (NSString *)bodyItem;
       [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
       [self addSubview:textBlock];
       metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
       block = textBlock;
-    } else if ([curBodyItem isKindOfClass:[UIImage class]]) {
+    } else if ([bodyItem isKindOfClass:[UIImage class]]) {
       MCNewsImageBlock *imageBlock = [[MCNewsImageBlock alloc] init];
       [imageBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
-      [imageBlock setNewsImage:(UIImage *)curBodyItem];
+      [imageBlock setNewsImage:(UIImage *)bodyItem];
       [imageBlock addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                action:@selector(imageBlockTapped:)]];
       [self addSubview:imageBlock];
       metrics = @{@"blockMargin":[NSNumber numberWithDouble:kImageBlockMargin]};
       block = imageBlock;
     }
-    if (i == 0) { // first one, pin to top
+    if (bodyItem == bodyContents.firstObject) { // first one, pin to top
       [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[block]"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:@{@"block":block}]];
-    }
-    if (i == last) { //last one, pin to bottom
-      [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[block]|"
-                                                                   options:0
-                                                                   metrics:nil
-                                                                     views:@{@"block":block}]];
-    }
-    if (i > 0 && i <= last) { // else, pin to previous
+    }else { // else, pin to previous
       [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[prevBlock][block]"
                                                                    options:0
                                                                    metrics:nil
                                                                      views:@{@"block":block, @"prevBlock":prevBlock}]];
+      if (bodyItem == bodyContents.lastObject) { //last one, pin to bottom
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[block]|"
+                                                                     options:0
+                                                                     metrics:nil
+                                                                       views:@{@"block":block}]];
+      }
     }
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-blockMargin-[block]-blockMargin-|"
                                                                  options:0

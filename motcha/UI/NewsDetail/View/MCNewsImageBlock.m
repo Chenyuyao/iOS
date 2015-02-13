@@ -7,7 +7,7 @@ static CGFloat kMaxHeightWidthRatio = 1.5f;
 }
 
 - (id)init {
-  if (self == [super init]) {
+  if (self = [super init]) {
     [self setupControls];
   }
   return self;
@@ -34,13 +34,9 @@ static CGFloat kMaxHeightWidthRatio = 1.5f;
   [self setAddHeightWidthRatioContraint:1.0f];
 }
 
-- (CGFloat)imageHeightWidthRatio:(UIImage *)image  {
-  return image.size.height / image.size.width;
-}
-
 - (void)setNewsImage:(UIImage *)newsImage {
   self.image = newsImage;
-  CGFloat ratio = [self imageHeightWidthRatio:self.image];
+  CGFloat ratio = self.image.size.height / self.image.size.width;
   ratio = MIN(kMaxHeightWidthRatio, ratio);
   [self removeConstraint:_heightConstraint];
   [self setAddHeightWidthRatioContraint:ratio];

@@ -32,7 +32,6 @@ static CGFloat kLargeFontSize             = 16.0f;
 
 - (id) init {
   if (self = [super init]) {
-    [self setupControls];
     [self setupSubviewsAndConstraints];
   }
   return self;
@@ -44,13 +43,9 @@ static CGFloat kLargeFontSize             = 16.0f;
   _mainBodyView.delegate = mcDelegate;
 }
 
-- (void)setupControls {
-  self.scrollsToTop = YES;
-}
-
 - (void)setupSubviewsAndConstraints {
   //add a content/image views
-  [self setBackgroundColor:[UIColor whiteColor]];
+  self.backgroundColor = [UIColor whiteColor];
   self.delegate = self;
   
   //contentView: contains imageView, _newsTitle and _descriptionView

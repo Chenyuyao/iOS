@@ -6,48 +6,46 @@
 
 #import "MCNewsDetailScrollView.h"
 
-static CGFloat kScrollViewContentBottomInset = 20.0f;
+//static CGFloat kScrollViewContentBottomInset = 20.0f;
 
 @interface MCNewsDetailViewController ()<MCNewsDetailScrollViewDelegate>
 @end
 
 @implementation MCNewsDetailViewController {
   MCNewsDetailScrollView *_scrollView;
-  dispatch_once_t _onceToken;
 }
 
 - (void)loadView {
   _scrollView = [[MCNewsDetailScrollView alloc] init];
   self.view = _scrollView;
-  _scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  [_scrollView setBackgroundColor:[UIColor whiteColor]];
+  //register self to MCNewsDetailScrollView delegate
+  _scrollView.mcDelegate = self;
+  //_scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
+  
   // TODO: delete the following after MCNavigationController is integrated.
   // The following is to transparentize the navigation bar.
   [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                           forBarMetrics:UIBarMetricsDefault];
+                                                forBarMetrics:UIBarMetricsDefault];
   self.navigationController.navigationBar.shadowImage = [UIImage new];
   self.navigationController.navigationBar.translucent = YES;
   self.automaticallyAdjustsScrollViewInsets = NO;
   
   //add right bar items: font and share item
   UIBarButtonItem *fontButton =
-      [[UIBarButtonItem alloc] initWithTitle:@"Aa"
-                                       style: UIBarButtonItemStylePlain
-                                      target:self
-                                      action:@selector(fontButtonPressed:)];
+  [[UIBarButtonItem alloc] initWithTitle:@"Aa"
+                                   style: UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(fontButtonPressed:)];
   UIBarButtonItem *shareButton =
-      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                    target:self
-                                                    action:@selector(shareButtonPressed:)];
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                target:self
+                                                action:@selector(shareButtonPressed:)];
   NSArray *actionBarItems = @[shareButton, fontButton];
   self.navigationItem.rightBarButtonItems = actionBarItems;
-  
-  //register self to MCNewsDetailScrollView delegate
-  _scrollView.mcDelegate = self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
   [self setFakeData];
 }
 

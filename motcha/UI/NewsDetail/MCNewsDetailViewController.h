@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
 
-@interface MCNewsDetailViewController : UIViewController<UIScrollViewDelegate>
-@property (weak, nonatomic) UIButton *backButton;
+@interface MCNewsDetailViewController : UIViewController
 @end

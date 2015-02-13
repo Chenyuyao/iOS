@@ -16,7 +16,7 @@ static CGFloat kMetaDataViewMargin = 14.0f;
 @synthesize delegate = _delegate;
 
 - (id)init {
-  if (self= [super init]) {
+  if (self = [super init]) {
     [self setupControls];
     [self setupSubviewsAndConstraints];
   }
@@ -34,7 +34,6 @@ static CGFloat kMetaDataViewMargin = 14.0f;
 - (void)setupControls {
   [self setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self sizeToFit];
-  self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setupSubviewsAndConstraints {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="DINPro-Bold.otf">
@@ -27,8 +28,11 @@
                             <constraint firstAttribute="height" constant="1" id="gXB-0a-qQT"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ARTS" translatesAutoresizingMaskIntoConstraints="NO" id="Gno-Q2-ajY">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ARTS" translatesAutoresizingMaskIntoConstraints="NO" id="Gno-Q2-ajY">
                         <rect key="frame" x="214" y="10" width="88" height="79"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Gno-Q2-ajY" secondAttribute="height" multiplier="1.2" id="6xK-mI-eWB"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rutos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rl-6o-rgr" userLabel="Source">
                         <rect key="frame" x="8" y="34" width="42" height="21"/>
@@ -60,9 +64,18 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="1Aj-LF-skc" secondAttribute="bottom" id="1dN-vz-efo"/>
+                <constraint firstItem="Gno-Q2-ajY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Ckf-n5-PNv"/>
+                <constraint firstAttribute="trailing" secondItem="Gno-Q2-ajY" secondAttribute="trailing" constant="10" id="DI3-sA-0Zm"/>
                 <constraint firstItem="1Aj-LF-skc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IDf-FX-wfs"/>
+                <constraint firstItem="1Aj-LF-skc" firstAttribute="top" secondItem="Gno-Q2-ajY" secondAttribute="bottom" constant="10" id="Qdx-zD-p4G"/>
                 <constraint firstAttribute="trailing" secondItem="1Aj-LF-skc" secondAttribute="trailing" id="d4k-Bu-Iol"/>
+                <constraint firstItem="1Aj-LF-skc" firstAttribute="top" secondItem="Gno-Q2-ajY" secondAttribute="bottom" constant="10" id="r4Q-A2-l7D"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Qdx-zD-p4G"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="_bottomBorderView" destination="1Aj-LF-skc" id="nMZ-Aq-YVu"/>
                 <outlet property="_dateLabel" destination="fTy-id-FR8" id="zDD-uF-fUb"/>
