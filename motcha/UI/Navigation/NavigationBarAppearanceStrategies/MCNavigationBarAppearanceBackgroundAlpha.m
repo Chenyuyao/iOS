@@ -10,6 +10,11 @@
   NSDictionary *data = [_dataSource appearanceStrategyDataForStrategyClass:[self class]];
   NSNumber *alphaNumber = [data objectForKey:kNavigationBarBackgroundAlphaKey];
   UIView *navigationBarBackgroundView = (UIView*)[data objectForKey:kNavigationBarBackgroundViewKey];
+  
+  // if the to-be-applied background alpha is the same as the previous one, then do nothing.
+  if ([alphaNumber doubleValue] == _prevBackgroundAlpha) {
+    return;
+  }
   NSNumber *prevAlphaNumber = [NSNumber numberWithDouble:_prevBackgroundAlpha];
   if ([_delegate conformsToProtocol:@protocol(MCNavigationBarAppearanceStrategyDelegate)] &&
       [_delegate respondsToSelector:@selector(appearance:willAppearForStrategyClass:state:)]) {

@@ -16,6 +16,7 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
+    self.barTintColor = [UIColor whiteColor];
     for (UIView *view in [self subviews]) {
       if ([kNavigationBarBackgroundClassName isEqualToString:NSStringFromClass([view class])]) {
         _navigationBarBackgroundView = view;

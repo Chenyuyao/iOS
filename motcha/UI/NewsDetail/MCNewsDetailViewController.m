@@ -5,10 +5,12 @@
 #import "JTSImageInfo.h"
 
 #import "MCNewsDetailScrollView.h"
+#import "MCNavigationController.h"
+#import "MCNavigationBarCustomizationDelegate.h"
 
 //static CGFloat kScrollViewContentBottomInset = 20.0f;
 
-@interface MCNewsDetailViewController ()<MCNewsDetailScrollViewDelegate>
+@interface MCNewsDetailViewController ()<MCNewsDetailScrollViewDelegate, MCNavigationBarCustomizationDelegate>
 @end
 
 @implementation MCNewsDetailViewController {
@@ -21,13 +23,6 @@
   //register self to MCNewsDetailScrollView delegate
   _scrollView.mcDelegate = self;
   //_scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
-  
-  // TODO: delete the following after MCNavigationController is integrated.
-  // The following is to transparentize the navigation bar.
-  [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                forBarMetrics:UIBarMetricsDefault];
-  self.navigationController.navigationBar.shadowImage = [UIImage new];
-  self.navigationController.navigationBar.translucent = YES;
   self.automaticallyAdjustsScrollViewInsets = NO;
   
   //add right bar items: font and share item
@@ -47,6 +42,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self setFakeData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [(MCNavigationController *)self.navigationController notifyViewControllerWillAppearAnimated:animated];
 }
 
 // TODO: remove fake data
@@ -100,4 +100,10 @@
   [_scrollView toggleTextFontSize];
 }
 
+#pragma mark - MCNavigationBarCustomizationDelegate methods
+@synthesize navigationBarBackgroundAlpha = _navigationBarBackgroundAlpha;
+
+- (CGFloat)navigationBarBackgroundAlpha {
+  return 0.0f;
+}
 @end
