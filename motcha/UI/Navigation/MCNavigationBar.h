@@ -7,8 +7,8 @@ static CGFloat kNavigationBarDefaultHeightLandscape = 32.0f;
 
 @interface MCNavigationBar : UINavigationBar
 @property (nonatomic)                   CGFloat backgroundHeight;
-@property (nonatomic)                   CGFloat backgroundAlpha;
 @property (readonly, nonatomic, weak)   UIView* navigationBarBackgroundView;
+@property (readonly, nonatomic)         CGFloat backgroundAlpha;
 @property (readonly, nonatomic, weak)   UIView* auxiliaryView;
 @property (nonatomic)                   CGFloat navigationBarOffset;
 

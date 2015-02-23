@@ -10,13 +10,20 @@
 		1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C23B1A9028D000C32877 /* UIImage+Scale.m */; };
 		1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */; };
 		153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F55331AA12D0300487C2F /* UIColor+Helpers.m */; };
+		1539C2791A9A754A00C32877 /* MCPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2761A9A754A00C32877 /* MCPageView.m */; };
+		1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2781A9A754A00C32877 /* MCPageViewController.m */; };
+		1539C2841A9A75C300C32877 /* MCCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C27E1A9A75C300C32877 /* MCCategoryButton.m */; };
+		1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2801A9A75C300C32877 /* MCNewsCategoryIndicatorView.m */; };
+		1539C2861A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2821A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m */; };
+		1539C28A1A9A762B00C32877 /* MCNewsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2891A9A762B00C32877 /* MCNewsListWrapperViewController.m */; };
+		1539C2961A9A821200C32877 /* UIView+HorizontalConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2951A9A821200C32877 /* UIView+HorizontalConstraints.m */; };
+		1539C29C1A9B828C00C32877 /* NSLayoutConstraint+Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
 		15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97831A89112F0066B469 /* MCNavigationController.m */; };
 		15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97861A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m */; };
 		15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97881A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m */; };
 		15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB978A1A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m */; };
-		15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */; };
 		15E3DB311A6B04BA002F4F4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB301A6B04BA002F4F4C /* main.m */; };
 		15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB331A6B04BA002F4F4C /* MCAppDelegate.m */; };
 		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
@@ -81,6 +88,23 @@
 		1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Manipulation.m"; sourceTree = "<group>"; };
 		153F55321AA12D0300487C2F /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
 		153F55331AA12D0300487C2F /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
+		1539C2751A9A754A00C32877 /* MCPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPageView.h; sourceTree = "<group>"; };
+		1539C2761A9A754A00C32877 /* MCPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPageView.m; sourceTree = "<group>"; };
+		1539C2771A9A754A00C32877 /* MCPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPageViewController.h; sourceTree = "<group>"; };
+		1539C2781A9A754A00C32877 /* MCPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPageViewController.m; sourceTree = "<group>"; };
+		1539C27D1A9A75C300C32877 /* MCCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCategoryButton.h; sourceTree = "<group>"; };
+		1539C27E1A9A75C300C32877 /* MCCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCategoryButton.m; sourceTree = "<group>"; };
+		1539C27F1A9A75C300C32877 /* MCNewsCategoryIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsCategoryIndicatorView.h; sourceTree = "<group>"; };
+		1539C2801A9A75C300C32877 /* MCNewsCategoryIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsCategoryIndicatorView.m; sourceTree = "<group>"; };
+		1539C2811A9A75C300C32877 /* MCNewsCategorySelectorScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsCategorySelectorScrollView.h; sourceTree = "<group>"; };
+		1539C2821A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsCategorySelectorScrollView.m; sourceTree = "<group>"; };
+		1539C2831A9A75C300C32877 /* MCNewsItemConstraintsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsItemConstraintsProtocol.h; sourceTree = "<group>"; };
+		1539C2881A9A762B00C32877 /* MCNewsListWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListWrapperViewController.h; sourceTree = "<group>"; };
+		1539C2891A9A762B00C32877 /* MCNewsListWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListWrapperViewController.m; sourceTree = "<group>"; };
+		1539C2941A9A821200C32877 /* UIView+HorizontalConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HorizontalConstraints.h"; sourceTree = "<group>"; };
+		1539C2951A9A821200C32877 /* UIView+HorizontalConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HorizontalConstraints.m"; sourceTree = "<group>"; };
+		1539C29A1A9B828C00C32877 /* NSLayoutConstraint+Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Content.h"; sourceTree = "<group>"; };
+		1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Content.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
 		15DB977C1A8911190066B469 /* MCKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCKeyValuePair.m; sourceTree = "<group>"; };
 		15DB977F1A89112F0066B469 /* MCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBar.h; sourceTree = "<group>"; };
@@ -95,8 +119,6 @@
 		15DB97891A89112F0066B469 /* MCNavigationBarAppearanceStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceStrategy.h; sourceTree = "<group>"; };
 		15DB978A1A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNavigationBarAppearanceStrategy.m; sourceTree = "<group>"; };
 		15DB978B1A89112F0066B469 /* MCNavigationBarAppearanceStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBarAppearanceStrategyProtocol.h; sourceTree = "<group>"; };
-		15DB978C1A89112F0066B469 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
-		15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15E3DB2B1A6B04BA002F4F4C /* motcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = motcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E3DB2F1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB301A6B04BA002F4F4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -207,6 +229,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1539C2741A9A754A00C32877 /* PageContainer */ = {
+			isa = PBXGroup;
+			children = (
+				1539C2751A9A754A00C32877 /* MCPageView.h */,
+				1539C2761A9A754A00C32877 /* MCPageView.m */,
+				1539C2771A9A754A00C32877 /* MCPageViewController.h */,
+				1539C2781A9A754A00C32877 /* MCPageViewController.m */,
+			);
+			path = PageContainer;
+			sourceTree = "<group>";
+		};
+		1539C27B1A9A75C300C32877 /* AuxiliaryViews */ = {
+			isa = PBXGroup;
+			children = (
+				1539C27C1A9A75C300C32877 /* MCNewsCategorySelectorView */,
+			);
+			path = AuxiliaryViews;
+			sourceTree = "<group>";
+		};
+		1539C27C1A9A75C300C32877 /* MCNewsCategorySelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				1539C27D1A9A75C300C32877 /* MCCategoryButton.h */,
+				1539C27E1A9A75C300C32877 /* MCCategoryButton.m */,
+				1539C27F1A9A75C300C32877 /* MCNewsCategoryIndicatorView.h */,
+				1539C2801A9A75C300C32877 /* MCNewsCategoryIndicatorView.m */,
+				1539C2811A9A75C300C32877 /* MCNewsCategorySelectorScrollView.h */,
+				1539C2821A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m */,
+				1539C2831A9A75C300C32877 /* MCNewsItemConstraintsProtocol.h */,
+			);
+			path = MCNewsCategorySelectorView;
+			sourceTree = "<group>";
+		};
+		1539C2871A9A762B00C32877 /* NewsListWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				1539C2881A9A762B00C32877 /* MCNewsListWrapperViewController.h */,
+				1539C2891A9A762B00C32877 /* MCNewsListWrapperViewController.m */,
+			);
+			path = NewsListWrapper;
+			sourceTree = "<group>";
+		};
 		15DB977A1A8911190066B469 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +289,6 @@
 				15DB97821A89112F0066B469 /* MCNavigationController.h */,
 				15DB97831A89112F0066B469 /* MCNavigationController.m */,
 				15DB97841A89112F0066B469 /* NavigationBarAppearanceStrategies */,
-				15DB978C1A89112F0066B469 /* UIViewController+Swizzling.h */,
-				15DB978D1A89112F0066B469 /* UIViewController+Swizzling.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -472,6 +534,10 @@
 				C649C8581A8982C70087C340 /* UIFont+DINFont.m */,
 				1539C2711A9838F300C32877 /* NSMutableArray+Manipulation.h */,
 				1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */,
+				1539C2941A9A821200C32877 /* UIView+HorizontalConstraints.h */,
+				1539C2951A9A821200C32877 /* UIView+HorizontalConstraints.m */,
+				1539C29A1A9B828C00C32877 /* NSLayoutConstraint+Content.h */,
+				1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -479,6 +545,9 @@
 		E0B343B41A773F030081BE95 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1539C2871A9A762B00C32877 /* NewsListWrapper */,
+				1539C27B1A9A75C300C32877 /* AuxiliaryViews */,
+				1539C2741A9A754A00C32877 /* PageContainer */,
 				C649C8311A8982B80087C340 /* NewsDetail */,
 				C649C8421A8982B80087C340 /* NewsList */,
 				15DB977E1A89112F0066B469 /* Navigation */,
@@ -618,6 +687,8 @@
 				E0B343CA1A773F030081BE95 /* MCIntroViewController.m in Sources */,
 				C649C81D1A8980F10087C340 /* JTSSimpleImageDownloader.m in Sources */,
 				C649C8191A8980F10087C340 /* HTMLParser.m in Sources */,
+				1539C2961A9A821200C32877 /* UIView+HorizontalConstraints.m in Sources */,
+				1539C29C1A9B828C00C32877 /* NSLayoutConstraint+Content.m in Sources */,
 				CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */,
 				47E912EA1A84596D0055AB69 /* MCWebContentService.m in Sources */,
 				C649C81A1A8980F10087C340 /* JTSAnimatedGIFUtility.m in Sources */,
@@ -625,8 +696,10 @@
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
+				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
 				C649C81C1A8980F10087C340 /* JTSImageViewController.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
+				1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */,
 				C649C84C1A8982B80087C340 /* MCDetailNewsBodyView.m in Sources */,
 				C649C84B1A8982B80087C340 /* MCNewsDetailViewController.m in Sources */,
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
@@ -635,11 +708,12 @@
 				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,
 				1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */,
 				C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */,
+				1539C2861A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
+				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
-				15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */,
 				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
 				153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */,
@@ -653,9 +727,11 @@
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
+				1539C28A1A9A762B00C32877 /* MCNewsListWrapperViewController.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 				C649C84D1A8982B80087C340 /* MCDetailNewsMetaDataView.m in Sources */,
+				1539C2841A9A75C300C32877 /* MCCategoryButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
