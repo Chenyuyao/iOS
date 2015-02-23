@@ -62,7 +62,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   // set the initial showing page here. Default is index 0.
-  [_newsCategoryView selectButtonAtIndex:2 animated:YES];
+  /* [_newsCategoryView selectButtonAtIndex:2 animated:YES]; */
 }
 
 #pragma mark - MCNewsCategorySelectorScrollViewDataSource methods
