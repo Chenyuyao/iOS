@@ -18,7 +18,9 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
   MCNewsCategoryIndicatorView *_indicatorView;
   NSMutableArray *_categories;
   MCCategoryButton *_selectedButton;
-  dispatch_once_t _onceToken;
+  
+  dispatch_once_t _onceToken; // For initializing the indicator view
+  dispatch_once_t _onceToken2; // For initializing the static contentOffsetX
 }
 
 - (instancetype)initWithDelegate:(id<MCNewsCategorySelectorScrollViewDelegate>)delegate
@@ -303,10 +305,10 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
     CGFloat pageOffset = contentOffsetX / [_mcDataSource backingScrollView].frame.size.width;
     pageOffset = MIN([_buttonsWrapperView.subviews count]-1, MAX(0, pageOffset));
     // Calculate the direction of moving
-    static CGFloat sContentOffsetX = 0;
-    if (sContentOffsetX == 0) {
+    static CGFloat sContentOffsetX;
+    dispatch_once(&_onceToken2, ^{
       sContentOffsetX = contentOffsetX;
-    }
+    });
     CGFloat delta = contentOffsetX - sContentOffsetX;
     sContentOffsetX = contentOffsetX;
     // Calculate the current button index and next-to-appear button index
