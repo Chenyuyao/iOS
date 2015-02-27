@@ -1,5 +1,5 @@
 #import "MCNewsCategoryIndicatorView.h"
-#import "UIColor+HexColor.h"
+#import "UIColor+Helpers.h"
 
 static NSUInteger kBackgroundColor  = 0x252525;
 

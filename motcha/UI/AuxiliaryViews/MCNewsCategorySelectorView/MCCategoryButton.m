@@ -1,5 +1,5 @@
 #import "MCCategoryButton.h"
-#import "UIColor+HexColor.h"
+#import "UIColor+Helpers.h"
 #import "UIFont+DINFont.h"
 
 static CGFloat kFontSize              = 17.0f;
