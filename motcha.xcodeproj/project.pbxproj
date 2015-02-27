@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1539C23C1A9028D000C32877 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2371A9028D000C32877 /* UIColor+HexColor.m */; };
-		1539C23D1A9028D000C32877 /* UIColor+RGBColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2391A9028D000C32877 /* UIColor+RGBColor.m */; };
 		1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C23B1A9028D000C32877 /* UIImage+Scale.m */; };
 		1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */; };
+		153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F55331AA12D0300487C2F /* UIColor+Helpers.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
 		15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97831A89112F0066B469 /* MCNavigationController.m */; };
@@ -76,14 +75,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1539C2361A9028D000C32877 /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
-		1539C2371A9028D000C32877 /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
-		1539C2381A9028D000C32877 /* UIColor+RGBColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBColor.h"; sourceTree = "<group>"; };
-		1539C2391A9028D000C32877 /* UIColor+RGBColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBColor.m"; sourceTree = "<group>"; };
 		1539C23A1A9028D000C32877 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		1539C23B1A9028D000C32877 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		1539C2711A9838F300C32877 /* NSMutableArray+Manipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Manipulation.h"; sourceTree = "<group>"; };
 		1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Manipulation.m"; sourceTree = "<group>"; };
+		153F55321AA12D0300487C2F /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
+		153F55331AA12D0300487C2F /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
 		15DB977C1A8911190066B469 /* MCKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCKeyValuePair.m; sourceTree = "<group>"; };
 		15DB977F1A89112F0066B469 /* MCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBar.h; sourceTree = "<group>"; };
@@ -467,10 +464,8 @@
 		C649C8561A8982C70087C340 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1539C2361A9028D000C32877 /* UIColor+HexColor.h */,
-				1539C2371A9028D000C32877 /* UIColor+HexColor.m */,
-				1539C2381A9028D000C32877 /* UIColor+RGBColor.h */,
-				1539C2391A9028D000C32877 /* UIColor+RGBColor.m */,
+				153F55321AA12D0300487C2F /* UIColor+Helpers.h */,
+				153F55331AA12D0300487C2F /* UIColor+Helpers.m */,
 				1539C23A1A9028D000C32877 /* UIImage+Scale.h */,
 				1539C23B1A9028D000C32877 /* UIImage+Scale.m */,
 				C649C8571A8982C70087C340 /* UIFont+DINFont.h */,
@@ -641,14 +636,13 @@
 				1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */,
 				C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
-				1539C23C1A9028D000C32877 /* UIColor+HexColor.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
-				1539C23D1A9028D000C32877 /* UIColor+RGBColor.m in Sources */,
 				15DB97931A89112F0066B469 /* UIViewController+Swizzling.m in Sources */,
 				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
+				153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */,
 				15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */,
 				15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */,
 				47E9134D1A8487710055AB69 /* MCParsedHTMLNode.m in Sources */,
