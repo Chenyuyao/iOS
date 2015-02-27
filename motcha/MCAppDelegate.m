@@ -2,6 +2,7 @@
 
 #import "MCIntroViewController.h"
 #import "MCNewsListViewController.h"
+#import "MCWebContentService.h"
 
 @implementation MCAppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

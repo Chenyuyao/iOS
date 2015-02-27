@@ -320,11 +320,11 @@
 			isa = PBXGroup;
 			children = (
 				CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */,
+				CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */,
 				47E912EB1A8459BD0055AB69 /* MCNewsDetailsObject.h */,
 				47E912EC1A8459BD0055AB69 /* MCNewsDetailsObject.m */,
 				47E9134B1A8487710055AB69 /* MCParsedHTMLNode.h */,
 				47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */,
-				CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";

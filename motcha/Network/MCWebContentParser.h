@@ -6,6 +6,8 @@
 @property(nonatomic) NSData *htmlData;
 
 - (instancetype)initWithHTMLData:(NSData *)data;
-- (void)parse;
+
+// Parse the article and returns an array of MCNewDetailsComponents.
+- (NSArray *)parse;
 
 @end
