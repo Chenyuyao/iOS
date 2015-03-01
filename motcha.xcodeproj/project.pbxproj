@@ -51,6 +51,7 @@
 		C649C8541A8982B80087C340 /* MCNewsListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C649C8481A8982B80087C340 /* MCNewsListCollectionViewCell.xib */; };
 		C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C84A1A8982B80087C340 /* MCNewsListCollectionViewLayout.m */; };
 		C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8581A8982C70087C340 /* UIFont+DINFont.m */; };
+		C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8661A90510F0087C340 /* MBProgressHUD.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
@@ -166,6 +167,8 @@
 		C649C85C1A8984930087C340 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C649C85E1A89849F0087C340 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C649C8601A8984AA0087C340 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C649C8651A90510F0087C340 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		C649C8661A90510F0087C340 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 		C649C7EF1A8980F10087C340 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C649C8641A90510F0087C340 /* MBProgressHUD */,
 				C649C7F01A8980F10087C340 /* HTMLParser */,
 				C649C7F51A8980F10087C340 /* JTSImageViewController */,
 			);
@@ -474,6 +478,15 @@
 				1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C649C8641A90510F0087C340 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C649C8651A90510F0087C340 /* MBProgressHUD.h */,
+				C649C8661A90510F0087C340 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		E0B343B41A773F030081BE95 /* UI */ = {
@@ -652,6 +665,7 @@
 				C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
+				C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,

@@ -11,6 +11,7 @@
 #import "JTSSimpleImageDownloader.h"
 #import "UIImage+JTSImageEffects.h"
 #import "UIApplication+JTSImageViewController.h"
+#import "MBProgressHUD.h"
 
 ///--------------------------------------------------------------------------------------------------------------------
 /// Definitions
@@ -64,7 +65,10 @@ typedef struct {
     UIScrollViewDelegate,
     UITextViewDelegate,
     UIViewControllerTransitioningDelegate,
-    UIGestureRecognizerDelegate
+    UIGestureRecognizerDelegate,
+    UIAlertViewDelegate,
+    JTSImageViewControllerInteractionsDelegate,
+    MBProgressHUDDelegate
 >
 
 // General Info
@@ -109,6 +113,10 @@ typedef struct {
 // Image Downloading
 @property (strong, nonatomic) NSURLSessionDataTask *imageDownloadDataTask;
 @property (strong, nonatomic) NSTimer *downloadProgressTimer;
+
+// MBProgressHUD
+@property (strong, nonatomic) MBProgressHUD *HUD;
+
 
 @end
 
@@ -280,6 +288,11 @@ typedef struct {
     else if (self.mode == JTSImageViewControllerMode_AltText) {
         [self viewDidLoadForAltTextMode];
     }
+//  //added by Phoebe
+//  //register self as delegate of type JTSImageViewControllerInteractionsDelegate
+//  self.interactionsDelegate = self;
+  //add long press gestures
+  [self.view addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(imageLongPressed:)]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -1670,19 +1683,24 @@ typedef struct {
             [self.interactionsDelegate imageViewerDidLongPress:self atRect:CGRectMake(location.x, location.y, 0.0f, 0.0f)];
         }
         
-        BOOL allowCopy = NO;
+        BOOL allowCopy = YES;
         
         if ([self.interactionsDelegate respondsToSelector:@selector(imageViewerAllowCopyToPasteboard:)]) {
             allowCopy = [self.interactionsDelegate imageViewerAllowCopyToPasteboard:self];
         }
         
         if (allowCopy) {
-            CGPoint location = [sender locationInView:self.imageView];
-            UIMenuController *menuController = [UIMenuController sharedMenuController];
-            
-            [menuController setTargetRect:CGRectMake(location.x, location.y, 0.0f, 0.0f) inView:self.imageView];
-            [menuController setMenuVisible:YES animated:YES];
-        }
+          //added by Phoebe
+          [self becomeFirstResponder];
+          NSAssert([self becomeFirstResponder], @"Sorry, UIMenuController will not work with %@ since it cannot become first responder", self);
+          CGPoint location = [sender locationInView:self.imageView];
+          UIMenuController *menuController = [UIMenuController sharedMenuController];
+          UIMenuItem *resetMenuItem = [[UIMenuItem alloc] initWithTitle:@"Save"
+                                                                 action:@selector(saveImage:)];
+          [menuController setMenuItems:[NSArray arrayWithObject:resetMenuItem]];
+          [menuController setTargetRect:CGRectMake(location.x+10, location.y-10, 0.0f, 0.0f) inView:self.imageView];
+          menuController.arrowDirection = UIMenuControllerArrowLeft;
+          [menuController setMenuVisible:YES animated:YES];        }
     }
 }
 
@@ -1895,7 +1913,9 @@ typedef struct {
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
     
-    if (self.image && action == @selector(copy:)) {
+    if ((self.image && action == @selector(copy:)) ||
+        (self.image && action == @selector(select:)) ||
+        (self.image && action == @selector(saveImage:))) {
         return YES;
     }
     return NO;
@@ -1904,6 +1924,37 @@ typedef struct {
 - (void)copy:(id)sender {
     [[UIPasteboard generalPasteboard] setImage:self.image];
 }
+
+- (void)select:(id)sender {
+  
+}
+#pragma mark - save Image to Photos
+
+
+- (void)saveImage:(id)sender {
+  NSLog(@"going to save image");
+  if (!self.imageInfo.imageURL) {
+    UIImageWriteToSavedPhotosAlbum(self.image,
+                                   self,
+                                   @selector(image:didFinishSavingWithError:contextInfo:),
+                                   nil);
+  } else {
+    //imageDownloader
+  }
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo {
+  if (error) {
+    if ([_imageSavingDelegate conformsToProtocol:@protocol(JTSImageViewControllerImageSavingDelegate)] && [_imageSavingDelegate respondsToSelector:@selector(image:didSavingWithError:contextInfo:)]) {
+      [self.imageSavingDelegate image:image didSavingWithError:error contextInfo:contextInfo];
+    }
+  } else {
+    if ([_imageSavingDelegate conformsToProtocol:@protocol(JTSImageViewControllerImageSavingDelegate)] && [_imageSavingDelegate respondsToSelector:@selector(image:didSavingWithSuccess:contextInfo:target:)]) {
+      [self.imageSavingDelegate image:image didSavingWithSuccess:error contextInfo:contextInfo target:self];
+    }
+  }
+}
+
 
 #pragma mark - Accessibility
 
