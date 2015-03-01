@@ -3,6 +3,7 @@
 #import "MCNewsListCollectionViewCell.h"
 #import "MCNewsDetailViewController.h"
 #import "MCNewsListCollectionViewLayout.h"
+#import "MCNavigationController.h"
 
 static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 
@@ -24,6 +25,8 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.collectionView.backgroundColor = [UIColor whiteColor];
+  self.collectionView.scrollsToTop = NO;
+  self.automaticallyAdjustsScrollViewInsets = NO;
   // Register cell classes
   [self.collectionView registerNib:[UINib nibWithNibName:@"MCNewsListCollectionViewCell" bundle:nil]
         forCellWithReuseIdentifier:kMCCollectionViewCellReuseId];
@@ -31,6 +34,14 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
       @"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg",
       @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg",
       @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
+  CGFloat navigationBarAppearanceHeight =
+      navigationBar.backgroundHeight + navigationBar.auxiliaryView.frame.size.height;
+  self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -57,6 +68,25 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   MCNewsDetailViewController *detailViewController = [[MCNewsDetailViewController alloc] init];
   [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+#pragma mark - UIContentContainer
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+  BOOL scrollViewAtTop = NO;
+  if (self.collectionView.contentOffset.y <= -1*self.collectionView.contentInset.top) {
+    scrollViewAtTop = YES;
+  }
+  MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
+  [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    CGFloat navigationBarAppearanceHeight = navigationBar.backgroundHeight;
+    self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+    if (scrollViewAtTop) {
+      [self.collectionView setContentOffset:CGPointMake(0, -1*self.collectionView.contentInset.top) animated:YES];
+    }
+  }];
+
 }
 
 @end
