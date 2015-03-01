@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @class HTMLNode;
+@class MCNewsDetailsComponent;
 
 // A wrapper class for HTMLNode that contains necessary information of a DOM element.
 @interface MCParsedHTMLNode : NSObject
@@ -14,5 +15,7 @@
 
 - (instancetype)initWithHTMLNode:(HTMLNode *)node
                           parent:(MCParsedHTMLNode *)parent;
+
+- (Class)type;
 
 @end
