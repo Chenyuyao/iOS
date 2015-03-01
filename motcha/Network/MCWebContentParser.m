@@ -4,6 +4,7 @@
 
 #import "HTMLNode.h"
 #import "HTMLParser.h"
+#import "MCNewsDetailsObject.h"
 #import "MCParsedHTMLNode.h"
 
 @implementation MCWebContentParser {
@@ -19,15 +20,12 @@
   return self;
 }
 
-- (void)parse {
-  [self parseArticle];
-}
-
-- (void)parseArticle {
+- (NSArray *)parse {
   NSString *htmlString =
       [[NSString alloc] initWithData:_htmlData encoding:NSASCIIStringEncoding];
   NSError *error;
   HTMLParser *parser = [[HTMLParser alloc] initWithString:htmlString error:&error];
+  NSArray *components;
   if (parser && !error) {
     MCParsedHTMLNode *bodyNode =
         [[MCParsedHTMLNode alloc] initWithHTMLNode:[parser body] parent:nil];
@@ -41,6 +39,28 @@
         _topNode = paragraph.parent;
       }
     }
+    components = [self componentsWithNode:_topNode];
+  }
+  return components;
+}
+
+- (NSArray *)componentsWithNode:(MCParsedHTMLNode *)node {
+  NSMutableArray *components = [NSMutableArray array];
+  [self parseComponentsWithNode:node result:components];
+  return components;
+}
+
+- (void)parseComponentsWithNode:(MCParsedHTMLNode *)node
+                         result:(NSMutableArray *)result {
+  if (!node) {
+    return;
+  }
+  MCNewsDetailsComponent *component = [[node type] componentWithNode:node];
+  if (component) {
+    [result addObject:component];
+  }
+  for (MCParsedHTMLNode *child in node.children) {
+    [self parseComponentsWithNode:child result:result];
   }
 }
 
@@ -58,7 +78,5 @@
     [self findAllParagraphsWithRoot:child];
   }
 }
-
-
 
 @end

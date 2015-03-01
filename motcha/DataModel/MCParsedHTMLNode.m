@@ -1,10 +1,11 @@
 #import "MCParsedHTMLNode.h"
+#import "MCNewsDetailsObject.h"
 
 #import "HTMLNode.h"
 
 @implementation MCParsedHTMLNode
 
-- (id)initWithHTMLNode:(HTMLNode *)node parent:(MCParsedHTMLNode *)parent {
+- (instancetype)initWithHTMLNode:(HTMLNode *)node parent:(MCParsedHTMLNode *)parent {
   self = [super init];
   if (self) {
     NSMutableArray *children = [NSMutableArray array];
@@ -21,5 +22,17 @@
   return self;
 }
 
+- (Class)type {
+  if ([self.tag isEqualToString:@"p"]) {
+    return [MCNewsDetailsParagraph class];
+  } else if ([self.tag isEqualToString:@"h1"] || [self.tag isEqualToString:@"h2"] ||
+      [self.tag isEqualToString:@"h3"]) {
+    return [MCNewsDetailsTitle class];
+  } else if ([self.tag isEqualToString:@"image"]) {
+    return [MCNewsDetailsImage class];
+  } else {
+    return nil;
+  }
+}
 
 @end
