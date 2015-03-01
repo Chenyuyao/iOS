@@ -10,6 +10,8 @@
       (id<MCNavigationBarCustomizationDelegate>)self.topViewController;
   if ([topViewController conformsToProtocol:@protocol(MCNavigationBarCustomizationDelegate)]) {
     _customizationDelegate = topViewController;
+  } else {
+    _customizationDelegate = nil;
   }
   UIView* auxiliaryView;
   if ([_customizationDelegate conformsToProtocol:@protocol(MCNavigationBarCustomizationDelegate)] &&
@@ -22,7 +24,7 @@
   
   CGFloat backgroundAlpha;
   if ([_customizationDelegate conformsToProtocol:@protocol(MCNavigationBarCustomizationDelegate)] &&
-      [_customizationDelegate respondsToSelector:@selector(navigationBarAuxiliaryView)])  {
+      [_customizationDelegate respondsToSelector:@selector(navigationBarBackgroundAlpha)])  {
     backgroundAlpha = [_customizationDelegate navigationBarBackgroundAlpha];
   } else {
     backgroundAlpha = 1.0f;

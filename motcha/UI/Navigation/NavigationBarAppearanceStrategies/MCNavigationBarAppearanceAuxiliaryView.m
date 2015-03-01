@@ -14,13 +14,16 @@
   CGFloat navBarBackgroundHeight = [(NSNumber*)[data objectForKey:kNavigationBarBackgroundHeightKey] doubleValue];
   UIView *auxiliaryView = [data objectForKey:kAuxiliaryViewKey];
   
+  // if the to-be-applied auxiliary view is the same as the previous one, then do nothing.
+  if (auxiliaryView == _prevAuxiliaryView) {
+    return;
+  }
   if ([_delegate conformsToProtocol:@protocol(MCNavigationBarAppearanceStrategyDelegate)] &&
       [_delegate respondsToSelector:@selector(appearance:willAppearForStrategyClass:state:)]) {
     NSDictionary *stateDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarBackgroundHeight]
                                                           forKey:kNavigationBarBackgroundHeightKey];
     [_delegate appearance:auxiliaryView willAppearForStrategyClass:[self class] state:stateDict];
   }
-  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
   if (_prevAuxiliaryView) {
     // fade out the previous aux view
     CGRect prevAuxFrame = _prevAuxiliaryView.frame;
@@ -37,11 +40,11 @@
       if (finished) {
         [_prevAuxiliaryView removeFromSuperview];
         _prevAuxiliaryView.alpha = prevAuxAlpha;
-        dispatch_semaphore_signal(sema);
+        _prevAuxiliaryView = auxiliaryView;
       }
     }];
   } else {
-    dispatch_semaphore_signal(sema);
+    _prevAuxiliaryView = auxiliaryView;
   }
   // fade in the current aux view
   CGFloat curAuxViewFinalAlpha = auxiliaryView.alpha;
@@ -63,8 +66,6 @@
         navBarBackgroundFrame.size.width, navBarFinalHeight);
   } completion:^(BOOL finished) {
     if (finished) {
-      dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-      _prevAuxiliaryView = auxiliaryView;
       NSDictionary *stateDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarFinalHeight]
                                                                  forKey:kNavigationBarBackgroundHeightKey];
       if (block) {
