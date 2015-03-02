@@ -81,11 +81,11 @@ didStartElement:(NSString *)elementName
   //After parse one item, put this item into feeds
   if ([elementName isEqualToString:@"item"]) {
     _item = [[MCParsedRSSItem alloc] initWithTitle:_title
-                                                 link:_link
-                                              descrpt:_description
-                                               imgSrc:_imgSrc
-                                              pubDate:_pubDate
-                                               author:_author];
+                                              link:_link
+                                           descrpt:_description
+                                            imgSrc:_imgSrc
+                                           pubDate:_pubDate
+                                            author:_author];
     [_feeds addObject:_item];
   }
 }
