@@ -1,5 +1,6 @@
 #import "MCDetailNewsBodyView.h"
 
+#import "MCNewsDetailsObject.h"
 #import "MCNewsImageBlock.h"
 #import "MCNewsTextBlock.h"
 #import "UIFont+DINFont.h"
@@ -40,22 +41,29 @@ static CGFloat kImageBlockMargin = 15.0f;
   for (NSObject *bodyItem in bodyContents) {
     NSDictionary *metrics;
     NSObject *block;
-    if ([bodyItem isKindOfClass:[NSString class]]) {
+    if ([bodyItem isKindOfClass:[MCNewsDetailsParagraph class]]) {
       MCNewsTextBlock *textBlock = [[MCNewsTextBlock alloc] init];
-      textBlock.text = (NSString *)bodyItem;
+      textBlock.text = ((MCNewsDetailsParagraph *)bodyItem).text;
       [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
       [self addSubview:textBlock];
       metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
       block = textBlock;
-    } else if ([bodyItem isKindOfClass:[UIImage class]]) {
-      MCNewsImageBlock *imageBlock = [[MCNewsImageBlock alloc] init];
-      [imageBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
-      [imageBlock setNewsImage:(UIImage *)bodyItem];
-      [imageBlock addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(imageBlockTapped:)]];
-      [self addSubview:imageBlock];
-      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kImageBlockMargin]};
-      block = imageBlock;
+    } else if ([bodyItem isKindOfClass:[MCNewsDetailsImage class]]) {
+      // TODO:handle images
+      MCNewsTextBlock *textBlock = [[MCNewsTextBlock alloc] init];
+      textBlock.text = @"[IMAGE PLACEHOLDER]";
+      [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
+      [self addSubview:textBlock];
+      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
+      block = textBlock;
+    } else if ([bodyItem isKindOfClass:[MCNewsDetailsTitle class]]) {
+      // TODO:handle title
+      MCNewsTextBlock *textBlock = [[MCNewsTextBlock alloc] init];
+      textBlock.text = @"[SUBTITLE PLACEHOLDER]";
+      [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
+      [self addSubview:textBlock];
+      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
+      block = textBlock;
     }
     if (bodyItem == [bodyContents firstObject]) { // first one, pin to top
       [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[block]"

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C23B1A9028D000C32877 /* UIImage+Scale.m */; };
 		1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */; };
-		153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F55331AA12D0300487C2F /* UIColor+Helpers.m */; };
 		1539C2791A9A754A00C32877 /* MCPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2761A9A754A00C32877 /* MCPageView.m */; };
 		1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2781A9A754A00C32877 /* MCPageViewController.m */; };
 		1539C2841A9A75C300C32877 /* MCCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C27E1A9A75C300C32877 /* MCCategoryButton.m */; };
@@ -18,6 +17,7 @@
 		1539C28A1A9A762B00C32877 /* MCNewsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2891A9A762B00C32877 /* MCNewsListWrapperViewController.m */; };
 		1539C2961A9A821200C32877 /* UIView+HorizontalConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C2951A9A821200C32877 /* UIView+HorizontalConstraints.m */; };
 		1539C29C1A9B828C00C32877 /* NSLayoutConstraint+Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */; };
+		153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F55331AA12D0300487C2F /* UIColor+Helpers.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
 		15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97831A89112F0066B469 /* MCNavigationController.m */; };
@@ -58,6 +58,7 @@
 		C649C8541A8982B80087C340 /* MCNewsListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C649C8481A8982B80087C340 /* MCNewsListCollectionViewCell.xib */; };
 		C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C84A1A8982B80087C340 /* MCNewsListCollectionViewLayout.m */; };
 		C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8581A8982C70087C340 /* UIFont+DINFont.m */; };
+		C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8661A90510F0087C340 /* MBProgressHUD.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
@@ -86,8 +87,6 @@
 		1539C23B1A9028D000C32877 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		1539C2711A9838F300C32877 /* NSMutableArray+Manipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Manipulation.h"; sourceTree = "<group>"; };
 		1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Manipulation.m"; sourceTree = "<group>"; };
-		153F55321AA12D0300487C2F /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
-		153F55331AA12D0300487C2F /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
 		1539C2751A9A754A00C32877 /* MCPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPageView.h; sourceTree = "<group>"; };
 		1539C2761A9A754A00C32877 /* MCPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPageView.m; sourceTree = "<group>"; };
 		1539C2771A9A754A00C32877 /* MCPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPageViewController.h; sourceTree = "<group>"; };
@@ -105,6 +104,8 @@
 		1539C2951A9A821200C32877 /* UIView+HorizontalConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HorizontalConstraints.m"; sourceTree = "<group>"; };
 		1539C29A1A9B828C00C32877 /* NSLayoutConstraint+Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Content.h"; sourceTree = "<group>"; };
 		1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Content.m"; sourceTree = "<group>"; };
+		153F55321AA12D0300487C2F /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
+		153F55331AA12D0300487C2F /* UIColor+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helpers.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
 		15DB977C1A8911190066B469 /* MCKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCKeyValuePair.m; sourceTree = "<group>"; };
 		15DB977F1A89112F0066B469 /* MCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBar.h; sourceTree = "<group>"; };
@@ -171,7 +172,7 @@
 		C649C83B1A8982B80087C340 /* MCNewsDetailScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsDetailScrollView.h; sourceTree = "<group>"; };
 		C649C83C1A8982B80087C340 /* MCNewsDetailScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsDetailScrollView.m; sourceTree = "<group>"; };
 		C649C83D1A8982B80087C340 /* MCNewsDetailScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsDetailScrollViewDelegate.h; sourceTree = "<group>"; };
-		C649C83E1A8982B80087C340 /* MCNewsImageBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsImageBlock.h; sourceTree = "<group>"; };
+		C649C83E1A8982B80087C340 /* MCNewsImageBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCNewsImageBlock.h; path = ../NewsDetail/View/MCNewsImageBlock.h; sourceTree = "<group>"; };
 		C649C83F1A8982B80087C340 /* MCNewsImageBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsImageBlock.m; sourceTree = "<group>"; };
 		C649C8401A8982B80087C340 /* MCNewsTextBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsTextBlock.h; sourceTree = "<group>"; };
 		C649C8411A8982B80087C340 /* MCNewsTextBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsTextBlock.m; sourceTree = "<group>"; };
@@ -188,6 +189,8 @@
 		C649C85C1A8984930087C340 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C649C85E1A89849F0087C340 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C649C8601A8984AA0087C340 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C649C8651A90510F0087C340 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		C649C8661A90510F0087C340 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 		15DB977E1A89112F0066B469 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C649C83E1A8982B80087C340 /* MCNewsImageBlock.h */,
 				15DB977F1A89112F0066B469 /* MCNavigationBar.h */,
 				15DB97801A89112F0066B469 /* MCNavigationBar.m */,
 				15DB97811A89112F0066B469 /* MCNavigationBarCustomizationDelegate.h */,
@@ -435,6 +439,7 @@
 		C649C7EF1A8980F10087C340 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				C649C8641A90510F0087C340 /* MBProgressHUD */,
 				C649C7F01A8980F10087C340 /* HTMLParser */,
 				C649C7F51A8980F10087C340 /* JTSImageViewController */,
 			);
@@ -492,7 +497,6 @@
 				C649C8381A8982B80087C340 /* MCDetailNewsMetaDataView.m */,
 				C649C8351A8982B80087C340 /* MCDetailNewsBodyView.h */,
 				C649C8361A8982B80087C340 /* MCDetailNewsBodyView.m */,
-				C649C83E1A8982B80087C340 /* MCNewsImageBlock.h */,
 				C649C83F1A8982B80087C340 /* MCNewsImageBlock.m */,
 				C649C8401A8982B80087C340 /* MCNewsTextBlock.h */,
 				C649C8411A8982B80087C340 /* MCNewsTextBlock.m */,
@@ -540,6 +544,15 @@
 				1539C29B1A9B828C00C32877 /* NSLayoutConstraint+Content.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C649C8641A90510F0087C340 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C649C8651A90510F0087C340 /* MBProgressHUD.h */,
+				C649C8661A90510F0087C340 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		E0B343B41A773F030081BE95 /* UI */ = {
@@ -726,6 +739,7 @@
 				C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
+				C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				1539C28A1A9A762B00C32877 /* MCNewsListWrapperViewController.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
@@ -847,6 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = motcha/Info.plist;
@@ -908,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = motcha/Info.plist;

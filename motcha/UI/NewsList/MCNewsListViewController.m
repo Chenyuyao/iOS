@@ -1,5 +1,6 @@
 #import "MCNewsListViewController.h"
 
+#import "MCParsedRSSItem.h"
 #import "MCNewsListCollectionViewCell.h"
 #import "MCNewsDetailViewController.h"
 #import "MCNewsListCollectionViewLayout.h"
@@ -66,7 +67,17 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  MCNewsDetailViewController *detailViewController = [[MCNewsDetailViewController alloc] init];
+  // Fake RSS data
+  MCParsedRSSItem *item = [[MCParsedRSSItem alloc]
+      initWithTitle:@"Lonnie Johnson, the rocket scientist and Super Soaker inventor"
+               link:@"http://www.engadget.com/2015/02/27/lonnie-johnson-the-rocket-scientist-and-super-soaker-inventor/"
+            descrpt:@""
+             imgSrc:@"http://o.aolcdn.com/hss/storage/midas/"
+                           "cc4aee7d63afc7913790b8c38ab27566/201625613/gs6lead.jpg"
+            pubDate:nil
+             author:@"Unknown"];
+  MCNewsDetailViewController *detailViewController =
+      [[MCNewsDetailViewController alloc] initWithRSSItem:item];
   [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
