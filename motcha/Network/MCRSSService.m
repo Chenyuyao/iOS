@@ -20,7 +20,7 @@
   [parser setShouldResolveExternalEntities:NO];
   [parser parse];
   
-  //TODO:Retrieve parsed result from parserDelegate.feeds
+  //TODO:Retrieve parsed result from parserOperation.feeds
 }
 
 @end

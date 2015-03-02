@@ -80,7 +80,7 @@ didStartElement:(NSString *)elementName
   qualifiedName:(NSString *)qName {
   //After parse one item, put this item into feeds
   if ([elementName isEqualToString:@"item"]) {
-    _item = [[MCParsedRSSItem alloc] initWithProperty:_title
+    _item = [[MCParsedRSSItem alloc] initWithTitle:_title
                                                  link:_link
                                               descrpt:_description
                                                imgSrc:_imgSrc
