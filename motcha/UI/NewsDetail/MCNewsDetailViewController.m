@@ -5,9 +5,12 @@
 #import "JTSImageInfo.h"
 #import "MBProgressHUD.h"
 
+#import "MCNewsDetailsObject.h"
 #import "MCNewsDetailScrollView.h"
 #import "MCNavigationController.h"
 #import "MCNavigationBarCustomizationDelegate.h"
+#import "MCParsedRSSItem.h"
+#import "MCWebContentService.h"
 
 //static CGFloat kScrollViewContentBottomInset = 20.0f;
 
@@ -23,6 +26,16 @@
 @implementation MCNewsDetailViewController {
   MCNewsDetailScrollView *_scrollView;
   MBProgressHUD *_HUD;
+  MCParsedRSSItem *_item;
+  MCNewsDetailsObject *_data;
+}
+
+- (instancetype)initWithRSSItem:(MCParsedRSSItem *)item {
+  self = [super init];
+  if (self) {
+    _item = item;
+  }
+  return self;
 }
 
 - (void)loadView {
@@ -49,7 +62,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self setFakeData];
+  [[MCWebContentService sharedInstance] fetchNewsDetailsWithItem:_item completionBlock:^(MCNewsDetailsObject *data, NSError *error) {
+    if (!error) {
+      _data = data;
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self reload];
+      });
+    } else {
+      // TODO(shinfan): Handle error here.
+    }
+  }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,20 +79,16 @@
   [(MCNavigationController *)self.navigationController notifyViewControllerWillAppearAnimated:animated];
 }
 
-// TODO: remove fake data
-- (void)setFakeData {
-  //fake data
+- (void)reload {
+  // TODO: Use real image
   [_scrollView setImage:[UIImage imageNamed:@"Cherry-Blossom"]];
-  [_scrollView setNewsTitle:@"This isn't the last we've heard of Samsung buying BlackBerry"];
-  [_scrollView setSource:@"Rutos"];
-  
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-  [_scrollView setPublishDate:[dateFormatter dateFromString:@"2014-12-11"]];
-  
-  [_scrollView setAuthor:@"Phoebe"];
-  NSArray *contentArray = [NSArray arrayWithObjects: @"Although Adams seemed to have no trouble outlining the issues that led her to leave the party that, she noted, she had supported since she was just 14 years old, Adams bristled when reporters asked how her decision had gone over with her partner, Dimitri Soudas. The former senior aide and onetime communications director to Prime Minister Stephen Harper also served as director of the Conservative Party in 2013.", [UIImage imageNamed:@"Long_cat.jpg"], @"She also declined to address her well-publicized difficulties in securing a Conservative nomination in two separate ridings, which ultimately led her to announce that she would not be running for re-election. Both Adams and Soudas came under fire last year during her ill-fated campaign to win the Conservative nomination in Oakville Burlington-North. Last March, Soudas — who at the time was engaged to Adams — was forced out of his job as executive director of the Conservative Party over allegations that he had attempted to interfere in the race. Eventually, the party put the nomination contest on hold. Both Adams and rival candidate Natalia Lishchyna subsequently withdrew last fall.", [UIImage imageNamed:@"green_tea.jpg"], @"Eventually, the party put the nomination contest on hold. Both Adams and rival candidate Natalia Lishchyna subsequently withdrew last fall. Liberal MPs were briefed on their new caucus colleague via teleconference on Monday morning. During that call, they were told that Soudas brokered the deal with the party, CBC sources said. Adams said Monday her decision to join the Liberals is not about having a tough day at the office. Everybody has grumpy bosses from time to time. This is about the fact that my values simply don't align with this team. I'd like to consider serving Canadians, and I believe Justin Trudeau and the Liberal Party offer the most positive, hopeful leadership available.", [UIImage imageNamed:@"angry_birds_cake.jpg"],@"I informed her in writing on Jan. 29 that she would not be permitted to run for our party in the next election due to the misconduct from the Oakville North-Burlington nomination race", nil];
-  [_scrollView setNewsMainBody:contentArray];
+  [_scrollView setNewsTitle:_data.title];
+  [_scrollView setSource:_data.source];
+  [_scrollView setAuthor:_data.author];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [_scrollView setPublishDate:[dateFormatter dateFromString:@"2014-12-11"]];
+  [_scrollView setNewsMainBody:[_data content]];
 }
 
 #pragma mark - MCNewsDetailScrollViewDelegate methods

@@ -2,12 +2,12 @@
 
 @implementation MCParsedRSSItem
 
-- (id)initWithProperty:(NSString *)title
-                  link:(NSString *)link
-               descrpt:(NSString *)descrpt
-                imgSrc:(NSString *)imgSrc
-               pubDate:(NSString *)pubDate
-                author:(NSString *)author {
+- (id)initWithTitle:(NSString *)title
+               link:(NSString *)link
+            descrpt:(NSString *)descrpt
+             imgSrc:(NSString *)imgSrc
+            pubDate:(NSString *)pubDate
+             author:(NSString *)author {
   if (self = [super init]) {
     _title = title;
     _link = link;

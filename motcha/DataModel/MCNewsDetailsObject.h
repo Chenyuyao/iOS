@@ -27,6 +27,8 @@
 
 @property(nonatomic, readonly) NSDate *date;
 
+@property(nonatomic, readonly) NSString *author;
+
 @property(nonatomic, readonly) NSString *source;
 
 @property(nonatomic, readonly) NSString *title;
@@ -41,6 +43,7 @@
              source:(NSString *)source
          titleImage:(NSURL *)titleImage
             content:(NSArray *)content
-               date:(NSDate *)date;
+               date:(NSDate *)date
+             author:(NSString *)author;
 
 @end

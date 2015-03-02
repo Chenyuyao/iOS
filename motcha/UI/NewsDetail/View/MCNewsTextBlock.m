@@ -49,4 +49,5 @@
   }
   return intrinsicContentSize;
 }
+
 @end

@@ -8,7 +8,11 @@
 }
 
 + (instancetype)componentWithNode:(MCParsedHTMLNode *)node {
-  return [[[self class] alloc] initWithNode:node];
+  if (node.content.length) {
+    return [[[self class] alloc] initWithNode:node];
+  } else {
+    return nil;
+  }
 }
 
 - (instancetype)initWithNode:(MCParsedHTMLNode *)node {
@@ -52,7 +56,8 @@
                        source:(NSString *)source
                    titleImage:(NSURL *)titleImage
                       content:(NSArray *)content
-                         date:(NSDate *)date {
+                         date:(NSDate *)date
+                       author:(NSString *)author {
   self = [super init];
   if (self) {
     _date = date;
@@ -60,6 +65,7 @@
     _content = [content copy];
     _titleImage = titleImage;
     _title = title;
+    _author = author;
   }
   return self;
 }

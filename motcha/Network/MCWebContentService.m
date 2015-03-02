@@ -1,6 +1,8 @@
 #import "MCWebContentService.h"
 
+#import "MCNewsDetailsObject.h"
 #import "MCWebContentParser.h"
+#import "MCParsedRSSItem.h"
 
 @implementation MCWebContentService {
   NSOperationQueue *_backgroundQueue;
@@ -14,15 +16,24 @@
   return service;
 }
 
-- (void)fetchNewsDetailsWithURL:(NSURL *)url
+- (void)fetchNewsDetailsWithItem:(MCParsedRSSItem *)item
                 completionBlock:(void(^)(MCNewsDetailsObject *, NSError *))block {
   id completionBlock = ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
     // Parse html result here.
     if (!connectionError) {
       MCWebContentParser *parser = [[MCWebContentParser alloc] initWithHTMLData:data];
-      [parser parse];
+      NSArray *content = [parser parse];
+      MCNewsDetailsObject *object =
+          [[MCNewsDetailsObject alloc] initWithTitle:item.title
+                                              source:nil
+                                          titleImage:[NSURL URLWithString:item.imgSrc]
+                                             content:content
+                                                date:nil
+                                              author:item.author];
+      block(object, nil);
     }
   };
+  NSURL *url = [NSURL URLWithString:item.link];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   [NSURLConnection sendAsynchronousRequest:request
                                      queue:_backgroundQueue
