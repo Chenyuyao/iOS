@@ -115,7 +115,7 @@ typedef struct {
 @property (strong, nonatomic) NSTimer *downloadProgressTimer;
 
 // MBProgressHUD
-@property (strong, nonatomic) MBProgressHUD *HUD;
+@property (strong, nonatomic) MBProgressHUD *progressHud;
 
 
 @end
@@ -134,7 +134,9 @@ typedef struct {
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(deviceOrientationDidChange:)
+                                                     name:UIDeviceOrientationDidChangeNotification object:nil];
         _imageInfo = imageInfo;
         _currentSnapshotRotationTransform = CGAffineTransformIdentity;
         _mode = mode;
@@ -186,7 +188,8 @@ typedef struct {
             [self dismissByExpandingImageToOffscreenPosition];
         }
         else {
-            BOOL startingRectForThumbnailIsNonZero = (CGRectEqualToRect(CGRectZero, _startingInfo.startingReferenceFrameForThumbnail) == NO);
+            BOOL startingRectForThumbnailIsNonZero =
+                (CGRectEqualToRect(CGRectZero, _startingInfo.startingReferenceFrameForThumbnail) == NO);
             BOOL useCollapsingThumbnailStyle = (startingRectForThumbnailIsNonZero
                                                 && self.image != nil
                                                 && self.transition != JTSImageViewControllerTransition_FromOffscreen);
@@ -288,11 +291,9 @@ typedef struct {
     else if (self.mode == JTSImageViewControllerMode_AltText) {
         [self viewDidLoadForAltTextMode];
     }
-//  //added by Phoebe
-//  //register self as delegate of type JTSImageViewControllerInteractionsDelegate
-//  self.interactionsDelegate = self;
-  //add long press gestures
-  [self.view addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(imageLongPressed:)]];
+  // add long press gestures
+  [self.view addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(imageLongPressed:)]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -313,13 +314,15 @@ typedef struct {
     _flags.viewHasAppeared = YES;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
     self.lastUsedOrientation = toInterfaceOrientation;
     _flags.rotationTransformIsDirty = YES;
     _flags.isRotating = YES;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                         duration:(NSTimeInterval)duration {
     [self cancelCurrentImageDrag:NO];
     [self updateLayoutsForCurrentOrientation];
     [self updateDimmingViewForCurrentZoomScale:NO];
@@ -329,7 +332,8 @@ typedef struct {
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     _flags.rotationTransformIsDirty = YES;
     _flags.isRotating = YES;
     typeof(self) __weak weakSelf = self;
@@ -364,8 +368,10 @@ typedef struct {
      is to listen for this notification and respond when we've detected a landscape-to-landscape rotation.
     */
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    BOOL landscapeToLandscape = UIDeviceOrientationIsLandscape(deviceOrientation) && UIInterfaceOrientationIsLandscape(self.lastUsedOrientation);
-    BOOL portraitToPortrait = UIDeviceOrientationIsPortrait(deviceOrientation) && UIInterfaceOrientationIsPortrait(self.lastUsedOrientation);
+    BOOL landscapeToLandscape = UIDeviceOrientationIsLandscape(deviceOrientation) &&
+        UIInterfaceOrientationIsLandscape(self.lastUsedOrientation);
+    BOOL portraitToPortrait = UIDeviceOrientationIsPortrait(deviceOrientation) &&
+        UIInterfaceOrientationIsPortrait(self.lastUsedOrientation);
     if (landscapeToLandscape || portraitToPortrait) {
         UIInterfaceOrientation newInterfaceOrientation = (UIInterfaceOrientation)deviceOrientation;
         if (newInterfaceOrientation != self.lastUsedOrientation) {
@@ -402,7 +408,9 @@ typedef struct {
         _flags.imageIsBeingReadFromDisk = fromDisk;
         
         typeof(self) __weak weakSelf = self;
-        NSURLSessionDataTask *task = [JTSSimpleImageDownloader downloadImageForURL:imageInfo.imageURL canonicalURL:imageInfo.canonicalImageURL completion:^(UIImage *image) {
+        NSURLSessionDataTask *task = [JTSSimpleImageDownloader downloadImageForURL:imageInfo.imageURL
+                                                                      canonicalURL:imageInfo.canonicalImageURL
+                                                                        completion:^(UIImage *image) {
             typeof(self) strongSelf = weakSelf;
             [strongSelf cancelProgressTimer];
             if (image) {
@@ -456,7 +464,8 @@ typedef struct {
     self.imageView.isAccessibilityElement = NO;
     self.imageView.clipsToBounds = YES;
     self.imageView.layer.allowsEdgeAntialiasing = YES;
-    if ([self.optionsDelegate respondsToSelector:@selector(imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:)]) {
+    if ([self.optionsDelegate respondsToSelector:
+         @selector(imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:)]) {
         if ([self.optionsDelegate imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:self]) {
             self.imageView.alpha = 0;
         }
@@ -482,7 +491,8 @@ typedef struct {
     self.progressView.center = CGPointMake(64.0f, 64.0f);
     self.progressView.alpha = 0;
     [self.progressContainer addSubview:self.progressView];
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.spinner = [[UIActivityIndicatorView alloc]
+        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.spinner.center = CGPointMake(64.0f, 64.0f);
     [self.spinner startAnimating];
     [self.progressContainer addSubview:self.spinner];
@@ -566,7 +576,8 @@ typedef struct {
 }
 
 - (void)setupTextViewTapGestureRecognizer {
-    self.singleTapperText = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewSingleTapped:)];
+    self.singleTapperText = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                    action:@selector(textViewSingleTapped:)];
     self.singleTapperText.delegate = self;
     [self.textView addGestureRecognizer:self.singleTapperText];
 }
@@ -593,7 +604,8 @@ typedef struct {
     self.lastUsedOrientation = [UIApplication sharedApplication].statusBarOrientation;
     CGRect referenceFrameInWindow = [self.imageInfo.referenceView convertRect:self.imageInfo.referenceRect toView:nil];
     
-    _startingInfo.startingReferenceFrameForThumbnailInPresentingViewControllersOriginalOrientation = [self.view convertRect:referenceFrameInWindow fromView:nil];
+    _startingInfo.startingReferenceFrameForThumbnailInPresentingViewControllersOriginalOrientation =
+        [self.view convertRect:referenceFrameInWindow fromView:nil];
     
     if (self.imageInfo.referenceContentMode) {
         self.imageView.contentMode = self.imageInfo.referenceContentMode;
@@ -615,9 +627,11 @@ typedef struct {
         self.imageView.layer.cornerRadius = self.imageInfo.referenceCornerRadius;
         [self updateScrollViewAndImageViewForCurrentMetrics];
         
-        BOOL mustRotateDuringTransition = ([UIApplication sharedApplication].statusBarOrientation != _startingInfo.startingInterfaceOrientation);
+        BOOL mustRotateDuringTransition =
+            ([UIApplication sharedApplication].statusBarOrientation != _startingInfo.startingInterfaceOrientation);
         if (mustRotateDuringTransition) {
-            CGRect newStartingRect = [self.snapshotView convertRect:_startingInfo.startingReferenceFrameForThumbnail toView:self.view];
+            CGRect newStartingRect =
+                [self.snapshotView convertRect:_startingInfo.startingReferenceFrameForThumbnail toView:self.view];
             self.imageView.frame = newStartingRect;
             [self updateScrollViewAndImageViewForCurrentMetrics];
             self.imageView.transform = self.snapshotView.transform;
@@ -628,7 +642,8 @@ typedef struct {
             self.imageView.center = centerInRect;
         }
         
-        if ([self.optionsDelegate respondsToSelector:@selector(imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:)]) {
+        if ([self.optionsDelegate respondsToSelector:
+             @selector(imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:)]) {
             if ([self.optionsDelegate imageViewerShouldFadeThumbnailsDuringPresentationAndDismissal:self]) {
                 self.imageView.alpha = 0;
                 typeof(self) __weak weakSelf = self;
@@ -645,7 +660,8 @@ typedef struct {
         
         __weak JTSImageViewController *weakSelf = self;
         
-        if ([weakSelf.animationDelegate respondsToSelector:@selector(imageViewerWillBeginPresentation:withContainerView:)]) {
+        if ([weakSelf.animationDelegate respondsToSelector:
+             @selector(imageViewerWillBeginPresentation:withContainerView:)]) {
             [weakSelf.animationDelegate imageViewerWillBeginPresentation:weakSelf withContainerView:weakSelf.view];
         }
         
@@ -665,7 +681,8 @@ typedef struct {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 CABasicAnimation *cornerRadiusAnimation = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
-                cornerRadiusAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                cornerRadiusAnimation.timingFunction =
+                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
                 cornerRadiusAnimation.fromValue = @(weakSelf.imageView.layer.cornerRadius);
                 cornerRadiusAnimation.toValue = @(0.0);
                 cornerRadiusAnimation.duration = duration;
@@ -678,8 +695,10 @@ typedef struct {
                  options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                  animations:^{
                      
-                     if ([weakSelf.animationDelegate respondsToSelector:@selector(imageViewerWillAnimatePresentation:withContainerView:duration:)]) {
-                         [weakSelf.animationDelegate imageViewerWillAnimatePresentation:weakSelf withContainerView:weakSelf.view duration:duration];
+                     if ([weakSelf.animationDelegate respondsToSelector:
+                         @selector(imageViewerWillAnimatePresentation:withContainerView:duration:)]) {
+                         [weakSelf.animationDelegate imageViewerWillAnimatePresentation:weakSelf
+                                                                      withContainerView:weakSelf.view duration:duration];
                      }
                      
                      _flags.isTransitioningFromInitialModalToInteractiveState = YES;
@@ -1700,7 +1719,8 @@ typedef struct {
           [menuController setMenuItems:[NSArray arrayWithObject:resetMenuItem]];
           [menuController setTargetRect:CGRectMake(location.x+10, location.y-10, 0.0f, 0.0f) inView:self.imageView];
           menuController.arrowDirection = UIMenuControllerArrowLeft;
-          [menuController setMenuVisible:YES animated:YES];        }
+          [menuController setMenuVisible:YES animated:YES];
+        }
     }
 }
 
@@ -1914,7 +1934,6 @@ typedef struct {
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
     
     if ((self.image && action == @selector(copy:)) ||
-        (self.image && action == @selector(select:)) ||
         (self.image && action == @selector(saveImage:))) {
         return YES;
     }
@@ -1925,11 +1944,7 @@ typedef struct {
     [[UIPasteboard generalPasteboard] setImage:self.image];
 }
 
-- (void)select:(id)sender {
-  
-}
 #pragma mark - save Image to Photos
-
 
 - (void)saveImage:(id)sender {
   NSLog(@"going to save image");
@@ -1939,7 +1954,7 @@ typedef struct {
                                    @selector(image:didFinishSavingWithError:contextInfo:),
                                    nil);
   } else {
-    //imageDownloader
+    // TODO: (PhoebeLi) imageDownloader
   }
 }
 
