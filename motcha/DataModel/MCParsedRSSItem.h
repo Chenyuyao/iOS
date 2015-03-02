@@ -7,15 +7,16 @@
 @property(nonatomic, readonly) NSString *link;
 @property(nonatomic, readonly) NSString *descrpt; //this is the description tag of item
 @property(nonatomic, readonly) NSString *imgSrc;
-@property(nonatomic, readonly) NSString *pubDate;
+@property(nonatomic, readonly) NSDate   *pubDate;
 @property(nonatomic, readonly) NSString *author;
+@property(nonatomic, readonly) NSString *source;
 
-- (id)initWithProperty:(NSString *)title
-                  link:(NSString *)link
-               descrpt:(NSString *)descrpt
-                imgSrc:(NSString *)imgSrc
-               pubDate:(NSString *)pubDate
-                author:(NSString *)author;
+- (id)initWithTitle:(NSString *)title
+               link:(NSString *)link
+            descrpt:(NSString *)descrpt
+             imgSrc:(NSString *)imgSrc
+            pubDate:(NSString *)pubDate
+             author:(NSString *)author;
 
 @end
 
