@@ -130,6 +130,8 @@ static void *scrollViewContext = &scrollViewContext;
   [_contentView addConstraint:_newsTitleBottomConstraint];
 
   //add constraints for _descriptionView, top, bottom, leading and width
+  CGFloat descriptionViewTopMargin =
+      kTitleImageViewOriginalHeight - (kTitleImageViewTopInset + kTitleImageViewBottomInset);
   [_contentView addConstraint:
       [NSLayoutConstraint constraintWithItem:_descriptionView
                                    attribute:NSLayoutAttributeTop
@@ -137,7 +139,7 @@ static void *scrollViewContext = &scrollViewContext;
                                       toItem:_contentView
                                    attribute:NSLayoutAttributeTop
                                   multiplier:1
-                                    constant:kTitleImageViewOriginalHeight - (kTitleImageViewTopInset + kTitleImageViewBottomInset)]];
+                                    constant:descriptionViewTopMargin]];
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_descriptionView]|"
                                                                        options:0
                                                                        metrics:metrics
