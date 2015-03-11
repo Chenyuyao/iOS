@@ -16,16 +16,16 @@
 
 @interface MCNewsDetailViewController ()
 <
-    MCNewsDetailScrollViewDelegate,
-    JTSImageViewControllerImageSavingDelegate,
-    MBProgressHUDDelegate,
-    MCNavigationBarCustomizationDelegate
+  UIScrollViewDelegate,
+  MCNewsDetailScrollViewDelegate,
+  JTSImageViewControllerImageSavingDelegate,
+  MBProgressHUDDelegate,
+  MCNavigationBarCustomizationDelegate
 >
 @end
 
 @implementation MCNewsDetailViewController {
   MCNewsDetailScrollView *_scrollView;
-  MBProgressHUD *_HUD;
   MCParsedRSSItem *_item;
   MCNewsDetailsObject *_data;
 }
@@ -43,6 +43,7 @@
   self.view = _scrollView;
   //register self to MCNewsDetailScrollView delegate
   _scrollView.mcDelegate = self;
+  _scrollView.delegate = self;
   //_scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
   self.automaticallyAdjustsScrollViewInsets = NO;
   
@@ -62,11 +63,13 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [[MCWebContentService sharedInstance] fetchNewsDetailsWithItem:_item completionBlock:^(MCNewsDetailsObject *data, NSError *error) {
+  [[MCWebContentService sharedInstance] fetchNewsDetailsWithItem:_item
+                                                 completionBlock:^(MCNewsDetailsObject *data, NSError *error) {
     if (!error) {
       _data = data;
+      __weak __typeof__(self) weakSelf = self;
       dispatch_async(dispatch_get_main_queue(), ^{
-        [self reload];
+        [weakSelf reload];
       });
     } else {
       // TODO(shinfan): Handle error here.
@@ -76,19 +79,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [self notifyNavigationControllerWithScrollViewContentOffsetYAnimated:animated];
+}
+
+- (void)notifyNavigationControllerWithScrollViewContentOffsetYAnimated:(BOOL)animated {
   [(MCNavigationController *)self.navigationController notifyViewControllerWillAppearAnimated:animated];
 }
 
-- (void)reload {
-  // TODO: Use real image
-  [_scrollView setImage:[UIImage imageNamed:@"Cherry-Blossom"]];
-  [_scrollView setNewsTitle:_data.title];
-  [_scrollView setSource:_data.source];
-  [_scrollView setAuthor:_data.author];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    [_scrollView setPublishDate:[dateFormatter dateFromString:@"2014-12-11"]];
-  [_scrollView setNewsMainBody:[_data content]];
+#pragma mark - UIScrollViewDelegate methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  [self notifyNavigationControllerWithScrollViewContentOffsetYAnimated:NO];
 }
 
 #pragma mark - MCNewsDetailScrollViewDelegate methods
@@ -123,9 +123,14 @@
   [self presentViewController:activityVC animated:YES completion:nil];
 }
 
+- (void)fontButtonPressed:(UIBarButtonItem *)sender {
+  [_scrollView toggleTextFontSize];
+}
+
+#pragma mark - JTSImageViewControllerImageSavingDelegate methods
 - (void)image:(UIImage *)image didSavingWithError:(NSError *)error contextInfo: (void *) contextInfo {
-  //bring up an alertView showing the error msg to user
-  NSLog(@"cannot save image.");
+  // TODO: (PhoebeLi) need refactoring wording stuff.
+  NSLog(@"Cannot save image.");
   UIAlertView *failureAlert =[[UIAlertView alloc] initWithTitle:@" Unable to Save Image"
                                                         message:@"Motcha does not have permission to access your photos. Please go to Settings > Privacy > Photos, and turn on Motcha."
                                                        delegate:self
@@ -133,34 +138,47 @@
                                               otherButtonTitles:nil, nil];
   [failureAlert show];
 }
-- (void)image:(UIImage *)image didSavingWithSuccess:(NSError *)error contextInfo:(void *)contextInfo target:(JTSImageViewController *)viewController {
-  //bring up an HUD showing successful image
+
+- (void)image:(UIImage *)image didSavingWithSuccess:(NSError *)error
+  contextInfo:(void *)contextInfo
+       target:(JTSImageViewController *)viewController {
+  // TODO: (PhoebeLi) need refactoring wording stuff.
   NSLog(@"image saved successfully.");
-  _HUD = [[MBProgressHUD alloc] initWithView:viewController.view];
-  [viewController.view addSubview:_HUD];
-
-  _HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-  
+  MBProgressHUD *progressHud = [[MBProgressHUD alloc] initWithView:viewController.view];
+  [viewController.view addSubview:progressHud];
+  progressHud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
   // Set custom view mode
-  _HUD.mode = MBProgressHUDModeCustomView;
-  
-  _HUD.delegate = self;
-  _HUD.labelText = @"Saved successfully";
-  
-  [_HUD show:YES];
-  [_HUD hide:YES afterDelay:1];
-
-}
-
-
-- (void)fontButtonPressed:(UIBarButtonItem *)sender {
-  [_scrollView toggleTextFontSize];
+  progressHud.mode = MBProgressHUDModeCustomView;
+  progressHud.delegate = self;
+  progressHud.labelText = @"Saved successfully";
+  [progressHud show:YES];
+  // Show the progress hud for one second and then hide.
+  [progressHud hide:YES afterDelay:1.0f];
 }
 
 #pragma mark - MCNavigationBarCustomizationDelegate methods
 @synthesize navigationBarBackgroundAlpha = _navigationBarBackgroundAlpha;
 
 - (CGFloat)navigationBarBackgroundAlpha {
-  return 0.0f;
+  return [self calculateNavigationBarBackgroundAlphaFromScrollViewContentOffsetY];
+}
+
+#pragma mark - Helpers
+- (void)reload {
+  // TODO: Use real image
+  [_scrollView setImage:[UIImage imageNamed:@"Cherry-Blossom"]];
+  [_scrollView setNewsTitle:_data.title];
+  [_scrollView setSource:_data.source];
+  [_scrollView setAuthor:_data.author];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  [_scrollView setPublishDate:[dateFormatter dateFromString:@"2014-12-11"]];
+  [_scrollView setNewsMainBody:[_data content]];
+}
+
+- (CGFloat)calculateNavigationBarBackgroundAlphaFromScrollViewContentOffsetY {
+  CGFloat contentOffsetBoundary =
+      kTitleImageViewOriginalHeight - (kTitleImageViewTopInset + kTitleImageViewBottomInset);
+  return MAX(0.0f, MIN(1.0f, _scrollView.contentOffset.y / contentOffsetBoundary));
 }
 @end

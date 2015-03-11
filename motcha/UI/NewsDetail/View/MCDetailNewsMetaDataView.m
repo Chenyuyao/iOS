@@ -15,7 +15,7 @@ static CGFloat kMetaDataViewMargin = 14.0f;
 }
 @synthesize delegate = _delegate;
 
-- (id)init {
+- (instancetype)init {
   if (self = [super init]) {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setupSubviewsAndConstraints];

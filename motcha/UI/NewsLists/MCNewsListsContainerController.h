@@ -2,6 +2,6 @@
 
 #import "MCPageViewController.h"
 
-@interface MCNewsListWrapperViewController : UIViewController
+@interface MCNewsListsContainerController : UIViewController
 @property (strong, nonatomic) MCPageViewController *pageViewController;
 @end

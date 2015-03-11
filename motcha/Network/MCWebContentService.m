@@ -31,6 +31,8 @@
                                                 date:nil
                                               author:item.author];
       block(object, nil);
+    } else {
+      block(nil, connectionError);
     }
   };
   NSURL *url = [NSURL URLWithString:item.link];

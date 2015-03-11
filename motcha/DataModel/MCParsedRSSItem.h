@@ -11,12 +11,12 @@
 @property(nonatomic, readonly) NSString *author;
 @property(nonatomic, readonly) NSString *source;
 
-- (id)initWithTitle:(NSString *)title
-               link:(NSString *)link
-            descrpt:(NSString *)descrpt
-             imgSrc:(NSString *)imgSrc
-            pubDate:(NSString *)pubDate
-             author:(NSString *)author;
+- (instancetype)initWithTitle:(NSString *)title
+                         link:(NSString *)link
+                      descrpt:(NSString *)descrpt
+                       imgSrc:(NSString *)imgSrc
+                      pubDate:(NSString *)pubDate
+                       author:(NSString *)author;
 
 @end
 

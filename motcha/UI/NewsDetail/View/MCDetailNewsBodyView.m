@@ -7,12 +7,13 @@
 
 static CGFloat kTextBlockMargin = 12.0f;
 static CGFloat kImageBlockMargin = 15.0f;
+static CGFloat kTitleBlockMargin = 10.0f;
 
 @implementation MCDetailNewsBodyView {
   CGFloat _fontSize;
 }
 
-- (id)init {
+- (instancetype)init {
   if (self = [super init]) {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
@@ -54,15 +55,15 @@ static CGFloat kImageBlockMargin = 15.0f;
       textBlock.text = @"[IMAGE PLACEHOLDER]";
       [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
       [self addSubview:textBlock];
-      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
+      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kImageBlockMargin]};
       block = textBlock;
     } else if ([bodyItem isKindOfClass:[MCNewsDetailsTitle class]]) {
-      // TODO:handle title
+      // TODO: (Phoebe)handle title
       MCNewsTextBlock *textBlock = [[MCNewsTextBlock alloc] init];
       textBlock.text = @"[SUBTITLE PLACEHOLDER]";
       [textBlock setTranslatesAutoresizingMaskIntoConstraints:NO];
       [self addSubview:textBlock];
-      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTextBlockMargin]};
+      metrics = @{@"blockMargin":[NSNumber numberWithDouble:kTitleBlockMargin]};
       block = textBlock;
     }
     if (bodyItem == [bodyContents firstObject]) { // first one, pin to top

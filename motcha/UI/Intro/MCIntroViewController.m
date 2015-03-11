@@ -3,6 +3,7 @@
 #import "MCIntroCell.h"
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
+#import "MCNewsListsContainerController.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
@@ -10,7 +11,7 @@ static NSString * const reuseFooter = @"FooterView";
 
 @implementation MCIntroViewController
 
-- (id)init {
+- (instancetype)init {
   MCIntroCollectionViewLayout *layout = [[MCIntroCollectionViewLayout alloc] init];
   layout.numberOfElementsInEachRow = 3;
   layout.spacing = 5.0f;
@@ -33,7 +34,7 @@ static NSString * const reuseFooter = @"FooterView";
   [self.collectionView registerNib:headerNib
         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                withReuseIdentifier:reuseHeader];
-
+  
   self.collectionView.backgroundColor = [UIColor whiteColor];
   self.collectionView.allowsMultipleSelection = YES;
   UINib *cellNib = [UINib nibWithNibName:@"MCIntroCell" bundle:nil];
@@ -59,16 +60,16 @@ static NSString * const reuseFooter = @"FooterView";
   
   if (kind == UICollectionElementKindSectionHeader) {
     MCIntroHeader *header =
-        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                           withReuseIdentifier:reuseHeader forIndexPath:indexPath];
+    [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                       withReuseIdentifier:reuseHeader forIndexPath:indexPath];
     [self updateHeader:header forIndexPath:indexPath];
     reusableview = header;
   }
   
   if (kind == UICollectionElementKindSectionFooter) {
     MCIntroFooter *footer =
-        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                           withReuseIdentifier:reuseFooter forIndexPath:indexPath];
+    [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                       withReuseIdentifier:reuseFooter forIndexPath:indexPath];
     [self updateFooter:footer forIndexPath:indexPath];
     reusableview = footer;
   }
@@ -84,6 +85,9 @@ static NSString * const reuseFooter = @"FooterView";
 
 - (void)updateFooter:(MCIntroFooter *)footer forIndexPath:(NSIndexPath *)indexPath {
   footer.title.text = @"FINISH >";
+  UITapGestureRecognizer *tapGestureRecognizer =
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(finishButtonTapped)];
+  [footer addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -94,8 +98,7 @@ static NSString * const reuseFooter = @"FooterView";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MCIntroCell *cell =
-      [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell
-                                                forIndexPath:indexPath];
+  [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
   [self updateCell:cell forIndexPath:indexPath];
   return cell;
 }
@@ -107,6 +110,11 @@ static NSString * const reuseFooter = @"FooterView";
 }
 
 #pragma mark Private
+
+- (void)finishButtonTapped {
+  MCNewsListsContainerController *newsListsController = [[MCNewsListsContainerController alloc] init];
+  [self.navigationController setViewControllers:@[newsListsController] animated:YES];
+}
 
 + (NSArray *)categories {
   // TODO(sherry): Add more.

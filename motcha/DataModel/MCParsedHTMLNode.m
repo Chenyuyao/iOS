@@ -1,6 +1,6 @@
 #import "MCParsedHTMLNode.h"
-#import "MCNewsDetailsObject.h"
 
+#import "MCNewsDetailsObject.h"
 #import "HTMLNode.h"
 
 @implementation MCParsedHTMLNode

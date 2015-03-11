@@ -5,6 +5,8 @@
 #import "MCNavigationBarAppearanceBackgroundAlpha.h"
 
 static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackground";
+static CGFloat kShadowRadius = 2.0f;
+static CGFloat kShadowOpacity = 0.6f;
 
 @interface MCNavigationBar ()<MCNavigationBarAppearanceStrategyDataSource, MCNavigationBarAppearanceStrategyDelegate>
 @end
@@ -14,7 +16,7 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
   MCNavigationBarAppearanceStrategy*  _backgroundAlphaStrategy;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     self.barTintColor = [UIColor whiteColor];
     for (UIView *view in [self subviews]) {
@@ -23,6 +25,7 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
         break;
       }
     }
+    _navigationBarBackgroundView.clipsToBounds = YES;
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     BOOL isPortrait = (orientation == UIInterfaceOrientationPortrait);
     _navigationBarOffset = isPortrait ? kNavigationBarOffsetPortrait : kNavigationBarOffsetLandscape;
@@ -38,6 +41,11 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
     navBarAppearanceBgAlpha.dataSource = self;
     _backgroundAlphaStrategy =
     [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceBgAlpha];
+    // Add bottom shadow to the navigation bar background.
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = kShadowOpacity;
+    self.layer.shadowRadius = kShadowRadius;
+    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
   }
   return self;
 }

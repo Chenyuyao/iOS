@@ -6,7 +6,7 @@ static CGFloat kMaxHeightWidthRatio = 1.5f;
   NSLayoutConstraint *_heightConstraint;
 }
 
-- (id)init {
+- (instancetype)init {
   if (self = [super init]) {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.contentMode = UIViewContentModeScaleAspectFit;

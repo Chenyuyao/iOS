@@ -8,7 +8,7 @@
   __weak UINavigationBar *_navigationBar;
 }
 
-- (id)initWithNavigationBar:(UINavigationBar*)navigationBar
+- (instancetype)initWithNavigationBar:(UINavigationBar*)navigationBar
          appearanceStrategy:(id<MCNavigationBarAppearanceStrategyProtocol>)strategy {
   if (self = [super init]) {
     _appearanceStrategy = strategy;

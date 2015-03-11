@@ -3,7 +3,7 @@
 #import "MCNavigationBarAppearanceStrategyProtocol.h"
 
 @interface MCNavigationBarAppearanceStrategy : NSObject
--(id) initWithNavigationBar:(UINavigationBar*)navigationBar
+- (instancetype)initWithNavigationBar:(UINavigationBar*)navigationBar
          appearanceStrategy:(id<MCNavigationBarAppearanceStrategyProtocol>)strategy;
 - (void)applyAppearanceAnimated:(BOOL)animated
                 completionBlock:(void (^)(NSDictionary* dict))block;

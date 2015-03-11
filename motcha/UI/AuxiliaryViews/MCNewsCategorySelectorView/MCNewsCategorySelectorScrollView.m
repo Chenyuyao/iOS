@@ -1,7 +1,7 @@
 #import "MCNewsCategorySelectorScrollView.h"
 
 #import "MCNewsCategoryIndicatorView.h"
-#import "NSLayoutConstraint+Content.h"
+#import "NSMutableArray+Manipulation.h"
 
 static void *scrollViewContext = &scrollViewContext;
 
@@ -9,29 +9,28 @@ static CGFloat kCategoryIndicatorHeight             = 4.0f;
 static CGFloat kCategoryButtonGroupLeftRightMargin  = 13.0f;
 static CGFloat kCategoryButtonSpacing               = 15.0f;
 
-typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
-
 @implementation MCNewsCategorySelectorScrollView {
   UIView *_contentView;
   UIView *_buttonsWrapperView;
   UIView *_indicatorWrapperView;
   MCNewsCategoryIndicatorView *_indicatorView;
-  NSMutableArray *_categories;
-  MCCategoryButton *_selectedButton;
-  
-  dispatch_once_t _onceToken; // For initializing the indicator view
-  dispatch_once_t _onceToken2; // For initializing the static contentOffsetX
+  NSMutableArray *_categoriesButtons; // an array of MCCategoryButton*
+  __weak MCCategoryButton *_selectedButton;
+  __weak MCCategoryButton *_nextButton;
+  // Strongly reference to the data source backing scroll view in order to ensure it is not deallocated before the
+  // current object is deallocated.
+  UIScrollView *_dataSourceScrollView;
+  BOOL _observingDataSourceScrollView;
+  dispatch_once_t _onceToken;
 }
 
-- (instancetype)initWithDelegate:(id<MCNewsCategorySelectorScrollViewDelegate>)delegate
-                      dataSource:(id<MCNewsCategorySelectorScrollViewDataSource>)dataSource {
-  if (self = [super initWithFrame:CGRectMake(0, 0, 0, kCategorySelectorViewHeight)]) {
-    _categories = [NSMutableArray array];
-    _mcDelegate = delegate;
-    _mcDataSource = dataSource;
+- (instancetype)init {
+  if (self = [super init]) {
+    _categoriesButtons = [NSMutableArray array];
     self.showsVerticalScrollIndicator = NO;
     self.showsHorizontalScrollIndicator = NO;
     self.scrollsToTop = NO;
+    self.canCancelContentTouches = YES;
     [self initContentView];
     [self initButtonsWrapperViewAndIndicatorWrapperView];
   }
@@ -83,10 +82,6 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
 
 - (void)initIndicatorView {
   if (!_indicatorView) {
-    // We force the layout of the buttons because we need to ensure that the buttons' frames are available before
-    // setting up the indicator view.
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
     _indicatorView = [[MCNewsCategoryIndicatorView alloc] init];
     [_indicatorWrapperView addSubview:_indicatorView];
     [_indicatorWrapperView addConstraints:[NSLayoutConstraint
@@ -106,27 +101,39 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
   }
 }
 
-- (void)observeScrollViewContentOffset {
-  dispatch_once(&_onceToken, ^{
-    [[_mcDataSource backingScrollView] addObserver:self
-                                        forKeyPath:@"contentOffset"
-                                           options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                                           context:scrollViewContext];
-  });
-}
-
 - (NSUInteger)categoryCount {
-  return [_categories count];
+  return [_categoriesButtons count];
 }
 
 - (void)adjustCategoryButtonPositionAnimated:(BOOL)animated {
-  CGRect frame = _selectedButton.frame;
+  CGRect frame = _nextButton.frame;
   frame.origin.x -= kCategoryButtonGroupLeftRightMargin;
   frame.size.width += 2*kCategoryButtonGroupLeftRightMargin;
-  [self scrollRectToVisible:frame animated:animated];
-  
+  // if the button is partially or completely out of view, scroll it to be visible.
+  if (![self buttonFrameWithinViewport:frame]) {
+    [self setContentOffset:CGPointMake(MIN(frame.origin.x, _contentView.frame.size.width - self.frame.size.width),
+                                       self.contentOffset.y)
+                  animated:animated];
+  }
 }
 
+- (void)tapSelectedButtonAnimated:(BOOL)animated {
+  if (_selectedButton) {
+    [self selectButtonAtIndex:[_categoriesButtons indexOfObject:_selectedButton] animated:animated];
+  } else {
+    [self selectButtonAtIndex:0 animated:animated];
+  }
+}
+
+- (void)selectButtonAtIndex:(NSUInteger)index animated:(BOOL)animated {
+  if (index >= [_categoriesButtons count]) {
+    return;
+  }
+  MCCategoryButton *button = [_categoriesButtons objectAtIndex:index];
+  [self buttonTapped:button animated:animated];
+}
+
+#pragma mark - category operations
 - (void)addCategories:(NSArray *)categories { // array of NSString *
   if (!categories) {
     return;
@@ -134,165 +141,111 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
   for (NSString *category in categories) {
     [self addCategory:category];
   }
+  _dataSourceScrollView = [_mcDataSource backingScrollView];
   [self initIndicatorView];
-  [self observeScrollViewContentOffset];
 }
 
-- (void)selectButtonAtIndex:(NSUInteger)index animated:(BOOL)animated {
-  if (index >= [_categories count]) {
-    return;
-  }
-  MCCategoryButton *button = [_buttonsWrapperView.subviews objectAtIndex:index];
-  [self buttonTapped:button animated:animated];
-}
-
-#pragma mark - category operations
 - (void)addCategory:(NSString *)category {
-  [self insertCategory:category atIndex:[_categories count]];
+  [self insertCategory:category atIndex:[_categoriesButtons count]];
 }
 
 - (void)insertCategory:(NSString *)category atIndex:(NSUInteger)index {
   if (!category) {
     @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"category cannot be nil." userInfo:nil];
   }
-  if (index > [_categories count]) {
-    @throw [NSException exceptionWithName:NSRangeException reason:@"index out of bound." userInfo:nil];
-  }
-  MCCategoryButton *newButton = [self createCategoryButtonForCategory:category];  
-  [self insertCategoryButton:newButton atIndex:index callDelegate:YES];
+  MCCategoryButton *newButton = [self createCategoryButtonForCategory:category];
+  [self insertCategoryButton:newButton atIndex:index];
 }
 
-- (void)insertCategoryButton:(MCCategoryButton *)newButton atIndex:(NSUInteger)index callDelegate:(BOOL)callDelegate {
+- (void)insertCategoryButton:(MCCategoryButton *)newButton atIndex:(NSUInteger)index {
   // Sanity check
   if (!newButton) {
     @throw [NSException exceptionWithName:NSInvalidArgumentException
                                    reason:@"category button cannot be nil."
                                  userInfo:nil];
   }
-  if (index > [_categories count]) {
-    @throw [NSException exceptionWithName:NSRangeException reason:@"index out of bound." userInfo:nil];
-  }
-  // insert new category
-  NSString *category = newButton.category;
-  [_categories insertObject:category atIndex:index];
-  
-  MCCategoryButton *prevButton, *curButton;
-  @try { prevButton = [_buttonsWrapperView.subviews objectAtIndex:index-1]; } @catch (...) {}
-  @try { curButton = [_buttonsWrapperView.subviews objectAtIndex:index]; } @catch (...) {}
-  
-  [_buttonsWrapperView insertSubview:newButton atIndex:index];
-  
-  if (!prevButton) { // the new button is to be inserted at the beginning
-    NSLayoutConstraint *leadingConstraint =
-        [NSLayoutConstraint constraintBetweenContentView:_buttonsWrapperView
-                                            andFirstItem:newButton
-                                            withConstant:kCategoryButtonGroupLeftRightMargin];
-    [_buttonsWrapperView addConstraint:leadingConstraint];
-    newButton.constraintWithLeftItem = leadingConstraint;
-  } else {
-    [_buttonsWrapperView removeConstraint:prevButton.constraintWithRightItem];
-    NSLayoutConstraint *leadingTrailingConstraint =
-        [NSLayoutConstraint constraintBetweenItem:prevButton
-                                          andItem:newButton
-                                     withConstant:kCategoryButtonSpacing];
-    [_buttonsWrapperView addConstraint:leadingTrailingConstraint];
-    newButton.constraintWithLeftItem = leadingTrailingConstraint;
-    prevButton.constraintWithRightItem = leadingTrailingConstraint;
-  }
-  
-  if (!curButton) { // the new button is to be inserted at the end
-    NSLayoutConstraint *trailingConstraint =
-        [NSLayoutConstraint constraintBetweenContentView:_buttonsWrapperView
-                                             andLastItem:newButton
-                                            withConstant:kCategoryButtonGroupLeftRightMargin];
-    [_buttonsWrapperView addConstraint:trailingConstraint];
-    newButton.constraintWithRightItem = trailingConstraint;
-  } else {
-    [_buttonsWrapperView removeConstraint:curButton.constraintWithLeftItem];
-    NSLayoutConstraint *leadingTrailingConstraint =
-        [NSLayoutConstraint constraintBetweenItem:newButton
-                                          andItem:curButton
-                                     withConstant:kCategoryButtonSpacing];
-    [_buttonsWrapperView addConstraint:leadingTrailingConstraint];
-    newButton.constraintWithRightItem = leadingTrailingConstraint;
-    curButton.constraintWithLeftItem = leadingTrailingConstraint;
-  }
-  NSDictionary *views = NSDictionaryOfVariableBindings(newButton);
-  [_buttonsWrapperView addConstraints: [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newButton]|"
-                                                                               options:0
-                                                                               metrics:nil
-                                                                                 views:views]];
-  if (callDelegate && [_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
+  [_categoriesButtons insertObject:newButton atIndex:index];
+  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
       [_mcDelegate respondsToSelector:@selector(didInsertCategoryButton:atIndex:)]) {
     [_mcDelegate didInsertCategoryButton:newButton atIndex:index];
   }
 }
 
 - (MCCategoryButton *)removeCategoryAtIndex:(NSUInteger)index {
-  MCCategoryButton *button = [_buttonsWrapperView.subviews objectAtIndex:index];
-  if (button == _selectedButton) {
-    [self buttonTapped:[_buttonsWrapperView.subviews objectAtIndex:0] animated:NO];
-  }
-  return [self removeCategoryAtIndex:index callDelegate:YES];
-}
-
-- (MCCategoryButton *)removeCategoryAtIndex:(NSUInteger)index callDelegate:(BOOL)callDelegate {
-  if (index >= [_categories count]) {
-    @throw [NSException exceptionWithName:NSRangeException reason:@"index out of bound." userInfo:nil];
-  }
-  MCCategoryButton *button = [_buttonsWrapperView.subviews objectAtIndex:index];
-  MCCategoryButton *prevButton, *nextButton;
-  
-  @try { prevButton = [_buttonsWrapperView.subviews objectAtIndex:index-1]; } @catch (...) {}
-  @try { nextButton = [_buttonsWrapperView.subviews objectAtIndex:index+1]; } @catch (...) {}
-  
-  [button removeFromSuperview];
-  
-  if (prevButton && nextButton) {
-    NSLayoutConstraint *leadingTrailingConstraint =
-        [NSLayoutConstraint constraintBetweenItem:prevButton andItem:nextButton withConstant:kCategoryButtonSpacing];
-    [_buttonsWrapperView addConstraint:leadingTrailingConstraint];
-    prevButton.constraintWithRightItem = leadingTrailingConstraint;
-    nextButton.constraintWithLeftItem = leadingTrailingConstraint;
-  } else if (prevButton) {
-    NSLayoutConstraint *trailingConstraint =
-        [NSLayoutConstraint constraintBetweenContentView:_buttonsWrapperView
-                                             andLastItem:prevButton
-                                            withConstant:kCategoryButtonGroupLeftRightMargin];
-    [_buttonsWrapperView addConstraint:trailingConstraint];
-    prevButton.constraintWithRightItem = trailingConstraint;
-  } else if (nextButton) {
-    NSLayoutConstraint *leadingConstraint =
-        [NSLayoutConstraint constraintBetweenContentView:_buttonsWrapperView
-                                            andFirstItem:nextButton
-                                            withConstant:kCategoryButtonGroupLeftRightMargin];
-    [_buttonsWrapperView addConstraint:leadingConstraint];
-    nextButton.constraintWithLeftItem = leadingConstraint;
-  }
-  
-  [_categories removeObjectAtIndex:index];
-  if (callDelegate && [_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
+  MCCategoryButton *button = [_categoriesButtons objectAtIndex:index];
+  [self removeCategoryButton:button];
+  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
       [_mcDelegate respondsToSelector:@selector(didRemoveCategoryButton:atIndex:)]) {
     [_mcDelegate didRemoveCategoryButton:button atIndex:index];
   }
   return button;
 }
 
+- (void)removeCategoryButton:(MCCategoryButton *)button {
+  [_categoriesButtons removeObject:button];
+}
+
 - (void)moveCategoryFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
-  MCCategoryButton *button = [self removeCategoryAtIndex:fromIndex callDelegate:NO];
-  [self insertCategoryButton:button atIndex:toIndex callDelegate:NO];
+  MCCategoryButton *button = [_categoriesButtons objectAtIndex:fromIndex];
+  [_categoriesButtons moveObjectFromIndex:fromIndex toIndex:toIndex];
   if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
       [_mcDelegate respondsToSelector:@selector(didMoveCategoryButton:fromIndex:toIndex:)]) {
     [_mcDelegate didMoveCategoryButton:button fromIndex:fromIndex toIndex:toIndex];
-  }
-  if (button == _selectedButton) {
-    [self buttonTapped:button animated:NO];
   }
 }
 
 - (void)exchangeCategoryButtonAtIndex:(NSUInteger)index1 withCategoryButtonAtIndex:(NSUInteger)index2 {
   [self moveCategoryFromIndex:index1 toIndex:index2];
   [self moveCategoryFromIndex:index2+(index1 < index2 ? -1 : 1) toIndex:index1];
+}
+
+- (void)reloadCategoryButtons {
+  /*
+   1. remove observer if observing
+   2. remove buttons from super view
+   3. add buttons according to array
+   4. add observer
+   5. force layout
+   */
+  [self deobserveScrollViewContentOffset];
+  for (MCCategoryButton *button in _buttonsWrapperView.subviews) {
+    [button removeFromSuperview];
+  }
+  NSMutableString *visualFormatString = [NSMutableString stringWithString:@"H:|"];
+  NSMutableDictionary *views = [NSMutableDictionary dictionary];
+  NSNumber *spacing = [NSNumber numberWithDouble:kCategoryButtonSpacing];
+  NSNumber *group_spacing = [NSNumber numberWithDouble:kCategoryButtonGroupLeftRightMargin];
+  NSDictionary *metrics = NSDictionaryOfVariableBindings(spacing, group_spacing);
+  for (MCCategoryButton *button in _categoriesButtons) {
+    [_buttonsWrapperView addSubview:button];
+    NSString *viewString =
+        [NSString stringWithFormat:@"button_%lu", (unsigned long)[_categoriesButtons indexOfObject:button]];
+    if (button == [_categoriesButtons firstObject]) {
+      [visualFormatString appendString:[NSString stringWithFormat:@"-(group_spacing)-[%@]", viewString]];
+    } else if (button == [_categoriesButtons lastObject]) {
+      [visualFormatString appendString:[NSString stringWithFormat:@"-(spacing)-[%@]-(group_spacing)-", viewString]];
+    } else {
+      [visualFormatString appendString:[NSString stringWithFormat:@"-(spacing)-[%@]", viewString]];
+    }
+    [views setObject:button forKey:viewString];
+    [_buttonsWrapperView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
+                                                                        options:0
+                                                                        metrics:nil
+                                                                          views:@{@"button":button}]];
+  }
+  [visualFormatString appendString:@"|"];
+  [_buttonsWrapperView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormatString
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:views]];
+  
+  [self observeScrollViewContentOffset];
+  [self setNeedsLayout];
+  [self layoutIfNeeded];
+  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
+      [_mcDelegate respondsToSelector:@selector(didReloadCategoryButtons)]) {
+    [_mcDelegate didReloadCategoryButtons];
+  }
 }
 
 #pragma mark - NSKeyValueObserving methods
@@ -302,11 +255,20 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
                        context:(void *)context {
   if (context == scrollViewContext) {
     CGFloat contentOffsetX = [(NSValue*)[change objectForKey:@"new"] CGPointValue].x;
-    CGFloat pageOffset = contentOffsetX / [_mcDataSource backingScrollView].frame.size.width;
-    pageOffset = MIN([_buttonsWrapperView.subviews count]-1, MAX(0, pageOffset));
+    CGFloat pageOffset = contentOffsetX / _dataSourceScrollView.frame.size.width;
+    pageOffset = MIN([_categoriesButtons count]-1, MAX(0, pageOffset));
+    // The page offset that will be transitioned to.
+    CGFloat transitionToPageOffset = round(pageOffset);
+    // Get the button that is to be selected during scrollview scrolling.
+    MCCategoryButton *buttonToBeSelected = [_categoriesButtons objectAtIndex:transitionToPageOffset];
+    if (_selectedButton != buttonToBeSelected) {
+      _selectedButton.selected = NO;
+      buttonToBeSelected.selected = YES;
+      _selectedButton = buttonToBeSelected;
+    }
     // Calculate the direction of moving
     static CGFloat sContentOffsetX;
-    dispatch_once(&_onceToken2, ^{
+    dispatch_once(&_onceToken, ^{
       sContentOffsetX = contentOffsetX;
     });
     CGFloat delta = contentOffsetX - sContentOffsetX;
@@ -323,22 +285,28 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
       currentButtonIndex = ceil(pageOffset);
       pageTransitionPercent = 1.0f - pageTransitionPercent;
     }
-    nextButtonIndex = MAX(0, MIN([_buttonsWrapperView.subviews count]-1, nextButtonIndex));
-    MCCategoryButton *nextButton = [_buttonsWrapperView.subviews objectAtIndex:nextButtonIndex];
-    MCCategoryButton *currentButton = [_buttonsWrapperView.subviews objectAtIndex:currentButtonIndex];
+    nextButtonIndex = MAX(0, MIN([_categoriesButtons count]-1, nextButtonIndex));
+    MCCategoryButton *nextButton = [_categoriesButtons objectAtIndex:nextButtonIndex];
+    MCCategoryButton *currentButton = [_categoriesButtons objectAtIndex:currentButtonIndex];
+    if (_nextButton != nextButton) {
+      _nextButton = nextButton;
+      if (delta != 0) {
+        // the scrollview is actually scrolled either manually or programmatically, rather than being caused by
+        // orientation change.
+        [self adjustCategoryButtonPositionAnimated:YES];
+      }
+    }
     CGFloat deltaX = nextButton.frame.origin.x - currentButton.frame.origin.x;
     CGFloat deltaWidth = nextButton.frame.size.width - currentButton.frame.size.width;
     // Change the constraints of the indicator view
     _indicatorView.leadingConstraint.constant = currentButton.frame.origin.x + deltaX * pageTransitionPercent;
     _indicatorView.widthConstraint.constant = currentButton.frame.size.width + deltaWidth * pageTransitionPercent;
-    if (nextButtonIndex == pageOffset) {
-      // when the next or prev page is reached, or the default initial page is shown, currentButtonIndex is equal
-      // to nextButtonIndex, and we activate the current button.
-      _selectedButton.selected = NO;
-      currentButton.selected = YES;
-      _selectedButton = currentButton;
-    }
   }
+}
+
+// Enables the scrollview to scroll even when the content view is user-interaction-enabled.
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view {
+  return YES;
 }
 
 #pragma mark - Private methods
@@ -349,15 +317,60 @@ typedef UIView<MCNewsItemHorizontalConstraintsProtocol> * ViewWithHConstraints;
 }
 
 - (void)buttonTapped:(MCCategoryButton *)sender {
-  [self buttonTapped:sender animated:YES];
+  if (labs([_categoriesButtons indexOfObject:sender] -
+           [_categoriesButtons indexOfObject:_selectedButton]) <= [[self visibleButtons] count]) {
+    [self buttonTapped:sender animated:YES];
+  } else {
+    [self buttonTapped:sender animated:NO];
+  }
 }
 
 - (void)buttonTapped:(MCCategoryButton *)sender animated:(BOOL)animated {
+  if (!sender) {
+    return;
+  }
   if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
       [_mcDelegate respondsToSelector:@selector(categoryButtonPressed:atIndex:animated:)]) {
     [_mcDelegate categoryButtonPressed:sender
-                               atIndex:[_buttonsWrapperView.subviews indexOfObject:sender]
+                               atIndex:[_categoriesButtons indexOfObject:sender]
                               animated:animated];
   }
+}
+
+- (NSArray *)visibleButtons {
+  NSMutableArray *visibleButtons = [NSMutableArray array];
+  for (MCCategoryButton *button in _categoriesButtons) {
+    if ([self buttonFrameWithinViewport:button.frame]) {
+      [visibleButtons addObject:button];
+    }
+  }
+  return [NSArray arrayWithArray:visibleButtons];
+}
+
+- (BOOL)buttonFrameWithinViewport:(CGRect)buttonFrame {
+  return (buttonFrame.origin.x + buttonFrame.size.width - self.contentOffset.x <= self.frame.size.width &&
+          buttonFrame.origin.x - self.contentOffset.x > 0);
+}
+
+- (void)observeScrollViewContentOffset {
+  if (!_observingDataSourceScrollView) {
+    [_dataSourceScrollView addObserver:self
+                            forKeyPath:@"contentOffset"
+                               options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                               context:scrollViewContext];
+    _observingDataSourceScrollView = YES;
+  }
+}
+
+- (void)deobserveScrollViewContentOffset {
+  if (_observingDataSourceScrollView) {
+    [_dataSourceScrollView removeObserver:self forKeyPath:@"contentOffset"];
+    _observingDataSourceScrollView = NO;
+  }
+}
+
+#pragma mark - dealloc
+- (void)dealloc {
+  [self deobserveScrollViewContentOffset];
 }
 @end

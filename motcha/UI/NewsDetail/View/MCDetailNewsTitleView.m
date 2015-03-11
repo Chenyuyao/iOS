@@ -9,7 +9,7 @@ static CGFloat kNewsTitleFontSize = 18.0f;
   UILabel *_newsTitle;
 }
 
-- (id)init {
+- (instancetype)init {
   if (self = [super init]) {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setupSubviewsAndConstraints];

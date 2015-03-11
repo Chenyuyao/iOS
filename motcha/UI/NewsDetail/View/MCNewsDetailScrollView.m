@@ -4,16 +4,11 @@
 #import "MCDetailNewsMetaDataView.h"
 #import "MCDetailNewsBodyView.h"
 
-static CGFloat kImageViewBottomInset      = 40.0f;
-static CGFloat kImageViewTopInset         = 40.0f;
-static CGFloat kImageViewOriginalHeight   = 230.0f;
-static CGFloat kNewsTitleBottomIndex      = 10.0f;
-static CGFloat kDescriptionViewTopMargin  = 150.0f;
-static CGFloat kSmallFontSize             = 14.0f;
-static CGFloat kLargeFontSize             = 16.0f;
+static CGFloat kNewsTitleBottomIndex          = 10.0f;
+static CGFloat kSmallFontSize                 = 14.0f;
+static CGFloat kLargeFontSize                 = 16.0f;
 
-@interface MCNewsDetailScrollView ()<UIScrollViewDelegate>
-@end
+static void *scrollViewContext = &scrollViewContext;
 
 @implementation MCNewsDetailScrollView {
   UIView *_contentView;
@@ -30,9 +25,13 @@ static CGFloat kLargeFontSize             = 16.0f;
   BOOL _inBiggerFont;
 }
 
-- (id) init {
+- (instancetype)init {
   if (self = [super init]) {
     [self setupSubviewsAndConstraints];
+    [self addObserver:self
+           forKeyPath:@"contentOffset"
+              options:NSKeyValueObservingOptionNew
+              context:scrollViewContext];
   }
   return self;
 }
@@ -46,7 +45,6 @@ static CGFloat kLargeFontSize             = 16.0f;
 - (void)setupSubviewsAndConstraints {
   //add a content/image views
   self.backgroundColor = [UIColor whiteColor];
-  self.delegate = self;
   
   //contentView: contains imageView, _newsTitle and _descriptionView
   _contentView = [[UIView alloc] init];
@@ -99,7 +97,7 @@ static CGFloat kLargeFontSize             = 16.0f;
                                                             toItem:_contentView
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1
-                                                          constant:-kImageViewBottomInset];
+                                                          constant:-kTitleImageViewBottomInset];
   [_contentView addConstraint:_imageViewTopConstraint];
   
   _imageViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_imageView
@@ -108,7 +106,7 @@ static CGFloat kLargeFontSize             = 16.0f;
                                                                toItem:nil
                                                             attribute:NSLayoutAttributeHeight
                                                            multiplier:0
-                                                             constant:kImageViewOriginalHeight];
+                                                             constant:kTitleImageViewOriginalHeight];
   [_contentView addConstraint:_imageViewHeightConstraint];
   
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_imageView]|"
@@ -132,13 +130,14 @@ static CGFloat kLargeFontSize             = 16.0f;
   [_contentView addConstraint:_newsTitleBottomConstraint];
 
   //add constraints for _descriptionView, top, bottom, leading and width
-  [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:_descriptionView
-                                                           attribute:NSLayoutAttributeTop
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:_contentView
-                                                           attribute:NSLayoutAttributeTop
-                                                          multiplier:1
-                                                            constant:kDescriptionViewTopMargin]];
+  [_contentView addConstraint:
+      [NSLayoutConstraint constraintWithItem:_descriptionView
+                                   attribute:NSLayoutAttributeTop
+                                   relatedBy:NSLayoutRelationEqual
+                                      toItem:_contentView
+                                   attribute:NSLayoutAttributeTop
+                                  multiplier:1
+                                    constant:kTitleImageViewOriginalHeight - (kTitleImageViewTopInset + kTitleImageViewBottomInset)]];
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_descriptionView]|"
                                                                        options:0
                                                                        metrics:metrics
@@ -165,16 +164,10 @@ static CGFloat kLargeFontSize             = 16.0f;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  CGFloat contentOffSetY = self.contentOffset.y;
-  CGFloat imageVerticalInsets = kImageViewTopInset+kImageViewBottomInset;
-  if (contentOffSetY < -(imageVerticalInsets)) {
-    _imageViewTopConstraint.constant = contentOffSetY;
-    _imageViewHeightConstraint.constant = kImageViewOriginalHeight + (-contentOffSetY-imageVerticalInsets);
-  } else {
-    _imageViewHeightConstraint.constant = kImageViewOriginalHeight;
-    _imageViewTopConstraint.constant = -kImageViewTopInset - (-contentOffSetY)/2.0;
-  }
+
 }
+
+#pragma mark - Font size
 
 - (void)initTextFontSize {
   [_metaDataView changeMetaDataFontSize:kSmallFontSize needsLayoutSubviews:NO];
@@ -187,6 +180,8 @@ static CGFloat kLargeFontSize             = 16.0f;
   [_mainBodyView changeTextFontSize:size needsLayoutSubviews:YES];
   _inBiggerFont = !_inBiggerFont;
 }
+
+#pragma mark - Content Settings
 
 - (void)setImage:(UIImage *)image {
   _imageView.image = image;
@@ -210,6 +205,30 @@ static CGFloat kLargeFontSize             = 16.0f;
 
 - (void)setNewsMainBody:(NSArray *)bodyArray {
   [_mainBodyView setBodyContents:bodyArray];
+}
+
+
+#pragma mark - UIContentContainer
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+  if (context == scrollViewContext) {
+    CGFloat contentOffSetY = self.contentOffset.y;
+    CGFloat imageVerticalInsets = kTitleImageViewTopInset+kTitleImageViewBottomInset;
+    if (contentOffSetY < -(imageVerticalInsets)) {
+      _imageViewTopConstraint.constant = contentOffSetY;
+      _imageViewHeightConstraint.constant = kTitleImageViewOriginalHeight + (-contentOffSetY-imageVerticalInsets);
+    } else {
+      _imageViewHeightConstraint.constant = kTitleImageViewOriginalHeight;
+      _imageViewTopConstraint.constant = -kTitleImageViewTopInset - (-contentOffSetY)/2.0;
+    }
+  }
+}
+
+#pragma mark - dealloc]
+- (void)dealloc {
+  [self removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end

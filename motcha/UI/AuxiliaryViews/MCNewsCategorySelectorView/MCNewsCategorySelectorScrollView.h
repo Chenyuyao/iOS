@@ -2,8 +2,6 @@
 
 #import "MCCategoryButton.h"
 
-static CGFloat kCategorySelectorViewHeight = 34.0f;
-
 @protocol MCNewsCategorySelectorScrollViewDelegate <NSObject>
 @optional
 - (void)moreCategoriesButtonPressed;
@@ -11,6 +9,7 @@ static CGFloat kCategorySelectorViewHeight = 34.0f;
 - (void)didInsertCategoryButton:(MCCategoryButton *)button atIndex:(NSUInteger)index;
 - (void)didRemoveCategoryButton:(MCCategoryButton *)button atIndex:(NSUInteger)index;
 - (void)didMoveCategoryButton:(MCCategoryButton *)button fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+- (void)didReloadCategoryButtons;
 @end
 
 @protocol MCNewsCategorySelectorScrollViewDataSource <NSObject>
@@ -20,8 +19,8 @@ static CGFloat kCategorySelectorViewHeight = 34.0f;
 @interface MCNewsCategorySelectorScrollView : UIScrollView
 @property (weak, nonatomic) id<MCNewsCategorySelectorScrollViewDelegate> mcDelegate;
 @property (weak, nonatomic) id<MCNewsCategorySelectorScrollViewDataSource> mcDataSource;
-- (instancetype)initWithDelegate:(id<MCNewsCategorySelectorScrollViewDelegate>)delegate
-                      dataSource:(id<MCNewsCategorySelectorScrollViewDataSource>)dataSource;
+// Programmatically tap the selected button. If there is no selected button, tap the button at index 0.
+- (void)tapSelectedButtonAnimated:(BOOL)animated;
 // Programmatically select a category button. This method needs to be called inside of viewDidAppear:animated:
 // to ensure functionality.
 - (void)selectButtonAtIndex:(NSUInteger)index animated:(BOOL)animated;
@@ -42,4 +41,6 @@ static CGFloat kCategorySelectorViewHeight = 34.0f;
 - (NSUInteger)categoryCount;
 // Adjust the position of the selected category button so that it is visible to the user.
 - (void)adjustCategoryButtonPositionAnimated:(BOOL)animated;
+// Reload the category buttons.
+- (void)reloadCategoryButtons;
 @end

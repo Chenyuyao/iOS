@@ -2,6 +2,10 @@
 
 #import "MCNewsDetailScrollViewDelegate.h"
 
+static CGFloat kTitleImageViewBottomInset     = 40.0f;
+static CGFloat kTitleImageViewTopInset        = 40.0f;
+static CGFloat kTitleImageViewOriginalHeight  = 230.0f;
+
 /**
  * the primary scroll view of MCNewsDetailViewController
  */
