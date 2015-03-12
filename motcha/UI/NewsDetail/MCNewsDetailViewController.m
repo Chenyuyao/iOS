@@ -83,7 +83,7 @@
 }
 
 - (void)notifyNavigationControllerWithScrollViewContentOffsetYAnimated:(BOOL)animated {
-  [(MCNavigationController *)self.navigationController notifyViewControllerWillAppearAnimated:animated];
+  [(MCNavigationController *)self.navigationController notifyViewWillAppearAnimated:animated];
 }
 
 #pragma mark - UIScrollViewDelegate methods

@@ -10,7 +10,7 @@
   return [super initWithRootViewController:rootViewController];
 }
 
-- (void)notifyViewControllerWillAppearAnimated:(BOOL)animated {
+- (void)notifyViewWillAppearAnimated:(BOOL)animated {
   id<MCNavigationBarCustomizationDelegate>topViewController =
       (id<MCNavigationBarCustomizationDelegate>)self.topViewController;
   if ([topViewController conformsToProtocol:@protocol(MCNavigationBarCustomizationDelegate)]) {
@@ -35,6 +35,16 @@
     backgroundAlpha = 1.0f;
   }
   [self setNavigationBarBackgroundAlpha:backgroundAlpha animated:animated];
+}
+
+- (void)notifyViewWillDisappearAnimated:(BOOL)animated {
+  MCNavigationBar *navigationBar = (MCNavigationBar*)self.navigationBar;
+  [navigationBar removeDropShadow];
+}
+
+- (void)notifyViewDidAppearAnimated:(BOOL)animated {
+  MCNavigationBar *navigationBar = (MCNavigationBar*)self.navigationBar;
+  [navigationBar applyDropShadow];
 }
 
 #pragma mark - NavigationBarAuxiliaryView operations

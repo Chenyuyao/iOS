@@ -6,7 +6,9 @@
 
 @interface MCNavigationController : UINavigationController
 @property (weak, nonatomic) id<MCNavigationBarCustomizationDelegate> customizationDelegate;
-- (void)notifyViewControllerWillAppearAnimated:(BOOL)animated;
+- (void)notifyViewWillAppearAnimated:(BOOL)animated;
+- (void)notifyViewWillDisappearAnimated:(BOOL)animated;
+- (void)notifyViewDidAppearAnimated:(BOOL)animated;
 #pragma mark - NavigationBarAuxiliaryView
 - (void)setNavigationBarAuxiliaryView:(UIView*)auxiliaryView animated:(BOOL)animated;
 #pragma mark - NavigationBarBackgroundAlpha

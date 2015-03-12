@@ -74,7 +74,7 @@ static CGFloat kLogoFontSize = 25.0f;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [(MCNavigationController *)self.navigationController notifyViewControllerWillAppearAnimated:animated];
+  [(MCNavigationController *)self.navigationController notifyViewWillAppearAnimated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
