@@ -21,7 +21,7 @@ static CGFloat kShadowOpacity = 0.8f;
   _edgeView.layer.shadowColor = [UIColor blackColor].CGColor;
   _edgeView.layer.shadowOpacity = kShadowOpacity;
   _edgeView.layer.shadowRadius = kShadowRadius;
-  _edgeView.layer.shadowOffset = CGSizeMake(0.0, kShadowRadius);
+  _edgeView.layer.shadowOffset = CGSizeMake(0.0, -1.0);
 }
 
 - (void)layoutSubviews {
@@ -32,7 +32,8 @@ static CGFloat kShadowOpacity = 0.8f;
     CGFloat alpha = 1.0f;
     for (NSInteger i = 0; i < frame.size.width; ++i) {
       alpha -= 1.0f / (frame.size.width / 2.0f);
-      UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i, 0.0f, 1.0f, frame.size.height)];
+      UIView *view =
+          [[UIView alloc] initWithFrame:CGRectMake(i, -kShadowRadius*2, 1.0f, frame.size.height+kShadowRadius*2)];
       view.backgroundColor = [UIColor colorWithWhite:1.0f alpha:alpha];
       [self addSubview:view];
     }
