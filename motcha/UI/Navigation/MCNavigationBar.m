@@ -5,8 +5,6 @@
 #import "MCNavigationBarAppearanceBackgroundAlpha.h"
 
 static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackground";
-static CGFloat kShadowRadius = 2.0f;
-static CGFloat kShadowOpacity = 0.6f;
 
 @interface MCNavigationBar ()<MCNavigationBarAppearanceStrategyDataSource, MCNavigationBarAppearanceStrategyDelegate>
 @end
