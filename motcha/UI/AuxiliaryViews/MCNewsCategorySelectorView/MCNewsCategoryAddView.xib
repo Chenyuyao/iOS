@@ -12,7 +12,7 @@
             <subviews>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkE-8v-riF">
                     <rect key="frame" x="0.0" y="0.0" width="1" height="164"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="Zmg-HS-GNl"/>
@@ -55,10 +55,6 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="_edgeView" destination="RkE-8v-riF" id="7JS-hj-Bws"/>
-                <outlet property="_plus" destination="Vtz-ck-RP9" id="cqI-w2-eUY"/>
-            </connections>
             <point key="canvasLocation" x="634" y="412"/>
         </view>
     </objects>
