@@ -10,10 +10,10 @@ static CGFloat kLogoFontSize = 25.0f;
 
 @interface MCNewsListsContainerController ()
 <
-MCNavigationBarCustomizationDelegate,
-MCNewsCategorySelectorScrollViewDelegate,
-MCNewsCategorySelectorScrollViewDataSource,
-MCPageViewControllerDelegate
+  MCNavigationBarCustomizationDelegate,
+  MCNewsCategorySelectorScrollViewDelegate,
+  MCNewsCategorySelectorScrollViewDataSource,
+  MCPageViewControllerDelegate
 >
 @end
 
@@ -40,15 +40,15 @@ MCPageViewControllerDelegate
   [self.view addSubview:pageView];
   NSDictionary *viewDict = NSDictionaryOfVariableBindings(pageView);
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageView]|"
-                                           options:0
-                                           metrics:nil
-                                             views:viewDict]];
+       [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageView]|"
+                                               options:0
+                                               metrics:nil
+                                                 views:viewDict]];
   [self.view addConstraints:
-   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[pageView]|"
-                                           options:0
-                                           metrics:nil
-                                             views:viewDict]];
+       [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[pageView]|"
+                                               options:0
+                                               metrics:nil
+                                                 views:viewDict]];
   [self.pageViewController didMoveToParentViewController:self];
   self.automaticallyAdjustsScrollViewInsets = NO;
   // Add logo button
@@ -67,7 +67,7 @@ MCPageViewControllerDelegate
   _newsCategoryView.categoryScrollView.mcDataSource = self;
   // TODO: replace the fake data with the server call
   [_categories addObjectsFromArray:
-   @[@"Recommended", @"Popular", @"Technology", @"Kitchener", @"International", @"Car", @"Food", @"Real Estates", @"Arts"]];
+      @[@"Recommended", @"Popular", @"Technology", @"Kitchener", @"International", @"Car", @"Food", @"Real Estates", @"Arts"]];
   [_newsCategoryView.categoryScrollView addCategories:_categories];
   [_newsCategoryView.categoryScrollView reloadCategoryButtons];
 }
@@ -120,11 +120,11 @@ MCPageViewControllerDelegate
      pageDidFinishAnimated:(BOOL)animated
            withCurrentPage:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-  //  [_newsCategoryView adjustCategoryButtonPositionAnimated:animated];
+//  [_newsCategoryView adjustCategoryButtonPositionAnimated:animated];
   // TODO: update the current page
   for (NSInteger i = 0; i < [self.pageViewController viewControllerCount]; ++i) {
     MCNewsListViewController *viewController =
-    (MCNewsListViewController *)[self.pageViewController viewControllerAtIndex:i];
+        (MCNewsListViewController *)[self.pageViewController viewControllerAtIndex:i];
     viewController.collectionView.scrollsToTop = NO;
     
   }
@@ -142,7 +142,7 @@ MCPageViewControllerDelegate
 - (void)pageViewController:(MCPageViewController *)pageViewController
      didLoadViewController:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-  
+
 }
 
 #pragma mark - MCNavigationBarCustomizationDelegate methods
