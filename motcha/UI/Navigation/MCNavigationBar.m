@@ -83,12 +83,12 @@ static CGFloat kShadowOpacity = 0.6f;
   NSDictionary *dataDict = [NSDictionary dictionary];
   if (strategyClass == [MCNavigationBarAppearanceAuxiliaryView class]) {
     dataDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:_navigationBarOffset],
-                kNavigationBarOffsetKey, [NSNumber numberWithDouble:_backgroundHeight], kNavigationBarBackgroundHeightKey,
-                _navigationBarBackgroundView, kNavigationBarBackgroundViewKey, _auxiliaryView, kAuxiliaryViewKey, nil];
+        kNavigationBarOffsetKey, [NSNumber numberWithDouble:_backgroundHeight], kNavigationBarBackgroundHeightKey,
+        _navigationBarBackgroundView, kNavigationBarBackgroundViewKey, _auxiliaryView, kAuxiliaryViewKey, nil];
   }
   if (strategyClass == [MCNavigationBarAppearanceBackgroundAlpha class]) {
     dataDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:_backgroundAlpha],
-                kNavigationBarBackgroundAlphaKey, _navigationBarBackgroundView, kNavigationBarBackgroundViewKey,nil];
+        kNavigationBarBackgroundAlphaKey, _navigationBarBackgroundView, kNavigationBarBackgroundViewKey,nil];
   }
   return dataDict;
 }
