@@ -3,7 +3,7 @@
 #import "MCNavigationController.h"
 #import "MCIntroViewController.h"
 #import "MCNewsListViewController.h"
-#import "MCNewsListWrapperViewController.h"
+#import "MCNewsListsContainerController.h"
 #import "MCWebContentService.h"
 
 @implementation MCAppDelegate
@@ -13,9 +13,9 @@
   [self.window makeKeyAndVisible];
   //MCIntroViewController *introViewController = [[MCIntroViewController alloc] init];
 //  MCNewsListViewController *newsListViewController = [[MCNewsListViewController alloc] init];
-  MCNewsListWrapperViewController *newsListWrapperViewController = [[MCNewsListWrapperViewController alloc] init];
-  MCNavigationController *navigationController = [[MCNavigationController alloc] init];
-  [navigationController setViewControllers:@[newsListWrapperViewController] animated:NO];
+  MCNewsListsContainerController *newsListsContainerController = [[MCNewsListsContainerController alloc] init];
+  MCNavigationController *navigationController =
+      [[MCNavigationController alloc] initWithRootViewController:newsListsContainerController];
   self.window.rootViewController = navigationController;
   return YES;
 }

@@ -14,7 +14,7 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
   MCNavigationBarAppearanceStrategy*  _backgroundAlphaStrategy;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     self.barTintColor = [UIColor whiteColor];
     for (UIView *view in [self subviews]) {

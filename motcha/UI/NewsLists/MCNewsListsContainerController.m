@@ -1,18 +1,25 @@
-#import "MCNewsListWrapperViewController.h"
+#import "MCNewsListsContainerController.h"
 
 #import "MCNavigationBarCustomizationDelegate.h"
-#import "MCNewsCategorySelectorScrollView.h"
+#import "MCNewsCategorySelectorView.h"
 #import "MCNewsListViewController.h"
 #import "MCNavigationController.h"
+#import "UIFont+DINFont.h"
 
-@interface MCNewsListWrapperViewController ()<MCNavigationBarCustomizationDelegate,
-    MCNewsCategorySelectorScrollViewDelegate, MCNewsCategorySelectorScrollViewDataSource,
-    MCPageViewControllerDelegate>
+static CGFloat kLogoFontSize = 25.0f;
+
+@interface MCNewsListsContainerController ()
+<
+  MCNavigationBarCustomizationDelegate,
+  MCNewsCategorySelectorScrollViewDelegate,
+  MCNewsCategorySelectorScrollViewDataSource,
+  MCPageViewControllerDelegate
+>
 @end
 
-@implementation MCNewsListWrapperViewController {
+@implementation MCNewsListsContainerController {
   NSMutableArray *_categories; // array of NSString *
-  MCNewsCategorySelectorScrollView *_newsCategoryView;
+  MCNewsCategorySelectorView *_newsCategoryView;
 }
 
 - (instancetype)init {
@@ -26,6 +33,7 @@
 }
 
 - (void)loadView {
+  self.navigationController.navigationBarHidden = NO;
   self.view = [[UIView alloc] init];
   [self addChildViewController:self.pageViewController];
   UIView *pageView = self.pageViewController.view;
@@ -43,15 +51,25 @@
                                                  views:viewDict]];
   [self.pageViewController didMoveToParentViewController:self];
   self.automaticallyAdjustsScrollViewInsets = NO;
+  // Add logo button
+  UIButton *logoButton = [[UIButton alloc] init];
+  [logoButton setTitle:@"Motcha" forState:UIControlStateNormal];
+  [logoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  logoButton.titleLabel.font = [UIFont dinBoldFontWithSize:kLogoFontSize];
+  [logoButton sizeToFit];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoButton];
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _newsCategoryView = [[MCNewsCategorySelectorScrollView alloc] initWithDelegate:self dataSource:self];
+  _newsCategoryView = [[MCNewsCategorySelectorView alloc] init];
+  _newsCategoryView.categoryScrollView.mcDelegate = self;
+  _newsCategoryView.categoryScrollView.mcDataSource = self;
   // TODO: replace the fake data with the server call
   [_categories addObjectsFromArray:
-      @[@"Recommended", @"Popular", @"Technology", @"Kitchener", @"International", @"Car", @"Food"]];
-  [_newsCategoryView addCategories:_categories];
+      @[@"Recommended", @"Popular", @"Technology", @"Kitchener", @"International", @"Car", @"Food", @"Real Estates", @"Arts"]];
+  [_newsCategoryView.categoryScrollView addCategories:_categories];
+  [_newsCategoryView.categoryScrollView reloadCategoryButtons];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,12 +110,17 @@
   [self.pageViewController moveViewControllerFromIndex:fromIndex toIndex:toIndex];
 }
 
+- (void)didReloadCategoryButtons {
+  [_pageViewController reloadViewControllers];
+  [_newsCategoryView.categoryScrollView tapSelectedButtonAnimated:NO];
+}
+
 #pragma mark - MCPageViewControllerDelegate methods
 - (void)pageViewController:(MCPageViewController *)pageViewController
      pageDidFinishAnimated:(BOOL)animated
            withCurrentPage:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-  [_newsCategoryView adjustCategoryButtonPositionAnimated:animated];
+//  [_newsCategoryView adjustCategoryButtonPositionAnimated:animated];
   // TODO: update the current page
   for (NSInteger i = 0; i < [self.pageViewController viewControllerCount]; ++i) {
     MCNewsListViewController *viewController =
@@ -130,14 +153,5 @@
     _navigationBarAuxiliaryView = _newsCategoryView;
   }
   return _navigationBarAuxiliaryView;
-}
-
-#pragma mark - UIContentContainer methods
-- (void)viewWillTransitionToSize:(CGSize)size
-       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-  [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-    [_newsCategoryView adjustCategoryButtonPositionAnimated:YES];
-  } completion:nil];
-  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 @end

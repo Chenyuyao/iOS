@@ -7,5 +7,5 @@
 @interface MCKeyValuePair : NSObject<NSCopying>
 @property (nonatomic, strong) id key;
 @property (nonatomic, strong) id value;
-- (id)initWithKey:(id)aKey andValue:(id)aValue;
+- (instancetype)initWithKey:(id)aKey andValue:(id)aValue;
 @end

@@ -12,7 +12,7 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
   NSArray *_thumbNails;
 }
 
-- (id)init {
+- (instancetype)init {
   [self setTitle:@"News List"];
   MCNewsListCollectionViewLayout *layout = [[MCNewsListCollectionViewLayout alloc] init];
   layout.numberOfElementsInEachRow = 1;
@@ -43,6 +43,13 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
   CGFloat navigationBarAppearanceHeight =
       navigationBar.backgroundHeight + navigationBar.auxiliaryView.frame.size.height;
   self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+}
+
+- (void)setCategory:(NSString *)category {
+  if (_category != category) {
+    _category = category;
+    [self invalidate];
+  }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -97,7 +104,13 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
       [self.collectionView setContentOffset:CGPointMake(0, -1*self.collectionView.contentInset.top) animated:YES];
     }
   }];
+}
 
+#pragma mark - Private methods
+
+// Invalidates the content of the current list view controller and load the content.
+- (void)invalidate {
+  // TODO: (Frank) implement this.
 }
 
 @end

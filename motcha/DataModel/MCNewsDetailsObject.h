@@ -4,7 +4,7 @@
 
 // Base class of the component that contains news details data.
 @interface MCNewsDetailsComponent : NSObject 
-+ (id)componentWithNode:(MCParsedHTMLNode *)node;
++ (instancetype)componentWithNode:(MCParsedHTMLNode *)node;
 @end
 
 // A subclass of MCNewsDetailsComponent that contains title.
@@ -39,11 +39,10 @@
 // of the article.
 @property(nonatomic, readonly) NSArray *content;
 
-- (id)initWithTitle:(NSString *)title
-             source:(NSString *)source
-         titleImage:(NSURL *)titleImage
-            content:(NSArray *)content
-               date:(NSDate *)date
-             author:(NSString *)author;
-
+- (instancetype)initWithTitle:(NSString *)title
+                       source:(NSString *)source
+                   titleImage:(NSURL *)titleImage
+                      content:(NSArray *)content
+                         date:(NSDate *)date
+                       author:(NSString *)author;
 @end

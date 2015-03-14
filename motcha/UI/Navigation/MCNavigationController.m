@@ -1,8 +1,13 @@
 #import "MCNavigationController.h"
 
 @implementation MCNavigationController
-- (id)init {
-  return [super initWithNavigationBarClass:[MCNavigationBar class] toolbarClass:nil];
+
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
+  if (self = [super initWithNavigationBarClass:[MCNavigationBar class] toolbarClass:nil]) {
+    [self setViewControllers:@[rootViewController]];
+    return self;
+  }
+  return [super initWithRootViewController:rootViewController];
 }
 
 - (void)notifyViewControllerWillAppearAnimated:(BOOL)animated {

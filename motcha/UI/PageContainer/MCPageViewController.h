@@ -24,6 +24,9 @@
                    atIndex:(NSUInteger)index;
 @end
 
+/**
+ * The container view controller that contains child view controllers, similar to UIPageViewController.
+ */
 @interface MCPageViewController : UIViewController
 @property (weak, nonatomic) id<MCPageViewControllerDelegate> delegate;
 @property (strong, nonatomic) MCPageView *pageView;
@@ -32,6 +35,6 @@
 - (void)insertViewControllerAtIndex:(NSUInteger)index;
 - (UIViewController *)removeViewControllerAtIndex:(NSUInteger)index;
 - (void)moveViewControllerFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-- (void)reloadViewControllerAtIndex:(NSUInteger)index;
 - (NSUInteger)viewControllerCount;
+- (void)reloadViewControllers;
 @end

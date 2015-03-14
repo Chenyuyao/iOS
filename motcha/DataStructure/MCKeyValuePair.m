@@ -1,7 +1,7 @@
 #import "MCKeyValuePair.h"
 
 @implementation MCKeyValuePair
-- (id)initWithKey:(id)aKey andValue:(id)aValue {
+- (instancetype)initWithKey:(id)aKey andValue:(id)aValue {
   if ((self = [super init])) {
     _key   = aKey;
     _value = aValue;

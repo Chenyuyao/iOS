@@ -1,15 +1,19 @@
 #import <UIKit/UIKit.h>
-#import "MCNewsItemConstraintsProtocol.h"
-
-typedef UIView<MCNewsItemHorizontalConstraintsProtocol> ViewWithHConstraints;
 
 @protocol MCPageViewDelegate <UIScrollViewDelegate>
 @optional
+/**
+ * The delegate method that will be sent to the receiver when the scrollView is programmatically scrolled to a position
+ * without animation.
+ */
 - (void)scrollViewDidEndScrollingWithoutAnimation:(UIScrollView *)scrollView;
 @end
 
+/**
+ * The primary view for the page view controller that contains child view controllers.
+ */
 @interface MCPageView : UIScrollView
-- (void)insertPageViewItem:(ViewWithHConstraints *)viewItem atIndex:(NSUInteger)index;
-- (ViewWithHConstraints *)removePageViewItem:(ViewWithHConstraints *)viewItem atIndex:(NSUInteger)index;
-- (void)movePageViewItem:(ViewWithHConstraints *)viewItem fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+- (void)addPageViewItem:(UIView *)viewItem;
+- (void)removePageViewItem:(UIView *)viewItem;
+- (void)reloadViews;
 @end

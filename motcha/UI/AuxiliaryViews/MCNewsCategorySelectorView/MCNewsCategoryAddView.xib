@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MCNewsCategorySelectorView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" contentMode="scaleToFill" id="dRa-hh-2Ku" customClass="MCNewsCategoryAddView">
+            <rect key="frame" x="0.0" y="0.0" width="188" height="164"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkE-8v-riF">
+                    <rect key="frame" x="0.0" y="0.0" width="1" height="164"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="Zmg-HS-GNl"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-ck-RP9">
+                    <rect key="frame" x="0.0" y="0.0" width="188" height="154"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="+">
+                        <color key="titleColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addCategoryButtonPressed:" destination="-1" eventType="touchUpInside" id="vUm-jL-6Qx"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Vtz-ck-RP9" firstAttribute="top" secondItem="dRa-hh-2Ku" secondAttribute="top" id="4JV-nH-0ji"/>
+                <constraint firstItem="Vtz-ck-RP9" firstAttribute="leading" secondItem="dRa-hh-2Ku" secondAttribute="leading" id="7iV-8U-f3N"/>
+                <constraint firstItem="RkE-8v-riF" firstAttribute="leading" secondItem="dRa-hh-2Ku" secondAttribute="leading" id="V06-PY-52J"/>
+                <constraint firstItem="RkE-8v-riF" firstAttribute="top" secondItem="dRa-hh-2Ku" secondAttribute="top" id="dX7-HF-Pex"/>
+                <constraint firstAttribute="bottom" secondItem="Vtz-ck-RP9" secondAttribute="bottom" constant="10" id="flo-sG-B31"/>
+                <constraint firstAttribute="bottom" secondItem="RkE-8v-riF" secondAttribute="bottom" id="kG0-Cs-yIV"/>
+                <constraint firstAttribute="trailing" secondItem="Vtz-ck-RP9" secondAttribute="trailing" id="pHx-S3-Pry"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="634" y="412"/>
+        </view>
+    </objects>
+</document>

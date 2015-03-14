@@ -14,6 +14,7 @@ static void *scrollViewContext = &scrollViewContext;
   NSMutableArray *_viewControllers; // An array of (MCNewsListViewController *)viewController
   Class _pageViewItemClass;
   NSUInteger _pageIndex;
+  BOOL _observingPageView;
 }
 
 - (instancetype)init {
@@ -46,10 +47,7 @@ static void *scrollViewContext = &scrollViewContext;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self.pageView addObserver:self
-                  forKeyPath:@"contentOffset"
-                     options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-                     context:scrollViewContext];
+  [self observePageView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -63,52 +61,67 @@ static void *scrollViewContext = &scrollViewContext;
                                    reason:@"-(void)registerClass: must be called prior to this method."
                                  userInfo:nil];
   }
-  UIViewController *viewController = [[_pageViewItemClass alloc] init];
+  UIViewController *viewController = [self createViewController];
   [_viewControllers insertObject:viewController atIndex:index];
-  if ([_delegate conformsToProtocol:@protocol(MCPageViewControllerDelegate)] &&
-      [_delegate respondsToSelector:@selector(pageViewController:willLoadViewController:atIndex:)]) {
-    [_delegate pageViewController:self willLoadViewController:viewController atIndex:index];
-  }
-  [self addChildViewController:viewController];
-  viewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-  if ([_delegate conformsToProtocol:@protocol(MCPageViewControllerDelegate)] &&
-      [_delegate respondsToSelector:@selector(pageViewController:didLoadViewController:atIndex:)]) {
-    [_delegate pageViewController:self didLoadViewController:viewController atIndex:index];
-  }
-  [self.pageView insertPageViewItem:(ViewWithHConstraints *)viewController.view atIndex:index];
-  [viewController didMoveToParentViewController:self];
 }
 
 - (UIViewController *)removeViewControllerAtIndex:(NSUInteger)index {
   UIViewController *viewController = [_viewControllers objectAtIndex:index];
-  [viewController willMoveToParentViewController:nil];
-  [self.pageView removePageViewItem:(ViewWithHConstraints *)viewController.view atIndex:index];
-  [viewController removeFromParentViewController];
   [_viewControllers removeObjectAtIndex:index];
   return viewController;
 }
 
 - (void)moveViewControllerFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
   [_viewControllers moveObjectFromIndex:fromIndex toIndex:toIndex];
-  UIViewController *viewController = [self viewControllerAtIndex:fromIndex];
-  [self.pageView movePageViewItem:(ViewWithHConstraints *)viewController.view fromIndex:fromIndex toIndex:toIndex];
 }
 
 - (void)exchangeViewControllerAtIndex:(NSUInteger)index1 withViewControllerAtIndex:(NSUInteger)index2 {
   [self moveViewControllerFromIndex:index1 toIndex:index2];
   [self moveViewControllerFromIndex:index2+(index1 < index2 ? -1 : 1) toIndex:index1];
 }
-
-- (void)reloadViewControllerAtIndex:(NSUInteger)index {
-  [self removeViewControllerAtIndex:index];
-  [self insertViewControllerAtIndex:index];
+/*
+ 1. remove observer if observing
+ 2. remove child view controllers and views
+ 3. add child view controllers and views according to array
+ 4. add observer
+ 5. force layout
+ */
+- (void)reloadViewControllers {
+  [self deobservePageView];
+  for (UIViewController *viewController in self.childViewControllers) {
+    [viewController willMoveToParentViewController:nil];
+    [self.pageView removePageViewItem:viewController.view];
+    [viewController removeFromParentViewController];
+  }
+  for (UIViewController *viewController in _viewControllers) {
+    if ([_delegate conformsToProtocol:@protocol(MCPageViewControllerDelegate)] &&
+        [_delegate respondsToSelector:@selector(pageViewController:willLoadViewController:atIndex:)]) {
+      [_delegate pageViewController:self
+             willLoadViewController:viewController
+                            atIndex:[_viewControllers indexOfObject:viewController]];
+    }
+    [self addChildViewController:viewController];
+    viewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    if ([_delegate conformsToProtocol:@protocol(MCPageViewControllerDelegate)] &&
+        [_delegate respondsToSelector:@selector(pageViewController:didLoadViewController:atIndex:)]) {
+      [_delegate pageViewController:self
+              didLoadViewController:viewController
+                            atIndex:[_viewControllers indexOfObject:viewController]];
+    }
+    [self.pageView addPageViewItem:viewController.view];
+    [viewController didMoveToParentViewController:self];
+  }
+  [self.pageView reloadViews];
+  [self observePageView];
+  [self.pageView setNeedsLayout];
+  [self.pageView layoutIfNeeded];
 }
 
 - (NSUInteger)viewControllerCount {
   return [_viewControllers count];
 }
 
-#pragma mark - MCPageViewDelegate methods
+#pragma mark - MCPageViewDelegate<UIScrollView> methods
 - (void)scrollViewDidEndScrollingWithoutAnimation:(UIScrollView *)scrollView {
   [self scrollViewDidEndChangingAnimated:NO];
 }
@@ -155,5 +168,33 @@ static void *scrollViewContext = &scrollViewContext;
     _pageIndex = localPageIndex;
   }];
   [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
+#pragma mark - Helpers
+- (UIViewController *)createViewController {
+  UIViewController *viewController = [[_pageViewItemClass alloc] init];
+  return viewController;
+}
+
+- (void)observePageView {
+  if (!_observingPageView) {
+    [self.pageView addObserver:self
+                    forKeyPath:@"contentOffset"
+                       options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                       context:scrollViewContext];
+    _observingPageView = YES;
+  }
+}
+
+- (void)deobservePageView {
+  if (_observingPageView) {
+    [self.pageView removeObserver:self forKeyPath:@"contentOffset"];
+    _observingPageView = NO;
+  }
+}
+
+#pragma mark - dealloc
+- (void)dealloc {
+  [self deobservePageView];
 }
 @end
