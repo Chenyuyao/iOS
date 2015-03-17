@@ -5,6 +5,8 @@
 #import "MCNavigationBarAppearanceBackgroundAlpha.h"
 
 static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackground";
+static CGFloat kShadowRadius = 2.0f;
+static CGFloat kShadowOpacity = 0.6f;
 
 @interface MCNavigationBar ()<MCNavigationBarAppearanceStrategyDataSource, MCNavigationBarAppearanceStrategyDelegate>
 @end
@@ -38,8 +40,25 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
     navBarAppearanceBgAlpha.dataSource = self;
     _backgroundAlphaStrategy =
     [[MCNavigationBarAppearanceStrategy alloc] initWithNavigationBar:self appearanceStrategy:navBarAppearanceBgAlpha];
+    // Init bottom shadow to the navigation bar background.
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowRadius = kShadowRadius;
+    self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
   }
   return self;
+}
+
+#pragma mark - Apply/Remove Drop Shadow
+- (void)applyDropShadow {
+  if (_navigationBarBackgroundView.alpha == 1.0f) {
+    self.layer.shadowOpacity = kShadowOpacity;
+    _navigationBarBackgroundView.clipsToBounds = YES;
+  }
+}
+
+- (void)removeDropShadow {
+  self.layer.shadowOpacity = 0;
+  _navigationBarBackgroundView.clipsToBounds = NO;
 }
 
 #pragma mark - AuxiliaryView
@@ -51,6 +70,11 @@ static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackgrou
 #pragma mark - BackgroundAlpha
 - (void)setBackgroundAlpha:(CGFloat)alpha animated:(BOOL)animated {
   _backgroundAlpha = alpha;
+  if (_backgroundAlpha != 1.0f) {
+    [self removeDropShadow];
+  } else {
+    [self applyDropShadow];
+  }
   [_backgroundAlphaStrategy applyAppearanceAnimated:animated completionBlock:nil];
 }
 

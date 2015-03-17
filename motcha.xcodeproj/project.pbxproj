@@ -20,6 +20,7 @@
 		15461A601AAEAFF60008025A /* MCNewsCategoryAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15461A5F1AAEAFF60008025A /* MCNewsCategoryAddView.xib */; };
 		15461A631AAF75CA0008025A /* MCNewsCategorySelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A621AAF75CA0008025A /* MCNewsCategorySelectorView.m */; };
 		15461A6A1AAFA25F0008025A /* MCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A691AAFA25F0008025A /* MCTextView.m */; };
+		15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
 		15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97831A89112F0066B469 /* MCNavigationController.m */; };
@@ -110,6 +111,8 @@
 		15461A621AAF75CA0008025A /* MCNewsCategorySelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsCategorySelectorView.m; sourceTree = "<group>"; };
 		15461A681AAFA25F0008025A /* MCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTextView.h; sourceTree = "<group>"; };
 		15461A691AAFA25F0008025A /* MCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTextView.m; sourceTree = "<group>"; };
+		15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
+		15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
 		15DB977C1A8911190066B469 /* MCKeyValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCKeyValuePair.m; sourceTree = "<group>"; };
 		15DB977F1A89112F0066B469 /* MCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNavigationBar.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				C649C8581A8982C70087C340 /* UIFont+DINFont.m */,
 				1539C2711A9838F300C32877 /* NSMutableArray+Manipulation.h */,
 				1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */,
+				15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */,
+				15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -720,6 +725,7 @@
 				15461A631AAF75CA0008025A /* MCNewsCategorySelectorView.m in Sources */,
 				15461A5E1AAEAFA90008025A /* MCNewsCategoryAddView.m in Sources */,
 				C649C81A1A8980F10087C340 /* JTSAnimatedGIFUtility.m in Sources */,
+				15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */,
 				C649C8531A8982B80087C340 /* MCNewsListCollectionViewCell.m in Sources */,
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,

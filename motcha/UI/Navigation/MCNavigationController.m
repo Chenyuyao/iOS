@@ -10,7 +10,7 @@
   return [super initWithRootViewController:rootViewController];
 }
 
-- (void)notifyViewControllerWillAppearAnimated:(BOOL)animated {
+- (void)notifyViewWillAppearAnimated:(BOOL)animated {
   id<MCNavigationBarCustomizationDelegate>topViewController =
       (id<MCNavigationBarCustomizationDelegate>)self.topViewController;
   if ([topViewController conformsToProtocol:@protocol(MCNavigationBarCustomizationDelegate)]) {
@@ -37,6 +37,16 @@
   [self setNavigationBarBackgroundAlpha:backgroundAlpha animated:animated];
 }
 
+- (void)notifyViewWillDisappearAnimated:(BOOL)animated {
+  MCNavigationBar *navigationBar = (MCNavigationBar*)self.navigationBar;
+  [navigationBar removeDropShadow];
+}
+
+- (void)notifyViewDidAppearAnimated:(BOOL)animated {
+  MCNavigationBar *navigationBar = (MCNavigationBar*)self.navigationBar;
+  [navigationBar applyDropShadow];
+}
+
 #pragma mark - NavigationBarAuxiliaryView operations
 - (void)setNavigationBarAuxiliaryView:(UIView*)auxiliaryView animated:(BOOL)animated {
   MCNavigationBar *navigationBar = (MCNavigationBar*)self.navigationBar;
@@ -58,8 +68,8 @@
   [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
     UIView *containerView = [context containerView];
     if (toLandScape) {
-      // -kNavigationBarOffsetLandscape is because when in portrait mode, the top of the background view is above that
-      // of the navigation bar by kNavigationBarOffsetLandscape (0) pts.
+      // -kNavigationBarOffsetLandscape is because when in portrait mode, the top of the background view is above
+      // that of the navigation bar by kNavigationBarOffsetLandscape (0) pts.
       navigationBar.navigationBarBackgroundView.frame =
           CGRectMake(containerView.frame.origin.x, containerView.frame.origin.y - kNavigationBarOffsetLandscape,
               size.width, navigationBar.frame.size.height + kNavigationBarOffsetLandscape + auxFrame.size.height);
@@ -67,8 +77,8 @@
           CGRectMake(auxFrame.origin.x, navigationBar.frame.size.height + kNavigationBarOffsetLandscape, size.width,
               auxFrame.size.height);
     } else {
-      // -kNavigationBarOffsetPortrait is because when in portrait mode, the top of the background view is above that of
-      // the navigation bar by kNavigationBarOffsetPortrait (20) pts.
+      // -kNavigationBarOffsetPortrait is because when in portrait mode, the top of the background view is above
+      // that of the navigation bar by kNavigationBarOffsetPortrait (20) pts.
       navigationBar.navigationBarBackgroundView.frame =
           CGRectMake(containerView.frame.origin.x, containerView.frame.origin.y - kNavigationBarOffsetPortrait,
               size.width, navigationBar.frame.size.height + kNavigationBarOffsetPortrait + auxFrame.size.height);
