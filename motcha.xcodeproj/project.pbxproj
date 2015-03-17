@@ -31,6 +31,11 @@
 		15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */; };
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
+		47E616D71AB7D34000FC25FA /* CategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D01AB7D34000FC25FA /* CategoryEntity.m */; };
+		47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */; };
+		47E616D91AB7D34000FC25FA /* MCReadingPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */; };
+		47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */; };
+		47E616DC1AB7D34800FC25FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E616DB1AB7D34800FC25FA /* CoreData.framework */; };
 		47E912EA1A84596D0055AB69 /* MCWebContentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E912E91A84596D0055AB69 /* MCWebContentService.m */; };
 		47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E912EC1A8459BD0055AB69 /* MCNewsDetailsObject.m */; };
 		47E9132F1A845FFB0055AB69 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E9132E1A845FFB0055AB69 /* libxml2.2.dylib */; };
@@ -135,6 +140,15 @@
 		15E3DB4C1A6B04BA002F4F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = motchaTests.m; sourceTree = "<group>"; };
 		283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.release.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.release.xcconfig"; sourceTree = "<group>"; };
+		47E616CF1AB7D34000FC25FA /* CategoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryEntity.h; sourceTree = "<group>"; };
+		47E616D01AB7D34000FC25FA /* CategoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryEntity.m; sourceTree = "<group>"; };
+		47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabaseManager.h; sourceTree = "<group>"; };
+		47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabaseManager.m; sourceTree = "<group>"; };
+		47E616D31AB7D34000FC25FA /* MCReadingPreferenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCReadingPreferenceService.h; sourceTree = "<group>"; };
+		47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCReadingPreferenceService.m; sourceTree = "<group>"; };
+		47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Helpers.h"; sourceTree = "<group>"; };
+		47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Helpers.m"; sourceTree = "<group>"; };
+		47E616DB1AB7D34800FC25FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		47E912E81A84596D0055AB69 /* MCWebContentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCWebContentService.h; path = Network/MCWebContentService.h; sourceTree = "<group>"; };
 		47E912E91A84596D0055AB69 /* MCWebContentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCWebContentService.m; path = Network/MCWebContentService.m; sourceTree = "<group>"; };
 		47E912EB1A8459BD0055AB69 /* MCNewsDetailsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCNewsDetailsObject.h; path = DataModel/MCNewsDetailsObject.h; sourceTree = "<group>"; };
@@ -221,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47E616DC1AB7D34800FC25FA /* CoreData.framework in Frameworks */,
 				47E9133E1A8466770055AB69 /* libxml2.dylib in Frameworks */,
 				47E9132F1A845FFB0055AB69 /* libxml2.2.dylib in Frameworks */,
 			);
@@ -351,6 +366,7 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
+				47E616CE1AB7D34000FC25FA /* Storage */,
 				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				C649C8561A8982C70087C340 /* Category */,
 				C649C7EF1A8980F10087C340 /* ThirdParty */,
@@ -393,6 +409,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		47E616CE1AB7D34000FC25FA /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				47E616CF1AB7D34000FC25FA /* CategoryEntity.h */,
+				47E616D01AB7D34000FC25FA /* CategoryEntity.m */,
+				47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */,
+				47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */,
+				47E616D31AB7D34000FC25FA /* MCReadingPreferenceService.h */,
+				47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */,
+				47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */,
+				47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		47E912E71A84592E0055AB69 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +464,7 @@
 		ABF2B1EC44AFC19FAD99A02F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47E616DB1AB7D34800FC25FA /* CoreData.framework */,
 				C649C8601A8984AA0087C340 /* SystemConfiguration.framework */,
 				C649C85E1A89849F0087C340 /* libsqlite3.0.dylib */,
 				C649C85C1A8984930087C340 /* libz.dylib */,
@@ -724,14 +756,18 @@
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
+				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
 				C649C81C1A8980F10087C340 /* JTSImageViewController.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
+				47E616D91AB7D34000FC25FA /* MCReadingPreferenceService.m in Sources */,
 				1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */,
 				C649C84C1A8982B80087C340 /* MCDetailNewsBodyView.m in Sources */,
 				153F55761AAA5A2500487C2F /* MCNewsListsContainerController.m in Sources */,
 				C649C84B1A8982B80087C340 /* MCNewsDetailViewController.m in Sources */,
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
+				47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */,
+				47E616D71AB7D34000FC25FA /* CategoryEntity.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
 				1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */,
 				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,
