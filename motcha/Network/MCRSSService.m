@@ -61,8 +61,10 @@ static NSString * kFullTextRSSURL = @"http://fulltextrssfeed.com/";
         //this item is earliar than or equal to since, mark it as to be discarded
         [discardedItems addIndex:index];
       } else {
-        //add source and needParse to item
-        [item addSource:[source source] needParse:[source needParse]];
+        //add source, category and needParse to item
+        [item addSource:[source source]
+               category:[source category]
+              needParse:[source needParse]];
       }
       index++;
     }
@@ -75,7 +77,8 @@ static NSString * kFullTextRSSURL = @"http://fulltextrssfeed.com/";
   }
   
   //Sort rssItemArray by pubDate
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:TRUE];
+  NSSortDescriptor *sortDescriptor =
+  [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:TRUE];
   [rssItemArray sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
   
   return rssItemArray;
