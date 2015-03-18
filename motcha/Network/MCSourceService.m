@@ -4,6 +4,7 @@
 @implementation MCSourceService
 
 - (void) hardCodeSource {
+  _sources = [[NSMutableDictionary alloc] init];
   //Hardcoded MCSource
   MCSource * technologySource1 =
   [[MCSource alloc] initWithCategory:@"technology"
@@ -18,7 +19,7 @@
                                 link:@"www.engadget.com/rss.xml/"
                            needParse:NO
                          fullTextale:YES];
-  [_sources setValue:@[technologySource1, technologySource2] forKey:@"technology"];
+  [_sources setObject:@[technologySource1, technologySource2] forKey:@"technology"];
   
   MCSource * financeSource =
   [[MCSource alloc] initWithCategory:@"finance"
@@ -26,7 +27,7 @@
                                 link:@"www.economist.com/sections/business-finance/rss.xml"
                            needParse:NO
                          fullTextale:YES];
-  [_sources setValue:@[financeSource] forKey:@"finance"];
+  [_sources setObject:@[financeSource] forKey:@"finance"];
   
   MCSource * artsSource =
   [[MCSource alloc] initWithCategory:@"arts"
@@ -34,7 +35,7 @@
                                 link:@"www.artnews.com/feed/"
                            needParse:NO
                          fullTextale:YES];
-  [_sources setValue:@[artsSource] forKey:@"arts"];
+  [_sources setObject:@[artsSource] forKey:@"arts"];
   
 }
 
