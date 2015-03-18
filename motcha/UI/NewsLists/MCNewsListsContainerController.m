@@ -8,6 +8,8 @@
 
 static CGFloat kLogoFontSize = 25.0f;
 
+static NSString *kRecommendedCategory = @"Recommended";
+
 @interface MCNewsListsContainerController ()
 <
   MCNavigationBarCustomizationDelegate,
@@ -22,9 +24,10 @@ static CGFloat kLogoFontSize = 25.0f;
   MCNewsCategorySelectorView *_newsCategoryView;
 }
 
-- (instancetype)init {
+- (instancetype)initWithCategories:(NSArray *)categories {
   if (self = [super init]) {
-    _categories = [NSMutableArray array];
+    _categories = [NSMutableArray arrayWithObject:kRecommendedCategory];
+    [_categories addObjectsFromArray:categories];
     _pageViewController = [[MCPageViewController alloc] init];
     _pageViewController.delegate = self;
     [_pageViewController registerClass:[MCNewsListViewController class]];
@@ -65,9 +68,6 @@ static CGFloat kLogoFontSize = 25.0f;
   _newsCategoryView = [[MCNewsCategorySelectorView alloc] init];
   _newsCategoryView.categoryScrollView.mcDelegate = self;
   _newsCategoryView.categoryScrollView.mcDataSource = self;
-  // TODO: replace the fake data with the server call
-  [_categories addObjectsFromArray:
-      @[@"Recommended", @"Popular", @"Technology", @"Kitchener", @"International", @"Car", @"Food", @"Real Estates", @"Arts"]];
   [_newsCategoryView.categoryScrollView addCategories:_categories];
   [_newsCategoryView.categoryScrollView reloadCategoryButtons];
 }
