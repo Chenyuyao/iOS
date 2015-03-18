@@ -50,11 +50,6 @@ static void *scrollViewContext = &scrollViewContext;
   [self observePageView];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self scrollViewDidEndChangingAnimated:animated];
-}
-
 - (void)insertViewControllerAtIndex:(NSUInteger)index {
   if (!_pageViewItemClass) {
     @throw [NSException exceptionWithName:NSGenericException

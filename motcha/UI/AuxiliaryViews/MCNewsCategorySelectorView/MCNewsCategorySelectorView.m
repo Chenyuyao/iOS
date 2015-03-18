@@ -45,7 +45,10 @@
 }
 
 - (IBAction)addCategoryButtonPressed:(UIButton *)sender {
-  // TODO: present the category view controller.
+  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorViewDelegate)] &&
+      [_mcDelegate respondsToSelector:@selector(addCategoriesButtonPressed)]) {
+    [_mcDelegate addCategoriesButtonPressed];
+  }
 }
 
 @end

@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface MCNewsListCollectionViewCell : UICollectionViewCell
+@interface MCNewsListTableViewCell : UITableViewCell
 - (void)setImage:(UIImage *)image;
 - (void)setTitle:(NSString *)title;
 - (void)setSource:(NSString *)source;
