@@ -11,11 +11,9 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
-  //MCIntroViewController *introViewController = [[MCIntroViewController alloc] init];
-//  MCNewsListViewController *newsListViewController = [[MCNewsListViewController alloc] init];
-  MCNewsListsContainerController *newsListsContainerController = [[MCNewsListsContainerController alloc] init];
+  MCIntroViewController *introViewController = [[MCIntroViewController alloc] init];
   MCNavigationController *navigationController =
-      [[MCNavigationController alloc] initWithRootViewController:newsListsContainerController];
+      [[MCNavigationController alloc] initWithRootViewController:introViewController];
   self.window.rootViewController = navigationController;
   return YES;
 }

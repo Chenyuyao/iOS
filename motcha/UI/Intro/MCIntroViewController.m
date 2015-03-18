@@ -112,7 +112,10 @@ static NSString * const reuseFooter = @"FooterView";
 #pragma mark Private
 
 - (void)finishButtonTapped {
-  MCNewsListsContainerController *newsListsController = [[MCNewsListsContainerController alloc] init];
+  // TODO(Sherry): replace the following with real data.
+  NSArray *fakedata = @[@"Popular", @"Kitchener", @"Design", @"Sports", @"Technology", @"Arts"];
+  MCNewsListsContainerController *newsListsController =
+      [[MCNewsListsContainerController alloc] initWithCategories:fakedata];
   [self.navigationController setViewControllers:@[newsListsController] animated:YES];
 }
 
