@@ -1,7 +1,10 @@
-#import "MCNewsListCollectionViewCell.h"
+#import "MCNewsListTableViewCell.h"
 
-@implementation MCNewsListCollectionViewCell {
-  __weak IBOutlet UIView *_bottomBorderView;
+#import "UIColor+Helpers.h"
+
+static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
+
+@implementation MCNewsListTableViewCell {
   __weak IBOutlet UIImageView *_thumbnailImageView;
   __weak IBOutlet UILabel *_titleLabel;
   __weak IBOutlet UILabel *_sourceLabel;
@@ -31,4 +34,12 @@
 - (void)setDescription:(NSString *)descript {
   _descriptLabel.text = descript;
 }
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+  [super setSelected:selected animated:animated];
+  UIView * selectedBackgroundView = [[UIView alloc] init];
+  [selectedBackgroundView setBackgroundColor:[UIColor colorWithHexValue:kSelectedBackgroundViewColor andAlpha:1.0f]];
+  [self setSelectedBackgroundView:selectedBackgroundView];
+}
+
 @end

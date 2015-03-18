@@ -1,36 +1,27 @@
 #import "MCNewsListViewController.h"
 
 #import "MCParsedRSSItem.h"
-#import "MCNewsListCollectionViewCell.h"
+#import "MCNewsListTableViewCell.h"
 #import "MCNewsDetailViewController.h"
-#import "MCNewsListCollectionViewLayout.h"
 #import "MCNavigationController.h"
 
-static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
+static NSString *kMCTableViewCellReuseId = @"MCTableViewCell";
+static CGFloat kCellHeight = 141.0f;
 
 @implementation MCNewsListViewController {
   NSArray *_thumbNails;
-}
-
-- (instancetype)init {
-  [self setTitle:@"News List"];
-  MCNewsListCollectionViewLayout *layout = [[MCNewsListCollectionViewLayout alloc] init];
-  layout.numberOfElementsInEachRow = 1;
-  layout.spacing = 0;
-  layout.margin = 0;
-  layout.isFlexibleWidth = YES;
-  layout.preferredElementSize = CGSizeMake(320, 100);
-  return [super initWithCollectionViewLayout:layout];
+  BOOL _viewAppeared;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.collectionView.backgroundColor = [UIColor whiteColor];
-  self.collectionView.scrollsToTop = NO;
+  self.tableView.backgroundColor = [UIColor whiteColor];
+  self.tableView.scrollsToTop = NO;
+  self.tableView.rowHeight = kCellHeight;
   self.automaticallyAdjustsScrollViewInsets = NO;
   // Register cell classes
-  [self.collectionView registerNib:[UINib nibWithNibName:@"MCNewsListCollectionViewCell" bundle:nil]
-        forCellWithReuseIdentifier:kMCCollectionViewCellReuseId];
+  [self.tableView registerNib:[UINib nibWithNibName:@"MCNewsListTableViewCell" bundle:nil]
+       forCellReuseIdentifier:kMCTableViewCellReuseId];
   _thumbNails = [NSArray arrayWithObjects:
       @"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg",
       @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg",
@@ -42,39 +33,50 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
   MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
   CGFloat navigationBarAppearanceHeight =
       navigationBar.backgroundHeight + navigationBar.auxiliaryView.frame.size.height;
-  self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+  self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
 
-- (void)setCategory:(NSString *)category {
-  if (_category != category) {
-    _category = category;
-    [self invalidate];
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  _viewAppeared = YES;
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  if (!_viewAppeared) {
+    // This resolves the issue where the scroll view is not scrolled to top on page appeared, after a custom
+    // cell height is applied.
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
   }
 }
 
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-  // TODO: replace with real data
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  // TODO(Frank): Incomplete method implementation.
+  // Return the number of sections.
   return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  // TODO: replace with real data
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  // TODO(Frank): Incomplete method implementation.
+  // Return the number of rows in the section.
   return 12;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  UICollectionViewCell *cell =
-      [collectionView dequeueReusableCellWithReuseIdentifier:kMCCollectionViewCellReuseId forIndexPath:indexPath];
-  // Configure the cell
-  // TODO: pull real data and set the cell details
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMCTableViewCellReuseId forIndexPath:indexPath];
+  
+  // TODO(Frank): Configure the cell...
+  
   return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  // Fake RSS data
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   MCParsedRSSItem *item = [[MCParsedRSSItem alloc]
       initWithTitle:@"Lonnie Johnson, the rocket scientist and Super Soaker inventor"
                link:@"http://www.engadget.com/2015/02/27/lonnie-johnson-the-rocket-scientist-and-super-soaker-inventor/"
@@ -93,24 +95,18 @@ static NSString *kMCCollectionViewCellReuseId = @"MCCollectionViewCell";
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
   [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
   BOOL scrollViewAtTop = NO;
-  if (self.collectionView.contentOffset.y <= -1*self.collectionView.contentInset.top) {
+  if (self.tableView.contentOffset.y <= -1*self.tableView.contentInset.top) {
     scrollViewAtTop = YES;
   }
   MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
   [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
     CGFloat navigationBarAppearanceHeight = navigationBar.backgroundHeight;
-    self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     if (scrollViewAtTop) {
-      [self.collectionView setContentOffset:CGPointMake(0, -1*self.collectionView.contentInset.top) animated:YES];
+      [self.tableView setContentOffset:CGPointMake(0, -1*self.tableView.contentInset.top) animated:YES];
     }
   }];
-}
-
-#pragma mark - Private methods
-
-// Invalidates the content of the current list view controller and load the content.
-- (void)invalidate {
-  // TODO: (Frank) implement this.
 }
 
 @end

@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface MCNewsListViewController : UICollectionViewController
+@interface MCNewsListViewController : UITableViewController
 @property (strong, nonatomic) NSString *category;
 @end

@@ -13,6 +13,7 @@ static NSString *kRecommendedCategory = @"Recommended";
 @interface MCNewsListsContainerController ()
 <
   MCNavigationBarCustomizationDelegate,
+  MCNewsCategorySelectorViewDelegate,
   MCNewsCategorySelectorScrollViewDelegate,
   MCNewsCategorySelectorScrollViewDataSource,
   MCPageViewControllerDelegate
@@ -66,6 +67,7 @@ static NSString *kRecommendedCategory = @"Recommended";
 - (void)viewDidLoad {
   [super viewDidLoad];
   _newsCategoryView = [[MCNewsCategorySelectorView alloc] init];
+  _newsCategoryView.mcDelegate = self;
   _newsCategoryView.categoryScrollView.mcDelegate = self;
   _newsCategoryView.categoryScrollView.mcDataSource = self;
   [_newsCategoryView.categoryScrollView addCategories:_categories];
@@ -88,9 +90,9 @@ static NSString *kRecommendedCategory = @"Recommended";
   return (UIScrollView *)self.pageViewController.view;
 }
 
-#pragma mark - MCNewsCategorySelectorScrollViewDelegate methods
-- (void)moreCategoriesButtonPressed {
-  // TODO: The "+" button to be implemented.
+#pragma mark - MCNewsCategorySelectorViewDelegate methods
+- (void) addCategoriesButtonPressed {
+  // TODO: present the addcategory view controller.
 }
 
 - (void)categoryButtonPressed:(MCCategoryButton *)button atIndex:(NSUInteger)index animated:(BOOL)animated {
@@ -120,16 +122,15 @@ static NSString *kRecommendedCategory = @"Recommended";
      pageDidFinishAnimated:(BOOL)animated
            withCurrentPage:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-//  [_newsCategoryView adjustCategoryButtonPositionAnimated:animated];
-  // TODO: update the current page
   for (NSInteger i = 0; i < [self.pageViewController viewControllerCount]; ++i) {
     MCNewsListViewController *viewController =
         (MCNewsListViewController *)[self.pageViewController viewControllerAtIndex:i];
-    viewController.collectionView.scrollsToTop = NO;
+    viewController.tableView.scrollsToTop = NO;
     
   }
   MCNewsListViewController *newsListViewController = (MCNewsListViewController *)viewController;
-  newsListViewController.collectionView.scrollsToTop = YES;
+  newsListViewController.tableView.scrollsToTop = YES;
+  // TODO(Frank): Reload the current view controller.
 }
 
 - (void)pageViewController:(MCPageViewController *)pageViewController

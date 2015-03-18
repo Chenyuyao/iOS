@@ -62,9 +62,8 @@
 		C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C83F1A8982B80087C340 /* MCNewsImageBlock.m */; };
 		C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8411A8982B80087C340 /* MCNewsTextBlock.m */; };
 		C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8441A8982B80087C340 /* MCNewsListViewController.m */; };
-		C649C8531A8982B80087C340 /* MCNewsListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8471A8982B80087C340 /* MCNewsListCollectionViewCell.m */; };
-		C649C8541A8982B80087C340 /* MCNewsListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C649C8481A8982B80087C340 /* MCNewsListCollectionViewCell.xib */; };
-		C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C84A1A8982B80087C340 /* MCNewsListCollectionViewLayout.m */; };
+		C649C8531A8982B80087C340 /* MCNewsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8471A8982B80087C340 /* MCNewsListTableViewCell.m */; };
+		C649C8541A8982B80087C340 /* MCNewsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C649C8481A8982B80087C340 /* MCNewsListTableViewCell.xib */; };
 		C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8581A8982C70087C340 /* UIFont+DINFont.m */; };
 		C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8661A90510F0087C340 /* MBProgressHUD.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
@@ -201,11 +200,9 @@
 		C649C8411A8982B80087C340 /* MCNewsTextBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsTextBlock.m; sourceTree = "<group>"; };
 		C649C8431A8982B80087C340 /* MCNewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListViewController.h; sourceTree = "<group>"; };
 		C649C8441A8982B80087C340 /* MCNewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListViewController.m; sourceTree = "<group>"; };
-		C649C8461A8982B80087C340 /* MCNewsListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListCollectionViewCell.h; sourceTree = "<group>"; };
-		C649C8471A8982B80087C340 /* MCNewsListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListCollectionViewCell.m; sourceTree = "<group>"; };
-		C649C8481A8982B80087C340 /* MCNewsListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCNewsListCollectionViewCell.xib; sourceTree = "<group>"; };
-		C649C8491A8982B80087C340 /* MCNewsListCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListCollectionViewLayout.h; sourceTree = "<group>"; };
-		C649C84A1A8982B80087C340 /* MCNewsListCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListCollectionViewLayout.m; sourceTree = "<group>"; };
+		C649C8461A8982B80087C340 /* MCNewsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListTableViewCell.h; sourceTree = "<group>"; };
+		C649C8471A8982B80087C340 /* MCNewsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListTableViewCell.m; sourceTree = "<group>"; };
+		C649C8481A8982B80087C340 /* MCNewsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCNewsListTableViewCell.xib; sourceTree = "<group>"; };
 		C649C8571A8982C70087C340 /* UIFont+DINFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DINFont.h"; sourceTree = "<group>"; };
 		C649C8581A8982C70087C340 /* UIFont+DINFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DINFont.m"; sourceTree = "<group>"; };
 		C649C85A1A89848B0087C340 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -580,11 +577,9 @@
 		C649C8451A8982B80087C340 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C649C8461A8982B80087C340 /* MCNewsListCollectionViewCell.h */,
-				C649C8471A8982B80087C340 /* MCNewsListCollectionViewCell.m */,
-				C649C8481A8982B80087C340 /* MCNewsListCollectionViewCell.xib */,
-				C649C8491A8982B80087C340 /* MCNewsListCollectionViewLayout.h */,
-				C649C84A1A8982B80087C340 /* MCNewsListCollectionViewLayout.m */,
+				C649C8461A8982B80087C340 /* MCNewsListTableViewCell.h */,
+				C649C8471A8982B80087C340 /* MCNewsListTableViewCell.m */,
+				C649C8481A8982B80087C340 /* MCNewsListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -730,7 +725,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C649C8541A8982B80087C340 /* MCNewsListCollectionViewCell.xib in Resources */,
+				C649C8541A8982B80087C340 /* MCNewsListTableViewCell.xib in Resources */,
 				C649C7E31A894F5B0087C340 /* DINPro-Regular.otf in Resources */,
 				E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */,
 				E0B343C71A773F030081BE95 /* MCIntroFooter.xib in Resources */,
@@ -768,7 +763,7 @@
 				15461A5E1AAEAFA90008025A /* MCNewsCategoryAddView.m in Sources */,
 				C649C81A1A8980F10087C340 /* JTSAnimatedGIFUtility.m in Sources */,
 				15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */,
-				C649C8531A8982B80087C340 /* MCNewsListCollectionViewCell.m in Sources */,
+				C649C8531A8982B80087C340 /* MCNewsListTableViewCell.m in Sources */,
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
@@ -807,7 +802,6 @@
 				C649C84E1A8982B80087C340 /* MCDetailNewsTitleView.m in Sources */,
 				C649C8181A8980F10087C340 /* HTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
-				C649C8551A8982B80087C340 /* MCNewsListCollectionViewLayout.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
 				C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */,

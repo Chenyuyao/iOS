@@ -4,7 +4,6 @@
 
 @protocol MCNewsCategorySelectorScrollViewDelegate <NSObject>
 @optional
-- (void)moreCategoriesButtonPressed;
 - (void)categoryButtonPressed:(MCCategoryButton *)button atIndex:(NSUInteger)index animated:(BOOL)animated;
 - (void)didInsertCategoryButton:(MCCategoryButton *)button atIndex:(NSUInteger)index;
 - (void)didRemoveCategoryButton:(MCCategoryButton *)button atIndex:(NSUInteger)index;
