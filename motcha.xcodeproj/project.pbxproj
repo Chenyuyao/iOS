@@ -69,6 +69,8 @@
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
+		CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA074881AB9199600FE2F3B /* MCSourceService.m */; };
+		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
 		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
@@ -215,6 +217,10 @@
 		CA90EF2E1A85B8E1005931CF /* MCRSSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSService.h; path = Network/MCRSSService.h; sourceTree = "<group>"; };
 		CA90EF2F1A85B8F4005931CF /* MCRSSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSService.m; path = Network/MCRSSService.m; sourceTree = "<group>"; };
 		CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCParsedRSSItem.h; path = DataModel/MCParsedRSSItem.h; sourceTree = "<group>"; };
+		CAA074881AB9199600FE2F3B /* MCSourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSourceService.m; path = Network/MCSourceService.m; sourceTree = "<group>"; };
+		CAA0748D1AB91A3200FE2F3B /* MCSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSource.m; path = DataModel/MCSource.m; sourceTree = "<group>"; };
+		CAA074911AB91B2300FE2F3B /* MCSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSource.h; path = DataModel/MCSource.h; sourceTree = "<group>"; };
+		CAA074921AB91B6800FE2F3B /* MCSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSourceService.h; path = Network/MCSourceService.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
 		E0B343B71A773F030081BE95 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCell.m; sourceTree = "<group>"; };
 		E0B343B81A773F030081BE95 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroCell.xib; sourceTree = "<group>"; };
@@ -435,6 +441,8 @@
 				CA90EF2C1A85B892005931CF /* MCRSSParser.m */,
 				CA90EF2E1A85B8E1005931CF /* MCRSSService.h */,
 				CA90EF2F1A85B8F4005931CF /* MCRSSService.m */,
+				CAA074881AB9199600FE2F3B /* MCSourceService.m */,
+				CAA074921AB91B6800FE2F3B /* MCSourceService.h */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -448,6 +456,8 @@
 				47E912EC1A8459BD0055AB69 /* MCNewsDetailsObject.m */,
 				47E9134B1A8487710055AB69 /* MCParsedHTMLNode.h */,
 				47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */,
+				CAA0748D1AB91A3200FE2F3B /* MCSource.m */,
+				CAA074911AB91B2300FE2F3B /* MCSource.h */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -759,6 +769,7 @@
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
 				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
+				CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */,
 				C649C81C1A8980F10087C340 /* JTSImageViewController.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
 				47E616D91AB7D34000FC25FA /* MCReadingPreferenceService.m in Sources */,
@@ -778,6 +789,7 @@
 				1539C2861A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
+				CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */,
 				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,

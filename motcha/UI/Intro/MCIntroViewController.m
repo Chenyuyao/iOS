@@ -4,12 +4,16 @@
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
 #import "MCNewsListsContainerController.h"
+#import "MCReadingPreferenceService.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
 static NSString * const reuseFooter = @"FooterView";
+static NSInteger minSelectedCategories = 3;
 
-@implementation MCIntroViewController
+@implementation MCIntroViewController {
+  NSMutableArray *_selectedCategories;
+}
 
 - (instancetype)init {
   MCIntroCollectionViewLayout *layout = [[MCIntroCollectionViewLayout alloc] init];
@@ -20,6 +24,7 @@ static NSString * const reuseFooter = @"FooterView";
   layout.headerHeight = 135.0f;
   layout.footerHeight = 50.0f;
   layout.preferredElementSize = CGSizeMake(100, 100);
+  _selectedCategories = [[NSMutableArray alloc] init];
   return [super initWithCollectionViewLayout:layout];
 }
 
@@ -104,19 +109,37 @@ static NSString * const reuseFooter = @"FooterView";
 }
 
 - (void)updateCell:(MCIntroCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-  NSString *imageName = [[[self class] categories] objectAtIndex:indexPath.row];
+  NSString *imageName = [[self class] categories][indexPath.row];
   cell.imageView.image = [UIImage imageNamed:imageName];
   cell.title.text = imageName;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+    didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  [_selectedCategories addObject:[[self class] categories][indexPath.row]];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+    didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+  [_selectedCategories removeObject:[[self class] categories][indexPath.row]];
 }
 
 #pragma mark Private
 
 - (void)finishButtonTapped {
-  // TODO(Sherry): replace the following with real data.
-  NSArray *fakedata = @[@"Popular", @"Kitchener", @"Design", @"Sports", @"Technology", @"Arts"];
-  MCNewsListsContainerController *newsListsController =
-      [[MCNewsListsContainerController alloc] initWithCategories:fakedata];
-  [self.navigationController setViewControllers:@[newsListsController] animated:YES];
+  if ([_selectedCategories count] < minSelectedCategories) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Please select at least three categories to get started."
+                                                    delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil, nil];
+    [alert show];
+  } else {
+    MCNewsListsContainerController *newsListsController =
+        [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
+    [self.navigationController setViewControllers:@[newsListsController] animated:YES];
+    [[MCReadingPreferenceService sharedInstance] setCategories:_selectedCategories];
+  }
 }
 
 + (NSArray *)categories {

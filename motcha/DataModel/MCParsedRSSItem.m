@@ -7,7 +7,7 @@
                       descrpt:(NSString *)descrpt
                        imgSrc:(NSString *)imgSrc
                       pubDate:(NSString *)pubDate
-                       author:(NSString *)author {
+                       author:(NSString *)author{
   if (self = [super init]) {
     _title = title;
     _link = link;
@@ -19,9 +19,16 @@
     [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
     _pubDate = [dateFormat dateFromString:pubDate];    
   }
-  
-  //TODO:extract RSS source
+
   return self;
+}
+
+- (void) addSource:(NSString *)source
+          category:(NSString *)category
+         needParse:(BOOL)needParse {
+  _source = source;
+  _category = category;
+  _needParse = needParse;
 }
 
 @end

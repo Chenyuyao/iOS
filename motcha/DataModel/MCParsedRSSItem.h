@@ -9,7 +9,9 @@
 @property(nonatomic, readonly) NSString *imgSrc;
 @property(nonatomic, readonly) NSDate   *pubDate;
 @property(nonatomic, readonly) NSString *author;
+@property(nonatomic, readonly) NSString *category;
 @property(nonatomic, readonly) NSString *source;
+@property(nonatomic, readonly) BOOL needParse;
 
 - (instancetype)initWithTitle:(NSString *)title
                          link:(NSString *)link
@@ -18,5 +20,8 @@
                       pubDate:(NSString *)pubDate
                        author:(NSString *)author;
 
+- (void) addSource:(NSString *)source
+          category:(NSString *)category
+         needParse:(BOOL)needParse;
 @end
 
