@@ -19,9 +19,14 @@
     [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
     _pubDate = [dateFormat dateFromString:pubDate];    
   }
-  
-  //TODO:extract RSS source
+
   return self;
+}
+
+- (void) addSource:(NSString *)source
+         needParse:(BOOL)needParse {
+  _source = source;
+  needParse = needParse;
 }
 
 @end

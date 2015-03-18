@@ -10,6 +10,7 @@
 @property(nonatomic, readonly) NSDate   *pubDate;
 @property(nonatomic, readonly) NSString *author;
 @property(nonatomic, readonly) NSString *source;
+@property(nonatomic, readonly) BOOL needParse;
 
 - (instancetype)initWithTitle:(NSString *)title
                          link:(NSString *)link
@@ -18,5 +19,7 @@
                       pubDate:(NSString *)pubDate
                        author:(NSString *)author;
 
+- (void) addSource:(NSString *)source
+         needParse:(BOOL)needParse;
 @end
 
