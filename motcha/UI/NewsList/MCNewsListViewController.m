@@ -4,6 +4,7 @@
 #import "MCNewsListTableViewCell.h"
 #import "MCNewsDetailViewController.h"
 #import "MCNavigationController.h"
+#import "MCRSSService.h"
 
 static NSString *kMCTableViewCellReuseId = @"MCTableViewCell";
 static CGFloat kCellHeight = 141.0f;
@@ -11,6 +12,7 @@ static CGFloat kCellHeight = 141.0f;
 @implementation MCNewsListViewController {
   NSArray *_thumbNails;
   BOOL _viewAppeared;
+  NSMutableArray *_rssItems;
 }
 
 - (void)viewDidLoad {
@@ -22,10 +24,15 @@ static CGFloat kCellHeight = 141.0f;
   // Register cell classes
   [self.tableView registerNib:[UINib nibWithNibName:@"MCNewsListTableViewCell" bundle:nil]
        forCellReuseIdentifier:kMCTableViewCellReuseId];
-  _thumbNails = [NSArray arrayWithObjects:
-      @"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg",
-      @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg",
-      @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", nil];
+
+  id block = ^(NSMutableArray *feeds, NSError *parseError) {
+    NSLog(@"In total there are %lu feeds on %@", (unsigned long)[feeds count], [self category]);
+  };
+  [[MCRSSService sharedInstance]
+   fetchRSSWithCategory:self.category
+   since:[NSDate dateWithTimeIntervalSince1970:0]
+   completionBlock:block];
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated {

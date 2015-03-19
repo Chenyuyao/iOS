@@ -15,15 +15,18 @@
     _imgSrc = imgSrc;
     _author = author;
     
+    NSString * escapedPubDate = [pubDate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
-    _pubDate = [dateFormat dateFromString:pubDate];    
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
+    _pubDate = [dateFormat dateFromString:escapedPubDate];    
   }
 
   return self;
 }
 
-- (void) addSource:(NSString *)source
+- (void) setSource:(NSString *)source
           category:(NSString *)category
          needParse:(BOOL)needParse {
   _source = source;

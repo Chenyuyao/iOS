@@ -5,9 +5,9 @@
 //TODO: Should change to extracting source info from CORE DATA
 @interface MCSourceService : NSObject
 
-@property(nonatomic, readonly) NSDictionary *sources;
+@property(nonatomic, readonly) NSMutableDictionary *sources;
 
-- (NSArray *) getSourceWithCategory:(NSString *) category;
+- (NSArray *) getSourceByCategory:(NSString *) category;
 - (void) hardCodeSource;
 
 @end
