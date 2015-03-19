@@ -6,8 +6,8 @@
 + (MCRSSService *)sharedInstance;
 
 - (void)fetchRSSWithCategory:(NSString *)category
-                                   since:(NSDate *)since
-                         completionBlock:(void(^)(NSMutableArray *, NSError *))block;
+                       since:(NSDate *)since
+             completionBlock:(void(^)(NSMutableArray *, NSError *))block;
 
 @end
 
