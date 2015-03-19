@@ -20,6 +20,7 @@
 		15461A601AAEAFF60008025A /* MCNewsCategoryAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15461A5F1AAEAFF60008025A /* MCNewsCategoryAddView.xib */; };
 		15461A631AAF75CA0008025A /* MCNewsCategorySelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A621AAF75CA0008025A /* MCNewsCategorySelectorView.m */; };
 		15461A6A1AAFA25F0008025A /* MCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A691AAFA25F0008025A /* MCTextView.m */; };
+		1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */; };
 		15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
@@ -117,6 +118,8 @@
 		15461A621AAF75CA0008025A /* MCNewsCategorySelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsCategorySelectorView.m; sourceTree = "<group>"; };
 		15461A681AAFA25F0008025A /* MCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTextView.h; sourceTree = "<group>"; };
 		15461A691AAFA25F0008025A /* MCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTextView.m; sourceTree = "<group>"; };
+		1561B4591ABA3D8C00AB6D5B /* MCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCLabel.h; sourceTree = "<group>"; };
+		1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCLabel.m; sourceTree = "<group>"; };
 		15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
 		15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 			children = (
 				15461A681AAFA25F0008025A /* MCTextView.h */,
 				15461A691AAFA25F0008025A /* MCTextView.m */,
+				1561B4591ABA3D8C00AB6D5B /* MCLabel.h */,
+				1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
 				47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */,
 				47E616D71AB7D34000FC25FA /* CategoryEntity.m in Sources */,
+				1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
 				1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */,
 				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,

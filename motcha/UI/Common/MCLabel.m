@@ -1,11 +1,11 @@
-#import "MCTextView.h"
+#import "MCLabel.h"
 
-@implementation MCTextView {
+@implementation MCLabel {
   NSLayoutConstraint *_heightConstraint;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super initWithCoder:aDecoder]) {
     _heightConstraint = [NSLayoutConstraint constraintWithItem:self
                                                      attribute:NSLayoutAttributeHeight
                                                      relatedBy:NSLayoutRelationEqual
@@ -20,19 +20,11 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  // Auto-adjust the content size of the text view.
+  // Auto-adjust the content size of the label view.
+  self.preferredMaxLayoutWidth = self.frame.size.width;
   if (_heightConstraint.constant != self.intrinsicContentSize.height) {
     _heightConstraint.constant = self.intrinsicContentSize.height;
   }
-}
-
-- (CGSize)intrinsicContentSize {
-  CGSize intrinsicContentSize = self.contentSize;
-  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-    intrinsicContentSize.width += (self.textContainerInset.left + self.textContainerInset.right ) / 2.0f;
-    intrinsicContentSize.height += (self.textContainerInset.top + self.textContainerInset.bottom) / 2.0f;
-  }
-  return intrinsicContentSize;
 }
 
 @end

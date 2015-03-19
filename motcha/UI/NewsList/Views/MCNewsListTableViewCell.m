@@ -1,15 +1,21 @@
 #import "MCNewsListTableViewCell.h"
 
+#import "MCLabel.h"
 #import "UIColor+Helpers.h"
 
 static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 
 @implementation MCNewsListTableViewCell {
   __weak IBOutlet UIImageView *_thumbnailImageView;
-  __weak IBOutlet UILabel *_titleLabel;
+  __weak IBOutlet MCLabel *_titleLabel;
   __weak IBOutlet UILabel *_sourceLabel;
-  __weak IBOutlet UILabel *_descriptLabel;
+  __weak IBOutlet MCLabel *_descriptLabel;
   __weak IBOutlet UILabel *_dateLabel;
+}
+
+- (void)awakeFromNib {
+  [super awakeFromNib];
+  
 }
 
 - (void)setImage:(UIImage *)image {
