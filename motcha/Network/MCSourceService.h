@@ -7,7 +7,7 @@
 
 @property(nonatomic, readonly) NSMutableDictionary *sources;
 
-- (NSArray *) getSourceWithCategory:(NSString *) category;
+- (NSArray *) getSourceByCategory:(NSString *) category;
 - (void) hardCodeSource;
 
 @end

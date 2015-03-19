@@ -26,7 +26,7 @@
   return self;
 }
 
-- (void) addSource:(NSString *)source
+- (void) setSource:(NSString *)source
           category:(NSString *)category
          needParse:(BOOL)needParse {
   _source = source;
