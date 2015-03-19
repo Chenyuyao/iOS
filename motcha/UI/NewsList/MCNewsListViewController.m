@@ -25,7 +25,13 @@ static CGFloat kCellHeight = 141.0f;
   [self.tableView registerNib:[UINib nibWithNibName:@"MCNewsListTableViewCell" bundle:nil]
        forCellReuseIdentifier:kMCTableViewCellReuseId];
 
-  _rssItems = [[MCRSSService sharedInstance] fetchRSSWithCategory:self.category since:[NSDate dateWithTimeIntervalSince1970:0]];
+  id block = ^(NSMutableArray *feeds, NSError *parseError) {
+    NSLog(@"In total there are %lu feeds on %@", (unsigned long)[feeds count], [self category]);
+  };
+  [[MCRSSService sharedInstance]
+   fetchRSSWithCategory:self.category
+   since:[NSDate dateWithTimeIntervalSince1970:0]
+   completionBlock:block];
   
 }
 
