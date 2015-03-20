@@ -15,7 +15,7 @@
   
   MCSource * technologySource2 =
   [[MCSource alloc] initWithCategory:@"technology"
-                              source:@"engadgetskldjfkaklsdfjlksjdlkf"
+                              source:@"engadget"
                                 link:@"www.engadget.com/rss.xml"
                            needParse:NO
                          fullTextale:YES];
