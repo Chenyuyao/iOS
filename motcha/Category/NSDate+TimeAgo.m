@@ -31,7 +31,7 @@ static NSString *kJustNowString = @"Just now";
   } else if (components.month >= 1) {
     return [self constructTimeAgoStringForUnit:kMonthString count:components.month];
   } else if (components.weekOfYear >= 1) {
-    return [self constructTimeAgoStringForUnit:kWeekString count:components.weekday];
+    return [self constructTimeAgoStringForUnit:kWeekString count:components.weekOfYear];
   } else if (components.day >= 1){
     return [self constructTimeAgoStringForUnit:kDayString count:components.day];
   } else if (components.hour >= 1){
