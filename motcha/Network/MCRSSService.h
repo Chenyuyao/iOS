@@ -7,7 +7,7 @@
 
 - (void)fetchRSSWithCategory:(NSString *)category
                        since:(NSDate *)since
-             completionBlock:(void(^)(NSMutableArray *, NSError *))block;
+             completionBlock:(void(^)(NSMutableArray *rssItems, NSError *error))block;
 
 @end
 

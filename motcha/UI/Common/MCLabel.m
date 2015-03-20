@@ -4,18 +4,29 @@
   NSLayoutConstraint *_heightConstraint;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  if (self = [super initWithCoder:aDecoder]) {
-    _heightConstraint = [NSLayoutConstraint constraintWithItem:self
-                                                     attribute:NSLayoutAttributeHeight
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeHeight
-                                                    multiplier:0
-                                                      constant:0];
-    [self addConstraint:_heightConstraint];
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    [self initialize];
   }
   return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super initWithCoder:aDecoder]) {
+    [self initialize];
+  }
+  return self;
+}
+
+- (void)initialize {
+  _heightConstraint = [NSLayoutConstraint constraintWithItem:self
+                                                   attribute:NSLayoutAttributeHeight
+                                                   relatedBy:NSLayoutRelationEqual
+                                                      toItem:nil
+                                                   attribute:NSLayoutAttributeHeight
+                                                  multiplier:0
+                                                    constant:0];
+  [self addConstraint:_heightConstraint];
 }
 
 - (void)layoutSubviews {

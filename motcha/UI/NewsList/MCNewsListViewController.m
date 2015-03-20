@@ -25,13 +25,16 @@ static CGFloat kCellHeight = 141.0f;
   [self.tableView registerNib:[UINib nibWithNibName:@"MCNewsListTableViewCell" bundle:nil]
        forCellReuseIdentifier:kMCTableViewCellReuseId];
 
-  id block = ^(NSMutableArray *feeds, NSError *parseError) {
-    NSLog(@"In total there are %lu feeds on %@", (unsigned long)[feeds count], [self category]);
+  id completionBlock = ^(NSMutableArray *feeds, NSError *parseError) {
+    _rssItems = [feeds copy];
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [weakSelf.tableView reloadData];
+    });
   };
-  [[MCRSSService sharedInstance]
-   fetchRSSWithCategory:self.category
-   since:[NSDate dateWithTimeIntervalSince1970:0]
-   completionBlock:block];
+  [[MCRSSService sharedInstance] fetchRSSWithCategory:self.category
+                                                since:[NSDate dateWithTimeIntervalSince1970:0]
+                                      completionBlock:completionBlock];
   
 }
 
@@ -61,23 +64,24 @@ static CGFloat kCellHeight = 141.0f;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // TODO(Frank): Incomplete method implementation.
-  // Return the number of sections.
+  // Assuming we have only one section.
   return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // TODO(Frank): Incomplete method implementation.
-  // Return the number of rows in the section.
-  return 12;
+  return [_rssItems count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMCTableViewCellReuseId forIndexPath:indexPath];
-  
-  // TODO(Frank): Configure the cell...
-  
+  MCNewsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMCTableViewCellReuseId
+                                                                  forIndexPath:indexPath];
+  MCParsedRSSItem *item = [_rssItems objectAtIndex:indexPath.row];
+  [cell setTitle:item.title];
+  [cell setDescription:item.descrpt];
+  [cell setPublishDate:item.pubDate];
+  [cell setSource:item.source];
+  // TODO(Frank): set image
   return cell;
 }
 

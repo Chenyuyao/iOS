@@ -11,8 +11,7 @@ static NSString *kJustNowString = @"Just now";
 
 @implementation NSDate (TimeAgo)
 
-- (NSString *)timeAgo
-{
+- (NSString *)timeAgo {
   NSCalendar *calendar = [NSCalendar currentCalendar];
   NSDate * now = [NSDate date];
   NSDateComponents *components = [calendar components:
