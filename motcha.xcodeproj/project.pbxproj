@@ -22,6 +22,7 @@
 		15461A6A1AAFA25F0008025A /* MCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A691AAFA25F0008025A /* MCTextView.m */; };
 		1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */; };
 		1561B45E1ABB486800AB6D5B /* NSString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45D1ABB486800AB6D5B /* NSString+Trim.m */; };
+		1561B4611ABB874700AB6D5B /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */; };
 		15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
@@ -123,6 +124,8 @@
 		1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCLabel.m; sourceTree = "<group>"; };
 		1561B45C1ABB486800AB6D5B /* NSString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trim.h"; sourceTree = "<group>"; };
 		1561B45D1ABB486800AB6D5B /* NSString+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trim.m"; sourceTree = "<group>"; };
+		1561B45F1ABB874700AB6D5B /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
 		15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
 		15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */,
 				1561B45C1ABB486800AB6D5B /* NSString+Trim.h */,
 				1561B45D1ABB486800AB6D5B /* NSString+Trim.m */,
+				1561B45F1ABB874700AB6D5B /* NSDate+TimeAgo.h */,
+				1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */,
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
+				1561B4611ABB874700AB6D5B /* NSDate+TimeAgo.m in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 				C649C84D1A8982B80087C340 /* MCDetailNewsMetaDataView.m in Sources */,
 				1539C2841A9A75C300C32877 /* MCCategoryButton.m in Sources */,
