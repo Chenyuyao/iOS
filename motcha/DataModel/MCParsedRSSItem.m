@@ -21,6 +21,7 @@
     // See https://developer.apple.com/library/mac/qa/qa1480/_index.html
     [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
+    
     _pubDate = [dateFormat dateFromString:pubDate];
   }
 

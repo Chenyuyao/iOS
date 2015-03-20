@@ -10,4 +10,3 @@
              completionBlock:(void(^)(NSMutableArray *rssItems, NSError *error))block;
 
 @end
-
