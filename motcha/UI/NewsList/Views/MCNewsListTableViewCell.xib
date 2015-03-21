@@ -36,7 +36,7 @@
                         <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ARTS" translatesAutoresizingMaskIntoConstraints="NO" id="iSk-HT-jUy">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ARTS" translatesAutoresizingMaskIntoConstraints="NO" id="iSk-HT-jUy">
                         <rect key="frame" x="255" y="15" width="110" height="110"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iSk-HT-jUy" secondAttribute="height" id="VH8-Dp-ADV"/>
