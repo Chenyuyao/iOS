@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MCNewsListTableViewCell : UITableViewCell
-- (void)setImage:(UIImage *)image;
+- (void)setImageWithUrl:(NSURL *)imageURL;
 - (void)setTitle:(NSString *)title;
 - (void)setSource:(NSString *)source;
 - (void)setPublishDate:(NSDate *)pubDate;

@@ -5,6 +5,7 @@
 #import "MCNewsDetailViewController.h"
 #import "MCNavigationController.h"
 #import "MCRSSService.h"
+#import "UIImageView+AFNetworking.h"
 
 static NSString *kMCTableViewCellReuseId = @"MCTableViewCell";
 static CGFloat kCellHeight = 141.0f;
@@ -81,7 +82,7 @@ static CGFloat kCellHeight = 141.0f;
   [cell setDescription:item.descrpt];
   [cell setPublishDate:item.pubDate];
   [cell setSource:item.source];
-  // TODO(Frank): set image
+  [cell setImageWithUrl:[NSURL URLWithString:item.imgSrc]];
   return cell;
 }
 

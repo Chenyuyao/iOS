@@ -3,6 +3,7 @@
 #import "MCLabel.h"
 #import "UIColor+Helpers.h"
 #import "NSDate+TimeAgo.h"
+#import "UIImageView+AFNetworking.h"
 
 static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 
@@ -19,8 +20,8 @@ static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
   
 }
 
-- (void)setImage:(UIImage *)image {
-  _thumbnailImageView.image = image;
+- (void)setImageWithUrl:(NSURL *)imageURL {
+  [_thumbnailImageView setImageWithURL:imageURL];
 }
 
 - (void)setTitle:(NSString *)title {
