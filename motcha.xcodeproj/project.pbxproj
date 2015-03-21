@@ -21,7 +21,7 @@
 		15461A631AAF75CA0008025A /* MCNewsCategorySelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A621AAF75CA0008025A /* MCNewsCategorySelectorView.m */; };
 		15461A6A1AAFA25F0008025A /* MCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15461A691AAFA25F0008025A /* MCTextView.m */; };
 		1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */; };
-		1561B45E1ABB486800AB6D5B /* NSString+Trim.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45D1ABB486800AB6D5B /* NSString+Trim.m */; };
+		1561B45E1ABB486800AB6D5B /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B45D1ABB486800AB6D5B /* NSString+Helpers.m */; };
 		1561B4611ABB874700AB6D5B /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */; };
 		1561B4E01ABD02B800AB6D5B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4BC1ABD02B800AB6D5B /* AFHTTPRequestOperation.m */; };
 		1561B4E11ABD02B800AB6D5B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4BE1ABD02B800AB6D5B /* AFHTTPRequestOperationManager.m */; };
@@ -139,8 +139,8 @@
 		15461A691AAFA25F0008025A /* MCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTextView.m; sourceTree = "<group>"; };
 		1561B4591ABA3D8C00AB6D5B /* MCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCLabel.h; sourceTree = "<group>"; };
 		1561B45A1ABA3D8C00AB6D5B /* MCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCLabel.m; sourceTree = "<group>"; };
-		1561B45C1ABB486800AB6D5B /* NSString+Trim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Trim.h"; sourceTree = "<group>"; };
-		1561B45D1ABB486800AB6D5B /* NSString+Trim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Trim.m"; sourceTree = "<group>"; };
+		1561B45C1ABB486800AB6D5B /* NSString+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helpers.h"; sourceTree = "<group>"; };
+		1561B45D1ABB486800AB6D5B /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helpers.m"; sourceTree = "<group>"; };
 		1561B45F1ABB874700AB6D5B /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
 		1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
 		1561B4BB1ABD02B800AB6D5B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -713,8 +713,8 @@
 				1539C2721A9838F300C32877 /* NSMutableArray+Manipulation.m */,
 				15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */,
 				15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */,
-				1561B45C1ABB486800AB6D5B /* NSString+Trim.h */,
-				1561B45D1ABB486800AB6D5B /* NSString+Trim.m */,
+				1561B45C1ABB486800AB6D5B /* NSString+Helpers.h */,
+				1561B45D1ABB486800AB6D5B /* NSString+Helpers.m */,
 				1561B45F1ABB874700AB6D5B /* NSDate+TimeAgo.h */,
 				1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */,
 			);
@@ -920,7 +920,7 @@
 				C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */,
 				1539C2861A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
-				1561B45E1ABB486800AB6D5B /* NSString+Trim.m in Sources */,
+				1561B45E1ABB486800AB6D5B /* NSString+Helpers.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
 				CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */,
 				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
