@@ -93,10 +93,10 @@ static NSString *kRecommendedCategory = @"Recommended";
 
 #pragma mark - MCNewsCategorySelectorViewDelegate methods
 - (void) addCategoriesButtonPressed {
-  NSLog(@"pressed!");
   MCIntroViewController *introViewController =
-      [[MCIntroViewController alloc] initWithSelectedCategories:_categories];
-  [self.navigationController setViewControllers:@[introViewController] animated:YES];
+      [[MCIntroViewController alloc] initWithSelectedCategories:_categories
+                                                isFirstTimeUser:NO];
+  [self.navigationController pushViewController:introViewController animated:YES];
 }
 
 - (void)categoryButtonPressed:(MCCategoryButton *)button atIndex:(NSUInteger)index animated:(BOOL)animated {

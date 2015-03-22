@@ -13,7 +13,8 @@
   [self.window makeKeyAndVisible];
   UIViewController *rootViewController;
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) {
-    rootViewController = [[MCIntroViewController alloc] init];
+    rootViewController = [[MCIntroViewController alloc] initWithSelectedCategories:nil
+                                                                   isFirstTimeUser:YES];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   } else {
