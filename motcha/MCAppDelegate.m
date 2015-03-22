@@ -5,8 +5,6 @@
 #import "MCNewsListsContainerController.h"
 #import "MCReadingPreferenceService.h"
 
-#import "MCDictionaryService.h"
-
 @implementation MCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
