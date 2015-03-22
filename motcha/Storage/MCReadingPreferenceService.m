@@ -12,9 +12,10 @@ static NSString *kStrCategoryEntryName = @"category_entry";
 
 + (MCReadingPreferenceService *)sharedInstance {
   static MCReadingPreferenceService *service;
-  if (!service) {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     service = [[MCReadingPreferenceService alloc] init];
-  }
+  });
   return service;
 }
 

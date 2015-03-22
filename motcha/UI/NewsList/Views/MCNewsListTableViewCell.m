@@ -1,15 +1,22 @@
 #import "MCNewsListTableViewCell.h"
 
+#import "MCLabel.h"
 #import "UIColor+Helpers.h"
+#import "NSDate+TimeAgo.h"
 
 static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 
 @implementation MCNewsListTableViewCell {
   __weak IBOutlet UIImageView *_thumbnailImageView;
-  __weak IBOutlet UILabel *_titleLabel;
+  __weak IBOutlet MCLabel *_titleLabel;
   __weak IBOutlet UILabel *_sourceLabel;
   __weak IBOutlet UILabel *_descriptLabel;
   __weak IBOutlet UILabel *_dateLabel;
+}
+
+- (void)awakeFromNib {
+  [super awakeFromNib];
+  
 }
 
 - (void)setImage:(UIImage *)image {
@@ -25,10 +32,7 @@ static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 }
 
 - (void)setPublishDate:(NSDate *)pubDate {
-  // TODO: replace with time ago
-  NSDateFormatter *dateFormatter = [NSDateFormatter new];
-  dateFormatter.dateFormat = @"yyyy-MM-dd";
-  _dateLabel.text = [NSString stringWithFormat:@" - %@", [dateFormatter stringFromDate:pubDate]];
+  _dateLabel.text = [pubDate timeAgo];
 }
 
 - (void)setDescription:(NSString *)descript {

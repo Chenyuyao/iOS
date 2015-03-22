@@ -10,9 +10,10 @@
 
 + (MCWebContentService *)sharedInstance {
   static MCWebContentService *service;
-  if (!service) {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     service = [[MCWebContentService alloc] init];
-  }
+  });
   return service;
 }
 
