@@ -28,6 +28,16 @@ static NSInteger minSelectedCategories = 3;
   return [super initWithCollectionViewLayout:layout];
 }
 
+- (instancetype)initWithSelectedCategories:(NSArray *)categories {
+  self = [self init];
+  if (self) {
+    _selectedCategories = [NSMutableArray arrayWithArray:categories];
+    [_selectedCategories removeObject:@"Recommended"];
+    ((MCIntroCollectionViewLayout *) self.collectionViewLayout).headerHeight = 80.0f;
+  }
+  return self;
+}
+
 - (void)loadView {
   [super loadView];
   self.navigationController.navigationBarHidden = YES;
@@ -35,13 +45,13 @@ static NSInteger minSelectedCategories = 3;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.collectionView.allowsMultipleSelection = YES;
   UINib *headerNib = [UINib nibWithNibName:@"MCIntroHeader" bundle:nil];
   [self.collectionView registerNib:headerNib
         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                withReuseIdentifier:reuseHeader];
   
   self.collectionView.backgroundColor = [UIColor whiteColor];
-  self.collectionView.allowsMultipleSelection = YES;
   UINib *cellNib = [UINib nibWithNibName:@"MCIntroCell" bundle:nil];
   [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseCell];
   
@@ -58,8 +68,8 @@ static NSInteger minSelectedCategories = 3;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-           viewForSupplementaryElementOfKind:(NSString *)kind
-                                 atIndexPath:(NSIndexPath *)indexPath
+    viewForSupplementaryElementOfKind:(NSString *)kind
+      atIndexPath:(NSIndexPath *)indexPath
 {
   UICollectionReusableView *reusableview = nil;
   
@@ -83,9 +93,12 @@ static NSInteger minSelectedCategories = 3;
 }
 
 - (void)updateHeader:(MCIntroHeader *)header forIndexPath:(NSIndexPath *)indexPath {
-  // TODO(sherry): Use string const.
+  if (!_selectedCategories.count) {
   header.title.text = @"Welcome to Motcha";
   header.instruction.text = @"For Motcha to better understand you,\nPlease select some categories to start.";
+  } else {
+    header.title.text = @"Please select categories";
+  }
 }
 
 - (void)updateFooter:(MCIntroFooter *)footer forIndexPath:(NSIndexPath *)indexPath {
@@ -109,18 +122,21 @@ static NSInteger minSelectedCategories = 3;
 }
 
 - (void)updateCell:(MCIntroCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-  NSString *imageName = [[self class] categories][indexPath.row];
-  cell.imageView.image = [UIImage imageNamed:imageName];
-  cell.title.text = imageName;
+  NSString *category = [[self class] categories][indexPath.row];
+  cell.imageView.image = [UIImage imageNamed:category];
+  cell.title.text = category;
+  if ([_selectedCategories containsObject:category]) {
+    cell.selected = YES;
+    [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:0];
+  }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [_selectedCategories addObject:[[self class] categories][indexPath.row]];
+ [_selectedCategories addObject:[[self class] categories][indexPath.row]];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView
-    didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
   [_selectedCategories removeObject:[[self class] categories][indexPath.row]];
 }
 
@@ -147,8 +163,7 @@ static NSInteger minSelectedCategories = 3;
   static NSArray *categories;
   if (!categories) {
     categories = @[@"TECHNOLOGY", @"FINANCE", @"ARTS", @"INTERNATIONAL", @"SPORTS",
-                   @"ENTERTAINMENT", @"FASHION", @"DESIGN", @"HEALTH", @"TECHNOLOGY",
-                   @"FINANCE", @"ARTS", @"INTERNATIONAL", @"SPORTS"];
+                   @"ENTERTAINMENT", @"FASHION", @"DESIGN", @"HEALTH"];
   }
   return categories;
 }

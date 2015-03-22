@@ -5,6 +5,7 @@
 #import "MCNewsListViewController.h"
 #import "MCNavigationController.h"
 #import "UIFont+DINFont.h"
+#import "MCIntroViewController.h"
 
 static CGFloat kLogoFontSize = 25.0f;
 
@@ -92,7 +93,10 @@ static NSString *kRecommendedCategory = @"Recommended";
 
 #pragma mark - MCNewsCategorySelectorViewDelegate methods
 - (void) addCategoriesButtonPressed {
-  // TODO: present the addcategory view controller.
+  NSLog(@"pressed!");
+  MCIntroViewController *introViewController =
+      [[MCIntroViewController alloc] initWithSelectedCategories:_categories];
+  [self.navigationController setViewControllers:@[introViewController] animated:YES];
 }
 
 - (void)categoryButtonPressed:(MCCategoryButton *)button atIndex:(NSUInteger)index animated:(BOOL)animated {
