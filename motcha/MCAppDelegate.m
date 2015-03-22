@@ -12,11 +12,13 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
   UIViewController *rootViewController;
-  NSArray *categories = [[MCReadingPreferenceService sharedInstance] categories];
-  if ([categories count]) {
-    rootViewController = [[MCNewsListsContainerController alloc] initWithCategories:categories];
-  } else {
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) {
     rootViewController = [[MCIntroViewController alloc] init];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  } else {
+    NSArray *categories = [[MCReadingPreferenceService sharedInstance] categories];
+    rootViewController = [[MCNewsListsContainerController alloc] initWithCategories:categories];
   }
   MCNavigationController *navigationController =
       [[MCNavigationController alloc] initWithRootViewController:rootViewController];
