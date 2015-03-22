@@ -3,7 +3,7 @@
 
 @implementation MCSourceService
 
-- (void) hardCodeSource {
+- (void)hardCodeSource {
   _sources = [[NSMutableDictionary alloc] init];
   //Hardcoded MCSource
   MCSource * technologySource1 =

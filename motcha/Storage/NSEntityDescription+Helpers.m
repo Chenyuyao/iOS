@@ -6,7 +6,7 @@
                                          type:(NSAttributeType)type
                                       indexed:(BOOL)indexed {
   NSAttributeDescription *attribute =
-  [[NSAttributeDescription alloc] init];
+      [[NSAttributeDescription alloc] init];
   [attribute setName:name];
   [attribute setAttributeType:type];
   [attribute setIndexed:indexed];

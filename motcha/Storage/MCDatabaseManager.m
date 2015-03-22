@@ -22,9 +22,6 @@ static NSString *const kContextKey = @"context";
     _model = [[NSManagedObjectModel alloc] init];
     _model.entities = [entities copy];
     _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
-    _context = [[NSManagedObjectContext alloc] init];
-    [_context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
-    [_context setPersistentStoreCoordinator:_coordinator];
     
     // init store
     NSURL *url = [NSURL fileURLWithPath:_storePath];
@@ -79,6 +76,18 @@ static NSString *const kContextKey = @"context";
   if (!compatible) {
     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
   }
+}
+
+- (NSManagedObjectContext *)context {
+  NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+  NSManagedObjectContext *context = [dictionary objectForKey:kContextKey];
+  if (!context) {
+    context = [[NSManagedObjectContext alloc] init];
+    [context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    [context setPersistentStoreCoordinator:_coordinator];
+    [dictionary setObject:context forKey:kContextKey];
+  }
+  return context;
 }
 
 @end

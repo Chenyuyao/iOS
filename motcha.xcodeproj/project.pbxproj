@@ -74,6 +74,7 @@
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
 		CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA074881AB9199600FE2F3B /* MCSourceService.m */; };
 		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
+		E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06B2ED01ABF5087001D714D /* MCDictionaryService.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
 		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
@@ -82,6 +83,10 @@
 		E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BF1A773F030081BE95 /* MCIntroHeader.m */; };
 		E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343C01A773F030081BE95 /* MCIntroHeader.xib */; };
 		E0B343CA1A773F030081BE95 /* MCIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343C21A773F030081BE95 /* MCIntroViewController.m */; };
+		E0EFFBEB1ABF5264002318AA /* dictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = E0EFFBEA1ABF5264002318AA /* dictionary.json */; };
+		E0EFFBED1ABF52FA002318AA /* dictionary.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0EFFBEA1ABF5264002318AA /* dictionary.json */; };
+		E0EFFBF01ABF569D002318AA /* DictionaryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EFFBEF1ABF569D002318AA /* DictionaryEntity.m */; };
+		E0EFFBF31ABF5D66002318AA /* MCDictionaryWord.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EFFBF21ABF5D66002318AA /* MCDictionaryWord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +98,19 @@
 			remoteInfo = motcha;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E0EFFBEC1ABF52E1002318AA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				E0EFFBED1ABF52FA002318AA /* dictionary.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1539C23A1A9028D000C32877 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
@@ -230,6 +248,8 @@
 		CAA0748D1AB91A3200FE2F3B /* MCSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSource.m; path = DataModel/MCSource.m; sourceTree = "<group>"; };
 		CAA074911AB91B2300FE2F3B /* MCSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSource.h; path = DataModel/MCSource.h; sourceTree = "<group>"; };
 		CAA074921AB91B6800FE2F3B /* MCSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSourceService.h; path = Network/MCSourceService.h; sourceTree = "<group>"; };
+		E06B2ED01ABF5087001D714D /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryService.m; path = Network/MCDictionaryService.m; sourceTree = "<group>"; };
+		E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCDictionaryService.h; path = Network/MCDictionaryService.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
 		E0B343B71A773F030081BE95 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCell.m; sourceTree = "<group>"; };
 		E0B343B81A773F030081BE95 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroCell.xib; sourceTree = "<group>"; };
@@ -243,6 +263,11 @@
 		E0B343C01A773F030081BE95 /* MCIntroHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroHeader.xib; sourceTree = "<group>"; };
 		E0B343C11A773F030081BE95 /* MCIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroViewController.h; sourceTree = "<group>"; };
 		E0B343C21A773F030081BE95 /* MCIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroViewController.m; sourceTree = "<group>"; };
+		E0EFFBEA1ABF5264002318AA /* dictionary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dictionary.json; sourceTree = "<group>"; };
+		E0EFFBEE1ABF569D002318AA /* DictionaryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryEntity.h; sourceTree = "<group>"; };
+		E0EFFBEF1ABF569D002318AA /* DictionaryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntity.m; sourceTree = "<group>"; };
+		E0EFFBF11ABF5D66002318AA /* MCDictionaryWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCDictionaryWord.h; path = DataModel/MCDictionaryWord.h; sourceTree = "<group>"; };
+		E0EFFBF21ABF5D66002318AA /* MCDictionaryWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryWord.m; path = DataModel/MCDictionaryWord.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +428,7 @@
 		15E3DB2E1A6B04BA002F4F4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0EFFBEA1ABF5264002318AA /* dictionary.json */,
 				15E3DB2F1A6B04BA002F4F4C /* Info.plist */,
 				15E3DB301A6B04BA002F4F4C /* main.m */,
 			);
@@ -437,6 +463,8 @@
 				47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */,
 				47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */,
 				47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */,
+				E0EFFBEE1ABF569D002318AA /* DictionaryEntity.h */,
+				E0EFFBEF1ABF569D002318AA /* DictionaryEntity.m */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -454,6 +482,8 @@
 				CA90EF2F1A85B8F4005931CF /* MCRSSService.m */,
 				CAA074881AB9199600FE2F3B /* MCSourceService.m */,
 				CAA074921AB91B6800FE2F3B /* MCSourceService.h */,
+				E06B2ED01ABF5087001D714D /* MCDictionaryService.m */,
+				E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -469,6 +499,8 @@
 				47E9134C1A8487710055AB69 /* MCParsedHTMLNode.m */,
 				CAA0748D1AB91A3200FE2F3B /* MCSource.m */,
 				CAA074911AB91B2300FE2F3B /* MCSource.h */,
+				E0EFFBF11ABF5D66002318AA /* MCDictionaryWord.h */,
+				E0EFFBF21ABF5D66002318AA /* MCDictionaryWord.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -670,6 +702,7 @@
 				15E3DB271A6B04BA002F4F4C /* Sources */,
 				15E3DB281A6B04BA002F4F4C /* Frameworks */,
 				15E3DB291A6B04BA002F4F4C /* Resources */,
+				E0EFFBEC1ABF52E1002318AA /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -746,6 +779,7 @@
 				E0B343C71A773F030081BE95 /* MCIntroFooter.xib in Resources */,
 				E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
+				E0EFFBEB1ABF5264002318AA /* dictionary.json in Resources */,
 				C649C7E21A894F5B0087C340 /* DINPro-Bold.otf in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 				C649C7E41A894F5B0087C340 /* FarnhamDisplay-Bold.otf in Resources */,
@@ -782,6 +816,7 @@
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
+				E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */,
 				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
 				CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */,
@@ -809,9 +844,11 @@
 				CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */,
 				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
+				E0EFFBF01ABF569D002318AA /* DictionaryEntity.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
 				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
+				E0EFFBF31ABF5D66002318AA /* MCDictionaryWord.m in Sources */,
 				153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */,
 				15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */,
 				15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */,
