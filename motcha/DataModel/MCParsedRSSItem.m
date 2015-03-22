@@ -1,4 +1,5 @@
 #import "MCParsedRSSItem.h"
+#import "NSString+Trim.h"
 
 @implementation MCParsedRSSItem
 
@@ -15,12 +16,13 @@
     _imgSrc = imgSrc;
     _author = author;
     
-    NSString * escapedPubDate = [pubDate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    // See https://developer.apple.com/library/mac/qa/qa1480/_index.html
+    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
-    _pubDate = [dateFormat dateFromString:escapedPubDate];    
+    
+    _pubDate = [dateFormat dateFromString:pubDate];
   }
 
   return self;

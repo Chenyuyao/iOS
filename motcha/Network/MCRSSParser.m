@@ -1,5 +1,7 @@
 #import "MCRSSParser.h"
 
+#import "NSString+Trim.h"
+
 //Regex for extracting img src
 static NSString * kImgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
 
@@ -80,12 +82,12 @@ didStartElement:(NSString *)elementName
   qualifiedName:(NSString *)qName {
   //After parse one item, put this item into feeds
   if ([elementName isEqualToString:@"item"]) {
-    _item = [[MCParsedRSSItem alloc] initWithTitle:_title
-                                              link:_link
-                                           descrpt:_description
-                                            imgSrc:_imgSrc
-                                           pubDate:_pubDate
-                                            author:_author];
+    _item = [[MCParsedRSSItem alloc] initWithTitle:[_title trimWhiteSpaceNewLineChars]
+                                              link:[_link trimWhiteSpaceNewLineChars]
+                                           descrpt:[_description trimWhiteSpaceChars]
+                                            imgSrc:[_imgSrc trimWhiteSpaceNewLineChars]
+                                           pubDate:[_pubDate trimWhiteSpaceNewLineChars]
+                                            author:[_author trimWhiteSpaceNewLineChars]];
     [_feeds addObject:_item];
   }
 }
