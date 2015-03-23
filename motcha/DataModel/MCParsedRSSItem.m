@@ -2,7 +2,7 @@
 
 @implementation MCParsedRSSItem
 
-- (instancetype)initWithTitle:(NSString *)title
+- (instancetype) initWithTitle:(NSString *)title
                          link:(NSString *)link
                       descrpt:(NSString *)descrpt
                        imgSrc:(NSString *)imgSrc
@@ -14,17 +14,68 @@
     _descrpt = descrpt;
     _imgSrc = imgSrc;
     _author = author;
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    // See https://developer.apple.com/library/mac/qa/qa1480/_index.html
-    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
-    
-    _pubDate = [dateFormat dateFromString:pubDate];
+    _pubDate = [self parseDateString:pubDate];
   }
-
   return self;
+}
+
+//parse an dateString to NSDate
+- (NSDate *) parseDateString:(NSString *) dateString {
+  NSDate *date = nil;
+  if (dateString) {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    @synchronized(dateFormat) {
+      if ([dateString rangeOfString:@","].location != NSNotFound) {
+        if (!date) {
+          [dateFormat setDateFormat:@"EEE, d MMM yyyy HH:mm"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"EEE, d MMM yyyy HH:mm:ss"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"EEE, d MMM yyyy HH:mm zzz"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"EEE, d MMM yyyy HH:mm:ss zzz"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"EEE, d MMM yyyy HH:mm:ss Z"];
+          date = [dateFormat dateFromString:dateString];
+        }
+      } else {
+        if (!date) {
+          [dateFormat setDateFormat:@"d MMM yyyy HH:mm"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"d MMM yyyy HH:mm:ss"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"d MMM yyyy HH:mm zzz"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"d MMM yyyy HH:mm:ss zzz"];
+          date = [dateFormat dateFromString:dateString];
+        }
+        if (!date) {
+          [dateFormat setDateFormat:@"d MMM yyyy HH:mm:ss Z"];
+          date = [dateFormat dateFromString:dateString];
+        }
+      }
+      if (!date) {
+        //Could not parse date, set date to 1970
+        date = [NSDate dateWithTimeIntervalSince1970:0];
+      }
+    }
+  }
+  return date;
 }
 
 - (void) setSource:(NSString *)source
