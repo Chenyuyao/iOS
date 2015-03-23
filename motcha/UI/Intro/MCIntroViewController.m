@@ -1,4 +1,5 @@
 #import "MCIntroViewController.h"
+
 #import "MCIntroHeader.h"
 #import "MCIntroCell.h"
 #import "MCIntroFooter.h"
@@ -6,12 +7,15 @@
 #import "MCNewsListsContainerController.h"
 #import "MCReadingPreferenceService.h"
 #import "MCNavigationController.h"
+#import "UIColor+Helpers.h"
+#import "MCNewsCategorySelectorView.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
 static NSString * const reuseFooter = @"FooterView";
 static NSString * const minSelectedMsg = @"Please select at least three categories to get started.";
-static NSInteger minSelectedCategories = 3;
+static NSString * const recommendedCategory = @"Recommended";
+static NSInteger minSelectedCategories = 4;
 
 @implementation MCIntroViewController {
   NSMutableArray *_selectedCategories;
@@ -27,27 +31,29 @@ static NSInteger minSelectedCategories = 3;
   layout.headerHeight = 135.0f;
   layout.footerHeight = 50.0f;
   layout.preferredElementSize = CGSizeMake(100, 100);
-  _selectedCategories = [[NSMutableArray alloc] init];
+  
   return [super initWithCollectionViewLayout:layout];
 }
 
-- (instancetype)initWithSelectedCategories:(NSArray *)categories
+- (instancetype)initWithSelectedCategories:(NSMutableArray *)categories
+                 superNavigationController:(UINavigationController *)navigationController
                            isFirstTimeUser:(BOOL)isFirstTimeUser {
   self = [self init];
   if (self) {
+    _superNavigationController = navigationController;
     _isFirstTimeUser = isFirstTimeUser;
-    UIBarButtonItem *backButton =
-      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+    UIBarButtonItem *completeButton =
+      [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                     target:self
-                                                    action:@selector(backButtonWasTapped:)];
-    self.navigationItem.leftBarButtonItem = backButton;
+                                                    action:@selector(finishButtonTapped)];
+    self.navigationItem.rightBarButtonItem = completeButton;
     if (!_isFirstTimeUser) {
       _selectedCategories = [NSMutableArray arrayWithArray:categories];
-      [_selectedCategories removeObject:@"Recommended"];
-      self.navigationItem.title = @"Select categories";
-      //TODO: Navigation bar issue
-      ((MCIntroCollectionViewLayout *) self.collectionViewLayout).headerHeight = 80.0f;
+      self.navigationItem.title = @"Select Categories";
+      ((MCIntroCollectionViewLayout *) self.collectionViewLayout).headerHeight = 20.0f;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
+    } else {
+      _selectedCategories = [NSMutableArray arrayWithObject:recommendedCategory];
     }
   }
   return self;
@@ -64,15 +70,11 @@ static NSInteger minSelectedCategories = 3;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  MCNavigationController *navigationController = (MCNavigationController *)self.navigationController;
-  [navigationController notifyViewWillAppearAnimated:animated];
-  
-  //TODO: doesn't work
-  MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
-  CGFloat navigationBarAppearanceHeight =
-  navigationBar.backgroundHeight + navigationBar.auxiliaryView.frame.size.height;
-  self.collectionView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
-  self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
+  if (_isFirstTimeUser) {
+    self.collectionView.contentInset =
+        UIEdgeInsetsMake(0, 0, ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight, 0);
+    self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
+  }
 }
 
 - (void)viewDidLoad {
@@ -83,7 +85,7 @@ static NSInteger minSelectedCategories = 3;
         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                withReuseIdentifier:reuseHeader];
   
-  self.collectionView.backgroundColor = [UIColor whiteColor];
+  self.collectionView.backgroundColor = [UIColor appMainColor];
   UINib *cellNib = [UINib nibWithNibName:@"MCIntroCell" bundle:nil];
   [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseCell];
   
@@ -145,7 +147,7 @@ static NSInteger minSelectedCategories = 3;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MCIntroCell *cell =
-  [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
+      [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
   [self updateCell:cell forIndexPath:indexPath];
   return cell;
 }
@@ -161,22 +163,28 @@ static NSInteger minSelectedCategories = 3;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
-    didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
- [_selectedCategories addObject:[[self class] categories][indexPath.row]];
+  didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  NSString *category = [[self class] categories][indexPath.row];
+  [_selectedCategories addObject:category];
+  if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
+      [_delegate respondsToSelector:@selector(introViewController:didSelectCategory:)]) {
+    [_delegate introViewController:self didSelectCategory:category];
+  }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
     didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [_selectedCategories removeObject:[[self class] categories][indexPath.row]];
+  NSString *category = [[self class] categories][indexPath.row];
+  [_selectedCategories removeObject:category];
+  if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
+      [_delegate respondsToSelector:@selector(introViewController:didDeselectCategory:)]) {
+    [_delegate introViewController:self didDeselectCategory:category];
+  }
 }
 
 #pragma mark Private
 
 - (void)finishButtonTapped {
-  [self completeSelecting];
-}
-
-- (void)backButtonWasTapped:(id)sender {
   [self completeSelecting];
 }
 
@@ -189,10 +197,19 @@ static NSInteger minSelectedCategories = 3;
                                           otherButtonTitles:nil, nil];
     [alert show];
   } else {
-    MCNewsListsContainerController *newsListsController =
-    [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
-    [self.navigationController setViewControllers:@[newsListsController] animated:YES];
-    [[MCReadingPreferenceService sharedInstance] setCategories:_selectedCategories];
+    if (![[[MCReadingPreferenceService sharedInstance] categories] isEqualToArray:_selectedCategories]) {
+      if (_isFirstTimeUser) {
+        MCNewsListsContainerController *newsListsController =
+        [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
+        [self.navigationController setViewControllers:@[newsListsController] animated:YES];
+      }
+      if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
+          [_delegate respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
+        [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
+      }
+      [[MCReadingPreferenceService sharedInstance] setCategories:_selectedCategories];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
   }
 }
 

@@ -18,10 +18,13 @@
   if (auxiliaryView == _prevAuxiliaryView) {
     return;
   }
+  CGFloat navBarBackgroundTargetHeight = navigationBar.frame.size.height + navigationBarOffset +
+      auxiliaryView.frame.size.height;
   if ([_delegate conformsToProtocol:@protocol(MCNavigationBarAppearanceStrategyDelegate)] &&
       [_delegate respondsToSelector:@selector(appearance:willAppearForStrategyClass:state:)]) {
-    NSDictionary *stateDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarBackgroundHeight]
-                                                          forKey:kNavigationBarBackgroundHeightKey];
+    NSDictionary *stateDict =
+        [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarBackgroundTargetHeight]
+                                    forKey:kNavigationBarBackgroundHeightKey];
     [_delegate appearance:auxiliaryView willAppearForStrategyClass:[self class] state:stateDict];
   }
   if (_prevAuxiliaryView) {
@@ -49,7 +52,6 @@
   // fade in the current aux view
   CGFloat curAuxViewFinalAlpha = auxiliaryView.alpha;
   auxiliaryView.alpha = kNavigationBarAuxiliaryViewStartingAlpha;
-  CGFloat navBarFinalHeight = navigationBar.frame.size.height + navigationBarOffset + auxiliaryView.frame.size.height;
   CGRect navBarBackgroundFrame = navigationBarBackgroundView.frame;
   auxiliaryView.frame = CGRectMake(navigationBar.frame.origin.x, navBarBackgroundHeight-auxiliaryView.frame.size.height,
       navigationBar.frame.size.width, auxiliaryView.frame.size.height);
@@ -63,10 +65,10 @@
         curAuxFrame.size.width, curAuxFrame.size.height);
     auxiliaryView.alpha = curAuxViewFinalAlpha;
     navigationBarBackgroundView.frame = CGRectMake(navBarBackgroundFrame.origin.x, navBarBackgroundFrame.origin.y,
-        navBarBackgroundFrame.size.width, navBarFinalHeight);
+        navBarBackgroundFrame.size.width, navBarBackgroundTargetHeight);
   } completion:^(BOOL finished) {
     if (finished) {
-      NSDictionary *stateDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarFinalHeight]
+      NSDictionary *stateDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:navBarBackgroundTargetHeight]
                                                                  forKey:kNavigationBarBackgroundHeightKey];
       if (block) {
         block(stateDict);

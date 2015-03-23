@@ -30,6 +30,8 @@
 - (void)addCategory:(NSString *)category;
 // Add a category at an index
 - (void)insertCategory:(NSString *)category atIndex:(NSUInteger)index;
+// Remove a specific category specified by category name.
+- (MCCategoryButton *)removeCategory:(NSString *)category;
 // Remove a category at a specific index
 - (MCCategoryButton *)removeCategoryAtIndex:(NSUInteger)index;
 // Move a category button from fromIndex to toIndex

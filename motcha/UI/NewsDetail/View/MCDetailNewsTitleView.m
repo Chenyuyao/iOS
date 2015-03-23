@@ -1,6 +1,7 @@
 #import "MCDetailNewsTitleView.h"
 
 #import "UIFont+DINFont.h"
+#import "UIColor+Helpers.h"
 
 static CGFloat kNewsTitleMargin = 20.0f;
 static CGFloat kNewsTitleFontSize = 18.0f;
@@ -20,7 +21,7 @@ static CGFloat kNewsTitleFontSize = 18.0f;
 - (void)setupSubviewsAndConstraints {
   _newsTitle = [UILabel new];
   _newsTitle.textAlignment = NSTextAlignmentLeft;
-  _newsTitle.textColor = [UIColor whiteColor];
+  _newsTitle.textColor = [UIColor appMainColor];
   _newsTitle.font = [UIFont dinRegularFontWithSize:kNewsTitleFontSize];
   [_newsTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
   _newsTitle.numberOfLines = 0;

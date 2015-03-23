@@ -1,6 +1,12 @@
 #import "MCIntroFooter.h"
+#import "UIColor+Helpers.h"
 
 @implementation MCIntroFooter
+
+- (void)awakeFromNib {
+  [super awakeFromNib];
+  self.backgroundColor = [UIColor appMainColor];
+}
 
 - (void)setBounds:(CGRect)bounds {
   [super setBounds:bounds];
