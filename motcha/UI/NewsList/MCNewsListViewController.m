@@ -7,6 +7,7 @@
 #import "MCRSSService.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIColor+Helpers.h"
+#import "BMYCircularProgressPullToRefresh.h"
 
 static NSString *kMCTableViewCellReuseId = @"MCTableViewCell";
 static CGFloat kCellHeight = 141.0f;
@@ -51,7 +52,32 @@ static CGFloat kNewsUpdateIntervalInSeconds = 60 * 60;
   [[MCRSSService sharedInstance] fetchRSSWithCategory:self.category
                                                 since:[NSDate dateWithTimeIntervalSince1970:0]
                                       completionBlock:completionBlock];
+  [self setupTestPullToRefreshView];
   
+}
+
+#warning test
+- (void)setupTestPullToRefreshView {
+  UIImage *logoImage = [UIImage imageNamed:@"micon"];
+  UIImage *backCircleImage = [UIImage imageNamed:@"light_circle"];
+  UIImage *frontCircleImage = [UIImage imageNamed:@"dark_circle"];
+  
+  BMYCircularProgressView *progressView2 = [[BMYCircularProgressView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)
+                                                                                     logo:logoImage
+                                                                          backCircleImage:backCircleImage
+                                                                         frontCircleImage:frontCircleImage];
+  __weak typeof(self) weakSelf = self;
+  
+  [self.tableView setPullToRefreshWithHeight:45.0f actionHandler:^(BMYPullToRefreshView *pullToRefreshView) {
+    int64_t delayInSeconds = 1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });
+  }];
+  
+  [self.tableView.pullToRefreshView setPreserveContentInset:NO];
+  [self.tableView.pullToRefreshView setProgressView:progressView2];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
