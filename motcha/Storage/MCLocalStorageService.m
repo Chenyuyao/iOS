@@ -1,4 +1,4 @@
-#import "MCReadingPreferenceService.h"
+#import "MCLocalStorageService.h"
 
 #import "MCDatabaseManager.h"
 #import "CategoryEntity.h"
@@ -9,15 +9,15 @@ static NSString *kStrStoreName = @"store";
 static NSString *kStrCategoryEntryName = @"category_entry";
 static NSString *kStrDictionaryEntryname = @"dictionary_entry";
 
-@implementation MCReadingPreferenceService {
+@implementation MCLocalStorageService {
   MCDatabaseManager *_store;
 }
 
-+ (MCReadingPreferenceService *)sharedInstance {
-  static MCReadingPreferenceService *service;
++ (MCLocalStorageService *)sharedInstance {
+  static MCLocalStorageService *service;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    service = [[MCReadingPreferenceService alloc] init];
+    service = [[MCLocalStorageService alloc] init];
   });
   return service;
 }
@@ -48,8 +48,8 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
     CategoryEntity *object =
         (CategoryEntity *)[_store createEntityWithName:kStrCategoryEntryName];
     object.category = category;
-    [_store.context save:nil];
   }
+  [_store.context save:nil];
 }
 
 - (void)storeDictionary:(NSArray *)dictionary {
@@ -59,8 +59,8 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
         (DictionaryEntity *)[_store createEntityWithName:kStrDictionaryEntryname];
     object.word = [dictionaryWord.word copy];
     object.pos = dictionaryWord.pos;
-    [_store.context save:nil];
   }
+  [_store.context save:nil];
 }
 
 - (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key {

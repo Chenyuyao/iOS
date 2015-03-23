@@ -4,7 +4,7 @@
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
 #import "MCNewsListsContainerController.h"
-#import "MCReadingPreferenceService.h"
+#import "MCLocalStorageService.h"
 #import "MCNavigationController.h"
 
 static NSString * const reuseHeader = @"HeaderView";
@@ -192,7 +192,7 @@ static NSInteger minSelectedCategories = 3;
     MCNewsListsContainerController *newsListsController =
     [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
     [self.navigationController setViewControllers:@[newsListsController] animated:YES];
-    [[MCReadingPreferenceService sharedInstance] setCategories:_selectedCategories];
+    [[MCLocalStorageService sharedInstance] setCategories:_selectedCategories];
   }
 }
 
