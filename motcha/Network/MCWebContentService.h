@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 
 @class MCNewsDetailsObject;
-@class NSURL;
 @class MCParsedRSSItem;
 
 // The service that fetches and parses news from url.

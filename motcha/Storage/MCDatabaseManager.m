@@ -13,8 +13,9 @@ static NSString *const kContextKey = @"context";
 - (instancetype)initWithName:(NSString *)name entities:(NSArray *)entities {
   self = [super init];
   if (self) {
+    [self preloadDatabaseWithName:name];
     NSArray *potentialPaths =
-        NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+        NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                             NSUserDomainMask,
                                             YES);
     _storePath = [[[potentialPaths objectAtIndex:0]
@@ -22,9 +23,6 @@ static NSString *const kContextKey = @"context";
     _model = [[NSManagedObjectModel alloc] init];
     _model.entities = [entities copy];
     _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
-    _context = [[NSManagedObjectContext alloc] init];
-    [_context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
-    [_context setPersistentStoreCoordinator:_coordinator];
     
     // init store
     NSURL *url = [NSURL fileURLWithPath:_storePath];
@@ -80,5 +78,34 @@ static NSString *const kContextKey = @"context";
     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
   }
 }
+
+- (NSManagedObjectContext *)context {
+  NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+  NSManagedObjectContext *context = [dictionary objectForKey:kContextKey];
+  if (!context) {
+    context = [[NSManagedObjectContext alloc] init];
+    [context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    [context setPersistentStoreCoordinator:_coordinator];
+    [dictionary setObject:context forKey:kContextKey];
+  }
+  return context;
+}
+
+- (void)preloadDatabaseWithName:(NSString *)name {
+  NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:name];
+  if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
+    NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"sqlite"]];
+    NSError* err;
+    if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:storeURL error:&err]) {
+      NSLog(@"could not copy preloaded data!");
+    }
+  }
+}
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory {
+  return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 @end
