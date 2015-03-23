@@ -1,5 +1,5 @@
 #import "MCDictionaryService.h"
-#import "MCReadingPreferenceService.h"
+#import "MCLocalStorageService.h"
 
 #import "MCDictionaryWord.h"
 
@@ -30,7 +30,7 @@
       [dictionaryWords addObject:wordObject];
     }
   }
-  [[MCReadingPreferenceService sharedInstance] storeDictionary:dictionaryWords];
+  [[MCLocalStorageService sharedInstance] storeDictionary:dictionaryWords];
 }
 
 @end

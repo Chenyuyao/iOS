@@ -54,7 +54,7 @@
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
 		47E616D71AB7D34000FC25FA /* CategoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D01AB7D34000FC25FA /* CategoryEntity.m */; };
 		47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */; };
-		47E616D91AB7D34000FC25FA /* MCReadingPreferenceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */; };
+		47E616D91AB7D34000FC25FA /* MCLocalStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */; };
 		47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */; };
 		47E616DC1AB7D34800FC25FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E616DB1AB7D34800FC25FA /* CoreData.framework */; };
 		47E912EA1A84596D0055AB69 /* MCWebContentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E912E91A84596D0055AB69 /* MCWebContentService.m */; };
@@ -229,8 +229,8 @@
 		47E616D01AB7D34000FC25FA /* CategoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryEntity.m; sourceTree = "<group>"; };
 		47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabaseManager.h; sourceTree = "<group>"; };
 		47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabaseManager.m; sourceTree = "<group>"; };
-		47E616D31AB7D34000FC25FA /* MCReadingPreferenceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCReadingPreferenceService.h; sourceTree = "<group>"; };
-		47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCReadingPreferenceService.m; sourceTree = "<group>"; };
+		47E616D31AB7D34000FC25FA /* MCLocalStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCLocalStorageService.h; sourceTree = "<group>"; };
+		47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCLocalStorageService.m; sourceTree = "<group>"; };
 		47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Helpers.h"; sourceTree = "<group>"; };
 		47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Helpers.m"; sourceTree = "<group>"; };
 		47E616DB1AB7D34800FC25FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -565,8 +565,8 @@
 				47E616D01AB7D34000FC25FA /* CategoryEntity.m */,
 				47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */,
 				47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */,
-				47E616D31AB7D34000FC25FA /* MCReadingPreferenceService.h */,
-				47E616D41AB7D34000FC25FA /* MCReadingPreferenceService.m */,
+				47E616D31AB7D34000FC25FA /* MCLocalStorageService.h */,
+				47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */,
 				47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */,
 				47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */,
 				E0EFFBEE1ABF569D002318AA /* DictionaryEntity.h */,
@@ -938,8 +938,8 @@
 				1561B4EC1ABD02B800AB6D5B /* UIButton+AFNetworking.m in Sources */,
 				1561B4E51ABD02B800AB6D5B /* AFURLConnectionOperation.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
-				47E616D91AB7D34000FC25FA /* MCReadingPreferenceService.m in Sources */,
 				1561B4E71ABD02B800AB6D5B /* AFURLResponseSerialization.m in Sources */,
+				47E616D91AB7D34000FC25FA /* MCLocalStorageService.m in Sources */,
 				1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */,
 				1561B4EF1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m in Sources */,
 				C649C84C1A8982B80087C340 /* MCDetailNewsBodyView.m in Sources */,
