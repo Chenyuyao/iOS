@@ -13,8 +13,9 @@ static NSString *const kContextKey = @"context";
 - (instancetype)initWithName:(NSString *)name entities:(NSArray *)entities {
   self = [super init];
   if (self) {
+    [self preloadDatabaseWithName:name];
     NSArray *potentialPaths =
-        NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+        NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                             NSUserDomainMask,
                                             YES);
     _storePath = [[[potentialPaths objectAtIndex:0]
@@ -89,5 +90,22 @@ static NSString *const kContextKey = @"context";
   }
   return context;
 }
+
+- (void)preloadDatabaseWithName:(NSString *)name {
+  NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:name];
+  if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
+    NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"sqlite"]];
+    NSError* err;
+    if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:storeURL error:&err]) {
+      NSLog(@"could not copy preloaded data!");
+    }
+  }
+}
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory {
+  return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 @end
