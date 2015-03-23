@@ -68,7 +68,8 @@
         if (!date) {
           [dateFormat setDateFormat:@"d MMM yyyy HH:mm:ss Z"];
           date = [dateFormat dateFromString:dateString];
-        }      }
+        }
+      }
       if (!date) {
         //Could not parse date, set date to 1970
         date = [NSDate dateWithTimeIntervalSince1970:0];
