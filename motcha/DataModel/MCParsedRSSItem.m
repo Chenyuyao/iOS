@@ -1,5 +1,4 @@
 #import "MCParsedRSSItem.h"
-#import "NSString+Trim.h"
 
 @implementation MCParsedRSSItem
 

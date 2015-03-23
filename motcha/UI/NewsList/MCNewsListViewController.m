@@ -5,22 +5,38 @@
 #import "MCNewsDetailViewController.h"
 #import "MCNavigationController.h"
 #import "MCRSSService.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIColor+Helpers.h"
 
 static NSString *kMCTableViewCellReuseId = @"MCTableViewCell";
 static CGFloat kCellHeight = 141.0f;
+static CGFloat kNewsUpdateIntervalInSeconds = 60 * 60;
 
 @implementation MCNewsListViewController {
   NSArray *_thumbNails;
   BOOL _viewAppeared;
   NSMutableArray *_rssItems;
+  NSDate *_lastUpdateTime;
+  // TODO(Frank): Should be set to the latest item's pubDate stored in the local cache, if any.
+  NSDate *_lastRetrievedNewsPubDate;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    _lastUpdateTime = [NSDate dateWithTimeIntervalSince1970:0];
+    _lastRetrievedNewsPubDate = [NSDate dateWithTimeIntervalSince1970:0];
+  }
+  return self;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.tableView.backgroundColor = [UIColor whiteColor];
+  self.tableView.backgroundColor = [UIColor appMainColor];
   self.tableView.scrollsToTop = NO;
   self.tableView.rowHeight = kCellHeight;
   self.automaticallyAdjustsScrollViewInsets = NO;
+  // This will remove extra separators from tableview
+  self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
   // Register cell classes
   [self.tableView registerNib:[UINib nibWithNibName:@"MCNewsListTableViewCell" bundle:nil]
        forCellReuseIdentifier:kMCTableViewCellReuseId];
@@ -41,8 +57,7 @@ static CGFloat kCellHeight = 141.0f;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   MCNavigationBar *navigationBar = (MCNavigationBar *)self.navigationController.navigationBar;
-  CGFloat navigationBarAppearanceHeight =
-      navigationBar.backgroundHeight + navigationBar.auxiliaryView.frame.size.height;
+  CGFloat navigationBarAppearanceHeight = navigationBar.backgroundHeight;
   self.tableView.contentInset = UIEdgeInsetsMake(navigationBarAppearanceHeight, 0, 0, 0);
   self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
@@ -81,7 +96,7 @@ static CGFloat kCellHeight = 141.0f;
   [cell setDescription:item.descrpt];
   [cell setPublishDate:item.pubDate];
   [cell setSource:item.source];
-  // TODO(Frank): set image
+  [cell setImageWithUrl:[NSURL URLWithString:item.imgSrc]];
   return cell;
 }
 
@@ -118,6 +133,18 @@ static CGFloat kCellHeight = 141.0f;
       [self.tableView setContentOffset:CGPointMake(0, -1*self.tableView.contentInset.top) animated:YES];
     }
   }];
+}
+
+#pragma mark - Helpers
+- (void)reloadWithCompletionHandler:(void(^)(NSError *))completionHandler {
+  if (fabs([_lastUpdateTime timeIntervalSinceNow]) < kNewsUpdateIntervalInSeconds) {
+    if (completionHandler) {
+      completionHandler(nil);
+    }
+    return;
+  }
+  _lastUpdateTime = [NSDate date];
+  
 }
 
 @end

@@ -171,18 +171,30 @@ static CGFloat kCategoryButtonSpacing               = 15.0f;
   }
 }
 
+- (MCCategoryButton *)removeCategory:(NSString *)category {
+  for (MCCategoryButton *button in _categoriesButtons) {
+    NSString *buttonCategory = button.category;
+    if ([buttonCategory isEqualToString:category]) {
+      NSUInteger index = [_categoriesButtons indexOfObject:button];
+      return [self removeCategoryAtIndex:index];
+    }
+  }
+  return nil;
+}
+
 - (MCCategoryButton *)removeCategoryAtIndex:(NSUInteger)index {
   MCCategoryButton *button = [_categoriesButtons objectAtIndex:index];
   [self removeCategoryButton:button];
-  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
-      [_mcDelegate respondsToSelector:@selector(didRemoveCategoryButton:atIndex:)]) {
-    [_mcDelegate didRemoveCategoryButton:button atIndex:index];
-  }
   return button;
 }
 
 - (void)removeCategoryButton:(MCCategoryButton *)button {
+  NSUInteger index = [_categoriesButtons indexOfObject:button];
   [_categoriesButtons removeObject:button];
+  if ([_mcDelegate conformsToProtocol:@protocol(MCNewsCategorySelectorScrollViewDelegate)] &&
+      [_mcDelegate respondsToSelector:@selector(didRemoveCategoryButton:atIndex:)]) {
+    [_mcDelegate didRemoveCategoryButton:button atIndex:index];
+  }
 }
 
 - (void)moveCategoryFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {

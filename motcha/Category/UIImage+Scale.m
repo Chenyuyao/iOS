@@ -20,21 +20,29 @@
   return imageCopy;
 }
 
-- (UIImage *)scaleToMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight {
+- (UIImage *)scaleToSize:(CGSize)size contentMode:(UIViewContentMode)contentMode {
   CGFloat width = self.size.width;
   CGFloat height = self.size.height;
-  if (width <= maxWidth && height <= maxHeight) {
+  if (width <= size.width && height <= size.height) {
     return self;
   }
-  CGSize bounds = CGSizeMake(width, height);
   CGFloat ratio = width / height;
-  if (ratio > 1) {
-    bounds.width = maxWidth;
-    bounds.height = bounds.width / ratio;
-  } else {
-    bounds.height = maxHeight;
-    bounds.width = bounds.height * ratio;
+  switch (contentMode) {
+    case UIViewContentModeScaleAspectFit:
+      if (ratio > 1) {
+        return [self resizeToWidth:size.width height:size.width / ratio];
+      } else {
+        return [self resizeToWidth:size.height * ratio height:size.height];
+      }
+    case UIViewContentModeScaleAspectFill:
+      if (ratio > 1) {
+        return [self resizeToWidth:size.height * ratio height:size.height];
+      } else {
+        return [self resizeToWidth:size.width height:size.width / ratio];
+      }
+    default:
+      return [self resizeToWidth:size.width height:size.height];
   }
-  return [self resizeToWidth:bounds.width height:bounds.height];
 }
+
 @end

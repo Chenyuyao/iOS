@@ -3,6 +3,7 @@
 #import "MCDetailNewsTitleView.h"
 #import "MCDetailNewsMetaDataView.h"
 #import "MCDetailNewsBodyView.h"
+#import "UIColor+Helpers.h"
 
 static CGFloat kNewsTitleBottomIndex          = 10.0f;
 static CGFloat kSmallFontSize                 = 14.0f;
@@ -44,7 +45,7 @@ static void *scrollViewContext = &scrollViewContext;
 
 - (void)setupSubviewsAndConstraints {
   //add a content/image views
-  self.backgroundColor = [UIColor whiteColor];
+  self.backgroundColor = [UIColor appMainColor];
   
   //contentView: contains imageView, _newsTitle and _descriptionView
   _contentView = [[UIView alloc] init];
@@ -65,7 +66,7 @@ static void *scrollViewContext = &scrollViewContext;
   //descriptionView: contains MCDetailNewsMetaDataView and MCDetailNewsBodyView
   _descriptionView = [[UIView alloc] init];
   [_descriptionView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  _descriptionView.backgroundColor = [UIColor whiteColor];
+  _descriptionView.backgroundColor = [UIColor appMainColor];
   [_contentView addSubview:_descriptionView];
   
   //metaDataView
@@ -76,18 +77,17 @@ static void *scrollViewContext = &scrollViewContext;
   _mainBodyView = [[MCDetailNewsBodyView alloc] init];
   [_descriptionView addSubview:_mainBodyView];
   
-  NSDictionary *metrics = @{@"newsTitleMargin":@10, @"sourceViewMaxWidth":@200, @"mainBodyViewIndex":@10};
   NSDictionary *views = NSDictionaryOfVariableBindings(self, _contentView, _imageView, _newsTitle, _descriptionView,
       _metaDataView, _mainBodyView);
 
   //Constraints for contentView: pin to superView's top and bottom, same width as scrollView
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|"
                                                                options:0
-                                                               metrics:metrics
+                                                               metrics:nil
                                                                  views:views]];
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView(self)]|"
                                                                options:0
-                                                               metrics:metrics
+                                                               metrics:nil
                                                                  views:views]];
   
   //Constraints for _imageView
@@ -111,13 +111,13 @@ static void *scrollViewContext = &scrollViewContext;
   
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_imageView]|"
                                                                        options:0
-                                                                       metrics:metrics
+                                                                       metrics:nil
                                                                          views:views]];
   
   //Constraints for newsTitleLabel: pin to left, right, bottom-kNewsTitleBottomIndex
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_newsTitle]|"
                                                                        options:0
-                                                                       metrics:metrics
+                                                                       metrics:nil
                                                                          views:views]];
   
   _newsTitleBottomConstraint = [NSLayoutConstraint constraintWithItem:_newsTitle
@@ -142,25 +142,25 @@ static void *scrollViewContext = &scrollViewContext;
                                     constant:descriptionViewTopMargin]];
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_descriptionView]|"
                                                                        options:0
-                                                                       metrics:metrics
+                                                                       metrics:nil
                                                                          views:views]];
   [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_descriptionView]|"
                                                                        options:0
-                                                                       metrics:metrics
+                                                                       metrics:nil
                                                                          views:views]];
   //add constraints for _metaDataView, pin to top, left, right
   [_descriptionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_metaDataView]|"
                                                                            options:0
-                                                                           metrics:metrics
+                                                                           metrics:nil
                                                                              views:views]];
   [_descriptionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_metaDataView][_mainBodyView]|"
                                                                            options:0
-                                                                           metrics:metrics
+                                                                           metrics:nil
                                                                              views:views]];
   
   [_descriptionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mainBodyView]|"
                                                                            options:0
-                                                                           metrics:metrics
+                                                                           metrics:nil
                                                                              views:views]];
   [self initTextFontSize];
 }

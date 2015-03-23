@@ -22,8 +22,6 @@
     CGFloat height = maximumWidth / preferredSize.width * preferredSize.height;
     _finalSize = CGSizeMake(maximumWidth, height);
   }
-  self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, _footerHeight, 0);
-  self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {

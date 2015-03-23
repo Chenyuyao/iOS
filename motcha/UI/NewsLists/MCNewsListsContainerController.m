@@ -6,10 +6,9 @@
 #import "MCNavigationController.h"
 #import "UIFont+DINFont.h"
 #import "MCIntroViewController.h"
+#import "UIColor+Helpers.h"
 
 static CGFloat kLogoFontSize = 25.0f;
-
-static NSString *kRecommendedCategory = @"Recommended";
 
 @interface MCNewsListsContainerController ()
 <
@@ -17,19 +16,18 @@ static NSString *kRecommendedCategory = @"Recommended";
   MCNewsCategorySelectorViewDelegate,
   MCNewsCategorySelectorScrollViewDelegate,
   MCNewsCategorySelectorScrollViewDataSource,
-  MCPageViewControllerDelegate
+  MCPageViewControllerDelegate,
+  MCIntroViewControllerDelegate
 >
 @end
 
 @implementation MCNewsListsContainerController {
-  NSMutableArray *_categories; // array of NSString *
   MCNewsCategorySelectorView *_newsCategoryView;
 }
 
 - (instancetype)initWithCategories:(NSArray *)categories {
   if (self = [super init]) {
-    _categories = [NSMutableArray arrayWithObject:kRecommendedCategory];
-    [_categories addObjectsFromArray:categories];
+    _categories = [NSMutableArray arrayWithArray:categories];
     _pageViewController = [[MCPageViewController alloc] init];
     _pageViewController.delegate = self;
     [_pageViewController registerClass:[MCNewsListViewController class]];
@@ -40,6 +38,7 @@ static NSString *kRecommendedCategory = @"Recommended";
 - (void)loadView {
   self.navigationController.navigationBarHidden = NO;
   self.view = [[UIView alloc] init];
+  self.view.backgroundColor = [UIColor appMainColor];
   [self addChildViewController:self.pageViewController];
   UIView *pageView = self.pageViewController.view;
   [self.view addSubview:pageView];
@@ -86,6 +85,17 @@ static NSString *kRecommendedCategory = @"Recommended";
   /* [_newsCategoryView selectButtonAtIndex:2 animated:YES]; */
 }
 
+#pragma mark - add/remove category
+- (void)addCategory:(NSString *)category {
+  [_categories addObject:category];
+  [_newsCategoryView.categoryScrollView addCategory:category];
+}
+
+- (void)removeCategory:(NSString *)category {
+  [_categories removeObject:category];
+  [_newsCategoryView.categoryScrollView removeCategory:category];
+}
+
 #pragma mark - MCNewsCategorySelectorScrollViewDataSource methods
 - (UIScrollView *)backingScrollView {
   return (UIScrollView *)self.pageViewController.view;
@@ -95,8 +105,13 @@ static NSString *kRecommendedCategory = @"Recommended";
 - (void) addCategoriesButtonPressed {
   MCIntroViewController *introViewController =
       [[MCIntroViewController alloc] initWithSelectedCategories:_categories
+                                      superNavigationController:self.navigationController
                                                 isFirstTimeUser:NO];
-  [self.navigationController pushViewController:introViewController animated:YES];
+  introViewController.delegate = self;
+  introViewController.superNavigationController = (MCNavigationController *)self.navigationController;
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introViewController];
+  navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)categoryButtonPressed:(MCCategoryButton *)button atIndex:(NSUInteger)index animated:(BOOL)animated {
@@ -118,7 +133,7 @@ static NSString *kRecommendedCategory = @"Recommended";
 
 - (void)didReloadCategoryButtons {
   [_pageViewController reloadViewControllers];
-  [_newsCategoryView.categoryScrollView tapSelectedButtonAnimated:NO];
+  [_newsCategoryView.categoryScrollView selectButtonAtIndex:0 animated:NO];
 }
 
 #pragma mark - MCPageViewControllerDelegate methods
@@ -148,6 +163,19 @@ static NSString *kRecommendedCategory = @"Recommended";
      didLoadViewController:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
 
+}
+
+#pragma mark - MCIntroViewControllerDelegate methods
+- (void)introViewController:(UIViewController *)introViewController didSelectCategory:(NSString *)category {
+  [self addCategory:category];
+}
+
+- (void)introViewController:(UIViewController *)introViewController didDeselectCategory:(NSString *)category {
+  [self removeCategory:category];
+}
+
+- (void)introViewController:(UIViewController *)introViewController didFinishChangingCategories:(NSArray *)categories {
+  [_newsCategoryView.categoryScrollView reloadCategoryButtons];
 }
 
 #pragma mark - MCNavigationBarCustomizationDelegate methods

@@ -14,7 +14,7 @@
   UIViewController *rootViewController;
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) {
     rootViewController = [[MCIntroViewController alloc] initWithSelectedCategories:nil
-                                                                   isFirstTimeUser:YES];
+                                                         superNavigationController:nil                                                                   isFirstTimeUser:YES];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   } else {
