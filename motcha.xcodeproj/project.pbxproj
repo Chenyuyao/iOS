@@ -76,7 +76,6 @@
 		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
 		CAA0749B1ABF94AC00FE2F3B /* MCRecommendationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0749A1ABF94AC00FE2F3B /* MCRecommendationService.m */; };
 		CAA0749F1ABF9BD800FE2F3B /* Motcha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAA0749D1ABF9BD800FE2F3B /* Motcha.xcdatamodeld */; };
-=======
 		E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06B2ED01ABF5087001D714D /* MCDictionaryService.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
@@ -255,7 +254,6 @@
 		CAA0749A1ABF94AC00FE2F3B /* MCRecommendationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRecommendationService.m; sourceTree = "<group>"; };
 		CAA0749C1ABF94D000FE2F3B /* MCRecommendationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRecommendationService.h; sourceTree = "<group>"; };
 		CAA0749E1ABF9BD800FE2F3B /* Motcha.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Motcha.xcdatamodel; sourceTree = "<group>"; };
-=======
 		E06B2ED01ABF5087001D714D /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryService.m; path = Network/MCDictionaryService.m; sourceTree = "<group>"; };
 		E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCDictionaryService.h; path = Network/MCDictionaryService.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
@@ -419,7 +417,6 @@
 			children = (
 				CAA0749D1ABF9BD800FE2F3B /* Motcha.xcdatamodeld */,
 				CAA074991ABF946200FE2F3B /* RecommendationALG */,
-=======
 				47E616CE1AB7D34000FC25FA /* Storage */,
 				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				C649C8561A8982C70087C340 /* Category */,
