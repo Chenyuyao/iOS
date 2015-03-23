@@ -18,7 +18,7 @@
     _isRead = NO;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    //[dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     // See https://developer.apple.com/library/mac/qa/qa1480/_index.html
     [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
