@@ -12,6 +12,7 @@
 @property(nonatomic, readonly) NSString *category;
 @property(nonatomic, readonly) NSString *source;
 @property(nonatomic, readonly) BOOL needParse;
+@property(nonatomic, readonly) BOOL isRead;
 
 - (instancetype)initWithTitle:(NSString *)title
                          link:(NSString *)link
@@ -23,5 +24,6 @@
 - (void) setSource:(NSString *)source
           category:(NSString *)category
          needParse:(BOOL)needParse;
+- (void) markRead;
 @end
 
