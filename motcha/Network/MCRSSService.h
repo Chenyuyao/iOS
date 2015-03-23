@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 
-@class NSMutableArray;
 @interface MCRSSService : NSObject
 
 + (MCRSSService *)sharedInstance;
