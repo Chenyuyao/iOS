@@ -87,6 +87,7 @@
 		E0EFFBED1ABF52FA002318AA /* dictionary.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0EFFBEA1ABF5264002318AA /* dictionary.json */; };
 		E0EFFBF01ABF569D002318AA /* DictionaryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EFFBEF1ABF569D002318AA /* DictionaryEntity.m */; };
 		E0EFFBF31ABF5D66002318AA /* MCDictionaryWord.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EFFBF21ABF5D66002318AA /* MCDictionaryWord.m */; };
+		E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E0EFFBF61ABF91A6002318AA /* store.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +269,7 @@
 		E0EFFBEF1ABF569D002318AA /* DictionaryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntity.m; sourceTree = "<group>"; };
 		E0EFFBF11ABF5D66002318AA /* MCDictionaryWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCDictionaryWord.h; path = DataModel/MCDictionaryWord.h; sourceTree = "<group>"; };
 		E0EFFBF21ABF5D66002318AA /* MCDictionaryWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryWord.m; path = DataModel/MCDictionaryWord.m; sourceTree = "<group>"; };
+		E0EFFBF61ABF91A6002318AA /* store.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = store.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -428,6 +430,7 @@
 		15E3DB2E1A6B04BA002F4F4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0EFFBF61ABF91A6002318AA /* store.sqlite */,
 				E0EFFBEA1ABF5264002318AA /* dictionary.json */,
 				15E3DB2F1A6B04BA002F4F4C /* Info.plist */,
 				15E3DB301A6B04BA002F4F4C /* main.m */,
@@ -782,6 +785,7 @@
 				E0EFFBEB1ABF5264002318AA /* dictionary.json in Resources */,
 				C649C7E21A894F5B0087C340 /* DINPro-Bold.otf in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
+				E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */,
 				C649C7E41A894F5B0087C340 /* FarnhamDisplay-Bold.otf in Resources */,
 				15461A601AAEAFF60008025A /* MCNewsCategoryAddView.xib in Resources */,
 			);
