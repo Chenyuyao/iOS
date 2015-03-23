@@ -71,7 +71,9 @@ static CGFloat const kPullToRefreshDragToTrigger = 80;
         [_scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x, -CGRectGetHeight(self.frame)) animated:YES];
     }
     
-    self.state = BMYPullToRefreshStateLoading;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.state = BMYPullToRefreshStateLoading;
+    });
 }
 
 - (void)stopAnimating {
