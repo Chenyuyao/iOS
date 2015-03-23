@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MCCategory" representedClassName="Category" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastFetch" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="source" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MCSource" inverseName="category" inverseEntity="MCSource" syncable="YES"/>
+    </entity>
+    <entity name="MCCoreDataNewsDetail" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleimage" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rssItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCoreDataRSSItem" inverseName="detailedItem" inverseEntity="MCCoreDataRSSItem" syncable="YES"/>
+    </entity>
+    <entity name="MCCoreDataRSSItem" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descrpt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needParse" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recommendId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="detailedItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MCCoreDataNewsDetail" inverseName="rssItem" inverseEntity="MCCoreDataNewsDetail" syncable="YES"/>
+    </entity>
+    <entity name="MCDictionaryWord" syncable="YES">
+        <attribute name="pos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MCSource" representedClassName="Source" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="fullTextable" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needParse" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCategory" inverseName="source" inverseEntity="MCCategory" syncable="YES"/>
+    </entity>
+    <entity name="MCWordOccurrence" representedClassName="MCWordOccurrence" syncable="YES">
+        <attribute name="count" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastModified" attributeType="Date" syncable="YES"/>
+        <attribute name="word" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MCCategory" positionX="-2576" positionY="-711" width="128" height="120"/>
+        <element name="MCCoreDataNewsDetail" positionX="-2315" positionY="-535" width="128" height="148"/>
+        <element name="MCCoreDataRSSItem" positionX="-2621" positionY="-565" width="128" height="223"/>
+        <element name="MCDictionaryWord" positionX="-2351" positionY="-828" width="128" height="73"/>
+        <element name="MCSource" positionX="-2306" positionY="-711" width="128" height="135"/>
+        <element name="MCWordOccurrence" positionX="-2601" positionY="-844" width="128" height="88"/>
+    </elements>
+</model>

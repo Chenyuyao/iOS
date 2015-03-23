@@ -74,8 +74,7 @@
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
 		CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA074881AB9199600FE2F3B /* MCSourceService.m */; };
 		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
-		CAA0749B1ABF94AC00FE2F3B /* MCRecommendationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0749A1ABF94AC00FE2F3B /* MCRecommendationService.m */; };
-		CAA0749F1ABF9BD800FE2F3B /* Motcha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAA0749D1ABF9BD800FE2F3B /* Motcha.xcdatamodeld */; };
+		CAEB8DCF1AC0298A006F5AD1 /* Motcha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAEB8DCD1AC0298A006F5AD1 /* Motcha.xcdatamodeld */; };
 		E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06B2ED01ABF5087001D714D /* MCDictionaryService.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
@@ -251,9 +250,7 @@
 		CAA0748D1AB91A3200FE2F3B /* MCSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSource.m; path = DataModel/MCSource.m; sourceTree = "<group>"; };
 		CAA074911AB91B2300FE2F3B /* MCSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSource.h; path = DataModel/MCSource.h; sourceTree = "<group>"; };
 		CAA074921AB91B6800FE2F3B /* MCSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSourceService.h; path = Network/MCSourceService.h; sourceTree = "<group>"; };
-		CAA0749A1ABF94AC00FE2F3B /* MCRecommendationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRecommendationService.m; sourceTree = "<group>"; };
-		CAA0749C1ABF94D000FE2F3B /* MCRecommendationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRecommendationService.h; sourceTree = "<group>"; };
-		CAA0749E1ABF9BD800FE2F3B /* Motcha.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Motcha.xcdatamodel; sourceTree = "<group>"; };
+		CAEB8DCE1AC0298A006F5AD1 /* Motcha.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Motcha.xcdatamodel; sourceTree = "<group>"; };
 		E06B2ED01ABF5087001D714D /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryService.m; path = Network/MCDictionaryService.m; sourceTree = "<group>"; };
 		E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCDictionaryService.h; path = Network/MCDictionaryService.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
@@ -415,8 +412,6 @@
 		15E3DB2D1A6B04BA002F4F4C /* motcha */ = {
 			isa = PBXGroup;
 			children = (
-				CAA0749D1ABF9BD800FE2F3B /* Motcha.xcdatamodeld */,
-				CAA074991ABF946200FE2F3B /* RecommendationALG */,
 				47E616CE1AB7D34000FC25FA /* Storage */,
 				15E3DB3E1A6B04BA002F4F4C /* Images.xcassets */,
 				C649C8561A8982C70087C340 /* Category */,
@@ -430,6 +425,7 @@
 				C649C7DE1A894F5B0087C340 /* Fonts */,
 				15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */,
 				15E3DB2E1A6B04BA002F4F4C /* Supporting Files */,
+				CAEB8DCD1AC0298A006F5AD1 /* Motcha.xcdatamodeld */,
 			);
 			path = motcha;
 			sourceTree = "<group>";
@@ -854,7 +850,6 @@
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
 				CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */,
 				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
-				CAA0749F1ABF9BD800FE2F3B /* Motcha.xcdatamodeld in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
 				E0EFFBF01ABF569D002318AA /* DictionaryEntity.m in Sources */,
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
@@ -874,6 +869,7 @@
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
 				1561B4611ABB874700AB6D5B /* NSDate+TimeAgo.m in Sources */,
+				CAEB8DCF1AC0298A006F5AD1 /* Motcha.xcdatamodeld in Sources */,
 				47E913321A84605D0055AB69 /* MCWebContentParser.m in Sources */,
 				C649C84D1A8982B80087C340 /* MCDetailNewsMetaDataView.m in Sources */,
 				1539C2841A9A75C300C32877 /* MCCategoryButton.m in Sources */,
@@ -1179,12 +1175,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CAA0749D1ABF9BD800FE2F3B /* Motcha.xcdatamodeld */ = {
+		CAEB8DCD1AC0298A006F5AD1 /* Motcha.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CAA0749E1ABF9BD800FE2F3B /* Motcha.xcdatamodel */,
+				CAEB8DCE1AC0298A006F5AD1 /* Motcha.xcdatamodel */,
 			);
-			currentVersion = CAA0749E1ABF9BD800FE2F3B /* Motcha.xcdatamodel */;
+			currentVersion = CAEB8DCE1AC0298A006F5AD1 /* Motcha.xcdatamodel */;
 			path = Motcha.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
