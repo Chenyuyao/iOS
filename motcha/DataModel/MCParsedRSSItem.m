@@ -15,7 +15,6 @@
     _descrpt = descrpt;
     _imgSrc = imgSrc;
     _author = author;
-    _isRead = NO;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
@@ -35,10 +34,6 @@
   _source = source;
   _category = category;
   _needParse = needParse;
-}
-
-- (void) markRead {
-  _isRead = YES;
 }
 
 @end
