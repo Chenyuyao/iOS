@@ -1,6 +1,6 @@
 #import "MCRSSParser.h"
 
-#import "NSString+Trim.h"
+#import "NSString+Helpers.h"
 
 //Regex for extracting img src
 static NSString * kImgSrcRegex = @"(<img\\s[\\s\\S]*?src=['\"](.*?)['\"][\\s\\S]*?>)+?";
@@ -50,23 +50,7 @@ didStartElement:(NSString *)elementName
   } else if ([_element isEqualToString:@"description"]) {
     [_description appendString:string];
     
-    //Set image url
-    if (_description != nil && [string length] > 8 && [_imgSrc length] == 0) {
-      NSError *error = NULL;
-      NSRegularExpression *regex =
-      [NSRegularExpression regularExpressionWithPattern:kImgSrcRegex
-                                                options:NSRegularExpressionCaseInsensitive
-                                                  error:&error];
-      
-      NSArray *matches = [regex matchesInString:_description
-                                        options:0
-                                          range:NSMakeRange(0, [_description length])];
-      
-      if ([matches count] > 0) {
-        NSString *img = [_description substringWithRange:[matches[0] rangeAtIndex:2]];
-        [_imgSrc appendString:img];
-      }
-    }
+    
   } else if ([_element isEqualToString:@"pubDate"]) {
     [_pubDate appendString:string];
   } else if ([_element isEqualToString:@"author"]) {
@@ -82,12 +66,29 @@ didStartElement:(NSString *)elementName
   qualifiedName:(NSString *)qName {
   //After parse one item, put this item into feeds
   if ([elementName isEqualToString:@"item"]) {
-    _item = [[MCParsedRSSItem alloc] initWithTitle:[_title trimWhiteSpaceNewLineChars]
+    //Set image url
+    if (_description != nil && [_description length] > 8 && [_imgSrc length] == 0) {
+      NSError *error = NULL;
+      NSRegularExpression *regex =
+      [NSRegularExpression regularExpressionWithPattern:kImgSrcRegex
+                                                options:NSRegularExpressionCaseInsensitive
+                                                  error:&error];
+      
+      NSArray *matches = [regex matchesInString:_description
+                                        options:0
+                                          range:NSMakeRange(0, [_description length])];
+      
+      if ([matches count] > 0) {
+        NSString *img = [_description substringWithRange:[matches[0] rangeAtIndex:2]];
+        [_imgSrc appendString:img];
+      }
+    }
+    _item = [[MCParsedRSSItem alloc] initWithTitle:[[_title trimWhiteSpaceNewLineChars] stringByUnescapingFromHTML]
                                               link:[_link trimWhiteSpaceNewLineChars]
-                                           descrpt:[_description trimWhiteSpaceChars]
+                                           descrpt:[[_description trimWhiteSpaceChars] stringByUnescapingFromHTML]
                                             imgSrc:[_imgSrc trimWhiteSpaceNewLineChars]
                                            pubDate:[_pubDate trimWhiteSpaceNewLineChars]
-                                            author:[_author trimWhiteSpaceNewLineChars]];
+                                            author:[[_author trimWhiteSpaceNewLineChars] stringByUnescapingFromHTML]];
     [_feeds addObject:_item];
   }
 }

@@ -19,7 +19,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtz-ck-RP9">
-                    <rect key="frame" x="0.0" y="0.0" width="188" height="154"/>
+                    <rect key="frame" x="0.0" y="-10" width="188" height="174"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -43,11 +43,11 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Vtz-ck-RP9" firstAttribute="top" secondItem="dRa-hh-2Ku" secondAttribute="top" id="4JV-nH-0ji"/>
+                <constraint firstItem="Vtz-ck-RP9" firstAttribute="top" secondItem="dRa-hh-2Ku" secondAttribute="top" constant="-10" id="4JV-nH-0ji"/>
                 <constraint firstItem="Vtz-ck-RP9" firstAttribute="leading" secondItem="dRa-hh-2Ku" secondAttribute="leading" id="7iV-8U-f3N"/>
                 <constraint firstItem="RkE-8v-riF" firstAttribute="leading" secondItem="dRa-hh-2Ku" secondAttribute="leading" id="V06-PY-52J"/>
                 <constraint firstItem="RkE-8v-riF" firstAttribute="top" secondItem="dRa-hh-2Ku" secondAttribute="top" id="dX7-HF-Pex"/>
-                <constraint firstAttribute="bottom" secondItem="Vtz-ck-RP9" secondAttribute="bottom" constant="10" id="flo-sG-B31"/>
+                <constraint firstAttribute="bottom" secondItem="Vtz-ck-RP9" secondAttribute="bottom" id="flo-sG-B31"/>
                 <constraint firstAttribute="bottom" secondItem="RkE-8v-riF" secondAttribute="bottom" id="kG0-Cs-yIV"/>
                 <constraint firstAttribute="trailing" secondItem="Vtz-ck-RP9" secondAttribute="trailing" id="pHx-S3-Pry"/>
             </constraints>

@@ -3,4 +3,5 @@
 @interface UIColor (Helpers)
 + (UIColor *)colorWithHexValue:(NSUInteger)hexValue andAlpha:(NSUInteger)alpha;
 + (UIColor *)colorWithR:(NSUInteger)r g:(NSUInteger)g b:(NSUInteger)b andAlpha:(NSUInteger)a;
++ (UIColor *)appMainColor;
 @end

@@ -4,8 +4,10 @@
 #import "UIColor+Helpers.h"
 #import "NSDate+TimeAgo.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImage+Scale.h"
 
 static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
+static NSString *kPlaceholderImageName = @"placeholder";
 
 @implementation MCNewsListTableViewCell {
   __weak IBOutlet UIImageView *_thumbnailImageView;
@@ -17,11 +19,28 @@ static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 
 - (void)awakeFromNib {
   [super awakeFromNib];
-  
+  self.backgroundColor = [UIColor appMainColor];
 }
 
 - (void)setImageWithUrl:(NSURL *)imageURL {
-  [_thumbnailImageView setImageWithURL:imageURL];
+  UIImage *placeholder = [UIImage imageNamed:kPlaceholderImageName];
+  NSString *extension = [[imageURL path] pathExtension];
+  if (![extension isEqualToString:@"gif"]) {
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL
+                                             cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                         timeoutInterval:60];
+    __weak UIImageView *weakThumbnailImageView = _thumbnailImageView;
+    id successBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+      weakThumbnailImageView.image = [image scaleToSize:weakThumbnailImageView.frame.size
+                                            contentMode:weakThumbnailImageView.contentMode];
+    };
+    [_thumbnailImageView setImageWithURLRequest:request
+                               placeholderImage:placeholder
+                                        success:successBlock
+                                        failure:nil];
+  } else {
+    [_thumbnailImageView setImage:[UIImage imageNamed:kPlaceholderImageName]];
+  }
 }
 
 - (void)setTitle:(NSString *)title {

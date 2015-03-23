@@ -3,6 +3,7 @@
 #import "MCNavigationBarAppearanceStrategy.h"
 #import "MCNavigationBarAppearanceAuxiliaryView.h"
 #import "MCNavigationBarAppearanceBackgroundAlpha.h"
+#import "UIColor+Helpers.h"
 
 static NSString * kNavigationBarBackgroundClassName = @"_UINavigationBarBackground";
 static CGFloat kShadowRadius = 2.0f;
@@ -18,7 +19,7 @@ static CGFloat kShadowOpacity = 0.6f;
 
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    self.barTintColor = [UIColor whiteColor];
+    self.barTintColor = [UIColor appMainColor];
     for (UIView *view in [self subviews]) {
       if ([kNavigationBarBackgroundClassName isEqualToString:NSStringFromClass([view class])]) {
         _navigationBarBackgroundView = view;
@@ -98,6 +99,8 @@ static CGFloat kShadowOpacity = 0.6f;
   if (strategyClass == [MCNavigationBarAppearanceAuxiliaryView class]) {
     UIView *currentAuxiliaryView = (UIView*)appearance;
     _auxiliaryView = currentAuxiliaryView;
+    NSNumber *finalBarHeight = [dict objectForKey:kNavigationBarBackgroundHeightKey];
+    _backgroundHeight = [finalBarHeight doubleValue];
   }
   if (strategyClass == [MCNavigationBarAppearanceBackgroundAlpha class]) {
     NSNumber *currentBackgroundAlpha = (NSNumber*)appearance;
@@ -106,10 +109,7 @@ static CGFloat kShadowOpacity = 0.6f;
 }
 
 - (void)appearance:(NSObject *)appearance didAppearForStrategyClass:(Class)strategyClass state:(NSDictionary *)dict {
-  if (strategyClass == [MCNavigationBarAppearanceAuxiliaryView class]) {
-    NSNumber *finalBarHeight = [dict objectForKey:kNavigationBarBackgroundHeightKey];
-    _backgroundHeight = [finalBarHeight doubleValue];
-  }
+  // Implement this if needed.
 }
 
 #pragma mark - override hitTest:withEvent
