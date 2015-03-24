@@ -48,6 +48,7 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
         (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
     object.category = category;
     [object setCount:@0];
+    [object setSelected:@YES];
   }
   [_store.context save:nil];
 }
