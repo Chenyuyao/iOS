@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="MCCategory" representedClassName="Category" syncable="YES">
+    <entity name="MCCoreDataCategory" representedClassName="MCCoreDataCategory" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="lastFetch" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="selected" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="source" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MCSource" inverseName="category" inverseEntity="MCSource" syncable="YES"/>
+        <relationship name="source" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MCCoreDataSource" inverseName="category" inverseEntity="MCCoreDataSource" syncable="YES"/>
+    </entity>
+    <entity name="MCCoreDataDictionaryWord" representedClassName="MCCoreDataDictionaryWord" syncable="YES">
+        <attribute name="pos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="MCCoreDataNewsDetail" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,29 +34,25 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="detailedItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MCCoreDataNewsDetail" inverseName="rssItem" inverseEntity="MCCoreDataNewsDetail" syncable="YES"/>
     </entity>
-    <entity name="MCDictionaryWord" syncable="YES">
-        <attribute name="pos" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="MCSource" representedClassName="Source" syncable="YES">
+    <entity name="MCCoreDataSource" representedClassName="MCCoreDataSource" syncable="YES">
         <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="fullTextable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="needParse" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCategory" inverseName="source" inverseEntity="MCCategory" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCoreDataCategory" inverseName="source" inverseEntity="MCCoreDataCategory" syncable="YES"/>
     </entity>
-    <entity name="MCWordOccurrence" representedClassName="MCWordOccurrence" syncable="YES">
+    <entity name="MCCoreDataWordOccurrence" syncable="YES">
         <attribute name="count" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="lastModified" attributeType="Date" syncable="YES"/>
         <attribute name="word" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MCCategory" positionX="-2576" positionY="-711" width="128" height="120"/>
+        <element name="MCCoreDataCategory" positionX="-2576" positionY="-711" width="128" height="118"/>
+        <element name="MCCoreDataDictionaryWord" positionX="-2351" positionY="-828" width="128" height="73"/>
         <element name="MCCoreDataNewsDetail" positionX="-2315" positionY="-535" width="128" height="148"/>
         <element name="MCCoreDataRSSItem" positionX="-2621" positionY="-565" width="128" height="223"/>
-        <element name="MCDictionaryWord" positionX="-2351" positionY="-828" width="128" height="73"/>
-        <element name="MCSource" positionX="-2306" positionY="-711" width="128" height="135"/>
-        <element name="MCWordOccurrence" positionX="-2601" positionY="-844" width="128" height="88"/>
+        <element name="MCCoreDataSource" positionX="-2306" positionY="-711" width="128" height="135"/>
+        <element name="MCCoreDataWordOccurrence" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
