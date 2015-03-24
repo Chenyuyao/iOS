@@ -2,11 +2,11 @@
 
 @class MCDictionaryWord;
 // A service that provides local storage of user's reading preferences.
-@interface MCReadingPreferenceService : NSObject
+@interface MCLocalStorageService : NSObject
 
 @property(nonatomic) NSArray *categories;
 
-+ (MCReadingPreferenceService *)sharedInstance;
++ (MCLocalStorageService *)sharedInstance;
 
 - (void)storeDictionary:(NSArray *)dictionaryWords;
 - (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key;

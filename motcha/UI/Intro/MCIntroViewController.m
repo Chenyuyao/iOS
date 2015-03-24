@@ -5,7 +5,7 @@
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
 #import "MCNewsListsContainerController.h"
-#import "MCReadingPreferenceService.h"
+#import "MCLocalStorageService.h"
 #import "MCNavigationController.h"
 #import "UIColor+Helpers.h"
 #import "MCNewsCategorySelectorView.h"
@@ -197,17 +197,17 @@ static NSInteger minSelectedCategories = 4;
                                           otherButtonTitles:nil, nil];
     [alert show];
   } else {
-    if (![[[MCReadingPreferenceService sharedInstance] categories] isEqualToArray:_selectedCategories]) {
+    if (![[[MCLocalStorageService sharedInstance] categories] isEqualToArray:_selectedCategories]) {
       if (_isFirstTimeUser) {
         MCNewsListsContainerController *newsListsController =
-        [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
+            [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
         [self.navigationController setViewControllers:@[newsListsController] animated:YES];
       }
       if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
           [_delegate respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
         [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
       }
-      [[MCReadingPreferenceService sharedInstance] setCategories:_selectedCategories];
+      [[MCLocalStorageService sharedInstance] setCategories:_selectedCategories];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
   }
