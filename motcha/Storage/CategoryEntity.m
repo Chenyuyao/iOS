@@ -2,6 +2,7 @@
 
 #import "NSEntityDescription+Helpers.h"
 
+
 static NSString *kStrCategoryEntityAttribute = @"categoryKey";
 
 @implementation CategoryEntity
