@@ -149,7 +149,6 @@ static CGFloat kLogoFontSize = 25.0f;
   }
   MCNewsListViewController *newsListViewController = (MCNewsListViewController *)viewController;
   newsListViewController.tableView.scrollsToTop = YES;
-  // TODO(Frank): Reload the current view controller.
 }
 
 - (void)pageViewController:(MCPageViewController *)pageViewController
@@ -162,7 +161,7 @@ static CGFloat kLogoFontSize = 25.0f;
 - (void)pageViewController:(MCPageViewController *)pageViewController
      didLoadViewController:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-
+  // Implement this if needed.
 }
 
 #pragma mark - MCIntroViewControllerDelegate methods
