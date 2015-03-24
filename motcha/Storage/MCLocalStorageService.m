@@ -1,13 +1,13 @@
 #import "MCLocalStorageService.h"
 
 #import "MCDatabaseManager.h"
-#import "CategoryEntity.h"
-#import "DictionaryEntity.h"
+#import "MCCoreDataCategory.h"
+#import "MCCoreDataDictionaryWord.h"
 #import "MCDictionaryWord.h"
 
 static NSString *kStrStoreName = @"store";
-static NSString *kStrCategoryEntryName = @"category_entry";
-static NSString *kStrDictionaryEntryname = @"dictionary_entry";
+static NSString *kStrCategoryEntryName = @"MCCoreDataCategory";
+static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
 
 @implementation MCLocalStorageService {
   MCDatabaseManager *_store;
@@ -25,18 +25,17 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
 - (instancetype)init {
   self = [super init];
   if (self) {
-    NSArray *entities = @[ [CategoryEntity descriptionWithName:kStrCategoryEntryName],
-                           [DictionaryEntity descriptionWithName:kStrDictionaryEntryname] ];
-    _store = [[MCDatabaseManager alloc] initWithName:kStrStoreName
-                                            entities:entities];
+    _store = [[MCDatabaseManager alloc] initWithName:kStrStoreName];
   }
   return self;
 }
 
 - (NSArray *)categories {
-  NSArray *result = [_store fetchForEntitiesWithName:kStrCategoryEntryName onPredicate:nil];
+  NSArray *result = [_store fetchForEntitiesWithName:kStrCategoryEntryName
+                                         onPredicate:nil
+                                              onSort:nil];
   NSMutableArray *categories = [NSMutableArray array];
-  for (CategoryEntity *entity in result) {
+  for (MCCoreDataCategory *entity in result) {
     [categories addObject:entity.category];
   }
   return categories;
@@ -45,8 +44,8 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
 - (void)setCategories:(NSArray *)categories {
   [_store deleteEntitiesWithName:kStrCategoryEntryName onPredicate:nil];
   for (NSString *category in categories) {
-    CategoryEntity *object =
-        (CategoryEntity *)[_store createEntityWithName:kStrCategoryEntryName];
+    MCCoreDataCategory *object =
+        (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
     object.category = category;
   }
   [_store.context save:nil];
@@ -55,8 +54,8 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
 - (void)storeDictionary:(NSArray *)dictionary {
   [_store deleteEntitiesWithName:kStrDictionaryEntryname onPredicate:nil];
   for (MCDictionaryWord *dictionaryWord in dictionary) {
-    DictionaryEntity *object =
-        (DictionaryEntity *)[_store createEntityWithName:kStrDictionaryEntryname];
+    MCCoreDataDictionaryWord *object =
+        (MCCoreDataDictionaryWord *)[_store createEntityWithName:kStrDictionaryEntryname];
     object.word = [dictionaryWord.word copy];
     object.pos = dictionaryWord.pos;
   }
@@ -65,9 +64,11 @@ static NSString *kStrDictionaryEntryname = @"dictionary_entry";
 
 - (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key {
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"wordKey == %@", key];
-  NSArray *result = [_store fetchForEntitiesWithName:kStrDictionaryEntryname onPredicate:predicate];
+  NSArray *result = [_store fetchForEntitiesWithName:kStrDictionaryEntryname
+                                         onPredicate:predicate
+                                              onSort:nil];
   if ([result count] > 0) {
-    DictionaryEntity *entity = [result objectAtIndex:0];
+    MCCoreDataDictionaryWord *entity = [result objectAtIndex:0];
     MCDictionaryWord *dictionaryWord = [[MCDictionaryWord alloc] initWithWord:entity.word andPos:entity.pos];
     return dictionaryWord;
   } else {
