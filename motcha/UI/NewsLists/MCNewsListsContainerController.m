@@ -109,7 +109,8 @@ static CGFloat kLogoFontSize = 25.0f;
                                                 isFirstTimeUser:NO];
   introViewController.delegate = self;
   introViewController.superNavigationController = (MCNavigationController *)self.navigationController;
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introViewController];
+  MCNavigationController *navigationController =
+      [[MCNavigationController alloc] initWithRootViewController:introViewController];
   navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
   [self presentViewController:navigationController animated:YES completion:nil];
 }
