@@ -8,6 +8,7 @@
 
 + (MCLocalStorageService *)sharedInstance;
 
+- (void)presetCategories:(NSArray *)categories;
 - (void)storeDictionary:(NSArray *)dictionaryWords;
 - (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key;
 

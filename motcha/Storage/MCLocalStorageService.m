@@ -8,6 +8,7 @@
 static NSString *kStrStoreName = @"store";
 static NSString *kStrCategoryEntryName = @"MCCoreDataCategory";
 static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
+static NSString * const recommendedCategory = @"RECOMMENDED";
 
 @implementation MCLocalStorageService {
   MCDatabaseManager *_store;
@@ -30,25 +31,48 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
   return self;
 }
 
+- (void)presetCategories:(NSArray *)categories {
+  for (NSString * category in categories) {
+    MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
+    [coreDataCategory setCategory:category];
+    [coreDataCategory setCount:@1];
+    [coreDataCategory setSelected:@NO];
+    [coreDataCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
+  }
+  MCCoreDataCategory * recommendCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
+  [recommendCategory setCategory:recommendedCategory];
+  [recommendCategory setCount:@1];
+  [recommendCategory setSelected:@NO];
+  [recommendCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
+
+  
+}
+
 - (NSArray *)categories {
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"selected", @YES];
   NSArray *result = [_store fetchForEntitiesWithName:kStrCategoryEntryName
-                                         onPredicate:nil
+                                         onPredicate:predicate
                                               onSort:nil];
   NSMutableArray *categories = [NSMutableArray array];
   for (MCCoreDataCategory *entity in result) {
     [categories addObject:entity.category];
   }
+  [categories removeObject:recommendedCategory];
+  [categories insertObject:recommendedCategory atIndex:0];
   return categories;
 }
 
 - (void)setCategories:(NSArray *)categories {
-  [_store deleteEntitiesWithName:kStrCategoryEntryName onPredicate:nil];
-  for (NSString *category in categories) {
-    MCCoreDataCategory *object =
-        (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
-    object.category = category;
-    [object setCount:@0];
-    [object setSelected:@YES];
+  NSArray *result = [_store fetchForEntitiesWithName:kStrCategoryEntryName
+                                         onPredicate:nil
+                                              onSort:nil];
+  for (MCCoreDataCategory *entity in result) {
+    NSString * category = entity.category;
+    if ([categories containsObject:category]) {
+      [entity setSelected:@YES];
+    } else {
+      [entity setSelected:@NO];
+    }
   }
   [_store.context save:nil];
 }
