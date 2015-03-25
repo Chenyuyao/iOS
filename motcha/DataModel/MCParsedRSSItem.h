@@ -24,4 +24,3 @@
           category:(NSString *)category
          needParse:(BOOL)needParse;
 @end
-

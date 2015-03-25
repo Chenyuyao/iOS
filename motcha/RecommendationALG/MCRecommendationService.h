@@ -5,9 +5,8 @@
 
 + (MCRecommendationService *)sharedInstance;
 
-- (NSArray *)getRecommendedCategory;
+- (void)getRecommendedCategoryWithBlock:(void(^)(NSArray *, NSError *))block;
 - (NSNumber *)getRSSItemScore:(MCParsedRSSItem *) item;
-
 
 
 @end

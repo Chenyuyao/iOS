@@ -9,12 +9,12 @@
 #import "MCNavigationController.h"
 #import "UIColor+Helpers.h"
 #import "MCNewsCategorySelectorView.h"
+#import "MCCategorySourceService.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
 static NSString * const reuseFooter = @"FooterView";
 static NSString * const minSelectedMsg = @"Please select at least three categories to get started.";
-static NSString * const recommendedCategory = @"RECOMMENDED";
 static NSInteger minSelectedCategories = 4;
 
 @implementation MCIntroViewController {
@@ -54,7 +54,7 @@ static NSInteger minSelectedCategories = 4;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
     } else {
       _selectedCategories = [NSMutableArray arrayWithObject:recommendedCategory];
-      [[MCLocalStorageService sharedInstance] presetCategories:[MCIntroViewController categories]];
+      [[MCCategorySourceService sharedInstance] importCategories];
     }
   }
   return self;
@@ -211,7 +211,7 @@ static NSInteger minSelectedCategories = 4;
           [self dismissViewControllerAnimated:YES completion:nil];
         }
     };
-    [[MCLocalStorageService sharedInstance] storeCategories:_selectedCategories
+    [[MCCategorySourceService sharedInstance] storeSelectedCategories:_selectedCategories
                                                   withBlock:block];
   }
 }

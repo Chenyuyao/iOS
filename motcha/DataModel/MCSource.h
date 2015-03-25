@@ -7,12 +7,15 @@
 @property(nonatomic, readonly) NSString *category;
 @property(nonatomic, readonly) NSString *source;
 @property(nonatomic, readonly) NSString *link;
+@property(nonatomic, readonly) NSNumber *count;
+@property(nonatomic, readonly) NSNumber *score;
 @property(nonatomic) BOOL needParse;
 @property(nonatomic) BOOL fullTextable;
 
 - (instancetype)initWithCategory:(NSString *) category
                           source:(NSString *) source
                             link:(NSString *) link
+                           count:(NSNumber *) count
                        needParse:(BOOL) needParse
                      fullTextale:(BOOL) fullTextable;
 

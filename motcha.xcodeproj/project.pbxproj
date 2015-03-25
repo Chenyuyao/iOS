@@ -94,10 +94,12 @@
 		CA09A4791AC10378006E9C73 /* MCCoreDataDictionaryWord.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A4781AC10378006E9C73 /* MCCoreDataDictionaryWord.m */; };
 		CA09A47C1AC10378006E9C73 /* MCCoreDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A47B1AC10378006E9C73 /* MCCoreDataSource.m */; };
 		CA09A47F1AC10378006E9C73 /* MCCoreDataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A47E1AC10378006E9C73 /* MCCoreDataCategory.m */; };
+		CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */; };
+		CA6BD7861AC23E5200BD3D3D /* MCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7851AC23E5200BD3D3D /* MCCategory.m */; };
+		CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6BD78B1AC2F1AC00BD3D3D /* category.json */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
-		CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA074881AB9199600FE2F3B /* MCSourceService.m */; };
 		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
 		CAEB8DCF1AC0298A006F5AD1 /* Motcha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAEB8DCD1AC0298A006F5AD1 /* Motcha.xcdatamodeld */; };
 		E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06B2ED01ABF5087001D714D /* MCDictionaryService.m */; };
@@ -317,16 +319,19 @@
 		CA09A47B1AC10378006E9C73 /* MCCoreDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataSource.m; sourceTree = "<group>"; };
 		CA09A47D1AC10378006E9C73 /* MCCoreDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataCategory.h; sourceTree = "<group>"; };
 		CA09A47E1AC10378006E9C73 /* MCCoreDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataCategory.m; sourceTree = "<group>"; };
+		CA6BD7811AC231EF00BD3D3D /* MCCategorySourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCategorySourceService.h; sourceTree = "<group>"; };
+		CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCategorySourceService.m; sourceTree = "<group>"; };
+		CA6BD7841AC23E5200BD3D3D /* MCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCCategory.h; path = DataModel/MCCategory.h; sourceTree = "<group>"; };
+		CA6BD7851AC23E5200BD3D3D /* MCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCCategory.m; path = DataModel/MCCategory.m; sourceTree = "<group>"; };
+		CA6BD78B1AC2F1AC00BD3D3D /* category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = category.json; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
 		CA90EF2E1A85B8E1005931CF /* MCRSSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSService.h; path = Network/MCRSSService.h; sourceTree = "<group>"; };
 		CA90EF2F1A85B8F4005931CF /* MCRSSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSService.m; path = Network/MCRSSService.m; sourceTree = "<group>"; };
 		CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCParsedRSSItem.h; path = DataModel/MCParsedRSSItem.h; sourceTree = "<group>"; };
-		CAA074881AB9199600FE2F3B /* MCSourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSourceService.m; path = Network/MCSourceService.m; sourceTree = "<group>"; };
 		CAA0748D1AB91A3200FE2F3B /* MCSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSource.m; path = DataModel/MCSource.m; sourceTree = "<group>"; };
 		CAA074911AB91B2300FE2F3B /* MCSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSource.h; path = DataModel/MCSource.h; sourceTree = "<group>"; };
-		CAA074921AB91B6800FE2F3B /* MCSourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSourceService.h; path = Network/MCSourceService.h; sourceTree = "<group>"; };
 		CAEB8DCE1AC0298A006F5AD1 /* Motcha.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Motcha.xcdatamodel; sourceTree = "<group>"; };
 		E06B2ED01ABF5087001D714D /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryService.m; path = Network/MCDictionaryService.m; sourceTree = "<group>"; };
 		E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCDictionaryService.h; path = Network/MCDictionaryService.h; sourceTree = "<group>"; };
@@ -590,6 +595,7 @@
 		15E3DB2E1A6B04BA002F4F4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD78B1AC2F1AC00BD3D3D /* category.json */,
 				E0EFFBF61ABF91A6002318AA /* store.sqlite */,
 				E0EFFBEA1ABF5264002318AA /* dictionary.json */,
 				15E3DB2F1A6B04BA002F4F4C /* Info.plist */,
@@ -618,6 +624,8 @@
 		47E616CE1AB7D34000FC25FA /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD7811AC231EF00BD3D3D /* MCCategorySourceService.h */,
+				CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */,
 				CA09A47D1AC10378006E9C73 /* MCCoreDataCategory.h */,
 				CA09A47E1AC10378006E9C73 /* MCCoreDataCategory.m */,
 				CA09A47A1AC10378006E9C73 /* MCCoreDataSource.h */,
@@ -645,8 +653,6 @@
 				CA90EF2C1A85B892005931CF /* MCRSSParser.m */,
 				CA90EF2E1A85B8E1005931CF /* MCRSSService.h */,
 				CA90EF2F1A85B8F4005931CF /* MCRSSService.m */,
-				CAA074881AB9199600FE2F3B /* MCSourceService.m */,
-				CAA074921AB91B6800FE2F3B /* MCSourceService.h */,
 				E06B2ED01ABF5087001D714D /* MCDictionaryService.m */,
 				E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */,
 			);
@@ -656,6 +662,8 @@
 		47E912EE1A8459C20055AB69 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD7841AC23E5200BD3D3D /* MCCategory.h */,
+				CA6BD7851AC23E5200BD3D3D /* MCCategory.m */,
 				CA90EF311A86B7FA005931CF /* MCParsedRSSItem.h */,
 				CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */,
 				47E912EB1A8459BD0055AB69 /* MCNewsDetailsObject.h */,
@@ -960,6 +968,7 @@
 				E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
 				E0EFFBEB1ABF5264002318AA /* dictionary.json in Resources */,
+				CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */,
 				C649C7E21A894F5B0087C340 /* DINPro-Bold.otf in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 				E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */,
@@ -991,6 +1000,7 @@
 				1561B4E91ABD02B800AB6D5B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				C649C8191A8980F10087C340 /* HTMLParser.m in Sources */,
 				1561B4EA1ABD02B800AB6D5B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */,
 				1561B4F01ABD02B800AB6D5B /* UIWebView+AFNetworking.m in Sources */,
 				CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */,
 				1561B4EB1ABD02B800AB6D5B /* UIAlertView+AFNetworking.m in Sources */,
@@ -1035,10 +1045,10 @@
 				C649C8511A8982B80087C340 /* MCNewsTextBlock.m in Sources */,
 				1539C2861A9A75C300C32877 /* MCNewsCategorySelectorScrollView.m in Sources */,
 				15E3DB341A6B04BA002F4F4C /* MCAppDelegate.m in Sources */,
+				CA6BD7861AC23E5200BD3D3D /* MCCategory.m in Sources */,
 				1561B45E1ABB486800AB6D5B /* NSString+Helpers.m in Sources */,
 				C649C8501A8982B80087C340 /* MCNewsImageBlock.m in Sources */,
 				CA09A47C1AC10378006E9C73 /* MCCoreDataSource.m in Sources */,
-				CAA074891AB9199600FE2F3B /* MCSourceService.m in Sources */,
 				1539C2851A9A75C300C32877 /* MCNewsCategoryIndicatorView.m in Sources */,
 				1561B4E81ABD02B800AB6D5B /* AFURLSessionManager.m in Sources */,
 				CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */,
