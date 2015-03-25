@@ -65,5 +65,4 @@
   [[MCCategorySourceService sharedInstance] fetchAllCategoriesWithBlock:completionBlock];  
 }
 
-
 @end

@@ -7,8 +7,7 @@ static NSString * const recommendedCategory = @"RECOMMENDED";
 
 + (MCCategorySourceService *)sharedInstance;
 
-//- (void)hardCodeSource;
-- (void)presetCategories:(NSArray *)categories;
+- (void)importCategories;
 
 //get / set user selected categories
 - (void)fetchSelectedCategoriesWithBlock:(void(^)(NSArray *, NSError *))block;

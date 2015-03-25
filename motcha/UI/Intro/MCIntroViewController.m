@@ -54,8 +54,7 @@ static NSInteger minSelectedCategories = 4;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
     } else {
       _selectedCategories = [NSMutableArray arrayWithObject:recommendedCategory];
-      [[MCCategorySourceService sharedInstance] presetCategories:[MCIntroViewController categories]];
-//      [[MCCategorySourceService sharedInstance] hardCodeSource];
+      [[MCCategorySourceService sharedInstance] importCategories];
     }
   }
   return self;

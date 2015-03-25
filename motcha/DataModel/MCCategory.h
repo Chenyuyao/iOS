@@ -13,5 +13,4 @@
                        lastFetch:(NSDate *) lastFetch
                         selected:(BOOL) selected;
 
-
 @end

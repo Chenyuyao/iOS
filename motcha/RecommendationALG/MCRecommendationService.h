@@ -9,5 +9,4 @@
 - (NSNumber *)getRSSItemScore:(MCParsedRSSItem *) item;
 
 
-
 @end

@@ -109,7 +109,7 @@ static NSString *kFullTextRSSURL = @"http://fulltextrssfeed.com/";
                              completionHandler:completionBlock];
     }
   };
-  category = [category uppercaseString];
+  
   [[MCCategorySourceService sharedInstance] fetchSourceByCategory:category withBlock:sourceBlock];
   
 }

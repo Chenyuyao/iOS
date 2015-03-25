@@ -28,50 +28,45 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   }
   return self;
 }
-/*
-- (void)hardCodeSource {
-  NSPredicate *technologyPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", @"TECHNOLOGY"];
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:technologyPredicate
-                            onSort:nil
-                   completionBlock:^(NSArray *entities, NSError *error) {
-                     MCCoreDataCategory * technology = (MCCoreDataCategory *)[entities objectAtIndex:0];
-                     
-                     [_store.context save:nil];
-                   }];
-  
-  
-  NSPredicate *financePredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", @"FINANCE"];
-  
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:financePredicate
-                            onSort:nil
-                   completionBlock:^(NSArray *entities, NSError *error) {
-                     MCCoreDataCategory * finance = (MCCoreDataCategory *)[entities objectAtIndex:0];
-                     
-                     
-                     [_store.context save:nil];
-                   }];
-  
-  
-  
-  
-  NSPredicate *artsPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", @"ARTS"];
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:artsPredicate
-                            onSort:nil
-                   completionBlock:^(NSArray *entities, NSError *error) {
-                     MCCoreDataCategory * arts = (MCCoreDataCategory *)[entities objectAtIndex:0];
-                     
-                     
-                     [_store.context save:nil];
-                   }];
-  
-  
-}*/
 
+- (void)importCategories {
+  NSError* err = nil;
+  NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"category" ofType:@"json"];
+  
+  NSArray* jsonCategories =
+  [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                  options:kNilOptions
+                                    error:&err];
+  for (NSDictionary * jsonCategory in jsonCategories) {
+    MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
+    [coreDataCategory setCategory:[jsonCategory objectForKey:@"category"]];
+    [coreDataCategory setCount:@1];
+    [coreDataCategory setSelected:@NO];
+    [coreDataCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
+
+    NSArray *jsonSources = [jsonCategory objectForKey:@"array"];
+    for (NSDictionary * jsonSource in jsonSources) {
+      MCCoreDataSource * coreDataSource =
+      (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
+      [coreDataSource setSource:[jsonSource objectForKey:@"source"]];
+      [coreDataSource setLink:[jsonSource objectForKey:@"link"]];
+      [coreDataSource setNeedParse:[jsonSource objectForKey:@"needParse"]];
+      [coreDataSource setFullTextable:[jsonSource objectForKey:@"fullTextable"]];
+      [coreDataSource setCount:@1];
+      [coreDataSource setCategory:coreDataCategory];
+    }
+  }
+  
+  MCCoreDataCategory * recommendCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
+  [recommendCategory setCategory:recommendedCategory];
+  [recommendCategory setCount:@1];
+  [recommendCategory setSelected:@NO];
+  [recommendCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
+  [_store.context save:nil];
+}
 
 - (void)presetCategories:(NSArray *)categories {
+  [self importCategories];
   for (NSString * category in categories) {
     MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
     [coreDataCategory setCategory:category];
@@ -130,7 +125,7 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   id completionBlock = ^(NSArray *entities, NSError *error) {
     NSMutableArray *categories = [NSMutableArray array];
     for (MCCoreDataCategory *entity in entities) {
-      [categories addObject:entity.category];
+      [categories addObject:[entity.category uppercaseString]];
     }
     [categories removeObject:recommendedCategory];
     [categories insertObject:recommendedCategory atIndex:0];
@@ -148,14 +143,14 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       for (MCCoreDataCategory *entity in entities) {
-        NSString * category = entity.category;
+        NSString * category = [entity category];
         if ([categories containsObject:category]) {
           [entity setSelected:@YES];
         } else {
           [entity setSelected:@NO];
         }
+        [[entity managedObjectContext] save:nil];
       }
-      [_store.context save:nil];
     }
     block(error);
   };
@@ -218,7 +213,6 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     }
   };
   
-  categoryName = [categoryName lowercaseString];
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", categoryName];
   [_store fetchForEntitiesWithName:kStrCategoryEntityName
                        onPredicate:predicate
@@ -250,4 +244,5 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                             onSort:nil
                    completionBlock:completionBlock];
 }
+
 @end

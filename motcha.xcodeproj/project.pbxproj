@@ -96,6 +96,7 @@
 		CA09A47F1AC10378006E9C73 /* MCCoreDataCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A47E1AC10378006E9C73 /* MCCoreDataCategory.m */; };
 		CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */; };
 		CA6BD7861AC23E5200BD3D3D /* MCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7851AC23E5200BD3D3D /* MCCategory.m */; };
+		CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6BD78B1AC2F1AC00BD3D3D /* category.json */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
@@ -322,6 +323,7 @@
 		CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCategorySourceService.m; sourceTree = "<group>"; };
 		CA6BD7841AC23E5200BD3D3D /* MCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCCategory.h; path = DataModel/MCCategory.h; sourceTree = "<group>"; };
 		CA6BD7851AC23E5200BD3D3D /* MCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCCategory.m; path = DataModel/MCCategory.m; sourceTree = "<group>"; };
+		CA6BD78B1AC2F1AC00BD3D3D /* category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = category.json; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 		15E3DB2E1A6B04BA002F4F4C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD78B1AC2F1AC00BD3D3D /* category.json */,
 				E0EFFBF61ABF91A6002318AA /* store.sqlite */,
 				E0EFFBEA1ABF5264002318AA /* dictionary.json */,
 				15E3DB2F1A6B04BA002F4F4C /* Info.plist */,
@@ -965,6 +968,7 @@
 				E0B343C91A773F030081BE95 /* MCIntroHeader.xib in Resources */,
 				15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */,
 				E0EFFBEB1ABF5264002318AA /* dictionary.json in Resources */,
+				CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */,
 				C649C7E21A894F5B0087C340 /* DINPro-Bold.otf in Resources */,
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 				E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */,
