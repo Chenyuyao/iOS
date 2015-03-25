@@ -104,9 +104,8 @@ static CGFloat kLogoFontSize = 25.0f;
 #pragma mark - MCNewsCategorySelectorViewDelegate methods
 - (void) addCategoriesButtonPressed {
   MCIntroViewController *introViewController =
-      [[MCIntroViewController alloc] initWithSelectedCategories:_categories
-                                      superNavigationController:self.navigationController
-                                                isFirstTimeUser:NO];
+      [[MCIntroViewController alloc] initWithSuperNavigationController:self.navigationController
+                                                       isFirstTimeUser:NO];
   introViewController.delegate = self;
   introViewController.superNavigationController = (MCNavigationController *)self.navigationController;
   MCNavigationController *navigationController =
@@ -175,7 +174,9 @@ static CGFloat kLogoFontSize = 25.0f;
 }
 
 - (void)introViewController:(UIViewController *)introViewController didFinishChangingCategories:(NSArray *)categories {
-  [_newsCategoryView.categoryScrollView reloadCategoryButtons];
+  if (![categories isEqualToArray:_categories]) {
+    [_newsCategoryView.categoryScrollView reloadCategoryButtons];
+  }
 }
 
 #pragma mark - MCNavigationBarCustomizationDelegate methods

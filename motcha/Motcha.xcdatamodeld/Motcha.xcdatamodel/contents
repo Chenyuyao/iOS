@@ -42,7 +42,7 @@
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCoreDataCategory" inverseName="source" inverseEntity="MCCoreDataCategory" syncable="YES"/>
     </entity>
-    <entity name="MCCoreDataWordOccurrence" syncable="YES">
+    <entity name="MCCoreDataWordOccurrence" representedClassName="MCCoreDataWordOccurrence" syncable="YES">
         <attribute name="count" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="lastModified" attributeType="Date" syncable="YES"/>
         <attribute name="word" attributeType="String" syncable="YES"/>

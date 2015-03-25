@@ -4,13 +4,10 @@
 #import "MCCoreDataSource.h"
 #import "MCSource.h"
 
-static NSString *kStrStoreName = @"store";
 static NSString *kStrCategoryEntityName = @"MCCoreDataCategory";
 static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 
-@implementation MCCategorySourceService {
-  MCDatabaseManager *_store;
-}
+@implementation MCCategorySourceService
 
 + (MCCategorySourceService *)sharedInstance {
   static MCCategorySourceService *service;
@@ -19,14 +16,6 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     service = [[MCCategorySourceService alloc] init];
   });
   return service;
-}
-
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    _store = [[MCDatabaseManager alloc] initWithName:kStrStoreName];
-  }
-  return self;
 }
 
 - (void)importCategories {
@@ -38,7 +27,8 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                   options:kNilOptions
                                     error:&err];
   for (NSDictionary * jsonCategory in jsonCategories) {
-    MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
+    MCCoreDataCategory * coreDataCategory =
+        (MCCoreDataCategory *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrCategoryEntityName];
     [coreDataCategory setCategory:[jsonCategory objectForKey:@"category"]];
     [coreDataCategory setCount:@1];
     [coreDataCategory setSelected:@NO];
@@ -47,7 +37,7 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     NSArray *jsonSources = [jsonCategory objectForKey:@"array"];
     for (NSDictionary * jsonSource in jsonSources) {
       MCCoreDataSource * coreDataSource =
-      (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
+      (MCCoreDataSource *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrSourceEntityName];
       [coreDataSource setSource:[jsonSource objectForKey:@"source"]];
       [coreDataSource setLink:[jsonSource objectForKey:@"link"]];
       [coreDataSource setNeedParse:[jsonSource objectForKey:@"needParse"]];
@@ -57,89 +47,36 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     }
   }
   
-  MCCoreDataCategory * recommendCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
+  MCCoreDataCategory * recommendCategory =
+      (MCCoreDataCategory *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrCategoryEntityName];
   [recommendCategory setCategory:recommendedCategory];
   [recommendCategory setCount:@1];
-  [recommendCategory setSelected:@NO];
+  [recommendCategory setSelected:@YES];
   [recommendCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
-  [_store.context save:nil];
+  [[MCDatabaseManager defaultManager].context save:nil];
 }
 
-- (void)presetCategories:(NSArray *)categories {
-  [self importCategories];
-  for (NSString * category in categories) {
-    MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
-    [coreDataCategory setCategory:category];
-    [coreDataCategory setCount:@1];
-    [coreDataCategory setSelected:@NO];
-    [coreDataCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
-    
-    if ([category isEqual:@"TECHNOLOGY"]) {
-      MCCoreDataSource * technologySource1 = (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
-      [technologySource1 setSource:@"cnet"];
-      [technologySource1 setLink:@"www.cnet.com/rss/news/"];
-      [technologySource1 setNeedParse:@NO];
-      [technologySource1 setFullTextable:@YES];
-      [technologySource1 setCount:@1];
-      [technologySource1 setCategory:coreDataCategory];
-      
-      MCCoreDataSource * technologySource2 = (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
-      [technologySource2 setSource:@"engadget"];
-      [technologySource2 setLink:@"www.engadget.com/rss.xml/"];
-      [technologySource2 setNeedParse:@NO];
-      [technologySource2 setFullTextable:@YES];
-      [technologySource2 setCount:@1];
-      [technologySource2 setCategory:coreDataCategory];
-
-    } else if ([category isEqual:@"FINANCE"]){
-      MCCoreDataSource * financeSource = (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
-      [financeSource setSource:@"economist"];
-      [financeSource setLink:@"www.economist.com/sections/business-finance/rss.xml/"];
-      [financeSource setNeedParse:@NO];
-      [financeSource setFullTextable:@YES];
-      [financeSource setCount:@1];
-      [financeSource setCategory:coreDataCategory];
-    } else if ([category isEqual:@"ARTS"]){
-      MCCoreDataSource * artsSource = (MCCoreDataSource *)[_store createEntityWithName:kStrSourceEntityName];
-      [artsSource setSource:@"artnews"];
-      [artsSource setLink:@"www.artnews.com/feed/"];
-      [artsSource setNeedParse:@NO];
-      [artsSource setFullTextable:@YES];
-      [artsSource setCount:@1];
-      [artsSource setCategory:coreDataCategory];
-    }
-  }
-  MCCoreDataCategory * recommendCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntityName];
-  [recommendCategory setCategory:recommendedCategory];
-  [recommendCategory setCount:@1];
-  [recommendCategory setSelected:@NO];
-  [recommendCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
-  
-  [_store.context save:nil];
-}
-
-
-
-- (void)fetchSelectedCategoriesWithBlock:(void(^)(NSArray *, NSError *))block {
+- (void)fetchSelectedCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"selected", @YES];
   id completionBlock = ^(NSArray *entities, NSError *error) {
     NSMutableArray *categories = [NSMutableArray array];
     for (MCCoreDataCategory *entity in entities) {
       [categories addObject:[entity.category uppercaseString]];
     }
-    [categories removeObject:recommendedCategory];
-    [categories insertObject:recommendedCategory atIndex:0];
     block(categories, error);
   };
   
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:predicate
-                            onSort:nil
-                   completionBlock:completionBlock];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                   onPredicate:predicate
+                                                        onSort:nil
+                                               completionBlock:completionBlock];
 }
 
 
-- (void)storeSelectedCategories:(NSArray *)categories withBlock:(void (^)(NSError *))block {
+- (void)storeSelectedCategories:(NSArray *)categories
+                          async:(BOOL)shouldFetchAsync
+                      withBlock:(void (^)(NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       for (MCCoreDataCategory *entity in entities) {
@@ -155,13 +92,16 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     block(error);
   };
   
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:nil
-                            onSort:nil
-                   completionBlock:completionBlock];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                    onPredicate:nil
+                                                         onSort:nil
+                                                completionBlock:completionBlock];
 }
 
-- (void)fetchSourceByCategory:(NSString *)categoryName withBlock:(void(^)(NSArray *, NSError *))block {
+- (void)fetchSourceByCategory:(NSString *)categoryName
+                        async:(BOOL)shouldFetchAsync
+                    withBlock:(void (^)(NSArray *, NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       NSMutableArray * sources = [NSMutableArray array];
@@ -187,13 +127,14 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   };
   
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", categoryName];
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:predicate
-                            onSort:nil
-                   completionBlock:completionBlock];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                   onPredicate:predicate
+                                                        onSort:nil
+                                               completionBlock:completionBlock];
 }
 
-- (void)fetchCategory:(NSString *)categoryName withBlock:(void(^)(MCCategory *, NSError *))block {
+- (void)fetchCategory:(NSString *)categoryName async:(BOOL)shouldFetchAsync withBlock:(void (^)(MCCategory *, NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       MCCategory * category = nil;
@@ -214,35 +155,35 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   };
   
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", categoryName];
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:predicate
-                            onSort:nil
-                   completionBlock:completionBlock];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                   onPredicate:predicate
+                                                        onSort:nil
+                                               completionBlock:completionBlock];
   
 }
 
-- (void) fetchAllCategoriesWithBlock:(void(^)(NSArray *, NSError *))block {
+- (void) fetchAllCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       NSMutableArray * categories = [NSMutableArray array];
       for (MCCoreDataCategory * coreDataCategory in entities) {
-        if ([[coreDataCategory category] isEqual:recommendedCategory]) {
-          MCCategory *category = [[MCCategory alloc] initWithCategory:[coreDataCategory category]
-                                                                count:[coreDataCategory count]
-                                                            lastFetch:[coreDataCategory lastFetch]
-                                                             selected:[coreDataCategory selected]];
-          [categories addObject:category];
-        }
+        MCCategory *category = [[MCCategory alloc] initWithCategory:[coreDataCategory category]
+                                                              count:[coreDataCategory count]
+                                                          lastFetch:[coreDataCategory lastFetch]
+                                                           selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
+        [categories addObject:category];
       }
       block(categories, error);
     } else {
       block(nil, error);
     }
   };
-  [_store fetchForEntitiesWithName:kStrCategoryEntityName
-                       onPredicate:nil
-                            onSort:nil
-                   completionBlock:completionBlock];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                   onPredicate:nil
+                                                        onSort:nil
+                                               completionBlock:completionBlock];
 }
 
 @end

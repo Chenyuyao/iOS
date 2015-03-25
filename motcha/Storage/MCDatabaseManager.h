@@ -7,18 +7,27 @@
 @property(nonatomic, readonly) NSManagedObjectContext *context;
 @property(nonatomic, readonly) NSManagedObjectModel *model;
 
-- (instancetype)initWithName:(NSString *)name;
++ (MCDatabaseManager *)defaultManager;
 
 - (NSManagedObject *)createEntityWithName:(NSString *)name;
 
-- (void)fetchForEntitiesWithName:(NSString *)name
-                          onPredicate:(NSPredicate *)predicate
-                               onSort:(NSArray *)sortDescriptors
-                      completionBlock:(void(^)(NSArray *, NSError *))block;
+- (void)fetchEntriesForEntityName:(NSString *)name
+                            async:(BOOL)shouldExecuteAsync
+                      onPredicate:(NSPredicate *)predicate
+                           onSort:(NSArray *)sortDescriptors
+                  completionBlock:(void(^)(NSArray *, NSError *))block;
 
 
-- (void)deleteEntitiesWithName:(NSString *)name
-                   onPredicate:(NSPredicate *)predicate
-               completionBlock:(void(^)(NSError *error))block;
+- (void)deleteEntriesForEntityName:(NSString *)name
+                             async:(BOOL)shouldExecuteAsync
+                       onPredicate:(NSPredicate *)predicate
+                   completionBlock:(void(^)(NSError *error))block;
+
+//This method should only be called in background thread
+- (NSArray *)fetchEntriesForEntityName:(NSString *)name
+                           onPredicate:(NSPredicate *)predicate
+                                onSort:(NSArray *)sortDescriptors
+                                 error:(NSError **)error;
+
 
 @end

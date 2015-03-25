@@ -45,6 +45,8 @@
 		157314941AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 157314911AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m */; };
 		157314971AC0FEDB00E65C02 /* MCNewsListFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157314961AC0FEDB00E65C02 /* MCNewsListFooterView.m */; };
 		157314991AC0FF0D00E65C02 /* MCNewsListFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157314981AC0FF0D00E65C02 /* MCNewsListFooterView.xib */; };
+		1595A0CA1AC34FA3005CE8A2 /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1595A0C91AC34FA3005CE8A2 /* MCDictionaryService.m */; };
+		1595A0CD1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1595A0CC1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m */; };
 		15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
@@ -58,8 +60,6 @@
 		15E3DB421A6B04BA002F4F4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E3DB401A6B04BA002F4F4C /* LaunchScreen.xib */; };
 		15E3DB4E1A6B04BA002F4F4C /* motchaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E3DB4D1A6B04BA002F4F4C /* motchaTests.m */; };
 		47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */; };
-		47E616D91AB7D34000FC25FA /* MCLocalStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */; };
-		47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */; };
 		47E616DC1AB7D34800FC25FA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E616DB1AB7D34800FC25FA /* CoreData.framework */; };
 		47E912EA1A84596D0055AB69 /* MCWebContentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E912E91A84596D0055AB69 /* MCWebContentService.m */; };
 		47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E912EC1A8459BD0055AB69 /* MCNewsDetailsObject.m */; };
@@ -97,12 +97,13 @@
 		CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */; };
 		CA6BD7861AC23E5200BD3D3D /* MCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7851AC23E5200BD3D3D /* MCCategory.m */; };
 		CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6BD78B1AC2F1AC00BD3D3D /* category.json */; };
+		CA6BD78F1AC350DF00BD3D3D /* MCTitlePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */; };
+		CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
 		CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0748D1AB91A3200FE2F3B /* MCSource.m */; };
 		CAEB8DCF1AC0298A006F5AD1 /* Motcha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAEB8DCD1AC0298A006F5AD1 /* Motcha.xcdatamodeld */; };
-		E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */ = {isa = PBXBuildFile; fileRef = E06B2ED01ABF5087001D714D /* MCDictionaryService.m */; };
 		E0B343C31A773F030081BE95 /* MCIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343B71A773F030081BE95 /* MCIntroCell.m */; };
 		E0B343C41A773F030081BE95 /* MCIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B343B81A773F030081BE95 /* MCIntroCell.xib */; };
 		E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B343BA1A773F030081BE95 /* MCIntroCollectionViewLayout.m */; };
@@ -219,6 +220,10 @@
 		157314951AC0FEDB00E65C02 /* MCNewsListFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListFooterView.h; sourceTree = "<group>"; };
 		157314961AC0FEDB00E65C02 /* MCNewsListFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListFooterView.m; sourceTree = "<group>"; };
 		157314981AC0FF0D00E65C02 /* MCNewsListFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCNewsListFooterView.xib; sourceTree = "<group>"; };
+		1595A0C81AC34FA3005CE8A2 /* MCDictionaryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDictionaryService.h; sourceTree = "<group>"; };
+		1595A0C91AC34FA3005CE8A2 /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDictionaryService.m; sourceTree = "<group>"; };
+		1595A0CB1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Helpers.h"; sourceTree = "<group>"; };
+		1595A0CC1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Helpers.m"; sourceTree = "<group>"; };
 		15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
 		15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
@@ -248,10 +253,6 @@
 		283682A71FB25678856A2E93 /* Pods-motcha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-motcha.release.xcconfig"; path = "Pods/Target Support Files/Pods-motcha/Pods-motcha.release.xcconfig"; sourceTree = "<group>"; };
 		47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabaseManager.h; sourceTree = "<group>"; };
 		47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabaseManager.m; sourceTree = "<group>"; };
-		47E616D31AB7D34000FC25FA /* MCLocalStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCLocalStorageService.h; sourceTree = "<group>"; };
-		47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCLocalStorageService.m; sourceTree = "<group>"; };
-		47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Helpers.h"; sourceTree = "<group>"; };
-		47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Helpers.m"; sourceTree = "<group>"; };
 		47E616DB1AB7D34800FC25FA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		47E912E81A84596D0055AB69 /* MCWebContentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCWebContentService.h; path = Network/MCWebContentService.h; sourceTree = "<group>"; };
 		47E912E91A84596D0055AB69 /* MCWebContentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCWebContentService.m; path = Network/MCWebContentService.m; sourceTree = "<group>"; };
@@ -324,6 +325,10 @@
 		CA6BD7841AC23E5200BD3D3D /* MCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCCategory.h; path = DataModel/MCCategory.h; sourceTree = "<group>"; };
 		CA6BD7851AC23E5200BD3D3D /* MCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCCategory.m; path = DataModel/MCCategory.m; sourceTree = "<group>"; };
 		CA6BD78B1AC2F1AC00BD3D3D /* category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = category.json; sourceTree = "<group>"; };
+		CA6BD78D1AC350DF00BD3D3D /* MCTitlePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTitlePipe.h; sourceTree = "<group>"; };
+		CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTitlePipe.m; sourceTree = "<group>"; };
+		CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataWordOccurrence.h; sourceTree = "<group>"; };
+		CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataWordOccurrence.m; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -333,8 +338,6 @@
 		CAA0748D1AB91A3200FE2F3B /* MCSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCSource.m; path = DataModel/MCSource.m; sourceTree = "<group>"; };
 		CAA074911AB91B2300FE2F3B /* MCSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCSource.h; path = DataModel/MCSource.h; sourceTree = "<group>"; };
 		CAEB8DCE1AC0298A006F5AD1 /* Motcha.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Motcha.xcdatamodel; sourceTree = "<group>"; };
-		E06B2ED01ABF5087001D714D /* MCDictionaryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCDictionaryService.m; path = Network/MCDictionaryService.m; sourceTree = "<group>"; };
-		E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCDictionaryService.h; path = Network/MCDictionaryService.h; sourceTree = "<group>"; };
 		E0B343B61A773F030081BE95 /* MCIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCIntroCell.h; sourceTree = "<group>"; };
 		E0B343B71A773F030081BE95 /* MCIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCIntroCell.m; sourceTree = "<group>"; };
 		E0B343B81A773F030081BE95 /* MCIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCIntroCell.xib; sourceTree = "<group>"; };
@@ -624,6 +627,10 @@
 		47E616CE1AB7D34000FC25FA /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */,
+				CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */,
+				1595A0C81AC34FA3005CE8A2 /* MCDictionaryService.h */,
+				1595A0C91AC34FA3005CE8A2 /* MCDictionaryService.m */,
 				CA6BD7811AC231EF00BD3D3D /* MCCategorySourceService.h */,
 				CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */,
 				CA09A47D1AC10378006E9C73 /* MCCoreDataCategory.h */,
@@ -634,10 +641,6 @@
 				CA09A4781AC10378006E9C73 /* MCCoreDataDictionaryWord.m */,
 				47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */,
 				47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */,
-				47E616D31AB7D34000FC25FA /* MCLocalStorageService.h */,
-				47E616D41AB7D34000FC25FA /* MCLocalStorageService.m */,
-				47E616D51AB7D34000FC25FA /* NSEntityDescription+Helpers.h */,
-				47E616D61AB7D34000FC25FA /* NSEntityDescription+Helpers.m */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -653,8 +656,6 @@
 				CA90EF2C1A85B892005931CF /* MCRSSParser.m */,
 				CA90EF2E1A85B8E1005931CF /* MCRSSService.h */,
 				CA90EF2F1A85B8F4005931CF /* MCRSSService.m */,
-				E06B2ED01ABF5087001D714D /* MCDictionaryService.m */,
-				E06B2ED21ABF50B2001D714D /* MCDictionaryService.h */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -823,6 +824,8 @@
 				1561B45D1ABB486800AB6D5B /* NSString+Helpers.m */,
 				1561B45F1ABB874700AB6D5B /* NSDate+TimeAgo.h */,
 				1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */,
+				1595A0CB1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.h */,
+				1595A0CC1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -839,6 +842,8 @@
 		CA09A42A1AC08C7F006E9C73 /* RecommendationALG */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD78D1AC350DF00BD3D3D /* MCTitlePipe.h */,
+				CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */,
 				CA09A42B1AC08C7F006E9C73 /* MCRecommendationService.h */,
 				CA09A42C1AC08C7F006E9C73 /* MCRecommendationService.m */,
 			);
@@ -1000,6 +1005,7 @@
 				1561B4E91ABD02B800AB6D5B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				C649C8191A8980F10087C340 /* HTMLParser.m in Sources */,
 				1561B4EA1ABD02B800AB6D5B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				1595A0CD1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m in Sources */,
 				CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */,
 				1561B4F01ABD02B800AB6D5B /* UIWebView+AFNetworking.m in Sources */,
 				CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */,
@@ -1014,15 +1020,16 @@
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
 				E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */,
+				CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */,
 				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
 				CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */,
 				C649C81C1A8980F10087C340 /* JTSImageViewController.m in Sources */,
 				1561B4EC1ABD02B800AB6D5B /* UIButton+AFNetworking.m in Sources */,
 				1561B4E51ABD02B800AB6D5B /* AFURLConnectionOperation.m in Sources */,
+				CA6BD78F1AC350DF00BD3D3D /* MCTitlePipe.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
 				1561B4E71ABD02B800AB6D5B /* AFURLResponseSerialization.m in Sources */,
-				47E616D91AB7D34000FC25FA /* MCLocalStorageService.m in Sources */,
 				1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */,
 				1561B4EF1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m in Sources */,
 				C649C84C1A8982B80087C340 /* MCDetailNewsBodyView.m in Sources */,
@@ -1033,7 +1040,6 @@
 				C649C84B1A8982B80087C340 /* MCNewsDetailViewController.m in Sources */,
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
 				1561B4E31ABD02B800AB6D5B /* AFNetworkReachabilityManager.m in Sources */,
-				47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */,
 				157314921AC0A7E600E65C02 /* BMYCircularProgressView.m in Sources */,
 				1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
@@ -1065,6 +1071,7 @@
 				C649C8181A8980F10087C340 /* HTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
 				157314931AC0A7E600E65C02 /* BMYPullToRefreshView.m in Sources */,
+				1595A0CA1AC34FA3005CE8A2 /* MCDictionaryService.m in Sources */,
 				1561B4ED1ABD02B800AB6D5B /* UIImageView+AFNetworking.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
 				157314941AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m in Sources */,
