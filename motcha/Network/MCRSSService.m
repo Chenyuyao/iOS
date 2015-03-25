@@ -1,6 +1,6 @@
 #import "MCRSSService.h"
 #import "MCRSSParser.h"
-#import "MCSourceService.h"
+#import "MCCategorySourceService.h"
 #import "MCSource.h"
 #import "MCParsedRSSItem.h"
 
@@ -32,10 +32,10 @@ static NSString *kFullTextRSSURL = @"http://fulltextrssfeed.com/";
              completionBlock:(void(^)(NSMutableArray *rssItems, NSError *error))block {
   
   // Get all MCSource related to category
-  MCSourceService * sourceService = [[MCSourceService alloc] init];
+  MCCategorySourceService * sourceService = [[MCCategorySourceService alloc] init];
   NSArray * sourceArray;
-  
-  [sourceService hardCodeSource];
+
+  category = [category uppercaseString];
   sourceArray = [sourceService getSourceByCategory:category];
   
   // Initialize mutable variable

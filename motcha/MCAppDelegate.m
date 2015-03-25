@@ -4,6 +4,7 @@
 #import "MCIntroViewController.h"
 #import "MCNewsListsContainerController.h"
 #import "MCLocalStorageService.h"
+#import "MCCategorySourceService.h"
 
 @implementation MCAppDelegate
 
@@ -18,7 +19,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   } else {
-    NSArray *categories = [[MCLocalStorageService sharedInstance] categories];
+    NSArray *categories = [[MCCategorySourceService sharedInstance] selectedCategories];
     rootViewController = [[MCNewsListsContainerController alloc] initWithCategories:categories];
   }
   MCNavigationController *navigationController =

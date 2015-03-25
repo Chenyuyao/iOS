@@ -4,11 +4,8 @@
 // A service that provides local storage of user's reading preferences.
 @interface MCLocalStorageService : NSObject
 
-@property(nonatomic) NSArray *categories;
-
 + (MCLocalStorageService *)sharedInstance;
 
-- (void)presetCategories:(NSArray *)categories;
 - (void)storeDictionary:(NSArray *)dictionaryWords;
 - (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key;
 
