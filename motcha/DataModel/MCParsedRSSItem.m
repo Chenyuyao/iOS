@@ -1,4 +1,6 @@
 #import "MCParsedRSSItem.h"
+#import "MCWebContentParser.h"
+#import "MCNewsDetailsObject.h"
 
 @implementation MCParsedRSSItem
 
@@ -11,7 +13,7 @@
   if (self = [super init]) {
     _title = title;
     _link = link;
-    _descrpt = descrpt;
+    _descrpt = [self parseDescription:descrpt];
     _imgSrc = imgSrc;
     _author = author;
     _pubDate = [self parseDateString:pubDate];
@@ -76,6 +78,13 @@
     }
   }
   return date;
+}
+
+- (NSString *)parseDescription:(NSString *) descrpt {
+  NSData* description = [descrpt dataUsingEncoding:NSUTF8StringEncoding];
+  MCWebContentParser *webContentParser = [[MCWebContentParser alloc] initWithHTMLData:description];
+  NSArray *parsedData = webContentParser.parse;
+  return ((MCNewsDetailsParagraph *)parsedData.firstObject).text;
 }
 
 - (void) setSource:(NSString *)source
