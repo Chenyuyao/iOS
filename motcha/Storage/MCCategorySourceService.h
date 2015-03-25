@@ -7,20 +7,20 @@ static NSString * const recommendedCategory = @"RECOMMENDED";
 
 + (MCCategorySourceService *)sharedInstance;
 
-- (void) hardCodeSource;
-- (void) presetCategories:(NSArray *)categories;
+//- (void)hardCodeSource;
+- (void)presetCategories:(NSArray *)categories;
 
 //get / set user selected categories
-- (NSArray *) selectedCategories;
-- (void) selectCategories:(NSArray *)categories;
+- (void)fetchSelectedCategoriesWithBlock:(void(^)(NSArray *, NSError *))block;
+- (void)storeSelectedCategories:(NSArray *)categories withBlock:(void(^)(NSError *))block;
 
 //Given a category name, return an array of MCSource Object belongs to this category
-- (NSArray *) getSourceByCategory:(NSString *) categoryName;
+- (void)fetchSourceByCategory:(NSString *)categoryName withBlock:(void(^)(NSArray *, NSError *))block;
 
 //Given a category name, return a MCCategory Object belongs to this category
-- (MCCategory *) getCategory:(NSString *) categoryName;
+- (void)fetchCategory:(NSString *)categoryName withBlock:(void(^)(MCCategory *, NSError *))block;
 
 //Get an array of MCCategory for all categories
-- (NSArray *) getAllCategories;
+- (void) fetchAllCategoriesWithBlock:(void(^)(NSArray *, NSError *))block;
 
 @end

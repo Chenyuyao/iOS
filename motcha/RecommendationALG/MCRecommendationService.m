@@ -42,24 +42,27 @@
 }
 
 
-- (NSArray *)getRecommendedCategory {
-  NSMutableArray * categories = [[[MCCategorySourceService sharedInstance] getAllCategories] mutableCopy];
+- (void)getRecommendedCategoryWithBlock:(void(^)(NSArray *, NSError *))block {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    NSMutableArray * categories = [entities mutableCopy];
+    
+    //get first Recommended Category
+    int firstRecommendedCategoryIndex = [self getRandomCategory:categories uniform:NO];
+    MCCategory * firstRecommendedCategory = [categories objectAtIndex:firstRecommendedCategoryIndex];
+    [categories removeObjectAtIndex:firstRecommendedCategoryIndex];
+    
+    //get second Recommended Category
+    int secondRecommendedCategoryIndex = [self getRandomCategory:categories uniform:NO];
+    MCCategory * secondRecommendedCategory = [categories objectAtIndex:secondRecommendedCategoryIndex];
+    [categories removeObjectAtIndex:secondRecommendedCategoryIndex];
+    
+    //get third Recommended Category
+    int thirdRecommendedCategoryIndex = [self getRandomCategory:categories uniform:YES];
+    MCCategory * thirdRecommendedCategory = [categories objectAtIndex:thirdRecommendedCategoryIndex];
+    block(@[firstRecommendedCategory, secondRecommendedCategory, thirdRecommendedCategory],nil);
+  };
   
-  //get first Recommended Category
-  int firstRecommendedCategoryIndex = [self getRandomCategory:categories uniform:NO];
-  MCCategory * firstRecommendedCategory = [categories objectAtIndex:firstRecommendedCategoryIndex];
-  [categories removeObjectAtIndex:firstRecommendedCategoryIndex];
-  
-  //get second Recommended Category
-  int secondRecommendedCategoryIndex = [self getRandomCategory:categories uniform:NO];
-  MCCategory * secondRecommendedCategory = [categories objectAtIndex:secondRecommendedCategoryIndex];
-  [categories removeObjectAtIndex:secondRecommendedCategoryIndex];
-  
-  //get third Recommended Category
-  int thirdRecommendedCategoryIndex = [self getRandomCategory:categories uniform:YES];
-  MCCategory * thirdRecommendedCategory = [categories objectAtIndex:thirdRecommendedCategoryIndex];
-  
-  return @[firstRecommendedCategory, secondRecommendedCategory, thirdRecommendedCategory];
+  [[MCCategorySourceService sharedInstance] fetchAllCategoriesWithBlock:completionBlock];  
 }
 
 

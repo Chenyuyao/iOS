@@ -55,7 +55,7 @@ static NSInteger minSelectedCategories = 4;
     } else {
       _selectedCategories = [NSMutableArray arrayWithObject:recommendedCategory];
       [[MCCategorySourceService sharedInstance] presetCategories:[MCIntroViewController categories]];
-      [[MCCategorySourceService sharedInstance] hardCodeSource];
+//      [[MCCategorySourceService sharedInstance] hardCodeSource];
     }
   }
   return self;
@@ -212,7 +212,7 @@ static NSInteger minSelectedCategories = 4;
           [self dismissViewControllerAnimated:YES completion:nil];
         }
     };
-    [[MCLocalStorageService sharedInstance] storeCategories:_selectedCategories
+    [[MCCategorySourceService sharedInstance] storeSelectedCategories:_selectedCategories
                                                   withBlock:block];
   }
 }

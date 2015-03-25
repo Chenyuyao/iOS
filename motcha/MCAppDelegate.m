@@ -22,7 +22,7 @@
     self.window.rootViewController = navigationController;
   } else {
 
-    [[MCLocalStorageService sharedInstance] fetchCategoriesWithBlock:^(NSArray *categories, NSError *error) {
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesWithBlock:^(NSArray *categories, NSError *error) {
         UIViewController *rootViewController =
             [[MCNewsListsContainerController alloc] initWithCategories:categories];
         MCNavigationController *navigationController =
