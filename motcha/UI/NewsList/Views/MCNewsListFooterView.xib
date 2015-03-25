@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="DINPro-Regular.otf">
+            <string>DINPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MCNewsListViewController">
+            <connections>
+                <outlet property="_loadMoreView" destination="mOI-Je-TFM" id="Aqk-AZ-bCq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" contentMode="scaleToFill" id="mOI-Je-TFM" customClass="MCNewsListFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb0-VB-gvo">
+                    <rect key="frame" x="0.0" y="0.0" width="322" height="40"/>
+                    <subviews>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qaM-9h-AZi">
+                            <rect key="frame" x="0.0" y="0.0" width="322" height="40"/>
+                            <fontDescription key="fontDescription" name="DINPro-Regular" family="DINPro" pointSize="16"/>
+                            <state key="normal" title="more Motcha news">
+                                <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="disabled" title="That's it.">
+                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="loadMoreButtonTapped:" destination="-1" eventType="touchUpInside" id="rLJ-mX-QOG"/>
+                            </connections>
+                        </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ttj-vT-2Qt">
+                            <rect key="frame" x="151" y="10" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qaM-9h-AZi" secondAttribute="trailing" id="12g-kx-Zsf"/>
+                        <constraint firstItem="ttj-vT-2Qt" firstAttribute="centerY" secondItem="qaM-9h-AZi" secondAttribute="centerY" id="Rjn-U1-I1x"/>
+                        <constraint firstItem="ttj-vT-2Qt" firstAttribute="centerX" secondItem="qaM-9h-AZi" secondAttribute="centerX" id="a6o-M7-KWz"/>
+                        <constraint firstItem="qaM-9h-AZi" firstAttribute="leading" secondItem="yb0-VB-gvo" secondAttribute="leading" id="azp-Sv-Oq8"/>
+                        <constraint firstItem="qaM-9h-AZi" firstAttribute="top" secondItem="yb0-VB-gvo" secondAttribute="top" id="srm-PI-XJr"/>
+                        <constraint firstAttribute="bottom" secondItem="qaM-9h-AZi" secondAttribute="bottom" id="yLy-tZ-4ox"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="yb0-VB-gvo" secondAttribute="bottom" constant="10" id="EOJ-JJ-8qb"/>
+                <constraint firstItem="yb0-VB-gvo" firstAttribute="leading" secondItem="mOI-Je-TFM" secondAttribute="leading" id="eOq-f0-B8W"/>
+                <constraint firstAttribute="trailing" secondItem="yb0-VB-gvo" secondAttribute="trailing" id="fwY-pX-jcD"/>
+                <constraint firstItem="yb0-VB-gvo" firstAttribute="top" secondItem="mOI-Je-TFM" secondAttribute="top" id="r4J-5G-5s4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_indicatorView" destination="ttj-vT-2Qt" id="kiI-OD-x4r"/>
+                <outlet property="_loadMoreButton" destination="qaM-9h-AZi" id="vv2-0x-b20"/>
+            </connections>
+            <point key="canvasLocation" x="-294" y="384"/>
+        </view>
+    </objects>
+</document>

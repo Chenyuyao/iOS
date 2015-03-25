@@ -40,6 +40,11 @@
 		1561B4EE1ABD02B800AB6D5B /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4DB1ABD02B800AB6D5B /* UIProgressView+AFNetworking.m */; };
 		1561B4EF1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4DD1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m */; };
 		1561B4F01ABD02B800AB6D5B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561B4DF1ABD02B800AB6D5B /* UIWebView+AFNetworking.m */; };
+		157314921AC0A7E600E65C02 /* BMYCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1573148B1AC0A7E600E65C02 /* BMYCircularProgressView.m */; };
+		157314931AC0A7E600E65C02 /* BMYPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1573148F1AC0A7E600E65C02 /* BMYPullToRefreshView.m */; };
+		157314941AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 157314911AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m */; };
+		157314971AC0FEDB00E65C02 /* MCNewsListFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157314961AC0FEDB00E65C02 /* MCNewsListFooterView.m */; };
+		157314991AC0FF0D00E65C02 /* MCNewsListFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157314981AC0FF0D00E65C02 /* MCNewsListFooterView.xib */; };
 		15A25E1E1AB15EF400761782 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */; };
 		15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB977C1A8911190066B469 /* MCKeyValuePair.m */; };
 		15DB978E1A89112F0066B469 /* MCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB97801A89112F0066B469 /* MCNavigationBar.m */; };
@@ -201,6 +206,17 @@
 		1561B4DD1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		1561B4DE1ABD02B800AB6D5B /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		1561B4DF1ABD02B800AB6D5B /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		157314881AC0A7E600E65C02 /* BMYCircularProgressPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMYCircularProgressPullToRefresh.h; sourceTree = "<group>"; };
+		1573148A1AC0A7E600E65C02 /* BMYCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMYCircularProgressView.h; sourceTree = "<group>"; };
+		1573148B1AC0A7E600E65C02 /* BMYCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMYCircularProgressView.m; sourceTree = "<group>"; };
+		1573148C1AC0A7E600E65C02 /* BMYProgressViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMYProgressViewProtocol.h; sourceTree = "<group>"; };
+		1573148E1AC0A7E600E65C02 /* BMYPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMYPullToRefreshView.h; sourceTree = "<group>"; };
+		1573148F1AC0A7E600E65C02 /* BMYPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMYPullToRefreshView.m; sourceTree = "<group>"; };
+		157314901AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMYPullToRefresh.h"; sourceTree = "<group>"; };
+		157314911AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMYPullToRefresh.m"; sourceTree = "<group>"; };
+		157314951AC0FEDB00E65C02 /* MCNewsListFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsListFooterView.h; sourceTree = "<group>"; };
+		157314961AC0FEDB00E65C02 /* MCNewsListFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsListFooterView.m; sourceTree = "<group>"; };
+		157314981AC0FF0D00E65C02 /* MCNewsListFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCNewsListFooterView.xib; sourceTree = "<group>"; };
 		15A25E1C1AB15EF400761782 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
 		15A25E1D1AB15EF400761782 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		15DB977B1A8911190066B469 /* MCKeyValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCKeyValuePair.h; sourceTree = "<group>"; };
@@ -461,6 +477,37 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		157314871AC0A7E600E65C02 /* BMYCircularProgressPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				157314881AC0A7E600E65C02 /* BMYCircularProgressPullToRefresh.h */,
+				157314891AC0A7E600E65C02 /* BMYCircularProgressView */,
+				1573148C1AC0A7E600E65C02 /* BMYProgressViewProtocol.h */,
+				1573148D1AC0A7E600E65C02 /* BMYPullToRefreshView */,
+			);
+			path = BMYCircularProgressPullToRefresh;
+			sourceTree = "<group>";
+		};
+		157314891AC0A7E600E65C02 /* BMYCircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				1573148A1AC0A7E600E65C02 /* BMYCircularProgressView.h */,
+				1573148B1AC0A7E600E65C02 /* BMYCircularProgressView.m */,
+			);
+			path = BMYCircularProgressView;
+			sourceTree = "<group>";
+		};
+		1573148D1AC0A7E600E65C02 /* BMYPullToRefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				1573148E1AC0A7E600E65C02 /* BMYPullToRefreshView.h */,
+				1573148F1AC0A7E600E65C02 /* BMYPullToRefreshView.m */,
+				157314901AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.h */,
+				157314911AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m */,
+			);
+			path = BMYPullToRefreshView;
+			sourceTree = "<group>";
+		};
 		15DB977A1A8911190066B469 /* DataStructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +711,7 @@
 				C649C7F51A8980F10087C340 /* JTSImageViewController */,
 				1561B4BA1ABD02B800AB6D5B /* AFNetworking */,
 				1561B4CE1ABD02B800AB6D5B /* UIKit+AFNetworking */,
+				157314871AC0A7E600E65C02 /* BMYCircularProgressPullToRefresh */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -743,6 +791,9 @@
 				C649C8461A8982B80087C340 /* MCNewsListTableViewCell.h */,
 				C649C8471A8982B80087C340 /* MCNewsListTableViewCell.m */,
 				C649C8481A8982B80087C340 /* MCNewsListTableViewCell.xib */,
+				157314951AC0FEDB00E65C02 /* MCNewsListFooterView.h */,
+				157314961AC0FEDB00E65C02 /* MCNewsListFooterView.m */,
+				157314981AC0FF0D00E65C02 /* MCNewsListFooterView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -914,6 +965,7 @@
 				E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */,
 				C649C7E41A894F5B0087C340 /* FarnhamDisplay-Bold.otf in Resources */,
 				15461A601AAEAFF60008025A /* MCNewsCategoryAddView.xib in Resources */,
+				157314991AC0FF0D00E65C02 /* MCNewsListFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,8 +1024,10 @@
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
 				1561B4E31ABD02B800AB6D5B /* AFNetworkReachabilityManager.m in Sources */,
 				47E616DA1AB7D34000FC25FA /* NSEntityDescription+Helpers.m in Sources */,
+				157314921AC0A7E600E65C02 /* BMYCircularProgressView.m in Sources */,
 				1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
+				157314971AC0FEDB00E65C02 /* MCNewsListFooterView.m in Sources */,
 				1539C2731A9838F300C32877 /* NSMutableArray+Manipulation.m in Sources */,
 				E0B343C51A773F030081BE95 /* MCIntroCollectionViewLayout.m in Sources */,
 				1539C23E1A9028D000C32877 /* UIImage+Scale.m in Sources */,
@@ -1000,8 +1054,10 @@
 				C649C84E1A8982B80087C340 /* MCDetailNewsTitleView.m in Sources */,
 				C649C8181A8980F10087C340 /* HTMLNode.m in Sources */,
 				15E3DB311A6B04BA002F4F4C /* main.m in Sources */,
+				157314931AC0A7E600E65C02 /* BMYPullToRefreshView.m in Sources */,
 				1561B4ED1ABD02B800AB6D5B /* UIImageView+AFNetworking.m in Sources */,
 				CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */,
+				157314941AC0A7E600E65C02 /* UIScrollView+BMYPullToRefresh.m in Sources */,
 				1561B4E11ABD02B800AB6D5B /* AFHTTPRequestOperationManager.m in Sources */,
 				15DB97921A89112F0066B469 /* MCNavigationBarAppearanceStrategy.m in Sources */,
 				C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */,

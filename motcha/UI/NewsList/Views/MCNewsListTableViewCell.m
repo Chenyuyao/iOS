@@ -6,8 +6,17 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+Scale.h"
 
-static NSUInteger kSelectedBackgroundViewColor = 0xEEEEEE;
 static NSString *kPlaceholderImageName = @"placeholder";
+
+static NSUInteger kSelectedBackgroundViewColor    = 0xEEEEEE;
+// Colors when the news item is read
+static NSUInteger kTitleColorForReadState         = 0x888888;
+static NSUInteger kMetadataColorForReadState      = 0x929292;
+static NSUInteger kDescriptionColorForReadState   = 0xAAAAAA;
+// Colors when the news item is unread
+static NSUInteger kTitleColorForUnreadState       = 0x292929;
+static NSUInteger kMetadataColorForUnreadState    = 0x4F4F4F;
+static NSUInteger kDescriptionColorForUnreadState = 0x8B8B8B;
 
 @implementation MCNewsListTableViewCell {
   __weak IBOutlet UIImageView *_thumbnailImageView;
@@ -57,6 +66,21 @@ static NSString *kPlaceholderImageName = @"placeholder";
 
 - (void)setDescription:(NSString *)descript {
   _descriptLabel.text = descript;
+}
+
+- (void)setIsRead:(BOOL)isRead {
+  _isRead = isRead;
+  if (isRead) {
+    _titleLabel.textColor = [UIColor colorWithHexValue:kTitleColorForReadState andAlpha:1];
+    _sourceLabel.textColor = [UIColor colorWithHexValue:kMetadataColorForReadState andAlpha:1];
+    _dateLabel.textColor = [UIColor colorWithHexValue:kMetadataColorForReadState andAlpha:1];
+    _descriptLabel.textColor = [UIColor colorWithHexValue:kDescriptionColorForReadState andAlpha:1];
+  } else {
+    _titleLabel.textColor = [UIColor colorWithHexValue:kTitleColorForUnreadState andAlpha:1];
+    _sourceLabel.textColor = [UIColor colorWithHexValue:kMetadataColorForUnreadState andAlpha:1];
+    _dateLabel.textColor = [UIColor colorWithHexValue:kMetadataColorForUnreadState andAlpha:1];
+    _descriptLabel.textColor = [UIColor colorWithHexValue:kDescriptionColorForUnreadState andAlpha:1];
+  }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
