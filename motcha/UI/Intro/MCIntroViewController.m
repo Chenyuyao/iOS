@@ -190,7 +190,7 @@ static NSInteger minSelectedCategories = 4;
   [self completeSelecting];
 }
 
-- (void) completeSelecting {
+- (void)completeSelecting {
   if ([_selectedCategories count] < minSelectedCategories) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:minSelectedMsg
@@ -199,19 +199,21 @@ static NSInteger minSelectedCategories = 4;
                                           otherButtonTitles:nil, nil];
     [alert show];
   } else {
-    if (![[[MCCategorySourceService sharedInstance] selectedCategories] isEqualToArray:_selectedCategories]) {
-      if (_isFirstTimeUser) {
-        MCNewsListsContainerController *newsListsController =
-            [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
-        [self.navigationController setViewControllers:@[newsListsController] animated:YES];
-      }
-      if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
-          [_delegate respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
-        [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
-      }
-      [[MCCategorySourceService sharedInstance] selectCategories:_selectedCategories];
+    if ([_delegate
+        respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
+      [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    id block = ^(NSError *error) {
+        if (_isFirstTimeUser) {
+          MCNewsListsContainerController *newsListsController =
+          [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
+          [self.navigationController setViewControllers:@[ newsListsController ] animated:YES];
+        } else {
+          [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    };
+    [[MCLocalStorageService sharedInstance] storeCategories:_selectedCategories
+                                                  withBlock:block];
   }
 }
 

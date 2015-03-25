@@ -11,6 +11,7 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
 
 @implementation MCLocalStorageService {
   MCDatabaseManager *_store;
+  NSArray *_categories;
 }
 
 + (MCLocalStorageService *)sharedInstance {
@@ -30,29 +31,92 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
   return self;
 }
 
-- (void)storeDictionary:(NSArray *)dictionary {
-  [_store deleteEntitiesWithName:kStrDictionaryEntryname onPredicate:nil];
-  for (MCDictionaryWord *dictionaryWord in dictionary) {
-    MCCoreDataDictionaryWord *object =
-        (MCCoreDataDictionaryWord *)[_store createEntityWithName:kStrDictionaryEntryname];
-    object.word = [dictionaryWord.word copy];
-    object.pos = dictionaryWord.pos;
+- (void)presetCategories:(NSArray *)categories {
+  for (NSString * category in categories) {
+    MCCoreDataCategory * coreDataCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
+    [coreDataCategory setCategory:category];
+    [coreDataCategory setCount:@1];
+    [coreDataCategory setSelected:@NO];
+    [coreDataCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
   }
-  [_store.context save:nil];
+  MCCoreDataCategory * recommendCategory = (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
+  [recommendCategory setCategory:recommendedCategory];
+  [recommendCategory setCount:@1];
+  [recommendCategory setSelected:@NO];
+  [recommendCategory setLastFetch:[NSDate dateWithTimeIntervalSince1970:0]];
 }
 
-- (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key {
+- (void)fetchCategoriesWithBlock:(void(^)(NSArray *, NSError *))block {
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"selected", @YES];
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    NSMutableArray *categories = [NSMutableArray array];
+    for (MCCoreDataCategory *entity in entities) {
+      [categories addObject:entity.category];
+    }
+    [categories removeObject:recommendedCategory];
+    [categories insertObject:recommendedCategory atIndex:0];
+    block(categories, error);
+  };
+  
+  [_store fetchForEntitiesWithName:kStrCategoryEntryName
+                       onPredicate:predicate
+                            onSort:nil
+                   completionBlock:completionBlock];
+}
+
+- (void)storeCategories:(NSArray *)categories withBlock:(void (^)(NSError *))block {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+      if (!error) {
+        for (MCCoreDataCategory *entity in entities) {
+          NSString * category = entity.category;
+          if ([categories containsObject:category]) {
+            [entity setSelected:@YES];
+          } else {
+            [entity setSelected:@NO];
+          }
+        }
+        [_store.context save:nil];
+      }
+      block(error);
+  };
+  
+  [_store fetchForEntitiesWithName:kStrCategoryEntryName
+                       onPredicate:nil
+                            onSort:nil
+                   completionBlock:completionBlock];
+}
+
+
+- (void)storeDictionary:(NSArray *)dictionary {
+  [_store deleteEntitiesWithName:kStrDictionaryEntryname onPredicate:nil completionBlock:^(NSError *error) {
+      for (MCDictionaryWord *dictionaryWord in dictionary) {
+        MCCoreDataDictionaryWord *object =
+        (MCCoreDataDictionaryWord *)[_store createEntityWithName:kStrDictionaryEntryname];
+        object.word = [dictionaryWord.word copy];
+        object.pos = dictionaryWord.pos;
+      }
+      [_store.context save:nil];
+  }];
+}
+
+- (void)getDictionaryWordWithKey:(NSString *)key
+                 completionBlock:(void (^)(MCDictionaryWord *word, NSError *error))block {
+  id completionBlock = ^(NSArray *result, NSError *error) {
+    MCDictionaryWord *dictionaryWord;
+    if (!error) {
+      MCCoreDataDictionaryWord *entity = [result objectAtIndex:0];
+      dictionaryWord =
+      [[MCDictionaryWord alloc] initWithWord:entity.word
+                                      andPos:entity.pos];
+    }
+    block(dictionaryWord, error);
+  };
+  
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"wordKey == %@", key];
-  NSArray *result = [_store fetchForEntitiesWithName:kStrDictionaryEntryname
+  [_store fetchForEntitiesWithName:kStrDictionaryEntryname
                                          onPredicate:predicate
-                                              onSort:nil];
-  if ([result count] > 0) {
-    MCCoreDataDictionaryWord *entity = [result objectAtIndex:0];
-    MCDictionaryWord *dictionaryWord = [[MCDictionaryWord alloc] initWithWord:entity.word andPos:entity.pos];
-    return dictionaryWord;
-  } else {
-    return nil;
-  }
+                                              onSort:nil
+                     completionBlock:completionBlock];
 }
 
 @end

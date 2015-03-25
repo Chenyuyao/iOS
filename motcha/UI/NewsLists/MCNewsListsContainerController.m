@@ -109,7 +109,8 @@ static CGFloat kLogoFontSize = 25.0f;
                                                 isFirstTimeUser:NO];
   introViewController.delegate = self;
   introViewController.superNavigationController = (MCNavigationController *)self.navigationController;
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:introViewController];
+  MCNavigationController *navigationController =
+      [[MCNavigationController alloc] initWithRootViewController:introViewController];
   navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
   [self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -149,7 +150,6 @@ static CGFloat kLogoFontSize = 25.0f;
   }
   MCNewsListViewController *newsListViewController = (MCNewsListViewController *)viewController;
   newsListViewController.tableView.scrollsToTop = YES;
-  // TODO(Frank): Reload the current view controller.
 }
 
 - (void)pageViewController:(MCPageViewController *)pageViewController
@@ -162,7 +162,7 @@ static CGFloat kLogoFontSize = 25.0f;
 - (void)pageViewController:(MCPageViewController *)pageViewController
      didLoadViewController:(UIViewController *)viewController
                    atIndex:(NSUInteger)index {
-
+  // Implement this if needed.
 }
 
 #pragma mark - MCIntroViewControllerDelegate methods

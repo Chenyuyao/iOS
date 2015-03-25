@@ -2,12 +2,14 @@
 
 static NSString *const kContextKey = @"context";
 static NSString *const kDataModelFileName = @"Motcha";
+
 // TODO(shinfan): Finish this.
 @implementation MCDatabaseManager {
   NSManagedObjectModel *_model;
   NSString *_storePath;
   NSPersistentStore *_store;
   NSPersistentStoreCoordinator *_coordinator;
+  dispatch_queue_t _queue;
 }
 
 - (instancetype)initWithName:(NSString *)name{
@@ -32,6 +34,7 @@ static NSString *const kDataModelFileName = @"Motcha";
                                                   URL:url
                                               options:nil
                                                 error:&error];
+    _queue = dispatch_queue_create("motcha.datastore", NULL);
   }
   return self;
 }
@@ -43,28 +46,46 @@ static NSString *const kDataModelFileName = @"Motcha";
                   insertIntoManagedObjectContext:self.context];
 }
 
-- (NSArray *)fetchForEntitiesWithName:(NSString *)name
+- (void)fetchForEntitiesWithName:(NSString *)name
                           onPredicate:(NSPredicate *)predicate
-                               onSort:(NSArray *)sortDescriptors{
-  NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
-  [fetchRequest setPredicate:predicate];
-  if (sortDescriptors != nil) {
-    [fetchRequest setSortDescriptors:sortDescriptors];
-  }
-  NSError *error = nil;
-  NSArray *array = [self.context executeFetchRequest:fetchRequest error:&error];
-  return array;
+                               onSort:(NSArray *)sortDescriptors
+                      completionBlock:(void(^)(NSArray *, NSError *))block {
+  dispatch_async(_queue, ^{
+      NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
+      [fetchRequest setPredicate:predicate];
+      if (sortDescriptors != nil) {
+        [fetchRequest setSortDescriptors:sortDescriptors];
+      }
+      NSError *error = nil;
+      NSArray *array = [self fetchForEntitiesWithName:name
+                                          onPredicate:predicate
+                                               onSort:sortDescriptors
+                                                error:&error];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          block(array, error);
+      });
+  });
 }
 
 - (void)deleteEntitiesWithName:(NSString *)name
-                   onPredicate:(NSPredicate *)predicate {
-  if ([[_model entitiesByName] objectForKey:name]) {
-    NSArray *array = [self fetchForEntitiesWithName:name onPredicate:predicate onSort:nil];
-    for (NSManagedObject *object in array) {
-      [self.context deleteObject:object];
-    }
-    [self.context save:nil];
-  }
+                   onPredicate:(NSPredicate *)predicate
+               completionBlock:(void(^)(NSError *error))block {
+  dispatch_async(_queue, ^{
+      NSError *error;
+      if ([[_model entitiesByName] objectForKey:name]) {
+        NSArray *array = [self fetchForEntitiesWithName:name
+                                            onPredicate:predicate
+                                                 onSort:nil
+                                                  error:&error];
+        for (NSManagedObject *object in array) {
+          [self.context deleteObject:object];
+        }
+      }
+      [self.context save:nil];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          block(error);
+      });
+  });
 }
 
 - (void)deleteStoreIfIncompatible:(NSString *)storeType {
@@ -83,8 +104,7 @@ static NSString *const kDataModelFileName = @"Motcha";
   }
 }
 
-- (NSManagedObjectModel *)model
-{
+- (NSManagedObjectModel *)model {
   if (_model != nil) {
     return _model;
   }
@@ -105,6 +125,8 @@ static NSString *const kDataModelFileName = @"Motcha";
   return context;
 }
 
+#pragma mark - private
+
 - (void)preloadDatabaseWithName:(NSString *)name {
   NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:name];
   if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
@@ -119,6 +141,18 @@ static NSString *const kDataModelFileName = @"Motcha";
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory {
   return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSArray *)fetchForEntitiesWithName:(NSString *)name
+                          onPredicate:(NSPredicate *)predicate
+                               onSort:(NSArray *)sortDescriptors
+                                error:(NSError **)error {
+  NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
+  [fetchRequest setPredicate:predicate];
+  if (sortDescriptors != nil) {
+    [fetchRequest setSortDescriptors:sortDescriptors];
+  }
+  return [self.context executeFetchRequest:fetchRequest error:error];
 }
 
 
