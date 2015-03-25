@@ -1,10 +1,12 @@
 #import "MCPageView.h"
 
+#import "UIColor+Helpers.h"
+
 @implementation MCPageView
 
 - (instancetype)init {
   if (self = [super init]) {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor appMainColor];
     self.pagingEnabled = YES;
     self.scrollsToTop = NO;
     self.showsVerticalScrollIndicator = NO;
