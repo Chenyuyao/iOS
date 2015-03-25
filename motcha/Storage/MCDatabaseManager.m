@@ -1,6 +1,7 @@
 #import "MCDatabaseManager.h"
 
 static NSString *const kContextKey = @"context";
+static NSString *const kDataModelFileName = @"Motcha";
 
 // TODO(shinfan): Finish this.
 @implementation MCDatabaseManager {
@@ -8,20 +9,20 @@ static NSString *const kContextKey = @"context";
   NSString *_storePath;
   NSPersistentStore *_store;
   NSPersistentStoreCoordinator *_coordinator;
+  dispatch_queue_t _queue;
 }
 
-- (instancetype)initWithName:(NSString *)name entities:(NSArray *)entities {
+- (instancetype)initWithName:(NSString *)name{
   self = [super init];
   if (self) {
     [self preloadDatabaseWithName:name];
     NSArray *potentialPaths =
-        NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                            NSUserDomainMask,
-                                            YES);
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                        NSUserDomainMask,
+                                        YES);
     _storePath = [[[potentialPaths objectAtIndex:0]
-        stringByAppendingPathComponent:name] copy];
-    _model = [[NSManagedObjectModel alloc] init];
-    _model.entities = [entities copy];
+                   stringByAppendingPathComponent:name] copy];
+    _model = self.model;
     _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
     
     // init store
@@ -33,34 +34,58 @@ static NSString *const kContextKey = @"context";
                                                   URL:url
                                               options:nil
                                                 error:&error];
+    _queue = dispatch_queue_create("motcha.datastore", NULL);
   }
   return self;
 }
 
 - (NSManagedObject *)createEntityWithName:(NSString *)name {
-  return [NSEntityDescription insertNewObjectForEntityForName:name
-                                       inManagedObjectContext:self.context];
+  NSEntityDescription * entity = [NSEntityDescription entityForName:name
+                                             inManagedObjectContext:self.context];
+  return [[NSManagedObject alloc] initWithEntity:entity
+                  insertIntoManagedObjectContext:self.context];
 }
 
-- (NSArray *)fetchForEntitiesWithName:(NSString *)name
-                         onPredicate:(NSPredicate *)predicate {
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:[[_model entitiesByName] objectForKey:name]];
-  [request setPredicate:predicate];
-  NSError *error = nil;
-  NSArray *array = [self.context executeFetchRequest:request error:&error];
-  return array;
+- (void)fetchForEntitiesWithName:(NSString *)name
+                          onPredicate:(NSPredicate *)predicate
+                               onSort:(NSArray *)sortDescriptors
+                      completionBlock:(void(^)(NSArray *, NSError *))block {
+  dispatch_async(_queue, ^{
+      NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
+      [fetchRequest setPredicate:predicate];
+      if (sortDescriptors != nil) {
+        [fetchRequest setSortDescriptors:sortDescriptors];
+      }
+      NSError *error = nil;
+      NSArray *array = [self fetchForEntitiesWithName:name
+                                          onPredicate:predicate
+                                               onSort:sortDescriptors
+                                                error:&error];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          block(array, error);
+      });
+  });
 }
 
 - (void)deleteEntitiesWithName:(NSString *)name
-                   onPredicate:(NSPredicate *)predicate {
-  if ([[_model entitiesByName] objectForKey:name]) {
-    NSArray *array = [self fetchForEntitiesWithName:name onPredicate:predicate];
-    for (NSManagedObject *object in array) {
-      [self.context deleteObject:object];
-    }
-    [self.context save:nil];
-  }
+                   onPredicate:(NSPredicate *)predicate
+               completionBlock:(void(^)(NSError *error))block {
+  dispatch_async(_queue, ^{
+      NSError *error;
+      if ([[_model entitiesByName] objectForKey:name]) {
+        NSArray *array = [self fetchForEntitiesWithName:name
+                                            onPredicate:predicate
+                                                 onSort:nil
+                                                  error:&error];
+        for (NSManagedObject *object in array) {
+          [self.context deleteObject:object];
+        }
+      }
+      [self.context save:nil];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          block(error);
+      });
+  });
 }
 
 - (void)deleteStoreIfIncompatible:(NSString *)storeType {
@@ -79,6 +104,15 @@ static NSString *const kContextKey = @"context";
   }
 }
 
+- (NSManagedObjectModel *)model {
+  if (_model != nil) {
+    return _model;
+  }
+  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kDataModelFileName withExtension:@"momd"];
+  _model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+  return _model;
+}
+
 - (NSManagedObjectContext *)context {
   NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
   NSManagedObjectContext *context = [dictionary objectForKey:kContextKey];
@@ -90,6 +124,8 @@ static NSString *const kContextKey = @"context";
   }
   return context;
 }
+
+#pragma mark - private
 
 - (void)preloadDatabaseWithName:(NSString *)name {
   NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:name];
@@ -105,6 +141,18 @@ static NSString *const kContextKey = @"context";
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory {
   return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSArray *)fetchForEntitiesWithName:(NSString *)name
+                          onPredicate:(NSPredicate *)predicate
+                               onSort:(NSArray *)sortDescriptors
+                                error:(NSError **)error {
+  NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
+  [fetchRequest setPredicate:predicate];
+  if (sortDescriptors != nil) {
+    [fetchRequest setSortDescriptors:sortDescriptors];
+  }
+  return [self.context executeFetchRequest:fetchRequest error:error];
 }
 
 
