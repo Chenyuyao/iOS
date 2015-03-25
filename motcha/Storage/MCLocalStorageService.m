@@ -11,6 +11,7 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
 
 @implementation MCLocalStorageService {
   MCDatabaseManager *_store;
+  NSArray *_categories;
 }
 
 + (MCLocalStorageService *)sharedInstance {
@@ -30,50 +31,64 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
   return self;
 }
 
-- (NSArray *)categories {
-  NSArray *result = [_store fetchForEntitiesWithName:kStrCategoryEntryName
-                                         onPredicate:nil
-                                              onSort:nil];
-  NSMutableArray *categories = [NSMutableArray array];
-  for (MCCoreDataCategory *entity in result) {
-    [categories addObject:entity.category];
-  }
-  return categories;
+- (void)fetchCategoriesWithBlock:(void(^)(NSArray *, NSError *))block {
+  [_store fetchForEntitiesWithName:kStrCategoryEntryName
+                       onPredicate:nil
+                            onSort:nil
+                   completionBlock:^(NSArray *entities, NSError *error) {
+                       NSMutableArray *categories = [NSMutableArray array];
+                       for (MCCoreDataCategory *entity in entities) {
+                         [categories addObject:entity.category];
+                       }
+                       block(categories, error);
+                    }];
 }
 
-- (void)setCategories:(NSArray *)categories {
-  [_store deleteEntitiesWithName:kStrCategoryEntryName onPredicate:nil];
-  for (NSString *category in categories) {
-    MCCoreDataCategory *object =
-        (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
-    object.category = category;
-  }
-  [_store.context save:nil];
+- (void)storeCategories:(NSArray *)categories withBlock:(void (^)(NSError *))block {
+  id completionBlock = ^(NSError *error) {
+      if (!error) {
+        for (NSString *category in categories) {
+          MCCoreDataCategory *object =
+          (MCCoreDataCategory *)[_store createEntityWithName:kStrCategoryEntryName];
+          object.category = category;
+        }
+        [_store.context save:nil];
+      }
+      block(error);
+  };
+  [_store deleteEntitiesWithName:kStrCategoryEntryName
+                     onPredicate:nil
+                 completionBlock:completionBlock];
 }
 
 - (void)storeDictionary:(NSArray *)dictionary {
-  [_store deleteEntitiesWithName:kStrDictionaryEntryname onPredicate:nil];
-  for (MCDictionaryWord *dictionaryWord in dictionary) {
-    MCCoreDataDictionaryWord *object =
+  [_store deleteEntitiesWithName:kStrDictionaryEntryname onPredicate:nil completionBlock:^(NSError *error) {
+      for (MCDictionaryWord *dictionaryWord in dictionary) {
+        MCCoreDataDictionaryWord *object =
         (MCCoreDataDictionaryWord *)[_store createEntityWithName:kStrDictionaryEntryname];
-    object.word = [dictionaryWord.word copy];
-    object.pos = dictionaryWord.pos;
-  }
-  [_store.context save:nil];
+        object.word = [dictionaryWord.word copy];
+        object.pos = dictionaryWord.pos;
+      }
+      [_store.context save:nil];
+  }];
 }
 
-- (MCDictionaryWord *)getDictionaryWordWithKey:(NSString *)key {
+- (void)getDictionaryWordWithKey:(NSString *)key
+                 completionBlock:(void (^)(MCDictionaryWord *word, NSError *error))block {
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"wordKey == %@", key];
-  NSArray *result = [_store fetchForEntitiesWithName:kStrDictionaryEntryname
+  [_store fetchForEntitiesWithName:kStrDictionaryEntryname
                                          onPredicate:predicate
-                                              onSort:nil];
-  if ([result count] > 0) {
-    MCCoreDataDictionaryWord *entity = [result objectAtIndex:0];
-    MCDictionaryWord *dictionaryWord = [[MCDictionaryWord alloc] initWithWord:entity.word andPos:entity.pos];
-    return dictionaryWord;
-  } else {
-    return nil;
-  }
+                                              onSort:nil
+                     completionBlock:^(NSArray *result, NSError *error) {
+                         MCDictionaryWord *dictionaryWord;
+                         if (!error) {
+                           MCCoreDataDictionaryWord *entity = [result objectAtIndex:0];
+                           dictionaryWord =
+                               [[MCDictionaryWord alloc] initWithWord:entity.word
+                                                               andPos:entity.pos];
+                         }
+                         block(dictionaryWord, error);
+                     }];
 }
 
 @end
