@@ -62,7 +62,7 @@
     block(@[firstRecommendedCategory, secondRecommendedCategory, thirdRecommendedCategory],nil);
   };
   
-  [[MCCategorySourceService sharedInstance] fetchAllCategoriesWithBlock:completionBlock];  
+  [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:YES withBlock:completionBlock];
 }
 
 @end
