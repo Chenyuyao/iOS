@@ -4,7 +4,7 @@
 #import "MCDatabaseManager.h"
 #import "MCCoreDataCategory.h"
 
-static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
+static NSString *kStrDictionaryEntityName = @"MCCoreDataDictionaryWord";
 
 @implementation MCDictionaryService {
   NSArray *_categories;
@@ -42,13 +42,13 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
   id completionBlock = ^(NSError *error) {
     for (MCDictionaryWord *dictionaryWord in dictionary) {
       MCCoreDataDictionaryWord *object =
-      (MCCoreDataDictionaryWord *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrDictionaryEntryname];
+      (MCCoreDataDictionaryWord *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrDictionaryEntityName];
       object.word = [dictionaryWord.word copy];
       object.pos = dictionaryWord.pos;
     }
     [[MCDatabaseManager defaultManager].context save:nil];
   };
-  [[MCDatabaseManager defaultManager] deleteEntriesForEntityName:kStrDictionaryEntryname
+  [[MCDatabaseManager defaultManager] deleteEntriesForEntityName:kStrDictionaryEntityName
                                                            async:YES
                                                      onPredicate:nil
                                                  completionBlock:completionBlock];
@@ -68,7 +68,7 @@ static NSString *kStrDictionaryEntryname = @"MCDictionaryWord";
   };
   
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"wordKey == %@", key];
-  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrDictionaryEntryname
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrDictionaryEntityName
                                                           async:YES
                                                     onPredicate:predicate
                                                          onSort:nil

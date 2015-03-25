@@ -1,7 +1,11 @@
 #import "MCTitlePipe.h"
-
+#import "MCDatabaseManager.h"
 #import "MCCoreDataDictionaryWord.h"
 #import "MCAppDelegate.h"
+#import "MCCoreDataWordOccurrence.h"
+
+static NSString *kStrDictionaryEntityName = @"MCCoreDataDictionaryWord";
+static NSString *kStrWordOccurrenceEntityName = @"MCCoreDataWordOccurrence";
 
 @implementation MCTitlePipe
 
@@ -66,15 +70,20 @@
   //Remove function words
   NSMutableArray *contentWordArray = [NSMutableArray arrayWithArray:wordArray];
   NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
-  NSUInteger index = 0;
   
-  for (NSString* currentWord in contentWordArray)
+  
+  for (NSUInteger index = 0; index < [contentWordArray count]; index++)
   {
-    char partOfSpeech = [sharedTrie searchWithWord:currentWord];
-    if (partOfSpeech == 'f') {
-      [discardedItems addIndex:index];
+    NSString* currentWord = [contentWordArray objectAtIndex:index];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"word", currentWord];
+    NSArray * dictionaryWords = [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrDictionaryEntityName onPredicate:predicate onSort:nil error:nil];
+    if ([dictionaryWords count] == 1) {
+      MCCoreDataDictionaryWord * coreDataDictionaryWord =
+      (MCCoreDataDictionaryWord *)[dictionaryWords objectAtIndex:0];
+      if ([[MCTitlePipe getFunctionWords] containsObject:[coreDataDictionaryWord pos]]) {
+        [discardedItems addIndex:index];
+      }
     }
-    index++;
   }
   
   [contentWordArray removeObjectsAtIndexes:discardedItems];
@@ -82,41 +91,43 @@
 }
 
 - (NSNumber *) getWordScore:(NSString *) word {
-  //Get the English word dictionary
-  MCTrie * sharedTrie = [MCTrie sharedInstance];
-  
   //Get the score of this word according to the part-of-speech
-  char partOfSpeech = [sharedTrie searchWithWord:word];
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"word", word];
+  NSArray * dictionaryWords =
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrDictionaryEntityName
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                          error:nil];
   NSNumber * wordScore;
   
-  if (partOfSpeech == 'x') {
+  if ([dictionaryWords count] == 0) {
     //this word cannot be found in build-in dictionary, we treat it as a noun
     wordScore = [[MCTitlePipe getPosScore]
-                 objectForKey:[NSString stringWithFormat:@"n"]];
+                 objectForKey:[NSString stringWithFormat:@"noun"]];
   } else {
-    wordScore = [[MCTitlePipe getPosScore]
-                 objectForKey:[NSString stringWithFormat:@"%c",partOfSpeech]];
+    MCCoreDataDictionaryWord * coreDataDictionaryWord =
+    (MCCoreDataDictionaryWord *)[dictionaryWords objectAtIndex:0];
+    wordScore = [[MCTitlePipe getPosScore] objectForKey:[coreDataDictionaryWord pos]];
+    if (wordScore == nil) {
+      wordScore = @0;
+    }
   }
   
   //Get the word count and last modified date from Core Data
   NSNumber * occurrence = @0;
   NSDate * lastModified;
   
-  //Get managedObjectContext from MCAppDelegate
-  MCAppDelegate *appDelegate = (MCAppDelegate *)[[UIApplication sharedApplication] delegate] ;
-  NSManagedObjectContext *context = [appDelegate managedObjectContext];
-  
   //Fetch Request to find the target word
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MCWordOccurrence"];
   NSError * error = nil;
-  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"word", word];
-  NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
-  [fetchRequest setPredicate:predicate];
-  
+  NSArray *wordOccurrences =
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrWordOccurrenceEntityName
+                                                    onPredicate:predicate
+                                                          onSort:nil
+                                                          error:nil];
   if (!error) {
-    if (fetchedObjects.count > 0) {
-      MCWordOccurrence * wordOccurrence = (MCWordOccurrence *)[fetchedObjects objectAtIndex:0];
+    if ([wordOccurrences count] > 0) {
+      MCCoreDataWordOccurrence * wordOccurrence =
+      (MCCoreDataWordOccurrence *)[wordOccurrences objectAtIndex:0];
       occurrence = [wordOccurrence count];
       lastModified = [wordOccurrence lastModified];
     }
@@ -142,26 +153,20 @@
 //Store word in MCWordOccurrence Data Model
 - (void) saveWord:(NSString *) word {
   //Find word through Core Data
-  //Get managedObjectContext from MCAppDelegate
-  MCAppDelegate *appDelegate = (MCAppDelegate *)[[UIApplication sharedApplication] delegate] ;
-  NSManagedObjectContext *context = [appDelegate managedObjectContext];
-  
   //Fetch Request to find the target word
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MCWordOccurrence"];
-  NSError * error = nil;
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"word", word];
-  NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-  
-  [fetchRequest setPredicate:predicate];
-  
+  NSError * error = nil;
+  NSArray *wordOccurrences =
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrWordOccurrenceEntityName
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                          error:nil];
   if (!error) {
-    if (fetchedObjects.count == 0) {
+    if ([wordOccurrences count] == 0) {
       //word does not in MCWordOccurrence Data Model, create an instance with count = 0
-      NSEntityDescription * entityDescription =
-      [NSEntityDescription entityForName:@"MCWordOccurrence"
-                  inManagedObjectContext:context];
-      MCWordOccurrence * newWord = [[MCWordOccurrence alloc] initWithEntity:entityDescription
-                                             insertIntoManagedObjectContext:context];
+      MCCoreDataWordOccurrence * newWord =
+      (MCCoreDataWordOccurrence *)[[MCDatabaseManager defaultManager]
+                                   createEntityWithName:kStrWordOccurrenceEntityName];
       [newWord setWord:word];
       [newWord setCount:0];
       [newWord setLastModified:[NSDate date]];
@@ -170,9 +175,10 @@
       if (![newWord.managedObjectContext save:&saveError]) {
         NSLog(@"%@, %@",saveError,saveError.localizedDescription);
       }
-    } else if (fetchedObjects.count == 1) {
+    } else if ([wordOccurrences count] == 1) {
       //word does exist in MCWordOccurrence Data Model, increment count and set lastModified to now
-      MCWordOccurrence * wordOccurrence = (MCWordOccurrence *)[fetchedObjects objectAtIndex:0];
+      MCCoreDataWordOccurrence * wordOccurrence =
+      (MCCoreDataWordOccurrence *)[wordOccurrences objectAtIndex:0];
       [wordOccurrence setCount:[NSNumber numberWithInt:[[wordOccurrence count] intValue] + 1]];
       [wordOccurrence setLastModified:[NSDate date]];
       

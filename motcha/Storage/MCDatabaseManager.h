@@ -23,4 +23,11 @@
                        onPredicate:(NSPredicate *)predicate
                    completionBlock:(void(^)(NSError *error))block;
 
+//This method should only be called in background thread
+- (NSArray *)fetchEntriesForEntityName:(NSString *)name
+                           onPredicate:(NSPredicate *)predicate
+                                onSort:(NSArray *)sortDescriptors
+                                 error:(NSError **)error;
+
+
 @end
