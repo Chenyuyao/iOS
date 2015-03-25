@@ -4,6 +4,7 @@
 
 static NSString *kDateFormat       = @"yyyy-MM-dd";
 static CGFloat kMetaDataViewMargin = 14.0f;
+static CGFloat kMetaDataViewImageMargin = 8.0f;
 
 @implementation MCDetailNewsMetaDataView {
   UIView *_sourceDateView;
@@ -62,9 +63,10 @@ static CGFloat kMetaDataViewMargin = 14.0f;
   [_authorLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self addSubview:_authorLabel];
   
-  NSDictionary *metrics = @{@"margin":[NSNumber numberWithDouble:kMetaDataViewMargin]};
+  NSDictionary *metrics = @{@"margin":[NSNumber numberWithDouble:kMetaDataViewMargin],
+                            @"ImageMargin":[NSNumber numberWithDouble:kMetaDataViewImageMargin]};
   NSDictionary *views = NSDictionaryOfVariableBindings(_sourceDateView, _sourceLabel, _pubDateLabel, _authorLabel);
-  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_sourceDateView][_authorLabel]|"
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(ImageMargin)-[_sourceDateView][_authorLabel]|"
                                                                options:0
                                                                metrics:metrics
                                                                  views:views]];
