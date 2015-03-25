@@ -97,6 +97,8 @@
 		CA6BD7831AC231EF00BD3D3D /* MCCategorySourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */; };
 		CA6BD7861AC23E5200BD3D3D /* MCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7851AC23E5200BD3D3D /* MCCategory.m */; };
 		CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6BD78B1AC2F1AC00BD3D3D /* category.json */; };
+		CA6BD78F1AC350DF00BD3D3D /* MCTitlePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */; };
+		CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
@@ -324,6 +326,10 @@
 		CA6BD7841AC23E5200BD3D3D /* MCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCCategory.h; path = DataModel/MCCategory.h; sourceTree = "<group>"; };
 		CA6BD7851AC23E5200BD3D3D /* MCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCCategory.m; path = DataModel/MCCategory.m; sourceTree = "<group>"; };
 		CA6BD78B1AC2F1AC00BD3D3D /* category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = category.json; sourceTree = "<group>"; };
+		CA6BD78D1AC350DF00BD3D3D /* MCTitlePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTitlePipe.h; sourceTree = "<group>"; };
+		CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTitlePipe.m; sourceTree = "<group>"; };
+		CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataWordOccurrence.h; sourceTree = "<group>"; };
+		CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataWordOccurrence.m; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -624,6 +630,8 @@
 		47E616CE1AB7D34000FC25FA /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */,
+				CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */,
 				CA6BD7811AC231EF00BD3D3D /* MCCategorySourceService.h */,
 				CA6BD7821AC231EF00BD3D3D /* MCCategorySourceService.m */,
 				CA09A47D1AC10378006E9C73 /* MCCoreDataCategory.h */,
@@ -839,6 +847,8 @@
 		CA09A42A1AC08C7F006E9C73 /* RecommendationALG */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD78D1AC350DF00BD3D3D /* MCTitlePipe.h */,
+				CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */,
 				CA09A42B1AC08C7F006E9C73 /* MCRecommendationService.h */,
 				CA09A42C1AC08C7F006E9C73 /* MCRecommendationService.m */,
 			);
@@ -1014,12 +1024,14 @@
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
 				E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */,
+				CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */,
 				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
 				CAA0748E1AB91A3200FE2F3B /* MCSource.m in Sources */,
 				C649C81C1A8980F10087C340 /* JTSImageViewController.m in Sources */,
 				1561B4EC1ABD02B800AB6D5B /* UIButton+AFNetworking.m in Sources */,
 				1561B4E51ABD02B800AB6D5B /* AFURLConnectionOperation.m in Sources */,
+				CA6BD78F1AC350DF00BD3D3D /* MCTitlePipe.m in Sources */,
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
 				1561B4E71ABD02B800AB6D5B /* AFURLResponseSerialization.m in Sources */,
 				47E616D91AB7D34000FC25FA /* MCLocalStorageService.m in Sources */,
