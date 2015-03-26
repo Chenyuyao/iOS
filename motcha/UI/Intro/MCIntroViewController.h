@@ -13,7 +13,6 @@
 @property (strong, nonatomic) UINavigationController *superNavigationController;
 @property (weak, nonatomic) id<MCIntroViewControllerDelegate>delegate;
 
-- (instancetype)initWithSelectedCategories:(NSArray *)categories
-                 superNavigationController:(UINavigationController *)navigationController
-                           isFirstTimeUser:(BOOL)isFirstTimeUser;
+- (instancetype)initWithSuperNavigationController:(UINavigationController *)navigationController
+                                  isFirstTimeUser:(BOOL)isFirstTimeUser;
 @end

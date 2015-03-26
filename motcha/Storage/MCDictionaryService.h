@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class MCDictionaryWord;
-// A service that provides local storage of user's reading preferences.
-@interface MCLocalStorageService : NSObject
+#import "MCDictionaryWord.h"
+// This service can be called to import/fetch the dictionary data to/from coredata
+@interface MCDictionaryService : NSObject
 
-+ (MCLocalStorageService *)sharedInstance;
-
++ (MCDictionaryService *)sharedInstance;
+- (void)import;
 - (void)storeDictionary:(NSArray *)dictionaryWords;
 - (void)getDictionaryWordWithKey:(NSString *)key
                  completionBlock:(void(^)(MCDictionaryWord *, NSError *))block;
