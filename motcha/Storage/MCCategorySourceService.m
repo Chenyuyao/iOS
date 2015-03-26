@@ -6,7 +6,10 @@
 static NSString *kStrCategoryEntityName = @"MCCoreDataCategory";
 static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 
-@implementation MCCategorySourceService
+@implementation MCCategorySourceService {
+  __block NSArray *_cachedAllCategories; // an array of MCCategories
+  __block NSArray *_cachedSelectedCategories; // an array of NSString
+}
 
 + (MCCategorySourceService *)sharedInstance {
   static MCCategorySourceService *service;
@@ -17,14 +20,20 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   return service;
 }
 
+- (void)removeAllCategories {
+  [[MCDatabaseManager defaultManager] deleteEntriesForEntityName:kStrCategoryEntityName
+                                                           async:NO onPredicate:nil
+                                                 completionBlock:nil];
+}
+
 - (void)importCategories {
   NSError* err = nil;
   NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"category" ofType:@"json"];
   
   NSArray* jsonCategories =
-  [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
-                                  options:kNilOptions
-                                    error:&err];
+      [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                      options:kNilOptions
+                                        error:&err];
   for (NSDictionary * jsonCategory in jsonCategories) {
     MCCoreDataCategory * coreDataCategory =
         (MCCoreDataCategory *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrCategoryEntityName];
@@ -56,12 +65,17 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 }
 
 - (void)fetchSelectedCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
+  if (_cachedSelectedCategories) {
+    block(_cachedSelectedCategories, nil);
+    return;
+  }
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"selected", @YES];
   id completionBlock = ^(NSArray *entities, NSError *error) {
     NSMutableArray *categories = [NSMutableArray array];
     for (MCCoreDataCategory *entity in entities) {
       [categories addObject:[entity.category uppercaseString]];
     }
+    _cachedSelectedCategories = [categories copy];
     block(categories, error);
   };
   
@@ -87,6 +101,9 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
         }
         [[entity managedObjectContext] save:nil];
       }
+      // invalidate the caches.
+      _cachedSelectedCategories = nil;
+      _cachedAllCategories = nil;
     }
     block(error);
   };
@@ -133,7 +150,9 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                                completionBlock:completionBlock];
 }
 
-- (void)fetchCategory:(NSString *)categoryName async:(BOOL)shouldFetchAsync withBlock:(void (^)(MCCategory *, NSError *))block {
+- (void)fetchCategory:(NSString *)categoryName
+                async:(BOOL)shouldFetchAsync
+            withBlock:(void (^)(MCCategory *, NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       MCCategory * category = nil;
@@ -196,16 +215,22 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 }
 
 - (void) fetchAllCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
+  if (_cachedAllCategories) {
+    block(_cachedAllCategories, nil);
+    return;
+  }
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       NSMutableArray * categories = [NSMutableArray array];
       for (MCCoreDataCategory * coreDataCategory in entities) {
-        MCCategory *category = [[MCCategory alloc] initWithCategory:[coreDataCategory category]
-                                                              count:[coreDataCategory count]
-                                                          lastFetch:[coreDataCategory lastFetch]
-                                                           selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
+        MCCategory *category =
+            [[MCCategory alloc] initWithCategory:[coreDataCategory category]
+                                           count:[coreDataCategory count]
+                                       lastFetch:[coreDataCategory lastFetch]
+                                        selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
         [categories addObject:category];
       }
+      _cachedAllCategories = [categories copy];
       block(categories, error);
     } else {
       block(nil, error);

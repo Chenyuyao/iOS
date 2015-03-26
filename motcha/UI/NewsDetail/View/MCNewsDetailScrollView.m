@@ -13,7 +13,8 @@ static void *scrollViewContext = &scrollViewContext;
 
 @implementation MCNewsDetailScrollView {
   UIView *_contentView;
-  UIImageView *_imageView;
+  UIImageView *_loaderImageView;
+  UIImageView *_titleImageView;
   MCDetailNewsTitleView *_newsTitle;
   UIView *_descriptionView;
   MCDetailNewsMetaDataView *_metaDataView;
@@ -28,7 +29,8 @@ static void *scrollViewContext = &scrollViewContext;
 
 - (instancetype)init {
   if (self = [super init]) {
-    [self setupSubviewsAndConstraints];
+    [self initContentViews];
+    [self setupConstraints];
     [self addObserver:self
            forKeyPath:@"contentOffset"
               options:NSKeyValueObservingOptionNew
@@ -43,26 +45,27 @@ static void *scrollViewContext = &scrollViewContext;
   _mainBodyView.delegate = mcDelegate;
 }
 
-- (void)setupSubviewsAndConstraints {
+
+- (void)initContentViews {
   //add a content/image views
   self.backgroundColor = [UIColor appMainColor];
   
   //contentView: contains imageView, _newsTitle and _descriptionView
   _contentView = [[UIView alloc] init];
   [_contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  _contentView.backgroundColor = [UIColor whiteColor];
+  _contentView.backgroundColor = [UIColor appMainColor];
   [self addSubview:_contentView];
   
-  //imageView
-  _imageView = [[UIImageView alloc] init];
-  [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  _imageView.contentMode = UIViewContentModeScaleAspectFill;
-  [_contentView addSubview:_imageView];
+  //title imageView
+  _titleImageView = [[UIImageView alloc] init];
+  [_titleImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  _titleImageView.contentMode = UIViewContentModeScaleAspectFill;
+  [_contentView addSubview:_titleImageView];
   
   //newsTitleView
   _newsTitle = [[MCDetailNewsTitleView alloc] init];
   [_contentView addSubview:_newsTitle];
-
+  
   //descriptionView: contains MCDetailNewsMetaDataView and MCDetailNewsBodyView
   _descriptionView = [[UIView alloc] init];
   [_descriptionView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -77,8 +80,47 @@ static void *scrollViewContext = &scrollViewContext;
   _mainBodyView = [[MCDetailNewsBodyView alloc] init];
   [_descriptionView addSubview:_mainBodyView];
   
-  NSDictionary *views = NSDictionaryOfVariableBindings(self, _contentView, _imageView, _newsTitle, _descriptionView,
-      _metaDataView, _mainBodyView);
+  //contentView placeholder
+  _loaderImageView = [[UIImageView alloc] init];
+  [_loaderImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  _loaderImageView.contentMode = UIViewContentModeScaleAspectFit;
+  [_contentView addSubview:_loaderImageView];
+  _loaderImageView.image = [UIImage imageNamed:@"placeholder-app-icon"]; // TODO: change to better image
+}
+
+- (void)setupConstraints {
+  NSDictionary *views = NSDictionaryOfVariableBindings(self, _contentView, _titleImageView, _newsTitle, _descriptionView,
+      _metaDataView, _mainBodyView, _loaderImageView);
+  
+  //Constraints for contentView: pin to superView's top and bottom, same width as scrollView
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView(>=self)]|"
+                                                               options:0
+                                                               metrics:nil
+                                                                 views:views]];
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView(self)]|"
+                                                               options:0
+                                                               metrics:nil
+                                                                 views:views]];
+  
+  //constraints for placeholder
+  [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:_loaderImageView
+                                                           attribute:NSLayoutAttributeCenterX
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:_contentView
+                                                           attribute:NSLayoutAttributeCenterX
+                                                          multiplier:1.f constant:0.f]];
+  
+  [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:_loaderImageView
+                                                           attribute:NSLayoutAttributeCenterY
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:_contentView
+                                                           attribute:NSLayoutAttributeCenterY
+                                                          multiplier:1.f constant:0]];
+  [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=50)-[_loaderImageView(40)]-(>=50)-|"
+                                                                       options:NSLayoutFormatAlignAllCenterX | NSLayoutFormatAlignAllCenterY
+                                                                       metrics:nil
+                                                                         views:views]];
+
 
   //Constraints for contentView: pin to superView's top and bottom, same width as scrollView
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|"
@@ -91,7 +133,7 @@ static void *scrollViewContext = &scrollViewContext;
                                                                  views:views]];
   
   //Constraints for _imageView
-  _imageViewTopConstraint = [NSLayoutConstraint constraintWithItem:_imageView
+  _imageViewTopConstraint = [NSLayoutConstraint constraintWithItem:_titleImageView
                                                          attribute:NSLayoutAttributeTop
                                                          relatedBy:NSLayoutRelationEqual
                                                             toItem:_contentView
@@ -100,7 +142,7 @@ static void *scrollViewContext = &scrollViewContext;
                                                           constant:-kTitleImageViewBottomInset];
   [_contentView addConstraint:_imageViewTopConstraint];
   
-  _imageViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_imageView
+  _imageViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_titleImageView
                                                             attribute:NSLayoutAttributeHeight
                                                             relatedBy:NSLayoutRelationEqual
                                                                toItem:nil
@@ -109,7 +151,7 @@ static void *scrollViewContext = &scrollViewContext;
                                                              constant:kTitleImageViewOriginalHeight];
   [_contentView addConstraint:_imageViewHeightConstraint];
   
-  [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_imageView]|"
+  [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_titleImageView]|"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:views]];
@@ -165,10 +207,6 @@ static void *scrollViewContext = &scrollViewContext;
   [self initTextFontSize];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
-}
-
 #pragma mark - Font size
 
 - (void)initTextFontSize {
@@ -186,7 +224,7 @@ static void *scrollViewContext = &scrollViewContext;
 #pragma mark - Content Settings
 
 - (void)setImage:(UIImage *)image {
-  _imageView.image = image;
+  _titleImageView.image = image;
 }
 
 - (void)setNewsTitle:(NSString *)title {
@@ -207,6 +245,8 @@ static void *scrollViewContext = &scrollViewContext;
 
 - (void)setNewsMainBody:(NSArray *)bodyArray {
   [_mainBodyView setBodyContents:bodyArray];
+  [_loaderImageView removeFromSuperview];
+  _loaderImageView = nil;
 }
 
 
@@ -228,7 +268,7 @@ static void *scrollViewContext = &scrollViewContext;
   }
 }
 
-#pragma mark - dealloc]
+#pragma mark - dealloc
 - (void)dealloc {
   [self removeObserver:self forKeyPath:@"contentOffset"];
 }

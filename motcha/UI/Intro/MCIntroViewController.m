@@ -9,6 +9,7 @@
 #import "UIColor+Helpers.h"
 #import "MCNewsCategorySelectorView.h"
 #import "MCCategorySourceService.h"
+#import "MCAppDelegate.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
@@ -21,6 +22,7 @@ static NSInteger minSelectedCategories = 4;
   BOOL _isFirstTimeUser;
   __block NSMutableArray *_allCategories; // an array of MCCategory *
   NSArray *_categoriesToIgnore;
+  MCIntroHeader *_header;
 }
 
 - (instancetype)init {
@@ -53,16 +55,21 @@ static NSInteger minSelectedCategories = 4;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
     } else {
       // Import all available categories into the local datastore.
+      [[MCCategorySourceService sharedInstance] removeAllCategories];
       [[MCCategorySourceService sharedInstance] importCategories];
     }
     
-    id fetchBlock = ^(NSArray *categories, NSError *error) {
+    id fetchAllBlock = ^(NSArray *categories, NSError *error) {
       if (!error) {
         _allCategories = [categories mutableCopy];
-        for (MCCategory *category in categories) {
-          if (category.selected) {
-            [_selectedCategories addObject:category.category];
-          }
+      } else {
+        NSLog(@"ERROR: Fetching all categories error: %@", error);
+      }
+    };
+    id fetchSelectedBlock = ^(NSArray *selectedCategories, NSError *error) {
+      if (!error) {
+        for (NSString *category in selectedCategories) {
+          [_selectedCategories addObject:category];
         }
         for (MCCategory *category in _allCategories) {
           if ([category.category isEqualToString:recommendedCategory]) {
@@ -70,11 +77,10 @@ static NSInteger minSelectedCategories = 4;
             break;
           }
         }
-      } else {
-        NSLog(@"ERROR: Fetching all categories error: %@", error);
       }
     };
-    [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:NO withBlock:fetchBlock];
+    [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:NO withBlock:fetchAllBlock];
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO withBlock:fetchSelectedBlock];
   }
   return self;
 }
@@ -127,17 +133,19 @@ static NSInteger minSelectedCategories = 4;
   UICollectionReusableView *reusableview = nil;
   
   if (kind == UICollectionElementKindSectionHeader) {
-    MCIntroHeader *header =
-    [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                       withReuseIdentifier:reuseHeader forIndexPath:indexPath];
-    [self updateHeader:header forIndexPath:indexPath];
-    reusableview = header;
+    _header =
+        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                           withReuseIdentifier:reuseHeader
+                                                  forIndexPath:indexPath];
+    [self updateHeader:_header forIndexPath:indexPath];
+    reusableview = _header;
   }
   
   if (kind == UICollectionElementKindSectionFooter) {
     MCIntroFooter *footer =
     [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                       withReuseIdentifier:reuseFooter forIndexPath:indexPath];
+                                       withReuseIdentifier:reuseFooter
+                                              forIndexPath:indexPath];
     [self updateFooter:footer forIndexPath:indexPath];
     reusableview = footer;
   }
@@ -147,8 +155,8 @@ static NSInteger minSelectedCategories = 4;
 
 - (void)updateHeader:(MCIntroHeader *)header forIndexPath:(NSIndexPath *)indexPath {
   if (_isFirstTimeUser) {
-  header.title.text = @"Welcome to Motcha";
-  header.instruction.text = @"For Motcha to better understand you,\nPlease select some categories to start.";
+    header.title.text = @"Welcome to Motcha";
+    header.instruction.text = @"For Motcha to better understand you,\nPlease select some categories to start.";
   }
 }
 
@@ -176,9 +184,12 @@ static NSInteger minSelectedCategories = 4;
   MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
   cell.imageView.image = [UIImage imageNamed:category.category];
   cell.title.text = category.category;
-  if (category.selected) {
+  if ([_selectedCategories containsObject:category.category]) {
     cell.selected = YES;
     [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:0];
+  } else {
+    cell.selected = NO;
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
   }
 }
 
@@ -202,6 +213,13 @@ static NSInteger minSelectedCategories = 4;
   }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (_header) {
+    CGFloat offset = self.collectionView.contentOffset.y;
+    _header.alpha = MAX(1 - offset / 75, 0);
+  }
+}
+
 #pragma mark Private
 
 - (void)finishButtonTapped {
@@ -217,12 +235,26 @@ static NSInteger minSelectedCategories = 4;
                                           otherButtonTitles:nil, nil];
     [alert show];
   } else {
+    __block NSArray *originalSelectedCategories;
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO
+                                                                 withBlock:^(NSArray *categories, NSError *error) {
+      if (!error) {
+        originalSelectedCategories = categories;
+      }
+    }];
+    BOOL changed = (![originalSelectedCategories isEqualToArray:_selectedCategories]);
     if ([_delegate
-        respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
-      [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
+        respondsToSelector:@selector(introViewController:didFinishChangingCategories:changed:)]) {
+      [_delegate introViewController:self didFinishChangingCategories:_selectedCategories changed:changed];
+    }
+    if (!changed) {
+      [self dismissViewControllerAnimated:YES completion:nil];
+      return;
     }
     id block = ^(NSError *error) {
         if (_isFirstTimeUser) {
+          [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserDefaultKeyAppHasLaunchedOnce];
+          [[NSUserDefaults standardUserDefaults] synchronize];
           MCNewsListsContainerController *newsListsController =
               [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
           [self.navigationController setViewControllers:@[ newsListsController ] animated:YES];

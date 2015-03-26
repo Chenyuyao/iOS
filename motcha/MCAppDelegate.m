@@ -11,11 +11,9 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
-  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) {
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:kUserDefaultKeyAppHasLaunchedOnce]) { // first time user
     UIViewController *rootViewController =
         [[MCIntroViewController alloc] initWithSuperNavigationController:nil isFirstTimeUser:YES];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     MCNavigationController *navigationController =
         [[MCNavigationController alloc] initWithRootViewController:rootViewController];
     self.window.rootViewController = navigationController;
@@ -24,7 +22,7 @@
       UIViewController *rootViewController =
       [[MCNewsListsContainerController alloc] initWithCategories:categories];
       MCNavigationController *navigationController =
-      [[MCNavigationController alloc] initWithRootViewController:rootViewController];
+          [[MCNavigationController alloc] initWithRootViewController:rootViewController];
       self.window.rootViewController = navigationController;
     };
     [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO withBlock:block];
