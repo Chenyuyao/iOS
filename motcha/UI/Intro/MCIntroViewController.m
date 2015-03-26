@@ -57,13 +57,17 @@ static NSInteger minSelectedCategories = 4;
       [[MCCategorySourceService sharedInstance] importCategories];
     }
     
-    id fetchBlock = ^(NSArray *categories, NSError *error) {
+    id fetchAllBlock = ^(NSArray *categories, NSError *error) {
       if (!error) {
         _allCategories = [categories mutableCopy];
-        for (MCCategory *category in categories) {
-          if (category.selected) {
-            [_selectedCategories addObject:category.category];
-          }
+      } else {
+        NSLog(@"ERROR: Fetching all categories error: %@", error);
+      }
+    };
+    id fetchSelectedBlock = ^(NSArray *selectedCategories, NSError *error) {
+      if (!error) {
+        for (NSString *category in selectedCategories) {
+          [_selectedCategories addObject:category];
         }
         for (MCCategory *category in _allCategories) {
           if ([category.category isEqualToString:recommendedCategory]) {
@@ -71,11 +75,10 @@ static NSInteger minSelectedCategories = 4;
             break;
           }
         }
-      } else {
-        NSLog(@"ERROR: Fetching all categories error: %@", error);
       }
     };
-    [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:NO withBlock:fetchBlock];
+    [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:NO withBlock:fetchAllBlock];
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO withBlock:fetchSelectedBlock];
   }
   return self;
 }
@@ -219,9 +222,20 @@ static NSInteger minSelectedCategories = 4;
                                           otherButtonTitles:nil, nil];
     [alert show];
   } else {
+    __block NSArray *originalSelectedCategories;
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO withBlock:^(NSArray *categories, NSError *error) {
+      if (!error) {
+        originalSelectedCategories = categories;
+      }
+    }];
+    BOOL changed = (![originalSelectedCategories isEqualToArray:_selectedCategories]);
     if ([_delegate
-        respondsToSelector:@selector(introViewController:didFinishChangingCategories:)]) {
-      [_delegate introViewController:self didFinishChangingCategories:_selectedCategories];
+        respondsToSelector:@selector(introViewController:didFinishChangingCategories:changed:)]) {
+      [_delegate introViewController:self didFinishChangingCategories:_selectedCategories changed:changed];
+    }
+    if (!changed) {
+      [self dismissViewControllerAnimated:YES completion:nil];
+      return;
     }
     id block = ^(NSError *error) {
         if (_isFirstTimeUser) {

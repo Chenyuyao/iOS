@@ -11,7 +11,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
-  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) {
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"appHasLaunchedOnce"]) { // first time user
     UIViewController *rootViewController =
         [[MCIntroViewController alloc] initWithSuperNavigationController:nil isFirstTimeUser:YES];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"appHasLaunchedOnce"];
