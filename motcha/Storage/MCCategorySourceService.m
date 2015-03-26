@@ -134,7 +134,9 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                                completionBlock:completionBlock];
 }
 
-- (void)fetchCategory:(NSString *)categoryName async:(BOOL)shouldFetchAsync withBlock:(void (^)(MCCategory *, NSError *))block {
+- (void)fetchCategory:(NSString *)categoryName
+                async:(BOOL)shouldFetchAsync
+            withBlock:(void (^)(MCCategory *, NSError *))block {
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       MCCategory * category = nil;
@@ -168,10 +170,11 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
     if (!error) {
       NSMutableArray * categories = [NSMutableArray array];
       for (MCCoreDataCategory * coreDataCategory in entities) {
-        MCCategory *category = [[MCCategory alloc] initWithCategory:[coreDataCategory category]
-                                                              count:[coreDataCategory count]
-                                                          lastFetch:[coreDataCategory lastFetch]
-                                                           selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
+        MCCategory *category =
+            [[MCCategory alloc] initWithCategory:[coreDataCategory category]
+                                           count:[coreDataCategory count]
+                                       lastFetch:[coreDataCategory lastFetch]
+                                        selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
         [categories addObject:category];
       }
       block(categories, error);
