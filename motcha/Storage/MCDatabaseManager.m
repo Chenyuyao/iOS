@@ -85,6 +85,36 @@ static NSString *const kStrStoreName = @"store";
   }
 }
 
+- (void)fetchEntriesForEntityName:(NSString *)name
+                            async:(BOOL)shouldExecuteAsync
+                      onPredicate:(NSPredicate *)predicate
+                           onSort:(NSArray *)sortDescriptors
+                            limit:(NSUInteger)limit
+                  completionBlock:(void(^)(NSArray *, NSError *))block {
+  if (shouldExecuteAsync) {
+    dispatch_async(_queue, ^{
+      NSError *error = nil;
+      NSArray *array = [self fetchEntriesForEntityName:name
+                                           onPredicate:predicate
+                                                onSort:sortDescriptors
+                                                 limit:limit
+                                                 error:&error];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        block(array, error);
+      });
+    });
+  } else {
+    NSError *error = nil;
+    NSArray *array = [self fetchEntriesForEntityName:name
+                                         onPredicate:predicate
+                                              onSort:sortDescriptors
+                                               limit:limit
+                                               error:&error];
+    block(array, error);
+  }
+}
+
+
 - (void)deleteEntriesForEntityName:(NSString *)name
                              async:(BOOL)shouldExecuteAsync
                             onPredicate:(NSPredicate *)predicate
@@ -160,6 +190,20 @@ static NSString *const kStrStoreName = @"store";
   if (!compatible) {
     [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
   }
+}
+
+- (NSArray *)fetchEntriesForEntityName:(NSString *)name
+                           onPredicate:(NSPredicate *)predicate
+                                onSort:(NSArray *)sortDescriptors
+                                 limit:(NSUInteger)limit
+                                 error:(NSError **)error {
+  NSFetchRequest * fetchRequest = [[NSFetchRequest alloc] initWithEntityName:name];
+  [fetchRequest setPredicate:predicate];
+  [fetchRequest setFetchLimit:limit];
+  if (sortDescriptors != nil) {
+    [fetchRequest setSortDescriptors:sortDescriptors];
+  }
+  return [self.context executeFetchRequest:fetchRequest error:error];
 }
 
 - (NSArray *)fetchEntriesForEntityName:(NSString *)name

@@ -90,7 +90,7 @@ static CGFloat kRefreshControlHeight  = 45.0f;
       }
       _reloading = NO;
     };
-    [[MCRSSService sharedInstance] fetchRSSWithCategory:self.category
+    [[MCRSSService sharedInstance] fetchNormalRSSWithCategory:self.category
                                                   since:_lastRetrievedNewsPubDate
                                         completionBlock:completionBlock];
   };

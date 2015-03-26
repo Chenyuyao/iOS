@@ -99,6 +99,9 @@
 		CA6BD78C1AC2F1AC00BD3D3D /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = CA6BD78B1AC2F1AC00BD3D3D /* category.json */; };
 		CA6BD78F1AC350DF00BD3D3D /* MCTitlePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */; };
 		CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */; };
+		CA6BD7951AC38DEB00BD3D3D /* MCRSSStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7941AC38DEB00BD3D3D /* MCRSSStoreService.m */; };
+		CA6BD7981AC39A2800BD3D3D /* MCCoreDataNewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD7971AC39A2800BD3D3D /* MCCoreDataNewsDetail.m */; };
+		CA6BD79B1AC39A2800BD3D3D /* MCCoreDataRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6BD79A1AC39A2800BD3D3D /* MCCoreDataRSSItem.m */; };
 		CA90EF2A1A85B7ED005931CF /* MCParsedRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */; };
 		CA90EF2D1A85B892005931CF /* MCRSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2C1A85B892005931CF /* MCRSSParser.m */; };
 		CA90EF301A85B8F4005931CF /* MCRSSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90EF2F1A85B8F4005931CF /* MCRSSService.m */; };
@@ -329,6 +332,12 @@
 		CA6BD78E1AC350DF00BD3D3D /* MCTitlePipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCTitlePipe.m; sourceTree = "<group>"; };
 		CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataWordOccurrence.h; sourceTree = "<group>"; };
 		CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataWordOccurrence.m; sourceTree = "<group>"; };
+		CA6BD7931AC38DD000BD3D3D /* MCRSSStoreService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRSSStoreService.h; sourceTree = "<group>"; };
+		CA6BD7941AC38DEB00BD3D3D /* MCRSSStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRSSStoreService.m; sourceTree = "<group>"; };
+		CA6BD7961AC39A2800BD3D3D /* MCCoreDataNewsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataNewsDetail.h; sourceTree = "<group>"; };
+		CA6BD7971AC39A2800BD3D3D /* MCCoreDataNewsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataNewsDetail.m; sourceTree = "<group>"; };
+		CA6BD7991AC39A2800BD3D3D /* MCCoreDataRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataRSSItem.h; sourceTree = "<group>"; };
+		CA6BD79A1AC39A2800BD3D3D /* MCCoreDataRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCoreDataRSSItem.m; sourceTree = "<group>"; };
 		CA90EF291A85B7ED005931CF /* MCParsedRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCParsedRSSItem.m; path = DataModel/MCParsedRSSItem.m; sourceTree = "<group>"; };
 		CA90EF2B1A85B873005931CF /* MCRSSParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MCRSSParser.h; path = Network/MCRSSParser.h; sourceTree = "<group>"; };
 		CA90EF2C1A85B892005931CF /* MCRSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRSSParser.m; path = Network/MCRSSParser.m; sourceTree = "<group>"; };
@@ -627,6 +636,10 @@
 		47E616CE1AB7D34000FC25FA /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				CA6BD7991AC39A2800BD3D3D /* MCCoreDataRSSItem.h */,
+				CA6BD79A1AC39A2800BD3D3D /* MCCoreDataRSSItem.m */,
+				CA6BD7961AC39A2800BD3D3D /* MCCoreDataNewsDetail.h */,
+				CA6BD7971AC39A2800BD3D3D /* MCCoreDataNewsDetail.m */,
 				CA6BD7901AC3514600BD3D3D /* MCCoreDataWordOccurrence.h */,
 				CA6BD7911AC3514600BD3D3D /* MCCoreDataWordOccurrence.m */,
 				1595A0C81AC34FA3005CE8A2 /* MCDictionaryService.h */,
@@ -641,6 +654,8 @@
 				CA09A4781AC10378006E9C73 /* MCCoreDataDictionaryWord.m */,
 				47E616D11AB7D34000FC25FA /* MCDatabaseManager.h */,
 				47E616D21AB7D34000FC25FA /* MCDatabaseManager.m */,
+				CA6BD7931AC38DD000BD3D3D /* MCRSSStoreService.h */,
+				CA6BD7941AC38DEB00BD3D3D /* MCRSSStoreService.m */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1019,7 +1034,6 @@
 				C649C81F1A8980F10087C340 /* UIImage+JTSImageEffects.m in Sources */,
 				C649C81B1A8980F10087C340 /* JTSImageInfo.m in Sources */,
 				C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */,
-				E06B2ED11ABF5087001D714D /* MCDictionaryService.m in Sources */,
 				CA6BD7921AC3514600BD3D3D /* MCCoreDataWordOccurrence.m in Sources */,
 				47E616D81AB7D34000FC25FA /* MCDatabaseManager.m in Sources */,
 				1539C2791A9A754A00C32877 /* MCPageView.m in Sources */,
@@ -1041,6 +1055,7 @@
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
 				1561B4E31ABD02B800AB6D5B /* AFNetworkReachabilityManager.m in Sources */,
 				157314921AC0A7E600E65C02 /* BMYCircularProgressView.m in Sources */,
+				CA6BD7951AC38DEB00BD3D3D /* MCRSSStoreService.m in Sources */,
 				1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
 				157314971AC0FEDB00E65C02 /* MCNewsListFooterView.m in Sources */,
@@ -1062,6 +1077,7 @@
 				15DB97901A89112F0066B469 /* MCNavigationBarAppearanceAuxiliaryView.m in Sources */,
 				15DB978F1A89112F0066B469 /* MCNavigationController.m in Sources */,
 				47E912ED1A8459BD0055AB69 /* MCNewsDetailsObject.m in Sources */,
+				CA6BD79B1AC39A2800BD3D3D /* MCCoreDataRSSItem.m in Sources */,
 				E0EFFBF31ABF5D66002318AA /* MCDictionaryWord.m in Sources */,
 				153F55341AA12D0300487C2F /* UIColor+Helpers.m in Sources */,
 				15DB977D1A8911190066B469 /* MCKeyValuePair.m in Sources */,
@@ -1081,6 +1097,7 @@
 				E0B343C81A773F030081BE95 /* MCIntroHeader.m in Sources */,
 				15DB97911A89112F0066B469 /* MCNavigationBarAppearanceBackgroundAlpha.m in Sources */,
 				1561B4611ABB874700AB6D5B /* NSDate+TimeAgo.m in Sources */,
+				CA6BD7981AC39A2800BD3D3D /* MCCoreDataNewsDetail.m in Sources */,
 				CAEB8DCF1AC0298A006F5AD1 /* Motcha.xcdatamodeld in Sources */,
 				1561B4E01ABD02B800AB6D5B /* AFHTTPRequestOperation.m in Sources */,
 				1561B4E61ABD02B800AB6D5B /* AFURLRequestSerialization.m in Sources */,

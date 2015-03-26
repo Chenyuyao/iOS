@@ -1,6 +1,9 @@
 #include "MCRecommendationService.h"
 
 #include "MCCategorySourceService.h"
+#include "MCTitlePipe.h"
+#include "MCCoreDataRSSItem.h"
+
 @implementation MCRecommendationService
 
 + (MCRecommendationService *)sharedInstance {
@@ -10,6 +13,15 @@
     service = [[MCRecommendationService alloc] init];
   });
   return service;
+}
+
++ (NSArray *)getFetchedNumbers {
+  static NSArray *fetchedNumber = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    fetchedNumber = @[@6,@3,@1];
+  });
+  return fetchedNumber;
 }
 
 //generate a random integer between from and to
@@ -63,6 +75,50 @@
   };
   
   [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:YES withBlock:completionBlock];
+}
+
+- (void)incrementCount:(MCParsedRSSItem *) item {
+  NSString * categoryString = [item category];
+  NSString * sourceString = [item source];
+  NSString * titleString = [item title];
+  
+  [[MCCategorySourceService sharedInstance] incrementCategoryCount:categoryString];
+  [[MCCategorySourceService sharedInstance] incrementSourceCount:sourceString];
+  [[MCTitlePipe sharedInstance] saveTitleWord:titleString];
+}
+
+-(void)fetchRSSItemScore:(MCParsedRSSItem *)item withBlock:(void (^)(MCParsedRSSItem *, NSError *))block{
+  id sourceBlock = ^(MCSource * source, NSError * error){
+    NSNumber * sourceCount = [source count];
+    NSString * title = [item title];
+    
+    id scoreBlock = ^(NSNumber * titleScore, NSError * titleError) {
+      //calculate item score (source count + title score)
+      NSNumber * itemScore = [NSNumber numberWithFloat:[sourceCount floatValue] + [titleScore floatValue]];
+      block([[MCParsedRSSItem alloc] initWithAnotherRSSItem:item score:itemScore], nil);
+    };
+    
+    [[MCTitlePipe sharedInstance] fetchTitleScore:title withBlock:scoreBlock];
+  };
+  [[MCCategorySourceService sharedInstance] fetchSource:[item source]
+                                           categoryName:[item category]
+                                                  async:NO
+                                              withBlock:sourceBlock];
+}
+
+-(void)recommendRSSItems:(MCCategory *)category
+             fetchNumber:(NSNumber *)fetchNumber
+         withBlock:(void (^)(NSArray *, NSError *))block {
+  id completionBlock = ^(NSArray * entities, NSError * error) {
+    if (!error) {
+      for (MCCoreDataRSSItem * coreDataRSSItems in entities) {
+        MCParsedRSSItem * item = [[MCParsedRSSItem alloc] initWithCoreDataRSSItem:coreDataRSSItems];
+        
+      }
+    } else {
+      block(nil,error);
+    }
+  };
 }
 
 @end

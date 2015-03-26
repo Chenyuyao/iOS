@@ -17,6 +17,12 @@
                            onSort:(NSArray *)sortDescriptors
                   completionBlock:(void(^)(NSArray *, NSError *))block;
 
+- (void)fetchEntriesForEntityName:(NSString *)name
+                            async:(BOOL)shouldExecuteAsync
+                      onPredicate:(NSPredicate *)predicate
+                           onSort:(NSArray *)sortDescriptors
+                            limit:(NSUInteger)limit
+                  completionBlock:(void(^)(NSArray *, NSError *))block;
 
 - (void)deleteEntriesForEntityName:(NSString *)name
                              async:(BOOL)shouldExecuteAsync

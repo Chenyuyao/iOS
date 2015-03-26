@@ -1,6 +1,7 @@
 #import "MCRSSService.h"
 #import "MCRSSParser.h"
 #import "MCCategorySourceService.h"
+#import "MCRecommendationService.h"
 #import "MCSource.h"
 #import "MCParsedRSSItem.h"
 
@@ -28,6 +29,35 @@ static NSString *kFullTextRSSURL = @"http://fulltextrssfeed.com/";
 }
 
 - (void)fetchRSSWithCategory:(NSString *)category
+                       since:(NSDate *)since
+             completionBlock:(void (^)(NSMutableArray *, NSError *))block {
+  if ([category isEqual:recommendedCategory]) {
+    
+  } else {
+    [self fetchNormalRSSWithCategory:category since:since completionBlock:block];
+  }
+}
+
+
+- (void)fetchRecommendRSSWithCategory:(NSString *)category
+                   completionBlock:(void(^)(NSMutableArray *rssItems, NSError *error))block {
+  id completionBlock = ^(NSArray * categories, NSError * error) {
+    for (NSUInteger index = 0; index < [categories count]; index++) {
+      MCCategory * category = [categories objectAtIndex:index];
+      NSNumber * fetchedNumber = [[MCRecommendationService getFetchedNumbers] objectAtIndex:index];
+      
+      if ([[category lastFetch] timeIntervalSinceNow] > (-3600 * 2)) {
+        //This category is fetched less than 2r
+        
+        
+      }
+    }
+  };
+  
+  [[MCRecommendationService sharedInstance] getRecommendedCategoryWithBlock:completionBlock];
+}
+
+- (void)fetchNormalRSSWithCategory:(NSString *)category
                        since:(NSDate *)since
              completionBlock:(void(^)(NSMutableArray *rssItems, NSError *error))block {
   
@@ -95,6 +125,9 @@ static NSString *kFullTextRSSURL = @"http://fulltextrssfeed.com/";
             [[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO];
             [rssItems sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
             
+            //Record fetchTime of Category
+            [[MCCategorySourceService sharedInstance] recordCategoryFetchTime:category];
+            
             //callback
             block(rssItems,nil);
           }
@@ -110,8 +143,9 @@ static NSString *kFullTextRSSURL = @"http://fulltextrssfeed.com/";
     }
   };
   
-  [[MCCategorySourceService sharedInstance] fetchSourceByCategory:category async:YES withBlock:sourceBlock];
-  
+  [[MCCategorySourceService sharedInstance] fetchSourceByCategory:category
+                                                            async:YES
+                                                        withBlock:sourceBlock];
 }
 
 @end

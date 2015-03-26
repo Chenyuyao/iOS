@@ -2,7 +2,6 @@
 #import "MCDatabaseManager.h"
 #import "MCCoreDataCategory.h"
 #import "MCCoreDataSource.h"
-#import "MCSource.h"
 
 static NSString *kStrCategoryEntityName = @"MCCoreDataCategory";
 static NSString *kStrSourceEntityName = @"MCCoreDataSource";
@@ -160,7 +159,40 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                                    onPredicate:predicate
                                                         onSort:nil
                                                completionBlock:completionBlock];
+}
+
+-(void)fetchSource:(NSString *)sourceName
+      categoryName:(NSString *)categoryName
+             async:(BOOL)shouldFetchAsync
+         withBlock:(void (^)(MCSource *, NSError *))block {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    if (!error) {
+      MCSource * source = nil;
+      if ([entities count] == 1) {
+        MCCoreDataSource * sourceCoreData = [entities objectAtIndex:0];
+        source = [[MCSource alloc] initWithCategory:categoryName
+                                             source:[sourceCoreData source]
+                                               link:[sourceCoreData link]
+                                              count:[sourceCoreData count]
+                                          needParse:[[sourceCoreData needParse] boolValue]
+                                        fullTextale:[[sourceCoreData fullTextable] boolValue]];
+        block(source,error);
+      } else {
+        NSLog(@"Error fetch category: %@", sourceName);
+        block(nil, error);
+      }
+    }else {
+      block(nil, error);
+    }
+  };
   
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"(%K == %@) AND (%K == %@)",
+                             @"source", sourceName, @"category", categoryName];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:shouldFetchAsync
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                completionBlock:completionBlock];
 }
 
 - (void) fetchAllCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
@@ -184,6 +216,69 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                                    onPredicate:nil
                                                         onSort:nil
                                                completionBlock:completionBlock];
+}
+
+-(void)incrementCategoryCount:(NSString *)categoryName {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    if (!error) {
+      if ([entities count] == 1) {
+        MCCoreDataCategory * categoryCoreData = [entities objectAtIndex:0];
+        [categoryCoreData setCount:[NSNumber numberWithInt:([[categoryCoreData count] intValue] + 1)]];
+        [[categoryCoreData managedObjectContext] save:nil];
+      } else {
+        NSLog(@"Error increment category: %@", categoryName);
+      }
+    }
+  };
+  
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", categoryName];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:NO
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                completionBlock:completionBlock];
+}
+
+-(void)incrementSourceCount:(NSString *)sourceName {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    if (!error) {
+      if ([entities count] == 1) {
+        MCCoreDataSource * sourceCoreData = [entities objectAtIndex:0];
+        [sourceCoreData setCount:[NSNumber numberWithInt:([[sourceCoreData count] intValue] + 1)]];
+        [[sourceCoreData managedObjectContext] save:nil];
+      } else {
+        NSLog(@"Error increment source: %@", sourceName);
+      }
+    }
+  };
+  
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"source", sourceName];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrSourceEntityName
+                                                          async:NO
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                completionBlock:completionBlock];
+}
+
+- (void) recordCategoryFetchTime:(NSString *) categoryName {
+  id completionBlock = ^(NSArray *entities, NSError *error) {
+    if (!error) {
+      if ([entities count] == 1) {
+        MCCoreDataCategory * categoryCoreData = [entities objectAtIndex:0];
+        [categoryCoreData setLastFetch:[NSDate date]];
+        [[categoryCoreData managedObjectContext] save:nil];
+      } else {
+        NSLog(@"Error record category fetchtime: %@", categoryName);
+      }
+    }
+  };
+  
+  NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"category", categoryName];
+  [[MCDatabaseManager defaultManager] fetchEntriesForEntityName:kStrCategoryEntityName
+                                                          async:NO
+                                                    onPredicate:predicate
+                                                         onSort:nil
+                                                completionBlock:completionBlock];
 }
 
 @end

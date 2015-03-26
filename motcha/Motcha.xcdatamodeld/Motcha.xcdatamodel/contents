@@ -11,7 +11,7 @@
         <attribute name="pos" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="MCCoreDataNewsDetail" syncable="YES">
+    <entity name="MCCoreDataNewsDetail" representedClassName="MCCoreDataNewsDetail" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -20,7 +20,7 @@
         <attribute name="titleimage" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="rssItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MCCoreDataRSSItem" inverseName="detailedItem" inverseEntity="MCCoreDataRSSItem" syncable="YES"/>
     </entity>
-    <entity name="MCCoreDataRSSItem" syncable="YES">
+    <entity name="MCCoreDataRSSItem" representedClassName="MCCoreDataRSSItem" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descrpt" optional="YES" attributeType="String" syncable="YES"/>

@@ -21,6 +21,37 @@
   return self;
 }
 
+- (instancetype)initWithCoreDataRSSItem:(MCCoreDataRSSItem *) coreDataRSSItem {
+  if (self = [super init]) {
+    _title = [coreDataRSSItem title];
+    _link = [coreDataRSSItem link];
+    _descrpt = [coreDataRSSItem descrpt];
+    _imgSrc = [coreDataRSSItem imgSrc];
+    _pubDate = [coreDataRSSItem pubDate];
+    _author = [coreDataRSSItem author];
+    _category = [coreDataRSSItem category];
+    _source = [coreDataRSSItem source];
+    _needParse = [[coreDataRSSItem needParse] boolValue];
+  }
+  return self;
+}
+
+-(instancetype)initWithAnotherRSSItem:(MCParsedRSSItem *)item score:(NSNumber *)score {
+  if (self = [super init]) {
+    _title = [item title];
+    _link = [item link];
+    _descrpt = [item descrpt];
+    _imgSrc = [item imgSrc];
+    _pubDate = [item pubDate];
+    _author = [item author];
+    _category = [item category];
+    _source = [item source];
+    _needParse = [item needParse];
+    _score = score;
+  }
+  return self;
+}
+
 //parse an dateString to NSDate
 - (NSDate *) parseDateString:(NSString *) dateString {
   NSDate *date = nil;

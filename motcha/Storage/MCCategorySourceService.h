@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "MCCategory.h"
+#import "MCSource.h"
 
 static NSString * const recommendedCategory = @"RECOMMENDED";
 
@@ -28,8 +29,20 @@ static NSString * const recommendedCategory = @"RECOMMENDED";
                 async:(BOOL)shouldFetchAsync
             withBlock:(void(^)(MCCategory *, NSError *))block;
 
+//Given a source name, return an MCSource Object corresponding to this category
+- (void)fetchSource:(NSString *)sourceName
+       categoryName:(NSString *)categoryName
+              async:(BOOL)shouldFetchAsync
+          withBlock:(void(^)(MCSource *, NSError *))block;
+
 //Get an array of MCCategory for all categories
-- (void) fetchAllCategoriesAsync:(BOOL)shouldFetchAsync
+- (void)fetchAllCategoriesAsync:(BOOL)shouldFetchAsync
                        withBlock:(void(^)(NSArray *, NSError *))block;
 
+//Increment count of category / source
+- (void)incrementCategoryCount:(NSString *) categoryName;
+- (void)incrementSourceCount:(NSString *) sourceName;
+
+//Record fetch time of category
+- (void)recordCategoryFetchTime:(NSString *) categoryName;
 @end

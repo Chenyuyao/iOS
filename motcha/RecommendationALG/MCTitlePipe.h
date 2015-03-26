@@ -8,7 +8,8 @@
 //Methods there takes some time to excute and should be put in background queue
 + (NSDictionary*)getPosScore;
 + (MCTitlePipe *)sharedInstance;
-- (NSNumber *) getTitleScore:(NSString *) title;
+- (void)fetchTitleScore:(NSString *) title
+        withBlock:(void(^)(NSNumber *, NSError *)) block;
 - (void) saveTitleWord:(NSString *) title;
 
 @end
