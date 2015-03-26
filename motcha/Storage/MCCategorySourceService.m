@@ -21,14 +21,20 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
   return service;
 }
 
+- (void)removeAllCategories {
+  [[MCDatabaseManager defaultManager] deleteEntriesForEntityName:kStrCategoryEntityName
+                                                           async:NO onPredicate:nil
+                                                 completionBlock:nil];
+}
+
 - (void)importCategories {
   NSError* err = nil;
   NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"category" ofType:@"json"];
   
   NSArray* jsonCategories =
-  [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
-                                  options:kNilOptions
-                                    error:&err];
+      [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
+                                      options:kNilOptions
+                                        error:&err];
   for (NSDictionary * jsonCategory in jsonCategories) {
     MCCoreDataCategory * coreDataCategory =
         (MCCoreDataCategory *)[[MCDatabaseManager defaultManager] createEntityWithName:kStrCategoryEntityName];
