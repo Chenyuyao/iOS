@@ -90,6 +90,9 @@
 		C649C8541A8982B80087C340 /* MCNewsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C649C8481A8982B80087C340 /* MCNewsListTableViewCell.xib */; };
 		C649C8591A8982C70087C340 /* UIFont+DINFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8581A8982C70087C340 /* UIFont+DINFont.m */; };
 		C649C8671A90510F0087C340 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C649C8661A90510F0087C340 /* MBProgressHUD.m */; };
+		C6CA86751AC12ADC00314357 /* MCNewsDetailNavButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6CA86741AC12ADC00314357 /* MCNewsDetailNavButtonView.xib */; };
+		C6CA86781AC12EE400314357 /* MCNewsDetailNavButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CA86771AC12EE400314357 /* MCNewsDetailNavButtonView.m */; };
+		C6CA867B1AC1370400314357 /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CA867A1AC1370400314357 /* UIButton+Extensions.m */; };
 		CA09A42D1AC08C7F006E9C73 /* MCRecommendationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A42C1AC08C7F006E9C73 /* MCRecommendationService.m */; };
 		CA09A4791AC10378006E9C73 /* MCCoreDataDictionaryWord.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A4781AC10378006E9C73 /* MCCoreDataDictionaryWord.m */; };
 		CA09A47C1AC10378006E9C73 /* MCCoreDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CA09A47B1AC10378006E9C73 /* MCCoreDataSource.m */; };
@@ -310,6 +313,11 @@
 		C649C8601A8984AA0087C340 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C649C8651A90510F0087C340 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C649C8661A90510F0087C340 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C6CA86741AC12ADC00314357 /* MCNewsDetailNavButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCNewsDetailNavButtonView.xib; sourceTree = "<group>"; };
+		C6CA86761AC12EE400314357 /* MCNewsDetailNavButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewsDetailNavButtonView.h; sourceTree = "<group>"; };
+		C6CA86771AC12EE400314357 /* MCNewsDetailNavButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewsDetailNavButtonView.m; sourceTree = "<group>"; };
+		C6CA86791AC1370400314357 /* UIButton+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extensions.h"; sourceTree = "<group>"; };
+		C6CA867A1AC1370400314357 /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extensions.m"; sourceTree = "<group>"; };
 		CA09A42B1AC08C7F006E9C73 /* MCRecommendationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCRecommendationService.h; sourceTree = "<group>"; };
 		CA09A42C1AC08C7F006E9C73 /* MCRecommendationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRecommendationService.m; sourceTree = "<group>"; };
 		CA09A4771AC10378006E9C73 /* MCCoreDataDictionaryWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCoreDataDictionaryWord.h; sourceTree = "<group>"; };
@@ -772,6 +780,9 @@
 				C649C8401A8982B80087C340 /* MCNewsTextBlock.h */,
 				C649C8411A8982B80087C340 /* MCNewsTextBlock.m */,
 				C649C83D1A8982B80087C340 /* MCNewsDetailScrollViewDelegate.h */,
+				C6CA86761AC12EE400314357 /* MCNewsDetailNavButtonView.h */,
+				C6CA86771AC12EE400314357 /* MCNewsDetailNavButtonView.m */,
+				C6CA86741AC12ADC00314357 /* MCNewsDetailNavButtonView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -818,6 +829,8 @@
 				1561B4601ABB874700AB6D5B /* NSDate+TimeAgo.m */,
 				1595A0CB1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.h */,
 				1595A0CC1AC34FDC005CE8A2 /* NSEntityDescription+Helpers.m */,
+				C6CA86791AC1370400314357 /* UIButton+Extensions.h */,
+				C6CA867A1AC1370400314357 /* UIButton+Extensions.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -968,6 +981,7 @@
 				15E3DB3F1A6B04BA002F4F4C /* Images.xcassets in Resources */,
 				E0EFFBF71ABF91A6002318AA /* store.sqlite in Resources */,
 				C649C7E41A894F5B0087C340 /* FarnhamDisplay-Bold.otf in Resources */,
+				C6CA86751AC12ADC00314357 /* MCNewsDetailNavButtonView.xib in Resources */,
 				15461A601AAEAFF60008025A /* MCNewsCategoryAddView.xib in Resources */,
 				157314991AC0FF0D00E65C02 /* MCNewsListFooterView.xib in Resources */,
 			);
@@ -1018,6 +1032,7 @@
 				C649C84F1A8982B80087C340 /* MCNewsDetailScrollView.m in Sources */,
 				1561B4E71ABD02B800AB6D5B /* AFURLResponseSerialization.m in Sources */,
 				1539C27A1A9A754A00C32877 /* MCPageViewController.m in Sources */,
+				C6CA86781AC12EE400314357 /* MCNewsDetailNavButtonView.m in Sources */,
 				1561B4EF1ABD02B800AB6D5B /* UIRefreshControl+AFNetworking.m in Sources */,
 				C649C84C1A8982B80087C340 /* MCDetailNewsBodyView.m in Sources */,
 				CA09A42D1AC08C7F006E9C73 /* MCRecommendationService.m in Sources */,
@@ -1027,6 +1042,7 @@
 				C649C84B1A8982B80087C340 /* MCNewsDetailViewController.m in Sources */,
 				E0B343C61A773F030081BE95 /* MCIntroFooter.m in Sources */,
 				1561B4E31ABD02B800AB6D5B /* AFNetworkReachabilityManager.m in Sources */,
+				C6CA867B1AC1370400314357 /* UIButton+Extensions.m in Sources */,
 				157314921AC0A7E600E65C02 /* BMYCircularProgressView.m in Sources */,
 				1561B45B1ABA3D8C00AB6D5B /* MCLabel.m in Sources */,
 				C649C8521A8982B80087C340 /* MCNewsListViewController.m in Sources */,
