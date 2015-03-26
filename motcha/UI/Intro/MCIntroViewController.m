@@ -21,6 +21,7 @@ static NSInteger minSelectedCategories = 4;
   BOOL _isFirstTimeUser;
   __block NSMutableArray *_allCategories; // an array of MCCategory *
   NSArray *_categoriesToIgnore;
+  MCIntroHeader *_header;
 }
 
 - (instancetype)init {
@@ -130,17 +131,19 @@ static NSInteger minSelectedCategories = 4;
   UICollectionReusableView *reusableview = nil;
   
   if (kind == UICollectionElementKindSectionHeader) {
-    MCIntroHeader *header =
-    [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                       withReuseIdentifier:reuseHeader forIndexPath:indexPath];
-    [self updateHeader:header forIndexPath:indexPath];
-    reusableview = header;
+    _header =
+        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                           withReuseIdentifier:reuseHeader
+                                                  forIndexPath:indexPath];
+    [self updateHeader:_header forIndexPath:indexPath];
+    reusableview = _header;
   }
   
   if (kind == UICollectionElementKindSectionFooter) {
     MCIntroFooter *footer =
     [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                       withReuseIdentifier:reuseFooter forIndexPath:indexPath];
+                                       withReuseIdentifier:reuseFooter
+                                              forIndexPath:indexPath];
     [self updateFooter:footer forIndexPath:indexPath];
     reusableview = footer;
   }
@@ -150,8 +153,8 @@ static NSInteger minSelectedCategories = 4;
 
 - (void)updateHeader:(MCIntroHeader *)header forIndexPath:(NSIndexPath *)indexPath {
   if (_isFirstTimeUser) {
-  header.title.text = @"Welcome to Motcha";
-  header.instruction.text = @"For Motcha to better understand you,\nPlease select some categories to start.";
+    header.title.text = @"Welcome to Motcha";
+    header.instruction.text = @"For Motcha to better understand you,\nPlease select some categories to start.";
   }
 }
 
@@ -202,6 +205,13 @@ static NSInteger minSelectedCategories = 4;
   if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
       [_delegate respondsToSelector:@selector(introViewController:didDeselectCategory:)]) {
     [_delegate introViewController:self didDeselectCategory:category.category];
+  }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (_header) {
+    CGFloat offset = self.collectionView.contentOffset.y;
+    _header.alpha = MAX(1 - offset / 75, 0);
   }
 }
 
