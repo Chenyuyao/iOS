@@ -9,6 +9,7 @@
 @property(nonatomic, readonly) NSString *content;
 @property(nonatomic, readonly) NSString *rawContent;
 @property(nonatomic, readonly) NSString *tag;
+@property(nonatomic, readonly) NSString *source;
 @property(nonatomic, readonly) NSArray *children;
 @property(nonatomic, readonly) MCParsedHTMLNode *parent;
 @property(nonatomic) NSInteger score;
