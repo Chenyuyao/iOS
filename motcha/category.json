@@ -10,25 +10,25 @@
            },
            {
            "source": "CNN",
-           "link": "http://rss.cnn.com/rss/money_topstories.rss",
+           "link": "rss.cnn.com/rss/money_topstories.rss",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Yahoo",
-           "link": "http://feeds.finance.yahoo.com/rss/2.0/headline?s=yhoo&region=US&lang=en-US",
+           "link": "feeds.finance.yahoo.com/rss/2.0/headline?s=yhoo&region=US&lang=en-US",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "MarketWatch",
-           "link": "http://feeds.marketwatch.com/marketwatch/topstories?format=xml",
+           "link": "feeds.marketwatch.com/marketwatch/topstories?format=xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Global News",
-           "link": "http://globalnews.ca/money/feed/",
+           "link": "globalnews.ca/money/feed/",
            "needParse": 0,
            "fullTextable": 0
            }
@@ -39,31 +39,31 @@
  "array": [
            {
            "source": "Building Design",
-           "link": "http://www.bdonline.co.uk/XmlServers/navsectionRSS.aspx?navsectioncode=442",
+           "link": "www.bdonline.co.uk/XmlServers/navsectionRSS.aspx?navsectioncode=442",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Global News",
-           "link": "http://globalnews.ca/feed/",
+           "link": "globalnews.ca/feed/",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-world",
+           "link": "www.cbc.ca/cmlink/rss-world",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "The New York Times",
-           "link": "http://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+           "link": "rss.nytimes.com/services/xml/rss/nyt/World.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "The New York Times",
-           "link": "http://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+           "link": "rss.nytimes.com/services/xml/rss/nyt/World.xml",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -74,25 +74,25 @@
  "array": [
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-sports",
+           "link": "www.cbc.ca/cmlink/rss-sports",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Global News",
-           "link": "http://globalnews.ca/sports/feed/",
+           "link": "globalnews.ca/sports/feed/",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "The New York Time",
-           "link": "http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml",
+           "link": "rss.nytimes.com/services/xml/rss/nyt/Sports.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "ESPN",
-           "link": "http://sports.espn.go.com/espn/rss/news",
+           "link": "sports.espn.go.com/espn/rss/news",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -103,31 +103,31 @@
  "array": [
            {
            "source": "Syndication",
-           "link": "http://ca-syndication.eonline.com/syndication/feeds/rssfeeds/topstories_ca.xml",
+           "link": "ca-syndication.eonline.com/syndication/feeds/rssfeeds/topstories_ca.xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Global News",
-           "link": "http://globalnews.ca/entertainment/feed",
+           "link": "globalnews.ca/entertainment/feed",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Glamour",
-           "link": "http://feeds.glamour.com/glamour/all_entertainment",
+           "link": "feeds.glamour.com/glamour/all_entertainment",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "GameSpot",
-           "link": "http://www.gamespot.com/feeds/news/",
+           "link": "www.gamespot.com/feeds/news/",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "IGN",
-           "link": "http://feeds.ign.com/ign/games-all",
+           "link": "feeds.ign.com/ign/games-all",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -138,31 +138,31 @@
  "array": [
            {
            "source": "Fashion TV",
-           "link": "http://www.fashiontv.com/rss/",
+           "link": "www.fashiontv.com/rss/",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "JustLuxe",
-           "link": "http://fulltextrssfeed.com/www.justluxe.com/rss/rss-channels.php?sec=fineliving",
+           "link": "fulltextrssfeed.com/www.justluxe.com/rss/rss-channels.php?sec=fineliving",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Glamour",
-           "link": "http://feeds.glamour.com/glamour/all_fashion",
+           "link": "feeds.glamour.com/glamour/all_fashion",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "The New York Times",
-           "link": "http://rss.nytimes.com/services/xml/rss/nyt/FashionandStyle.xml",
+           "link": "rss.nytimes.com/services/xml/rss/nyt/FashionandStyle.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "InStyle",
-           "link": "http://news.instyle.com/feed/",
+           "link": "news.instyle.com/feed/",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -173,25 +173,25 @@
  "array": [
            {
            "source": "FeedBurner",
-           "link": "http://feeds.feedburner.com/dezeen",
+           "link": "feeds.feedburner.com/dezeen",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "designboom",
-           "link": "http://www.designboom.com:8080/feed/",
+           "link": "www.designboom.com:8080/feed/",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Dexigner",
-           "link": "http://www.dexigner.com/feeds/news",
+           "link": "www.dexigner.com/feeds/news",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Design Edge Canada",
-           "link": "http://designedgecanada.com/feed/",
+           "link": "designedgecanada.com/feed/",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -202,31 +202,31 @@
  "array": [
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-health",
+           "link": "www.cbc.ca/cmlink/rss-health",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Medical News Today",
-           "link": "http://www.medicalnewstoday.com/rss/featurednews.xml",
+           "link": "www.medicalnewstoday.com/rss/featurednews.xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "MedicineNet",
-           "link": "http://www.medicinenet.com/rss/dailyhealth.xml",
+           "link": "www.medicinenet.com/rss/dailyhealth.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Glamour",
-           "link": "http://feeds.glamour.com/glamour/health_fitness",
+           "link": "feeds.glamour.com/glamour/health_fitness",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Canoe",
-           "link": "http://rss.canoe.ca/Lifewise/Living/Nutrition/home.xml",
+           "link": "rss.canoe.ca/Lifewise/Living/Nutrition/home.xml",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -243,25 +243,25 @@
            },
            {
            "source": "FeedBurner",
-           "link": "http://feeds.feedburner.com/Artsjournal?format=xml",
+           "link": "feeds.feedburner.com/Artsjournal?format=xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-arts",
+           "link": "www.cbc.ca/cmlink/rss-arts",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "The New York Times",
-           "link": "http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml",
+           "link": "rss.nytimes.com/services/xml/rss/nyt/Arts.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "The Globe and Mail",
-           "link": "http://www.theglobeandmail.com/arts/?service=rss",
+           "link": "www.theglobeandmail.com/arts/?service=rss",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -284,19 +284,19 @@
            },
            {
            "source": "ExtremeTech",
-           "link": "http://www.extremetech.com/feed",
+           "link": "www.extremetech.com/feed",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-technology",
+           "link": "www.cbc.ca/cmlink/rss-technology",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "BBC",
-           "link": "http://feeds.bbci.co.uk/news/technology/rss.xml",
+           "link": "feeds.bbci.co.uk/news/technology/rss.xml",
            "needParse": 0,
            "fullTextable": 0
            }
@@ -307,25 +307,25 @@
  "array": [
            {
            "source": "BBC",
-           "link": "http://feeds.bbci.co.uk/news/business/rss.xml",
+           "link": "feeds.bbci.co.uk/news/business/rss.xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "The Globe and Mail",
-           "link": "http://www.theglobeandmail.com/report-on-business/?service=rss",
+           "link": "www.theglobeandmail.com/report-on-business/?service=rss",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Forbes",
-           "link": "http://www.forbes.com/business/feed/",
+           "link": "www.forbes.com/business/feed/",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "CNBC",
-           "link": "http://www.cnbc.com/id/10001147/device/rss/rss.html",
+           "link": "www.cnbc.com/id/10001147/device/rss/rss.html",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -336,7 +336,7 @@
  "array": [
            {
            "source": "The Globe and Mail",
-           "link": "http://www.theglobeandmail.com/life/?service=rss",
+           "link": "www.theglobeandmail.com/life/?service=rss",
            "needParse": 0,
            "fullTextable": 1
            },
@@ -348,7 +348,7 @@
            },
            {
            "source": "Toronto Star",
-           "link": "http://www.thestar.com.my/RSS/Editors-Choice/Lifestyle/",
+           "link": "www.thestar.com.my/RSS/Editors-Choice/Lifestyle/",
            "needParse": 0,
            "fullTextable": 0
            }
@@ -359,13 +359,13 @@
  "array": [
            {
            "source": "FeedZilla",
-           "link": "http://news.feedzilla.com/en_us/headlines/society/crime.rss",
+           "link": "news.feedzilla.com/en_us/headlines/society/crime.rss",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "FeedZilla",
-           "link": "http://news.feedzilla.com/en_us/headlines/society/environment.rss",
+           "link": "news.feedzilla.com/en_us/headlines/society/environment.rss",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -376,31 +376,31 @@
  "array": [
            {
            "source": "The Globe and Mail",
-           "link": "http://www.theglobeandmail.com/life/celebrity-news/?service=rss",
+           "link": "www.theglobeandmail.com/life/celebrity-news/?service=rss",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "People",
-           "link": "http://feeds.people.com/people/headlines",
+           "link": "feeds.people.com/people/headlines",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "PopEater",
-           "link": "http://www.popeater.com/rss.xml",
+           "link": "www.popeater.com/rss.xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Access Hollywood",
-           "link": "http://feeds.accesshollywood.com/AccessHollywood/LatestNews?format=xml",
+           "link": "feeds.accesshollywood.com/AccessHollywood/LatestNews?format=xml",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Forbes",
-           "link": "http://www.forbes.com/video/static/xml/showRssFeeds/54.xml",
+           "link": "www.forbes.com/video/static/xml/showRssFeeds/54.xml",
            "needParse": 0,
            "fullTextable": 0
            }
@@ -411,25 +411,25 @@
  "array": [
            {
            "source": "CBC",
-           "link": "http://www.cbc.ca/cmlink/rss-politics",
+           "link": "www.cbc.ca/cmlink/rss-politics",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "BBC",
-           "link": "http://feeds.bbci.co.uk/news/politics/rss.xml",
+           "link": "feeds.bbci.co.uk/news/politics/rss.xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "The Globe and Mail",
-           "link": "http://www.theglobeandmail.com/news/politics/?service=rss",
+           "link": "www.theglobeandmail.com/news/politics/?service=rss",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "Washington Post",
-           "link": "http://feeds.washingtonpost.com/rss/rss_election-2012",
+           "link": "feeds.washingtonpost.com/rss/rss_election-2012",
            "needParse": 0,
            "fullTextable": 1
            }
@@ -440,25 +440,25 @@
  "array": [
            {
            "source": "The Conversation",
-           "link": "http://theconversation.com/uk/education/articles.atom",
+           "link": "theconversation.com/uk/education/articles.atom",
            "needParse": 0,
            "fullTextable": 1
            },
            {
            "source": "PeopleForEducation",
-           "link": "http://www.peopleforeducation.ca/feed/",
+           "link": "www.peopleforeducation.ca/feed/",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "FeedBurner",
-           "link": "http://feeds.feedburner.com/EducationWeekNewsAndInformationAboutEducationIssues?format=xml",
+           "link": "feeds.feedburner.com/EducationWeekNewsAndInformationAboutEducationIssues?format=xml",
            "needParse": 0,
            "fullTextable": 0
            },
            {
            "source": "Education International",
-           "link": "http://www.ei-ie.org/en/rss/themes/4/en.rss",
+           "link": "www.ei-ie.org/en/rss/themes/4/en.rss",
            "needParse": 0,
            "fullTextable": 1
            }
