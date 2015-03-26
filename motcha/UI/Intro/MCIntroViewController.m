@@ -5,21 +5,22 @@
 #import "MCIntroFooter.h"
 #import "MCIntroCollectionViewLayout.h"
 #import "MCNewsListsContainerController.h"
-#import "MCLocalStorageService.h"
 #import "MCNavigationController.h"
 #import "UIColor+Helpers.h"
 #import "MCNewsCategorySelectorView.h"
+#import "MCCategorySourceService.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
 static NSString * const reuseFooter = @"FooterView";
 static NSString * const minSelectedMsg = @"Please select at least three categories to get started.";
-static NSString * const recommendedCategory = @"Recommended";
 static NSInteger minSelectedCategories = 4;
 
 @implementation MCIntroViewController {
-  NSMutableArray *_selectedCategories;
+  __block NSMutableArray *_selectedCategories; // an array of NSString *
   BOOL _isFirstTimeUser;
+  __block NSMutableArray *_allCategories; // an array of MCCategory *
+  NSArray *_categoriesToIgnore;
 }
 
 - (instancetype)init {
@@ -31,30 +32,49 @@ static NSInteger minSelectedCategories = 4;
   layout.headerHeight = 135.0f;
   layout.footerHeight = 50.0f;
   layout.preferredElementSize = CGSizeMake(100, 100);
-  
   return [super initWithCollectionViewLayout:layout];
 }
 
-- (instancetype)initWithSelectedCategories:(NSMutableArray *)categories
-                 superNavigationController:(UINavigationController *)navigationController
-                           isFirstTimeUser:(BOOL)isFirstTimeUser {
-  self = [self init];
-  if (self) {
+- (instancetype)initWithSuperNavigationController:(UINavigationController *)navigationController
+                                  isFirstTimeUser:(BOOL)isFirstTimeUser {
+  if (self = [self init]) {
     _superNavigationController = navigationController;
     _isFirstTimeUser = isFirstTimeUser;
+    _selectedCategories = [NSMutableArray array];
+    _categoriesToIgnore = @[recommendedCategory]; // For now, only RECOMMENDED is ignored.
     UIBarButtonItem *completeButton =
       [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                     target:self
                                                     action:@selector(finishButtonTapped)];
     self.navigationItem.rightBarButtonItem = completeButton;
     if (!_isFirstTimeUser) {
-      _selectedCategories = [NSMutableArray arrayWithArray:categories];
       self.navigationItem.title = @"Select Categories";
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).headerHeight = 20.0f;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
     } else {
-      _selectedCategories = [NSMutableArray arrayWithObject:recommendedCategory];
+      // Import all available categories into the local datastore.
+      [[MCCategorySourceService sharedInstance] importCategories];
     }
+    
+    id fetchBlock = ^(NSArray *categories, NSError *error) {
+      if (!error) {
+        _allCategories = [categories mutableCopy];
+        for (MCCategory *category in categories) {
+          if (category.selected) {
+            [_selectedCategories addObject:category.category];
+          }
+        }
+        for (MCCategory *category in _allCategories) {
+          if ([category.category isEqualToString:recommendedCategory]) {
+            [_allCategories removeObject:category];
+            break;
+          }
+        }
+      } else {
+        NSLog(@"ERROR: Fetching all categories error: %@", error);
+      }
+    };
+    [[MCCategorySourceService sharedInstance] fetchAllCategoriesAsync:NO withBlock:fetchBlock];
   }
   return self;
 }
@@ -141,7 +161,7 @@ static NSInteger minSelectedCategories = 4;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-  return [[[self class] categories] count];
+  return [_allCategories count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -153,10 +173,10 @@ static NSInteger minSelectedCategories = 4;
 }
 
 - (void)updateCell:(MCIntroCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-  NSString *category = [[self class] categories][indexPath.row];
-  cell.imageView.image = [UIImage imageNamed:category];
-  cell.title.text = category;
-  if ([_selectedCategories containsObject:category]) {
+  MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
+  cell.imageView.image = [UIImage imageNamed:category.category];
+  cell.title.text = category.category;
+  if (category.selected) {
     cell.selected = YES;
     [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:0];
   }
@@ -164,21 +184,21 @@ static NSInteger minSelectedCategories = 4;
 
 - (void)collectionView:(UICollectionView *)collectionView
   didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  NSString *category = [[self class] categories][indexPath.row];
-  [_selectedCategories addObject:category];
+  MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
+  [_selectedCategories addObject:category.category];
   if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
       [_delegate respondsToSelector:@selector(introViewController:didSelectCategory:)]) {
-    [_delegate introViewController:self didSelectCategory:category];
+    [_delegate introViewController:self didSelectCategory:category.category];
   }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView
     didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-  NSString *category = [[self class] categories][indexPath.row];
-  [_selectedCategories removeObject:category];
+  MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
+  [_selectedCategories removeObject:category.category];
   if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
       [_delegate respondsToSelector:@selector(introViewController:didDeselectCategory:)]) {
-    [_delegate introViewController:self didDeselectCategory:category];
+    [_delegate introViewController:self didDeselectCategory:category.category];
   }
 }
 
@@ -204,25 +224,14 @@ static NSInteger minSelectedCategories = 4;
     id block = ^(NSError *error) {
         if (_isFirstTimeUser) {
           MCNewsListsContainerController *newsListsController =
-          [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
+              [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
           [self.navigationController setViewControllers:@[ newsListsController ] animated:YES];
         } else {
           [self dismissViewControllerAnimated:YES completion:nil];
         }
     };
-    [[MCLocalStorageService sharedInstance] storeCategories:_selectedCategories
-                                                  withBlock:block];
+    [[MCCategorySourceService sharedInstance] storeSelectedCategories:_selectedCategories async:NO withBlock:block];
   }
-}
-
-+ (NSArray *)categories {
-  // TODO(sherry): Add more.
-  static NSArray *categories;
-  if (!categories) {
-    categories = @[@"TECHNOLOGY", @"FINANCE", @"ARTS", @"INTERNATIONAL", @"SPORTS",
-                   @"ENTERTAINMENT", @"FASHION", @"DESIGN", @"HEALTH"];
-  }
-  return categories;
 }
 
 @end

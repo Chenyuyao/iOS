@@ -1,0 +1,107 @@
+[
+ {
+ "category": "FINANCE",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "INTERNATIONAL",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "SPORTS",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "ENTERTAINMENT",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "FASHION",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "DESIGN",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "HEALTH",
+ "array": [
+           {
+           "source": "economist",
+           "link": "www.economist.com/sections/business-finance/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "ARTS",
+ "array": [
+           {
+           "source": "artnews",
+           "link": "www.artnews.com/feed/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ },
+ {
+ "category": "TECHNOLOGY",
+ "array": [
+           {
+           "source": "cnet",
+           "link": "www.cnet.com/rss/news/",
+           "needParse": 0,
+           "fullTextable": 1
+           },
+           {
+           "source": "engadget",
+           "link": "www.engadget.com/rss.xml/",
+           "needParse": 0,
+           "fullTextable": 1
+           }
+           ]
+ }
+ ]

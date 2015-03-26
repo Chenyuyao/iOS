@@ -11,8 +11,7 @@
 #import "MCNavigationBarCustomizationDelegate.h"
 #import "MCParsedRSSItem.h"
 #import "MCWebContentService.h"
-
-//static CGFloat kScrollViewContentBottomInset = 20.0f;
+#import "MCNewsDetailNavButtonView.h"
 
 @interface MCNewsDetailViewController ()
 <
@@ -28,6 +27,9 @@
   MCNewsDetailScrollView *_scrollView;
   MCParsedRSSItem *_item;
   MCNewsDetailsObject *_data;
+  MCNewsDetailBackButtonView *_backButtonView;
+  MCNewsDetailFontButtonView *_fontButtonView;
+  MCNewsDetailShareButtonView *_shareButtonView;
 }
 
 - (instancetype)initWithRSSItem:(MCParsedRSSItem *)item {
@@ -46,49 +48,61 @@
   _scrollView.delegate = self;
   //_scrollView.contentInset = UIEdgeInsetsMake(0,0,kScrollViewContentBottomInset,0);
   self.automaticallyAdjustsScrollViewInsets = NO;
-  
-  //add right bar items: font and share item
-  UIBarButtonItem *fontButton =
-  [[UIBarButtonItem alloc] initWithTitle:@"Aa"
-                                   style: UIBarButtonItemStylePlain
-                                  target:self
-                                  action:@selector(fontButtonPressed:)];
-  UIBarButtonItem *shareButton =
-  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                target:self
-                                                action:@selector(shareButtonPressed:)];
-  NSArray *actionBarItems = @[shareButton, fontButton];
-  self.navigationItem.rightBarButtonItems = actionBarItems;
+  [self setupNavigationBarItems];
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  UIActivityIndicatorView *indicator =
+      [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  [self.view addSubview:indicator];
+  indicator.translatesAutoresizingMaskIntoConstraints = NO;
+  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator
+                                                        attribute:NSLayoutAttributeCenterX
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self.view
+                                                        attribute:NSLayoutAttributeCenterX
+                                                       multiplier:1.f constant:0.f]];
+  
+  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:indicator
+                                                        attribute:NSLayoutAttributeCenterY
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self.view
+                                                        attribute:NSLayoutAttributeCenterY
+                                                       multiplier:1.f constant:-40]];
+  [self.view bringSubviewToFront:indicator];
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+  [indicator startAnimating];
   [[MCWebContentService sharedInstance] fetchNewsDetailsWithItem:_item
                                                  completionBlock:^(MCNewsDetailsObject *data, NSError *error) {
-    if (!error) {
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
+  if (!error) {
       _data = data;
       __weak __typeof__(self) weakSelf = self;
       dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf reload];
+        [weakSelf loadData];
+        [indicator stopAnimating];
+        [indicator removeFromSuperview];
       });
     } else {
       // TODO(shinfan): Handle error here.
     }
   }];
+  
+  // Set the initial orientation status for the nav buttons
+  _backButtonView.buttonOrientation = [UIApplication sharedApplication].statusBarOrientation;
+  _fontButtonView.buttonOrientation = [UIApplication sharedApplication].statusBarOrientation;
+  _shareButtonView.buttonOrientation = [UIApplication sharedApplication].statusBarOrientation;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self notifyNavigationControllerWithScrollViewContentOffsetYAnimated:animated];
-}
-
-- (void)notifyNavigationControllerWithScrollViewContentOffsetYAnimated:(BOOL)animated {
   [(MCNavigationController *)self.navigationController notifyViewWillAppearAnimated:animated];
 }
 
 #pragma mark - UIScrollViewDelegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  [self notifyNavigationControllerWithScrollViewContentOffsetYAnimated:NO];
+  [(MCNavigationController *)self.navigationController notifyViewWillAppearAnimated:NO];
 }
 
 #pragma mark - MCNewsDetailScrollViewDelegate methods
@@ -107,32 +121,13 @@
   [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
-#pragma mark - button press target actions
-- (void)shareButtonPressed:(UIBarButtonItem *)sender {
-  // TODO: get the actual url and text to share
-  NSString *textToShare = @"Mocha is so good!";
-  NSURL *website = [NSURL URLWithString:@"https://www.google.ca/"];
-  NSArray *objectsToShare = @[textToShare, website];
-  // TODO: add weixin activity SDK
-  UIActivityViewController *activityVC =
-      [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
-                                        applicationActivities: nil];
-  activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact,
-                                       UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr,
-                                       UIActivityTypePostToVimeo, UIActivityTypeAirDrop];
-  [self presentViewController:activityVC animated:YES completion:nil];
-}
-
-- (void)fontButtonPressed:(UIBarButtonItem *)sender {
-  [_scrollView toggleTextFontSize];
-}
-
 #pragma mark - JTSImageViewControllerImageSavingDelegate methods
 - (void)image:(UIImage *)image didSavingWithError:(NSError *)error contextInfo: (void *) contextInfo {
   // TODO: (PhoebeLi) need refactoring wording stuff.
   NSLog(@"Cannot save image.");
   UIAlertView *failureAlert =[[UIAlertView alloc] initWithTitle:@" Unable to Save Image"
-                                                        message:@"Motcha does not have permission to access your photos. Please go to Settings > Privacy > Photos, and turn on Motcha."
+                                                        message:@"Motcha does not have permission to access your"
+                              " photos. Please go to Settings > Privacy > Photos, and turn on Motcha."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
@@ -163,8 +158,49 @@
   return [self calculateNavigationBarBackgroundAlphaFromScrollViewContentOffsetY];
 }
 
+#pragma mark - navigation button handlers
+- (void)backButtonTapped:(id)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)fontButtonTapped:(id)sender {
+  [_scrollView toggleTextFontSize];
+}
+
+- (void)shareButtonTapped:(id)sender {
+  // TODO: get the actual url and text to share
+  NSString *textToShare = @"Mocha is so good!";
+  NSURL *website = [NSURL URLWithString:@"https://www.google.ca/"];
+  NSArray *objectsToShare = @[textToShare, website];
+  // TODO: add weixin activity SDK
+  UIActivityViewController *activityVC =
+  [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
+                                    applicationActivities: nil];
+  activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeAssignToContact,
+                                       UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr,
+                                       UIActivityTypePostToVimeo, UIActivityTypeAirDrop];
+  [self presentViewController:activityVC animated:YES completion:nil];
+}
+
+#pragma mark - UIContentContainer methods
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+  [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    if (size.width > size.height) { // Landscape
+      _backButtonView.buttonOrientation = UIInterfaceOrientationLandscapeLeft;
+      _fontButtonView.buttonOrientation = UIInterfaceOrientationLandscapeLeft;
+      _shareButtonView.buttonOrientation = UIInterfaceOrientationLandscapeLeft;
+    } else { // Portrait
+      _backButtonView.buttonOrientation = UIInterfaceOrientationPortrait;
+      _fontButtonView.buttonOrientation = UIInterfaceOrientationPortrait;
+      _shareButtonView.buttonOrientation = UIInterfaceOrientationPortrait;
+    }
+  } completion:nil];
+  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
 #pragma mark - Helpers
-- (void)reload {
+- (void)loadData {
   // TODO: Use real image
   [_scrollView setImage:[UIImage imageNamed:@"Cherry-Blossom"]];
   [_scrollView setNewsTitle:_data.title];
@@ -181,4 +217,45 @@
       kTitleImageViewOriginalHeight - (kTitleImageViewTopInset + kTitleImageViewBottomInset);
   return MAX(0.0f, MIN(1.0f, _scrollView.contentOffset.y / contentOffsetBoundary));
 }
+
+- (void)setupNavigationBarItems {
+  //add right bar items: font and share item
+  NSArray *buttons = [[NSBundle mainBundle] loadNibNamed:@"MCNewsDetailNavButtonView" owner:nil options:nil];
+  
+  for (UIView *buttonView in buttons) {
+    if ([buttonView isKindOfClass:[MCNewsDetailBackButtonView class]]) {
+      _backButtonView = (MCNewsDetailBackButtonView *)buttonView;
+    } else if ([buttonView isKindOfClass:[MCNewsDetailFontButtonView class]]) {
+      _fontButtonView = (MCNewsDetailFontButtonView *)buttonView;
+    } else if ([buttonView isKindOfClass:[MCNewsDetailShareButtonView class]]) {
+      _shareButtonView = (MCNewsDetailShareButtonView *)buttonView;
+    }
+  }
+  
+  [_backButtonView.button addTarget:self
+                             action:@selector(backButtonTapped:)
+                   forControlEvents:UIControlEventTouchUpInside];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backButtonView];
+  
+  [_fontButtonView.button addTarget:self
+                             action:@selector(fontButtonTapped:)
+                   forControlEvents:UIControlEventTouchUpInside];
+  UIBarButtonItem *fontButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_fontButtonView];
+  
+  [_shareButtonView.button addTarget:self
+                              action:@selector(shareButtonTapped:)
+                    forControlEvents:UIControlEventTouchUpInside];
+  UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonView];
+  
+  UIBarButtonItem *fixedItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                             target:nil
+                                                                             action:nil];
+  fixedItem.width = 20.0f; // spacing between two navigation items
+  NSArray *actionBarItems = @[shareButtonItem, fixedItem, fontButtonItem];
+  self.navigationItem.rightBarButtonItems = actionBarItems;
+  // Re-enable the swipe-to-pop gesture.
+  self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
+  [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+}
+
 @end

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MCNewsDetailBackButtonView">
+            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cok-OA-REQ">
+                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8N7-KB-UJh">
+                            <rect key="frame" x="7" y="8" width="20" height="20"/>
+                            <state key="normal" image="backButton">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="8N7-KB-UJh" firstAttribute="top" secondItem="Cok-OA-REQ" secondAttribute="top" constant="8" id="7sF-NS-laW"/>
+                        <constraint firstAttribute="bottom" secondItem="8N7-KB-UJh" secondAttribute="bottom" constant="8" id="abG-LR-YYi"/>
+                        <constraint firstItem="8N7-KB-UJh" firstAttribute="leading" secondItem="Cok-OA-REQ" secondAttribute="leading" constant="7" id="bWL-hR-GbF"/>
+                        <constraint firstAttribute="trailing" secondItem="8N7-KB-UJh" secondAttribute="trailing" constant="9" id="iaw-dF-98U"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Cok-OA-REQ" secondAttribute="bottom" id="5cB-jF-Pqa"/>
+                <constraint firstItem="Cok-OA-REQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7bq-Vh-gcw"/>
+                <constraint firstAttribute="trailing" secondItem="Cok-OA-REQ" secondAttribute="trailing" id="cJl-h1-bvU"/>
+                <constraint firstItem="Cok-OA-REQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sfs-dk-9Pv"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_backdrop" destination="Cok-OA-REQ" id="dvP-Vb-l2B"/>
+                <outlet property="button" destination="8N7-KB-UJh" id="u0G-iK-ROs"/>
+            </connections>
+            <point key="canvasLocation" x="89" y="260"/>
+        </view>
+        <view contentMode="scaleToFill" id="tbU-jl-cK5" customClass="MCNewsDetailFontButtonView">
+            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feq-oZ-Z0J">
+                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-Dj-4Dh">
+                            <rect key="frame" x="7" y="8" width="20" height="20"/>
+                            <state key="normal" image="fontButton">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.70588235294117652" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Azi-Dj-4Dh" firstAttribute="top" secondItem="feq-oZ-Z0J" secondAttribute="top" constant="8" id="DzO-bW-S50"/>
+                        <constraint firstAttribute="trailing" secondItem="Azi-Dj-4Dh" secondAttribute="trailing" constant="9" id="OLz-kC-Uge"/>
+                        <constraint firstItem="Azi-Dj-4Dh" firstAttribute="leading" secondItem="feq-oZ-Z0J" secondAttribute="leading" constant="7" id="Zjn-bh-pRa"/>
+                        <constraint firstAttribute="bottom" secondItem="Azi-Dj-4Dh" secondAttribute="bottom" constant="8" id="sm3-oH-7oX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="feq-oZ-Z0J" firstAttribute="leading" secondItem="tbU-jl-cK5" secondAttribute="leading" id="24w-Nc-jyQ"/>
+                <constraint firstItem="feq-oZ-Z0J" firstAttribute="top" secondItem="tbU-jl-cK5" secondAttribute="top" id="FVx-CR-yEL"/>
+                <constraint firstAttribute="trailing" secondItem="feq-oZ-Z0J" secondAttribute="trailing" id="Za3-6G-dgq"/>
+                <constraint firstAttribute="bottom" secondItem="feq-oZ-Z0J" secondAttribute="bottom" id="rd9-Xl-2ne"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_backdrop" destination="feq-oZ-Z0J" id="db0-gF-lq3"/>
+                <outlet property="button" destination="Azi-Dj-4Dh" id="bTk-O4-tdW"/>
+            </connections>
+            <point key="canvasLocation" x="263" y="260"/>
+        </view>
+        <view contentMode="scaleToFill" id="76b-hA-wKr" customClass="MCNewsDetailShareButtonView">
+            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNb-PX-CbT">
+                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzk-p7-Lfa">
+                            <rect key="frame" x="7" y="8" width="20" height="20"/>
+                            <state key="normal" image="shareButton">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.40392156862745099" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Kzk-p7-Lfa" secondAttribute="trailing" constant="9" id="4ma-3R-kgh"/>
+                        <constraint firstItem="Kzk-p7-Lfa" firstAttribute="leading" secondItem="hNb-PX-CbT" secondAttribute="leading" constant="7" id="V2W-Gm-zAS"/>
+                        <constraint firstItem="Kzk-p7-Lfa" firstAttribute="top" secondItem="hNb-PX-CbT" secondAttribute="top" constant="8" id="dC2-Fv-YTe"/>
+                        <constraint firstAttribute="bottom" secondItem="Kzk-p7-Lfa" secondAttribute="bottom" constant="8" id="ytw-WT-CEx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hNb-PX-CbT" firstAttribute="leading" secondItem="76b-hA-wKr" secondAttribute="leading" id="fz3-mx-g82"/>
+                <constraint firstAttribute="bottom" secondItem="hNb-PX-CbT" secondAttribute="bottom" id="lXu-Tu-mr3"/>
+                <constraint firstAttribute="trailing" secondItem="hNb-PX-CbT" secondAttribute="trailing" id="rvG-B2-Lag"/>
+                <constraint firstItem="hNb-PX-CbT" firstAttribute="top" secondItem="76b-hA-wKr" secondAttribute="top" id="tnr-WW-K0s"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_backdrop" destination="hNb-PX-CbT" id="Me0-IG-UPC"/>
+                <outlet property="button" destination="Kzk-p7-Lfa" id="v1e-8D-IRq"/>
+            </connections>
+            <point key="canvasLocation" x="341" y="260"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backButton" width="30" height="30"/>
+        <image name="fontButton" width="30" height="30"/>
+        <image name="shareButton" width="30" height="30"/>
+    </resources>
+</document>
