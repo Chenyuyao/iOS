@@ -88,12 +88,10 @@ static CGFloat kLogoFontSize = 25.0f;
 #pragma mark - add/remove category
 - (void)addCategory:(NSString *)category {
   [_categories addObject:category];
-  [_newsCategoryView.categoryScrollView addCategory:category];
 }
 
 - (void)removeCategory:(NSString *)category {
   [_categories removeObject:category];
-  [_newsCategoryView.categoryScrollView removeCategory:category];
 }
 
 #pragma mark - MCNewsCategorySelectorScrollViewDataSource methods
@@ -173,8 +171,14 @@ static CGFloat kLogoFontSize = 25.0f;
   [self removeCategory:category];
 }
 
-- (void)introViewController:(UIViewController *)introViewController didFinishChangingCategories:(NSArray *)categories {
-  if (![categories isEqualToArray:_categories]) {
+- (void)introViewController:(UIViewController *)introViewController
+didFinishChangingCategories:(NSArray *)categories
+                    changed:(BOOL)changed{
+  if (changed) {
+    [_newsCategoryView.categoryScrollView removeAllCategories];
+    for (NSString *category in _categories) {
+      [_newsCategoryView.categoryScrollView addCategory:category];
+    }
     [_newsCategoryView.categoryScrollView reloadCategoryButtons];
   }
 }

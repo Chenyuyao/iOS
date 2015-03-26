@@ -197,6 +197,12 @@ static CGFloat kCategoryButtonSpacing               = 15.0f;
   }
 }
 
+- (void)removeAllCategories {
+  while ([_categoriesButtons count]) {
+    [self removeCategoryAtIndex:[_categoriesButtons count]-1];
+  }
+}
+
 - (void)moveCategoryFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
   MCCategoryButton *button = [_categoriesButtons objectAtIndex:fromIndex];
   [_categoriesButtons moveObjectFromIndex:fromIndex toIndex:toIndex];

@@ -7,7 +7,10 @@
 static NSString *kStrCategoryEntityName = @"MCCoreDataCategory";
 static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 
-@implementation MCCategorySourceService
+@implementation MCCategorySourceService {
+  __block NSArray *_cachedAllCategories; // an array of MCCategories
+  __block NSArray *_cachedSelectedCategories; // an array of NSString
+}
 
 + (MCCategorySourceService *)sharedInstance {
   static MCCategorySourceService *service;
@@ -57,12 +60,17 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 }
 
 - (void)fetchSelectedCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
+  if (_cachedSelectedCategories) {
+    block(_cachedSelectedCategories, nil);
+    return;
+  }
   NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"selected", @YES];
   id completionBlock = ^(NSArray *entities, NSError *error) {
     NSMutableArray *categories = [NSMutableArray array];
     for (MCCoreDataCategory *entity in entities) {
       [categories addObject:[entity.category uppercaseString]];
     }
+    _cachedSelectedCategories = [categories copy];
     block(categories, error);
   };
   
@@ -88,6 +96,9 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
         }
         [[entity managedObjectContext] save:nil];
       }
+      // invalidate the caches.
+      _cachedSelectedCategories = nil;
+      _cachedAllCategories = nil;
     }
     block(error);
   };
@@ -166,6 +177,10 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
 }
 
 - (void) fetchAllCategoriesAsync:(BOOL)shouldFetchAsync withBlock:(void(^)(NSArray *, NSError *))block {
+  if (_cachedAllCategories) {
+    block(_cachedAllCategories, nil);
+    return;
+  }
   id completionBlock = ^(NSArray *entities, NSError *error) {
     if (!error) {
       NSMutableArray * categories = [NSMutableArray array];
@@ -177,6 +192,7 @@ static NSString *kStrSourceEntityName = @"MCCoreDataSource";
                                         selected:[(NSNumber *)[coreDataCategory selected] boolValue]];
         [categories addObject:category];
       }
+      _cachedAllCategories = [categories copy];
       block(categories, error);
     } else {
       block(nil, error);

@@ -34,6 +34,8 @@
 - (MCCategoryButton *)removeCategory:(NSString *)category;
 // Remove a category at a specific index
 - (MCCategoryButton *)removeCategoryAtIndex:(NSUInteger)index;
+// Remove all categories
+- (void)removeAllCategories;
 // Move a category button from fromIndex to toIndex
 - (void)moveCategoryFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 // Exchange two category buttons at index1 and index2
