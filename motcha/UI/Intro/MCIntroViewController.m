@@ -202,6 +202,10 @@ static NSInteger minSelectedCategories = 4;
     didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
   MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
   [_selectedCategories removeObject:category.category];
+  if ([_delegate conformsToProtocol:@protocol(MCIntroViewControllerDelegate)] &&
+      [_delegate respondsToSelector:@selector(introViewController:didDeselectCategory:)]) {
+    [_delegate introViewController:self didDeselectCategory:category.category];
+  }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
