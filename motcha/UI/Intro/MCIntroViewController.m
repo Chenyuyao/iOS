@@ -9,6 +9,7 @@
 #import "UIColor+Helpers.h"
 #import "MCNewsCategorySelectorView.h"
 #import "MCCategorySourceService.h"
+#import "MCAppDelegate.h"
 
 static NSString * const reuseHeader = @"HeaderView";
 static NSString * const reuseCell = @"Cell";
@@ -54,6 +55,7 @@ static NSInteger minSelectedCategories = 4;
       ((MCIntroCollectionViewLayout *) self.collectionViewLayout).footerHeight = 0.0f;
     } else {
       // Import all available categories into the local datastore.
+      [[MCCategorySourceService sharedInstance] removeAllCategories];
       [[MCCategorySourceService sharedInstance] importCategories];
     }
     
@@ -182,9 +184,12 @@ static NSInteger minSelectedCategories = 4;
   MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
   cell.imageView.image = [UIImage imageNamed:category.category];
   cell.title.text = category.category;
-  if (category.selected) {
+  if ([_selectedCategories containsObject:category.category]) {
     cell.selected = YES;
     [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:0];
+  } else {
+    cell.selected = NO;
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
   }
 }
 
@@ -231,7 +236,8 @@ static NSInteger minSelectedCategories = 4;
     [alert show];
   } else {
     __block NSArray *originalSelectedCategories;
-    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO withBlock:^(NSArray *categories, NSError *error) {
+    [[MCCategorySourceService sharedInstance] fetchSelectedCategoriesAsync:NO
+                                                                 withBlock:^(NSArray *categories, NSError *error) {
       if (!error) {
         originalSelectedCategories = categories;
       }
@@ -247,6 +253,8 @@ static NSInteger minSelectedCategories = 4;
     }
     id block = ^(NSError *error) {
         if (_isFirstTimeUser) {
+          [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserDefaultKeyAppHasLaunchedOnce];
+          [[NSUserDefaults standardUserDefaults] synchronize];
           MCNewsListsContainerController *newsListsController =
               [[MCNewsListsContainerController alloc] initWithCategories:_selectedCategories];
           [self.navigationController setViewControllers:@[ newsListsController ] animated:YES];

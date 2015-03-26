@@ -71,9 +71,11 @@ static NSString *const kStrStoreName = @"store";
                                            onPredicate:predicate
                                                 onSort:sortDescriptors
                                                  error:&error];
-      dispatch_async(dispatch_get_main_queue(), ^{
-        block(array, error);
-      });
+      if (block) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          block(array, error);
+        });
+      }
     });
   } else {
     NSError *error = nil;
@@ -81,7 +83,9 @@ static NSString *const kStrStoreName = @"store";
                                          onPredicate:predicate
                                               onSort:sortDescriptors
                                                error:&error];
-    block(array, error);
+    if (block) {
+      block(array, error);
+    }
   }
 }
 
@@ -93,14 +97,18 @@ static NSString *const kStrStoreName = @"store";
     dispatch_async(_queue, ^{
       NSError *error;
       [self deleteEntriesForEntityName:name onPredicate:predicate error:&error];
-      dispatch_async(dispatch_get_main_queue(), ^{
-        block(error);
-      });
+      if (block) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          block(error);
+        });
+      }
     });
   } else {
     NSError *error;
     [self deleteEntriesForEntityName:name onPredicate:predicate error:&error];
-    block(error);
+    if (block) {
+      block(error);
+    }
   }
 }
 
