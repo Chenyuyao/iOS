@@ -42,6 +42,7 @@ didStartElement:(NSString *)elementName
 }
 
 #pragma mark - NSXMLParserDelegate methods
+
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
   if ([_element isEqualToString:@"title"]) {
     [_title appendString:string];
@@ -49,17 +50,15 @@ didStartElement:(NSString *)elementName
     [_link appendString:string];
   } else if ([_element isEqualToString:@"description"]) {
     [_description appendString:string];
-    
-    
   } else if ([_element isEqualToString:@"pubDate"]) {
     [_pubDate appendString:string];
   } else if ([_element isEqualToString:@"author"]) {
     [_author appendString:string];
   }
-  
 }
 
 #pragma mark - NSXMLParserDelegate methods
+
 - (void) parser:(NSXMLParser *)parser
   didEndElement:(NSString *)elementName
    namespaceURI:(NSString *)namespaceURI

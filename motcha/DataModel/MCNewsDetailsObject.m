@@ -8,7 +8,7 @@
 }
 
 + (instancetype)componentWithNode:(MCParsedHTMLNode *)node {
-  if (node.content.length) {
+  if (node.content.length || [node type] == [MCNewsDetailsImage class]) {
     return [[[self class] alloc] initWithNode:node];
   } else {
     return nil;
@@ -36,8 +36,7 @@
 @implementation MCNewsDetailsImage
 
 - (NSURL *)source {
-  // TODO(shinfan): implement this.
-  return nil;
+  return [NSURL URLWithString:[_node source]];
 }
 
 @end
