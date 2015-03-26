@@ -184,9 +184,12 @@ static NSInteger minSelectedCategories = 4;
   MCCategory *category = [_allCategories objectAtIndex:indexPath.row];
   cell.imageView.image = [UIImage imageNamed:category.category];
   cell.title.text = category.category;
-  if (category.selected) {
+  if ([_selectedCategories containsObject:category.category]) {
     cell.selected = YES;
     [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:0];
+  } else {
+    cell.selected = NO;
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
   }
 }
 
